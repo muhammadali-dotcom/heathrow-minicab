@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb";
-import FlapTile from "@/components/FlapTile";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 // Photos are cropped from the supplied terminal images (their yellow labels removed).
@@ -24,7 +23,6 @@ type PageBannerProps = {
   intro?: string;
   image: keyof typeof BANNER_IMAGES;
   links?: { href: string; label: string }[];
-  badge?: string; // large decorative flap tile on the right from md, e.g. "T5"
 };
 
 const focusWhite =
@@ -40,7 +38,6 @@ export default function PageBanner({
   intro,
   image,
   links,
-  badge,
 }: PageBannerProps) {
   return (
     <section aria-labelledby="page-heading" className="relative overflow-hidden bg-[#0A2740]">
@@ -91,15 +88,6 @@ export default function PageBanner({
               ))}
             </ul>
           </nav>
-        )}
-
-        {badge && (
-          <div
-            aria-hidden="true"
-            className="absolute top-1/2 right-6 hidden -translate-y-1/2 sm:right-8 md:block"
-          >
-            <FlapTile size="giant">{badge}</FlapTile>
-          </div>
         )}
       </div>
     </section>

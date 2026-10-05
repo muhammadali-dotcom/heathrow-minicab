@@ -1,15 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import FlapTile from "@/components/FlapTile";
-import JourneyRoute from "@/components/JourneyRoute";
-import PhoneIcon from "@/components/PhoneIcon";
-import StepIcon from "@/components/StepIcon";
-import type { InfoItem } from "@/lib/airportGuidance";
 import { SECTION_CONTAINER } from "@/lib/layout";
-import { MEETING_MESSAGE } from "@/lib/airportGuidance";
-import { PRIMARY_PHONE } from "@/lib/site";
 
-// Building blocks for the practical guide pages (/airport-transfers, terminal pages, services).
+// Building blocks for the Services pages.
 
 export const focusNavy =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]";
@@ -17,33 +10,6 @@ export const focusNavy =
 export const inlineLink = `inline-flex min-h-11 items-center rounded-sm font-semibold text-[#0A2740] underline underline-offset-4 hover:no-underline ${focusNavy}`;
 
 export const sectionHeading = "text-2xl font-bold text-[#0A2740] md:text-3xl";
-
-// Steps as a route: numbered flap tiles joined by the animated dashed road from the homepage's
-// How to Book section (straight and car-free when stacked on phones).
-export function JourneySteps({ items }: { items: InfoItem[] }) {
-  return (
-    <div className="mt-10">
-      <JourneyRoute>
-        <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
-          {items.map((item, i) => (
-            <li key={item.heading} className="flex gap-5 md:flex-col md:gap-6">
-              <span data-stop className="relative z-10 self-start">
-                <FlapTile size="step">{String(i + 1).padStart(2, "0")}</FlapTile>
-              </span>
-              <div className="pt-1 md:pt-0 md:pr-6">
-                <h3 className="flex items-start gap-2 text-lg font-semibold text-[#0A2740]">
-                  <StepIcon name={item.icon} className="mt-1 h-5 w-5 text-[#1FA3D6]" />
-                  {item.heading}
-                </h3>
-                <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </JourneyRoute>
-    </div>
-  );
-}
 
 function CheckIcon() {
   return (
@@ -70,22 +36,6 @@ export function CheckList({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-// The shared, confirmed meeting-point message with the bookings number.
-export function MeetingPanel() {
-  return (
-    <div className="max-w-[40rem] rounded-xl border border-[#D5E8F2] bg-white p-6">
-      <p className="leading-relaxed text-[#0A2740]">{MEETING_MESSAGE}</p>
-      <a
-        href={`tel:${PRIMARY_PHONE.tel}`}
-        className={`mt-3 inline-flex min-h-11 items-center gap-2 rounded-sm font-semibold text-[#0A2740] underline underline-offset-4 hover:no-underline ${focusNavy}`}
-      >
-        <PhoneIcon className="h-4 w-4 text-[#1FA3D6]" />
-        {PRIMARY_PHONE.display}
-      </a>
-    </div>
   );
 }
 

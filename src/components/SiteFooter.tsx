@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CtaBand from "@/components/CtaBand";
+import HideOnPaths from "@/components/HideOnPaths";
 import PlaneIcon from "@/components/PlaneIcon";
 import Wordmark from "@/components/Wordmark";
 import {
@@ -61,7 +62,10 @@ export default function SiteFooter() {
   // Bottom padding leaves room for the fixed MobileCallBar below lg.
   return (
     <footer className="bg-[#0A2740] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
-      <CtaBand />
+      {/* Airport Transfers pages end with their own closing CTA, so the band is skipped there. */}
+      <HideOnPaths prefixes={["/airport-transfers"]}>
+        <CtaBand />
+      </HideOnPaths>
 
       <div className={`${SECTION_CONTAINER} pt-14 md:pt-16`}>
         <div className="grid gap-10 lg:grid-cols-[1.3fr_3fr] lg:gap-12">

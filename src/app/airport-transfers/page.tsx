@@ -1,116 +1,114 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
-  CheckList,
-  GuideCard,
-  inlineLink,
-  sectionHeading,
-} from "@/components/GuideBlocks";
-import PageBanner, { BANNER_IMAGES } from "@/components/PageBanner";
-import { CHECKLIST } from "@/lib/airportGuidance";
-import { SECTION_CONTAINER } from "@/lib/layout";
+  BulletList,
+  ClosingCta,
+  Columns,
+  InfoAside,
+  RouteCard,
+  Section,
+  SubHeading,
+  TransfersHero,
+} from "@/components/transfers/TransferBlocks";
+import { BOOK_ONLINE_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Heathrow Pickups & Drop-offs | Heathrow Minicab",
+  title: "Heathrow Airport Transfers | Heathrow Minicab",
   description:
-    "Heathrow pickup and drop-off information: what to share when booking, terminal guides and how to prepare for your journey.",
+    "Heathrow pickups and drop-offs: choose your journey, check what your quote should cover and find your terminal.",
 };
 
-const PICKUPS_HREF = "/airport-transfers/heathrow-pickups";
-const DROP_OFFS_HREF = "/airport-transfers/heathrow-drop-offs";
-const TERMINAL_GUIDES_HREF = "/airport-transfers/terminal-guides";
-
-const bannerLinks = [
-  { href: PICKUPS_HREF, label: "Heathrow pickups" },
-  { href: DROP_OFFS_HREF, label: "Heathrow drop-offs" },
-  { href: TERMINAL_GUIDES_HREF, label: "Terminal guides" },
-];
-
-// Overview hub: each topic has its own page.
 export default function Page() {
   return (
     <>
-      <PageBanner
-        image="t2"
-        crumb="Airport Transfers"
-        title="Heathrow pickup and drop-off information"
-        intro="Arriving at Heathrow or heading to your departure terminal? Check what to share when booking and how to prepare for your journey."
-        links={bannerLinks}
+      <TransfersHero
+        crumbs={[{ label: "Airport Transfers" }]}
+        eyebrow="Heathrow airport transfers"
+        title={["Your Heathrow journey,", "planned clearly."]}
+        intro="Arriving at Heathrow or heading to departures? Find the right guidance for your journey and confirm the details before you travel."
+        cta={{ href: BOOK_ONLINE_HREF, label: "Arrange your transfer" }}
+        image={{
+          src: "/images/heathrow-hero.png",
+          width: 1672,
+          height: 941,
+          alt: "Black saloon car parked outside an airport terminal as a plane takes off",
+          position: "82% 55%",
+        }}
       />
 
-      <section aria-labelledby="plan-heading" className="py-14 md:py-20">
-        <div className={SECTION_CONTAINER}>
-          <h2 id="plan-heading" className={sectionHeading}>
-            Plan your journey
-          </h2>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2">
-            <li>
-              <GuideCard
-                href={PICKUPS_HREF}
-                title="Arriving at Heathrow"
-                text="What to share when booking a pickup and how your meeting is arranged."
-                image={BANNER_IMAGES.arrival}
-              />
-            </li>
-            <li>
-              <GuideCard
-                href={DROP_OFFS_HREF}
-                title="Departing from Heathrow"
-                text="What to share for a drop-off and how to plan your collection time."
-                image={BANNER_IMAGES.early}
-              />
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Kept as an anchor for old #terminal-guides links; the guides have their own page. */}
-      <section
-        id="terminal-guides"
-        aria-labelledby="terminal-guides-heading"
-        className="bg-[#E6F6FC] py-12 md:py-14"
+      <Section
+        tone="navy"
+        id="journey"
+        eyebrow="Start with your journey"
+        title="Which way are you travelling?"
       >
-        <div
-          className={`${SECTION_CONTAINER} flex flex-col gap-4 md:flex-row md:items-center md:justify-between`}
-        >
-          <div>
-            <h2 id="terminal-guides-heading" className={sectionHeading}>
-              Heathrow terminal guides
-            </h2>
-            <p className="mt-2 leading-relaxed text-[#0A2740]/80">
-              Pickup and drop-off information for Terminals 2, 3, 4 and 5.
-            </p>
-          </div>
-          <Link href={TERMINAL_GUIDES_HREF} className={inlineLink}>
-            Go to Terminal Guides <span aria-hidden="true">→</span>
-          </Link>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <RouteCard
+            eyebrow="Arrivals → your destination"
+            title="Being picked up at Heathrow"
+            text="Understand meeting arrangements, flight delays and waiting time before you land."
+            href="/airport-transfers/heathrow-pickups"
+            linkLabel="Read the pickup guide"
+          />
+          <RouteCard
+            eyebrow="Your address → departures"
+            title="Travelling to Heathrow"
+            text="Plan your collection time, check your terminal and share your luggage requirements."
+            href="/airport-transfers/heathrow-drop-offs"
+            linkLabel="Read the drop-off guide"
+          />
         </div>
-      </section>
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
+            Have these details ready
+          </h3>
+          <BulletList
+            items={[
+              "Pickup and destination addresses",
+              "Date, time and flight number",
+              "Terminal, passengers and luggage",
+              "Any child seat or other requests",
+            ]}
+          />
+        </div>
+      </Section>
 
-      <section aria-labelledby="before-heading" className="py-14 md:py-20">
-        <div className={SECTION_CONTAINER}>
-          <h2 id="before-heading" className={sectionHeading}>
-            Before you travel
-          </h2>
-          <div className="mt-6 max-w-[40rem]">
-            <CheckList items={CHECKLIST} />
-          </div>
-          <p className="mt-8 flex flex-wrap gap-x-8 gap-y-1 text-[#0A2740]/80">
-            <span>
-              Choosing a vehicle?{" "}
-              <Link href="/our-vehicles" className={inlineLink}>
-                See our vehicles
-              </Link>
-            </span>
-            <span>
-              More questions?{" "}
-              <Link href="/faqs" className={inlineLink}>
-                Read our FAQs
-              </Link>
-            </span>
-          </p>
-        </div>
-      </section>
+      <Section tone="pale">
+        <Columns
+          main={
+            <>
+              <SubHeading>What should your quote cover?</SubHeading>
+              <p className="mt-3 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
+                Ask for the total journey price and confirm what is included before booking.
+              </p>
+              <BulletList
+                items={[
+                  "Any applicable airport parking or drop-off charges",
+                  "Included waiting time and the rate afterwards",
+                  "Extra stops and special requirements",
+                ]}
+              />
+            </>
+          }
+          aside={
+            <InfoAside
+              title="Not sure which terminal?"
+              link={{
+                href: "/airport-transfers/terminal-guides",
+                label: "Explore Terminal Guides",
+              }}
+            >
+              Check your airline or flight confirmation, then use the terminal directory.
+            </InfoAside>
+          }
+        />
+      </Section>
+
+      <ClosingCta
+        tone="photo"
+        title="Ready to plan your transfer?"
+        text="Book online or call for help with your journey."
+        buttonLabel="Call to Book"
+      />
     </>
   );
 }

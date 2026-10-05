@@ -1,22 +1,133 @@
 import type { Metadata } from "next";
-import HeathrowGuidePage from "@/components/HeathrowGuidePage";
-import { DROP_OFFS } from "@/lib/airportGuidance";
+import {
+  BulletList,
+  ClosingCta,
+  Columns,
+  ExternalLink,
+  FaqList,
+  InfoAside,
+  Section,
+  SubHeading,
+  TransfersHero,
+} from "@/components/transfers/TransferBlocks";
+import { BOOK_ONLINE_HREF } from "@/lib/site";
+import { TERMINAL_GUIDES_URL } from "@/lib/terminals";
 
 export const metadata: Metadata = {
   title: "Heathrow Drop-offs | Heathrow Minicab",
   description:
-    "Heading to Heathrow? What to share when booking your drop-off and how to plan your collection time.",
+    "Heading to Heathrow? Agree a suitable collection time, confirm your departure terminal and check what your quote includes.",
 };
 
 export default function Page() {
   return (
-    <HeathrowGuidePage
-      kind="drop-offs"
-      title="Heathrow drop-offs"
-      intro="Heading to your departure terminal? Here’s what to share when booking and how to plan your collection time."
-      image="early"
-      stepsHeading="Departing from Heathrow"
-      steps={DROP_OFFS}
-    />
+    <>
+      <TransfersHero
+        crumbs={[
+          { href: "/airport-transfers", label: "Airport Transfers" },
+          { label: "Heathrow Drop-offs" },
+        ]}
+        eyebrow="Departing from Heathrow"
+        title={["Plan the journey", "before the flight."]}
+        intro="Agree your collection time and departure terminal so your transfer fits your travel plans."
+        cta={{ href: BOOK_ONLINE_HREF, label: "Arrange a Heathrow drop-off" }}
+        image={{
+          src: "/images/family-transfer.png",
+          width: 1536,
+          height: 1024,
+          alt: "Family with suitcases loading luggage into a car outside an airport terminal",
+          position: "45% 50%",
+        }}
+      />
+
+      <Section
+        tone="navy"
+        id="collection-time"
+        title="Agree a suitable collection time"
+        intro="Your flight time is only one part of the plan. Discuss these factors when arranging your journey:"
+      >
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <div>
+            <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
+              Your airline’s arrival guidance
+            </h3>
+            <p className="mt-2 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
+              Check when check-in and bag drop close, and how early your airline asks you to reach
+              the airport.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
+              The journey to Heathrow
+            </h3>
+            <p className="mt-2 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
+              Allow for your collection location, expected traffic, extra stops and loading your
+              luggage.
+            </p>
+          </div>
+        </div>
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
+            Share these when booking
+          </h3>
+          <BulletList
+            items={[
+              "Collection address and date",
+              "Flight time and departure terminal",
+              "Passengers, bags and extra stops",
+            ]}
+          />
+        </div>
+      </Section>
+
+      <Section tone="pale">
+        <Columns
+          main={
+            <>
+              <SubHeading>Check your terminal before collection</SubHeading>
+              <p className="mt-3 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
+                Confirm the terminal with your airline or flight confirmation. Let us know if it
+                changes after you book.
+              </p>
+              <div className="mt-2">
+                <ExternalLink href={TERMINAL_GUIDES_URL}>
+                  Open Heathrow’s official terminal guides
+                </ExternalLink>
+              </div>
+            </>
+          }
+          aside={
+            <InfoAside title="Airport charges">
+              Ask whether any applicable Heathrow drop-off or parking charge is included in your
+              quote. Confirm the total before booking.
+            </InfoAside>
+          }
+        />
+      </Section>
+
+      <Section tone="white" id="before-driver" title="Before your driver arrives">
+        <FaqList
+          items={[
+            {
+              question: "Travelling with extra luggage or a group?",
+              answer:
+                "Tell us the number of passengers and bags before booking so we can discuss a suitable vehicle.",
+            },
+            {
+              question: "Need to change your collection details?",
+              answer:
+                "Contact us with your booking details as soon as possible. We will discuss the change and any applicable charges.",
+            },
+          ]}
+        />
+      </Section>
+
+      <ClosingCta
+        tone="pale"
+        title="Plan your Heathrow drop-off"
+        text="Share your address, flight time and terminal."
+        buttonLabel="Call to Book"
+      />
+    </>
   );
 }
