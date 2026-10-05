@@ -23,7 +23,7 @@ export const FAQS: Faq[] = [
     id: "waiting-charges",
     question: "Are there any waiting charges?",
     answer:
-      "Your pickup includes 15 minutes of waiting time, starting when your driver reaches the agreed meeting point. Charges apply after that period at the rate confirmed before you book.",
+      "Your pickup includes 15 minutes of free waiting, starting at your agreed pickup time. Charges apply after that at the rate confirmed before you book.",
   },
   {
     id: "payments",

@@ -5,8 +5,10 @@ import { ctaButtonClass } from "@/components/BookingCta";
 import Breadcrumb from "@/components/Breadcrumb";
 import PhoneIcon from "@/components/PhoneIcon";
 import PlaneIcon from "@/components/PlaneIcon";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { SECTION_CONTAINER } from "@/lib/layout";
-import { PRIMARY_PHONE } from "@/lib/site";
+import { ALT_PHONE, PRIMARY_PHONE } from "@/lib/site";
+import { VEHICLES } from "@/lib/vehicles";
 
 // Building blocks for the Airport Transfers pages, following the supplied design reference
 // (design-reference/heathrow-airport-transfers-preview.html) in the site's own palette.
@@ -42,12 +44,22 @@ type HeroProps = {
   title: string;
   intro: string;
   primary: { href: string; label: string };
+  // Label for the navy-outline phone button; defaults to "Call to Book".
+  secondaryLabel?: string;
   image: { src: string; width: number; height: number; alt: string };
 };
 
 // About equal text and photo columns, the photo shown whole at its natural ratio; text first on
 // mobile. Primary action plus a navy-outline "Call to Book".
-export function TransfersHero({ crumbs, eyebrow, title, intro, primary, image }: HeroProps) {
+export function TransfersHero({
+  crumbs,
+  eyebrow,
+  title,
+  intro,
+  primary,
+  secondaryLabel = "Call to Book",
+  image,
+}: HeroProps) {
   const isInternal = primary.href.startsWith("/") || primary.href.startsWith("#");
   const primaryClass = `${ctaButtonClass} min-h-12 px-6 text-base ${focusNavy}`;
   return (
@@ -77,10 +89,10 @@ export function TransfersHero({ crumbs, eyebrow, title, intro, primary, image }:
             )}
             <a
               href={`tel:${PRIMARY_PHONE.tel}`}
-              aria-label={`Call to Book: ${PRIMARY_PHONE.display}`}
+              aria-label={`${secondaryLabel}: ${PRIMARY_PHONE.display}`}
               className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] bg-white px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] ${focusNavy}`}
             >
-              Call to Book
+              {secondaryLabel}
               <PhoneIcon className="h-5 w-5" />
             </a>
           </div>
@@ -218,7 +230,7 @@ export function RouteCard({
   );
 }
 
-export type FeatureIconName = "plane" | "board" | "clock" | "seat" | "car" | "allday";
+export type FeatureIconName = "plane" | "board" | "clock" | "seat" | "car" | "allday" | "home";
 
 // Simple 24x24 line icons for the feature cards; the plane reuses the site's PlaneIcon.
 const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
@@ -247,6 +259,13 @@ const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
       <path d="M4 12h16" />
       <circle cx="8" cy="16.5" r="1.5" />
       <circle cx="16" cy="16.5" r="1.5" />
+    </>
+  ),
+  home: (
+    <>
+      <path d="M4 11l8-6.5 8 6.5" />
+      <path d="M6 9.5V19h12V9.5" />
+      <path d="M10 19v-5h4v5" />
     </>
   ),
   allday: (
@@ -312,31 +331,254 @@ export function FeatureGrid({
 }
 
 // Booking checklist: ticked items on a white card, 1 / 2 columns.
+// Navy tick in a brand-blue circle, used by the checklist and the quote receipt.
+function TickBadge() {
+  return (
+    <span
+      aria-hidden="true"
+      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1FA3D6] text-[#0A2740]"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4 fill-none stroke-current"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12.5l4.5 4.5L19 7.5" />
+      </svg>
+    </span>
+  );
+}
+
 export function Checklist({ items }: { items: string[] }) {
   return (
     <div className="mt-6 rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=white]:bg-[#E6F6FC]">
       <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-3 leading-relaxed text-[#0A2740]">
-            <span
-              aria-hidden="true"
-              className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1FA3D6] text-[#0A2740]"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4 w-4 fill-none stroke-current"
-                strokeWidth={2.5}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12.5l4.5 4.5L19 7.5" />
-              </svg>
+            <span className="mt-0.5">
+              <TickBadge />
             </span>
             {item}
           </li>
         ))}
       </ul>
     </div>
+  );
+}
+
+// Receipt-style summary of what a quote includes (no prices shown).
+export function QuoteReceipt({
+  included,
+  inQuote,
+}: {
+  included: { label: string; value: string }[];
+  inQuote: string[];
+}) {
+  return (
+    <div className="mx-auto w-full max-w-[28rem] overflow-hidden rounded-xl border border-[#D5E8F2] bg-white">
+      <div className="flex items-center justify-between gap-3 bg-[#0A2740] px-6 py-4">
+        <p className="text-xs font-bold tracking-[0.15em] text-white uppercase">
+          Your Heathrow quote
+        </p>
+        <span className="text-[#4FB8E0]">
+          <PlaneIcon className="h-5 w-5" />
+        </span>
+      </div>
+      <dl className="px-6 pt-2">
+        {included.map((row) => (
+          <div key={row.label} className="flex items-center justify-between gap-4 py-3">
+            <dt className="flex items-center gap-3 text-[#0A2740]">
+              <TickBadge />
+              {row.label}
+            </dt>
+            <dd className="font-bold whitespace-nowrap text-[#0A2740]">{row.value}</dd>
+          </div>
+        ))}
+
+        {inQuote.map((label, i) => (
+          <div
+            key={label}
+            className={`flex items-center justify-between gap-4 py-3 ${i === 0 ? "mt-2 border-t-2 border-dashed border-[#D5E8F2] pt-5" : ""}`}
+          >
+            <dt className="text-[#0A2740]/80">{label}</dt>
+            <dd className="rounded-full bg-[#E6F6FC] px-3 py-1 text-sm font-semibold whitespace-nowrap text-[#0A2740]">
+              In your quote
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <div className="mx-6 mt-2 mb-5 flex items-center justify-between gap-4 border-t-4 border-double border-[#0A2740] pt-4">
+        <p className="text-lg font-bold text-[#0A2740]">Total</p>
+        <p className="text-right font-bold text-[#0A2740]">Agreed before you travel</p>
+      </div>
+    </div>
+  );
+}
+
+// Compact vehicle cards: cutout, name and capacity rows; 1 / 2 / 4 columns.
+export function VehicleCards() {
+  return (
+    <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {VEHICLES.map((vehicle) => {
+        const rows = [
+          {
+            label: "Passengers",
+            value: vehicle.passengers === null ? "On request" : `x ${vehicle.passengers}`,
+          },
+          { label: "Large cases", value: `x ${vehicle.luggage.large}` },
+          { label: "Small bags", value: `x ${vehicle.luggage.small}` },
+        ];
+        return (
+          <li
+            key={vehicle.id}
+            className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5"
+          >
+            <div className="relative h-24">
+              <Image
+                src={vehicle.image.src}
+                alt={vehicle.image.alt}
+                fill
+                sizes="(min-width: 1024px) 200px, (min-width: 640px) 45vw, 90vw"
+                className="object-contain"
+              />
+            </div>
+            <h3 className="mt-4 text-lg font-semibold text-[#0A2740]">{vehicle.name}</h3>
+            <p className="pb-3 text-sm text-[#5B7A93] lg:min-h-13">{vehicle.model} or similar</p>
+            <dl className="mt-auto space-y-1.5 border-t border-[#D5E8F2] pt-3">
+              {rows.map(({ label, value }) => (
+                <div key={label} className="flex items-baseline justify-between gap-3">
+                  <dt className="text-sm text-[#5B7A93]">{label}</dt>
+                  <dd className="text-sm font-semibold whitespace-nowrap text-[#0A2740]">
+                    {value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+// Numbered steps in a row from md (stacked on phones).
+export function StepRow({ steps }: { steps: { title: string; text: string }[] }) {
+  return (
+    <ol className="mt-6 grid gap-6 md:grid-cols-3">
+      {steps.map((step, i) => (
+        <li key={step.title} className="flex gap-4 md:flex-col md:gap-3">
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-xs font-bold text-[#0A2740]"
+          >
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <div>
+            <h3 className={`text-lg font-semibold ${heading}`}>{step.title}</h3>
+            <p className={`mt-1 leading-relaxed ${body}`}>{step.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+const WHATSAPP_HELP_URL = `https://wa.me/442083434444?text=${encodeURIComponent(
+  "Hi, I'm at Heathrow and can't find my driver. My terminal is: ",
+)}`;
+
+// Prominent help card for arrivals: phone line(s) and WhatsApp. Defaults suit the Pickups page.
+export function HelpPanel({
+  headingLevel = "h3",
+  text = "Stay in a clearly signed spot in arrivals and contact us. Tell us your terminal and the nearest landmark.",
+  primaryLabel = `Call ${PRIMARY_PHONE.display}`,
+  showAltPhone = true,
+  whatsappLabel = "WhatsApp us",
+  className = "mt-10",
+}: {
+  headingLevel?: "h2" | "h3";
+  text?: string;
+  primaryLabel?: string;
+  showAltPhone?: boolean;
+  whatsappLabel?: string;
+  className?: string;
+}) {
+  const Heading = headingLevel;
+  const outline = `inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-white px-6 text-base font-semibold whitespace-nowrap text-white hover:bg-white/10 ${focusNavy}`;
+  return (
+    <div data-tone="navy" className={`rounded-xl bg-[#0A2740] p-6 md:p-8 ${className}`}>
+      <Heading className="text-xl font-bold text-white md:text-2xl">
+        Can’t find your driver?
+      </Heading>
+      <p className="mt-2 max-w-[40rem] leading-relaxed text-white/85">{text}</p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <a
+          href={`tel:${PRIMARY_PHONE.tel}`}
+          aria-label={
+            primaryLabel.includes(PRIMARY_PHONE.display)
+              ? undefined
+              : `${primaryLabel}: ${PRIMARY_PHONE.display}`
+          }
+          className={`${ctaButtonClass} min-h-12 px-6 text-base ${focusNavy}`}
+        >
+          {primaryLabel}
+          <PhoneIcon className="h-5 w-5" />
+        </a>
+        {showAltPhone && (
+          <a href={`tel:${ALT_PHONE.tel}`} className={outline}>
+            Call {ALT_PHONE.display}
+            <PhoneIcon className="h-5 w-5" />
+          </a>
+        )}
+        <a href={WHATSAPP_HELP_URL} target="_blank" rel="noopener noreferrer" className={outline}>
+          <WhatsAppIcon className="h-5 w-5" />
+          {whatsappLabel}
+          <span className="sr-only">(opens in a new tab)</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// Icon steps joined by a dashed route line: a row from md, stacked on phones.
+export function RouteSteps({
+  steps,
+}: {
+  steps: { icon: FeatureIconName; title: string; text: string }[];
+}) {
+  return (
+    <ol className="relative mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
+      <span
+        aria-hidden="true"
+        className="absolute top-7 bottom-7 left-7 border-l-2 border-dashed border-[#4FB8E0]/40 md:hidden"
+      />
+      <span
+        aria-hidden="true"
+        className="absolute top-7 right-[16.67%] left-[16.67%] hidden border-t-2 border-dashed border-[#4FB8E0]/40 md:block"
+      />
+      {steps.map((step, i) => (
+        <li
+          key={step.title}
+          className="relative flex gap-5 md:flex-col md:items-center md:text-center"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740] in-data-[tone=navy]:bg-[#12385A] in-data-[tone=navy]:text-[#4FB8E0]"
+          >
+            <FeatureIcon name={step.icon} />
+          </span>
+          <div className="md:mt-4">
+            <p className={eyebrowClass}>Step {i + 1}</p>
+            <h3 className={`mt-1 text-lg font-semibold ${heading}`}>{step.title}</h3>
+            <p className={`mt-1 leading-relaxed ${body} md:mx-auto md:max-w-[18rem]`}>
+              {step.text}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -358,35 +600,6 @@ export function Timeline({ steps }: { steps: { title: string; text: ReactNode }[
         </li>
       ))}
     </ol>
-  );
-}
-
-export function PolicyBlock({
-  value,
-  label,
-  children,
-}: {
-  value: string;
-  label: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="mt-6 grid gap-4 rounded-xl bg-[#E6F6FC] p-6 sm:grid-cols-[11rem_1fr] sm:gap-6 in-data-[tone=pale]:bg-white">
-      <div>
-        <p className="text-3xl leading-tight font-bold whitespace-nowrap text-[#0A2740]">{value}</p>
-        <p className="text-sm text-[#0A2740]/70">{label}</p>
-      </div>
-      <p className="leading-relaxed text-[#0A2740]/80">{children}</p>
-    </div>
-  );
-}
-
-export function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={textLink}>
-      {children} <span aria-hidden="true">↗</span>
-      <span className="sr-only">(opens in a new tab)</span>
-    </a>
   );
 }
 
@@ -443,14 +656,16 @@ export function ClosingCta({
           </h2>
           <p className={`mt-1 ${body}`}>{text}</p>
         </div>
-        <a
-          href={`tel:${PRIMARY_PHONE.tel}`}
-          aria-label={`${buttonLabel}: ${PRIMARY_PHONE.display}`}
-          className={`${ctaButtonClass} min-h-12 shrink-0 px-6 text-base ${focusNavy}`}
-        >
-          {buttonLabel}
-          <PhoneIcon className="h-5 w-5" />
-        </a>
+        <div className="flex shrink-0 flex-wrap gap-3">
+          <a
+            href={`tel:${PRIMARY_PHONE.tel}`}
+            aria-label={`${buttonLabel}: ${PRIMARY_PHONE.display}`}
+            className={`${ctaButtonClass} min-h-12 shrink-0 px-6 text-base ${focusNavy}`}
+          >
+            {buttonLabel}
+            <PhoneIcon className="h-5 w-5" />
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import {
   BulletList,
   ClosingCta,
-  Columns,
+  Eyebrow,
   FeatureGrid,
-  InfoAside,
+  QuoteReceipt,
   RouteCard,
   Section,
   SubHeading,
   TransfersHero,
+  VehicleCards,
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
@@ -25,7 +26,7 @@ export default function Page() {
         crumbs={[{ label: "Airport Transfers" }]}
         eyebrow="Heathrow airport transfers"
         title="Heathrow pickups and drop-offs, made simple."
-        intro="Flying out or arriving home? Arrange your Heathrow transfer and find clear guidance on pickups, drop-offs and terminal meeting arrangements."
+        intro="Reliable Heathrow transfers, booked in minutes and planned around your flight."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Transfer" }}
         image={{
           src: "/images/airport-transfers-overview-hero.png",
@@ -93,7 +94,7 @@ export default function Page() {
             {
               icon: "clock",
               title: "15 minutes’ waiting included",
-              text: "Waiting starts when your driver reaches the meeting point. Any rate after that is confirmed before you book.",
+              text: "Your 15 minutes’ free waiting starts at your agreed pickup time. Any rate after that is confirmed before you book.",
             },
             {
               icon: "seat",
@@ -115,35 +116,39 @@ export default function Page() {
         />
       </Section>
 
-      <Section tone="pale">
-        <Columns
-          main={
-            <>
-              <SubHeading>What should your quote cover?</SubHeading>
-              <p className="mt-3 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
-                Ask for the total journey price and confirm what is included before booking.
-              </p>
-              <BulletList
-                items={[
-                  "Any applicable airport parking or drop-off charges",
-                  "Included waiting time and the rate afterwards",
-                  "Extra stops and special requirements",
-                ]}
-              />
-            </>
-          }
-          aside={
-            <InfoAside
-              title="Not sure which terminal?"
-              link={{
-                href: "/airport-transfers/terminal-guides",
-                label: "Explore Terminal Guides",
-              }}
-            >
-              Check your airline or flight confirmation, then use the terminal directory.
-            </InfoAside>
-          }
-        />
+      <Section
+        tone="pale"
+        id="vehicles"
+        eyebrow="Our vehicles"
+        title="Choose a car for your luggage"
+      >
+        <VehicleCards />
+      </Section>
+
+      <Section tone="white" id="pricing">
+        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
+          <div>
+            <Eyebrow>Pricing</Eyebrow>
+            <div className="mt-3">
+              <SubHeading id="pricing-heading">Clear pricing before you travel</SubHeading>
+            </div>
+            <p className="mt-3 text-lg leading-relaxed text-[#0A2740]/80">
+              You get a fixed price before you book. There’s no meter, so traffic won’t change what
+              you pay.
+            </p>
+            <p className="mt-3 leading-relaxed text-[#0A2740]/80">
+              Your quote shows everything up front, so you know the total before you confirm.
+            </p>
+          </div>
+          <QuoteReceipt
+            included={[
+              { label: "Journey price", value: "Fixed" },
+              { label: "First 15 minutes’ waiting", value: "Included" },
+              { label: "Child seats", value: "Included" },
+            ]}
+            inQuote={["Drop-off or parking charge", "Waiting after 15 minutes", "Extra stops"]}
+          />
+        </div>
       </Section>
 
       <ClosingCta

@@ -17,7 +17,9 @@ export default function TransfersSubnav() {
   return (
     <nav aria-label="Airport transfer pages" className="border-b border-[#D5E8F2] bg-[#E6F6FC]">
       {/* One row; on narrow phones it scrolls sideways within itself. */}
-      <ul className={`${SECTION_CONTAINER} flex gap-x-6 overflow-x-auto whitespace-nowrap sm:gap-x-8`}>
+      <ul
+        className={`${SECTION_CONTAINER} flex gap-x-6 overflow-x-auto whitespace-nowrap sm:gap-x-8`}
+      >
         {LINKS.map((link) => {
           const current = pathname === link.href;
           return (

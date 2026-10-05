@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Checklist,
   ClosingCta,
   Columns,
-  ExternalLink,
   InfoAside,
+  RouteSteps,
   Section,
   SubHeading,
   TransfersHero,
+  VehicleCards,
+  textLink,
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
-import { TERMINAL_GUIDES_URL } from "@/lib/terminals";
 
 export const metadata: Metadata = {
   title: "Heathrow Drop-offs | Heathrow Minicab",
@@ -40,6 +42,33 @@ export default function Page() {
 
       <Section
         tone="navy"
+        id="door-to-terminal"
+        eyebrow="How it works"
+        title="From your doorstep to your terminal"
+      >
+        <RouteSteps
+          steps={[
+            {
+              icon: "home",
+              title: "Collection",
+              text: "Your driver collects you from your door at the time agreed when you book.",
+            },
+            {
+              icon: "car",
+              title: "Journey",
+              text: "Your journey to Heathrow, planned around your flight time.",
+            },
+            {
+              icon: "plane",
+              title: "Terminal drop-off",
+              text: "We drop you at your departure terminal, ready to check in.",
+            },
+          ]}
+        />
+      </Section>
+
+      <Section
+        tone="pale"
         id="collection-time"
         title="Agree a suitable collection time"
         intro="Your flight time is only one part of the plan. Discuss these factors when arranging your journey:"
@@ -47,7 +76,7 @@ export default function Page() {
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <div>
             <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
-              Your airline’s arrival guidance
+              When to arrive for your flight
             </h3>
             <p className="mt-2 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
               Check when check-in and bag drop close, and how early your airline asks you to reach
@@ -66,7 +95,7 @@ export default function Page() {
         </div>
       </Section>
 
-      <Section tone="pale">
+      <Section tone="white">
         <Columns
           main={
             <>
@@ -75,20 +104,28 @@ export default function Page() {
                 Confirm the terminal with your airline or flight confirmation. Let us know if it
                 changes after you book.
               </p>
-              <div className="mt-2">
-                <ExternalLink href={TERMINAL_GUIDES_URL}>
-                  Open Heathrow’s official terminal guides
-                </ExternalLink>
-              </div>
             </>
           }
           aside={
             <InfoAside title="Airport charges">
-              Ask whether any applicable Heathrow drop-off or parking charge is included in your
-              quote. Confirm the total before booking.
+              The Heathrow drop-off charge isn’t included in the journey price. It’s added to your
+              quote, so you see the total before you book.
             </InfoAside>
           }
         />
+      </Section>
+
+      <Section
+        tone="pale"
+        id="vehicles"
+        eyebrow="Our vehicles"
+        title="Room for you and your luggage"
+        intro="Choose a car that fits your passengers and bags."
+      >
+        <VehicleCards />
+        <Link href="/our-vehicles" className={`${textLink} mt-6`}>
+          See all vehicles <span aria-hidden="true">→</span>
+        </Link>
       </Section>
 
       <Section

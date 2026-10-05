@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import {
   Checklist,
-  ClosingCta,
   Columns,
   Eyebrow,
+  HelpPanel,
   InfoAside,
-  PolicyBlock,
   Section,
+  StepRow,
   SubHeading,
   Timeline,
   TransfersHero,
@@ -30,7 +30,7 @@ export default function Page() {
         ]}
         eyebrow="Heathrow pickups"
         title="Heathrow pickups, from arrivals to your door."
-        intro="We monitor your flight and meet you inside arrivals with a name board, or at an agreed pickup point. Bring your luggage and leave the rest to us."
+        intro="Your driver meets you inside arrivals with a name board, with your pickup time planned around your flight."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Pickup" }}
         image={{
           src: "/images/airport-arrival.png",
@@ -57,10 +57,6 @@ export default function Page() {
             </p>
             <p className="mt-4 leading-relaxed text-white/85 italic">
               Keep your phone switched on when you land so we can reach you.
-            </p>
-            <p className="mt-4 leading-relaxed font-semibold text-white">
-              We monitor your flight. If it’s delayed or changes, contact us and we’ll confirm your
-              arrangements.
             </p>
           </div>
           <div className="md:order-1">
@@ -93,7 +89,7 @@ export default function Page() {
                   },
                   {
                     title: "Meet your driver",
-                    text: "If you cannot find them, call us and tell us your terminal and the nearest clearly signed landmark.",
+                    text: "Meet your driver at the agreed point. If you can’t see them, use the contact options below.",
                   },
                 ]}
               />
@@ -101,21 +97,46 @@ export default function Page() {
           }
           aside={
             <InfoAside
-              title="Flight delayed or changed?"
+              title="We monitor your flight"
               link={{ href: "/airport-transfers/terminal-guides", label: "Find your terminal" }}
             >
-              We monitor your flight. Please also contact us if your flight is delayed, cancelled or
-              changes so we can confirm your arrangements.
+              We monitor your flight and adjust your pickup arrangements if it’s delayed. If it’s
+              cancelled, diverted or changed, contact us so we can confirm your new arrangements.
             </InfoAside>
           }
         />
+        <HelpPanel />
       </Section>
 
-      <Section tone="white" id="waiting" title="Understand your waiting time">
-        <PolicyBlock value="15 minutes" label="included waiting">
-          The included waiting period starts when your driver reaches the agreed meeting point. Any
-          waiting rate after this is confirmed before booking.
-        </PolicyBlock>
+      <Section tone="white" id="waiting" title="Pickup time, waiting and charges">
+        <StepRow
+          steps={[
+            {
+              title: "Your flight lands",
+              text: "We use your flight’s landing time to plan your pickup.",
+            },
+            {
+              title: "Your agreed pickup time",
+              text: "Set a short time after landing, to allow for passport control and baggage collection.",
+            },
+            {
+              title: "15 minutes’ free waiting",
+              text: "Starts at your agreed pickup time.",
+            },
+          ]}
+        />
+        <dl className="mt-8 divide-y divide-[#D5E8F2] rounded-xl border border-[#D5E8F2] bg-[#E6F6FC] px-6">
+          <div className="grid gap-1 py-4 sm:grid-cols-[14rem_1fr] sm:gap-6">
+            <dt className="font-semibold text-[#0A2740]">Waiting after 15 minutes</dt>
+            <dd className="text-[#0A2740]/80">Charged at the rate confirmed before you book.</dd>
+          </div>
+          <div className="grid gap-1 py-4 sm:grid-cols-[14rem_1fr] sm:gap-6">
+            <dt className="font-semibold text-[#0A2740]">Parking</dt>
+            <dd className="text-[#0A2740]/80">
+              Any applicable parking charge is confirmed with your quote.
+            </dd>
+          </div>
+        </dl>
       </Section>
 
       <Section
@@ -138,13 +159,6 @@ export default function Page() {
           ]}
         />
       </Section>
-
-      <ClosingCta
-        tone="photo"
-        title="Confirm your Heathrow pickup"
-        text="Have your flight number and destination ready."
-        buttonLabel="Call to Book"
-      />
     </>
   );
 }
