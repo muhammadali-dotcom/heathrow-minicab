@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
+  Checklist,
   ClosingCta,
   Columns,
-  FaqList,
+  Eyebrow,
   InfoAside,
-  PhoneLink,
   PolicyBlock,
   Section,
   SubHeading,
   Timeline,
   TransfersHero,
 } from "@/components/transfers/TransferBlocks";
-import { ALT_PHONE, BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
+import { BOOK_ONLINE_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Heathrow Pickups | Heathrow Minicab",
@@ -39,7 +40,43 @@ export default function Page() {
         }}
       />
 
-      <Section tone="navy">
+      <Section tone="navy" id="meet-and-greet">
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+          <div className="md:order-2">
+            <Eyebrow>Meet and greet</Eyebrow>
+            <h2
+              id="meet-and-greet-heading"
+              className="mt-3 text-2xl leading-snug font-bold tracking-tight text-white md:text-3xl"
+            >
+              Look for your name in arrivals
+            </h2>
+            <p className="mt-4 leading-relaxed text-white/85">
+              Your driver meets you inside the arrivals hall with a name board, or at a pickup
+              location agreed with your booking. Your meeting arrangements are confirmed when you
+              book.
+            </p>
+            <p className="mt-4 leading-relaxed text-white/85 italic">
+              Keep your phone switched on when you land so we can reach you.
+            </p>
+            <p className="mt-4 leading-relaxed font-semibold text-white">
+              We monitor your flight. If it’s delayed or changes, contact us and we’ll confirm your
+              arrangements.
+            </p>
+          </div>
+          <div className="md:order-1">
+            <Image
+              src="/images/pickups-meet-and-greet.png"
+              alt="Illustration of a smiling driver holding a Heathrow Minicab name board that reads Welcomes J. Smith"
+              width={1024}
+              height={1536}
+              sizes="(min-width: 768px) 320px, 80vw"
+              className="mx-auto h-auto w-full max-w-[20rem] rounded-xl"
+            />
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="pale">
         <Columns
           main={
             <>
@@ -74,32 +111,30 @@ export default function Page() {
         />
       </Section>
 
-      <Section tone="pale" id="waiting" title="Understand your waiting time">
+      <Section tone="white" id="waiting" title="Understand your waiting time">
         <PolicyBlock value="15 minutes" label="included waiting">
           The included waiting period starts when your driver reaches the agreed meeting point. Any
           waiting rate after this is confirmed before booking.
         </PolicyBlock>
       </Section>
 
-      <Section tone="white" id="pickup-questions" title="Pickup questions">
-        <FaqList
+      <Section
+        tone="pale"
+        id="booking-checklist"
+        eyebrow="Before you book"
+        title="Your booking checklist"
+        intro="Have these details ready when you book online or call. They help us suggest a suitable vehicle and confirm your arrangements."
+      >
+        <Checklist
           items={[
-            {
-              question: "What if baggage collection takes longer?",
-              answer:
-                "Contact us as soon as you know you need more time. We can confirm the driver’s arrangements and any applicable waiting charges.",
-            },
-            {
-              question: "What if I cannot find my driver?",
-              answer: (
-                <>
-                  Stay in a clearly identifiable location and call{" "}
-                  <PhoneLink tel={PRIMARY_PHONE.tel} display={PRIMARY_PHONE.display} /> or{" "}
-                  <PhoneLink tel={ALT_PHONE.tel} display={ALT_PHONE.display} />. Tell us your
-                  terminal and where you are standing.
-                </>
-              ),
-            },
+            "Flight number and arrival date",
+            "Arrival terminal, if you know it",
+            "Destination address",
+            "Number of passengers",
+            "Large suitcases and small bags",
+            "Child seats, if needed",
+            "Any extra stops",
+            "A mobile number we can reach you on",
           ]}
         />
       </Section>

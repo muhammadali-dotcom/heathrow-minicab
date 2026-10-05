@@ -3,6 +3,7 @@ import {
   BulletList,
   ClosingCta,
   Columns,
+  FeatureGrid,
   InfoAside,
   RouteCard,
   Section,
@@ -69,6 +70,49 @@ export default function Page() {
             ]}
           />
         </div>
+      </Section>
+
+      <Section
+        tone="white"
+        id="why-us"
+        eyebrow="Why travel with us"
+        title="Why travel with Heathrow Minicab"
+      >
+        <FeatureGrid
+          items={[
+            {
+              icon: "plane",
+              title: "Flight monitoring",
+              text: "We monitor your flight. If it’s delayed or changes, contact us and we’ll confirm your arrangements.",
+            },
+            {
+              icon: "board",
+              title: "Name board meeting",
+              text: "Your driver meets you inside arrivals with a name board, or at a pickup location agreed with your booking.",
+            },
+            {
+              icon: "clock",
+              title: "15 minutes’ waiting included",
+              text: "Waiting starts when your driver reaches the meeting point. Any rate after that is confirmed before you book.",
+            },
+            {
+              icon: "seat",
+              title: "Child seats on request",
+              text: "Let us know when you book and we’ll arrange a child seat for your journey.",
+            },
+            {
+              icon: "car",
+              title: "Saloon to MPV",
+              text: "Saloon, estate, MPV and executive cars, chosen around your passengers and luggage.",
+              link: { href: "/our-vehicles", label: "See our vehicles" },
+            },
+            {
+              icon: "allday",
+              title: "All day, every day",
+              text: "Available 24/7 for early departures and late arrivals.",
+            },
+          ]}
+        />
       </Section>
 
       <Section tone="pale">

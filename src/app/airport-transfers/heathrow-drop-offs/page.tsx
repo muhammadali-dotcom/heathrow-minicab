@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import {
-  BulletList,
+  Checklist,
   ClosingCta,
   Columns,
   ExternalLink,
-  FaqList,
   InfoAside,
   Section,
   SubHeading,
@@ -28,7 +27,7 @@ export default function Page() {
           { label: "Heathrow Drop-offs" },
         ]}
         eyebrow="Heathrow drop-offs"
-        title="Heathrow drop-offs, from your door to departures."
+        title="Heathrow drop‑offs, from your door to departures."
         intro="We collect you from your door at a time planned around your flight and take you to your departure terminal, so you can relax before you fly."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Drop-off" }}
         image={{
@@ -65,18 +64,6 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <div className="mt-8">
-          <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
-            Share these when booking
-          </h3>
-          <BulletList
-            items={[
-              "Collection address and date",
-              "Flight time and departure terminal",
-              "Passengers, bags and extra stops",
-            ]}
-          />
-        </div>
       </Section>
 
       <Section tone="pale">
@@ -104,19 +91,23 @@ export default function Page() {
         />
       </Section>
 
-      <Section tone="white" id="before-driver" title="Before your driver arrives">
-        <FaqList
+      <Section
+        tone="white"
+        id="booking-checklist"
+        eyebrow="Before you book"
+        title="Your booking checklist"
+        intro="Have these details ready when you book online or call. They help us suggest a suitable vehicle and confirm your arrangements."
+      >
+        <Checklist
           items={[
-            {
-              question: "Travelling with extra luggage or a group?",
-              answer:
-                "Tell us the number of passengers and bags before booking so we can discuss a suitable vehicle.",
-            },
-            {
-              question: "Need to change your collection details?",
-              answer:
-                "Contact us with your booking details as soon as possible. We will discuss the change and any applicable charges.",
-            },
+            "Collection address",
+            "Date and flight departure time",
+            "Departure terminal",
+            "Number of passengers",
+            "Large suitcases and small bags",
+            "Child seats, if needed",
+            "Any extra stops",
+            "A mobile number we can reach you on",
           ]}
         />
       </Section>

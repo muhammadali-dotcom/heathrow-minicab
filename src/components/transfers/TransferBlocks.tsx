@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { ctaButtonClass } from "@/components/BookingCta";
 import Breadcrumb from "@/components/Breadcrumb";
 import PhoneIcon from "@/components/PhoneIcon";
+import PlaneIcon from "@/components/PlaneIcon";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE } from "@/lib/site";
 
@@ -217,6 +218,128 @@ export function RouteCard({
   );
 }
 
+export type FeatureIconName = "plane" | "board" | "clock" | "seat" | "car" | "allday";
+
+// Simple 24x24 line icons for the feature cards; the plane reuses the site's PlaneIcon.
+const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
+  board: (
+    <>
+      <rect x="3" y="5" width="18" height="11" rx="1.5" />
+      <path d="M7 9.5h10M7 12.5h6M9 16v3M15 16v3" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </>
+  ),
+  seat: (
+    <>
+      <path d="M8 4h5a3 3 0 0 1 3 3v6H8z" />
+      <path d="M6 13h12v3a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z" />
+      <path d="M8 19l-1 2M16 19l1 2" />
+    </>
+  ),
+  car: (
+    <>
+      <path d="M4 15.5V12l2-4.5h12l2 4.5v3.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z" />
+      <path d="M4 12h16" />
+      <circle cx="8" cy="16.5" r="1.5" />
+      <circle cx="16" cy="16.5" r="1.5" />
+    </>
+  ),
+  allday: (
+    <>
+      <path d="M20 12a8 8 0 1 1-2.34-5.66" />
+      <path d="M20 4v4h-4" />
+      <path d="M12 8v4l2.5 1.5" />
+    </>
+  ),
+};
+
+function FeatureIcon({ name }: { name: FeatureIconName }) {
+  if (name === "plane") return <PlaneIcon className="h-6 w-6" />;
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-6 w-6 fill-none stroke-current"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {featurePaths[name]}
+    </svg>
+  );
+}
+
+// Icon cards for the reasons to travel with us; 1 / 2 / 3 columns.
+export function FeatureGrid({
+  items,
+}: {
+  items: {
+    icon: FeatureIconName;
+    title: string;
+    text: string;
+    link?: { href: string; label: string };
+  }[];
+}) {
+  return (
+    <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <li
+          key={item.title}
+          className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A]"
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#E6F6FC] text-[#0A2740]"
+          >
+            <FeatureIcon name={item.icon} />
+          </span>
+          <h3 className={`mt-4 text-lg font-semibold ${heading}`}>{item.title}</h3>
+          <p className={`mt-2 flex-1 leading-relaxed ${body}`}>{item.text}</p>
+          {item.link && (
+            <Link href={item.link.href} className={`${textLink} mt-2 self-start`}>
+              {item.link.label} <span aria-hidden="true">→</span>
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Booking checklist: ticked items on a white card, 1 / 2 columns.
+export function Checklist({ items }: { items: string[] }) {
+  return (
+    <div className="mt-6 rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=white]:bg-[#E6F6FC]">
+      <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+        {items.map((item) => (
+          <li key={item} className="flex items-start gap-3 leading-relaxed text-[#0A2740]">
+            <span
+              aria-hidden="true"
+              className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1FA3D6] text-[#0A2740]"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4 fill-none stroke-current"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12.5l4.5 4.5L19 7.5" />
+              </svg>
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function Timeline({ steps }: { steps: { title: string; text: ReactNode }[] }) {
   return (
     <ol className="mt-6 space-y-6">
@@ -224,7 +347,7 @@ export function Timeline({ steps }: { steps: { title: string; text: ReactNode }[
         <li key={step.title} className="grid grid-cols-[2.5rem_1fr] gap-4">
           <span
             aria-hidden="true"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E6F6FC] text-xs font-bold text-[#0A2740] in-data-[tone=navy]:bg-[#12385A] in-data-[tone=navy]:text-[#4FB8E0]"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E6F6FC] text-xs font-bold text-[#0A2740] in-data-[tone=navy]:bg-[#12385A] in-data-[tone=navy]:text-[#4FB8E0] in-data-[tone=pale]:bg-white"
           >
             {String(i + 1).padStart(2, "0")}
           </span>
@@ -254,29 +377,6 @@ export function PolicyBlock({
         <p className="text-sm text-[#0A2740]/70">{label}</p>
       </div>
       <p className="leading-relaxed text-[#0A2740]/80">{children}</p>
-    </div>
-  );
-}
-
-export function FaqList({ items }: { items: { question: string; answer: ReactNode }[] }) {
-  return (
-    <div className="mt-4">
-      {items.map((item) => (
-        <details
-          key={item.question}
-          className="group border-b border-[#D5E8F2] in-data-[tone=navy]:border-white/15"
-        >
-          <summary
-            className={`flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-sm py-3 font-semibold [&::-webkit-details-marker]:hidden ${heading} ${focusNavy}`}
-          >
-            {item.question}
-            <span aria-hidden="true" className="text-xl text-[#1FA3D6] group-open:rotate-45">
-              +
-            </span>
-          </summary>
-          <p className={`pb-4 leading-relaxed ${body}`}>{item.answer}</p>
-        </details>
-      ))}
     </div>
   );
 }
