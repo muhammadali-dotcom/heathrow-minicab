@@ -27,16 +27,15 @@ export default function Page() {
           { href: "/airport-transfers", label: "Airport Transfers" },
           { label: "Heathrow Pickups" },
         ]}
-        eyebrow="Arriving at Heathrow"
-        title={["From arrivals", "to your next stop."]}
-        intro="Know what happens after landing, where to meet your driver and how waiting time works."
-        cta={{ href: BOOK_ONLINE_HREF, label: "Arrange a Heathrow pickup" }}
+        eyebrow="Heathrow pickups"
+        title="Heathrow pickups, from arrivals to your door."
+        intro="We monitor your flight and meet you inside arrivals with a name board, or at an agreed pickup point. Bring your luggage and leave the rest to us."
+        primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Pickup" }}
         image={{
           src: "/images/airport-arrival.png",
           width: 1536,
           height: 1024,
           alt: "Traveller with a suitcase walking through an airport arrivals hall",
-          position: "52% 35%",
         }}
       />
 
@@ -106,7 +105,7 @@ export default function Page() {
       </Section>
 
       <ClosingCta
-        tone="pale"
+        tone="photo"
         title="Confirm your Heathrow pickup"
         text="Have your flight number and destination ready."
         buttonLabel="Call to Book"

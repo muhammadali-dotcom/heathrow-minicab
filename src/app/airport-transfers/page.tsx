@@ -23,15 +23,14 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Airport Transfers" }]}
         eyebrow="Heathrow airport transfers"
-        title={["Your Heathrow journey,", "planned clearly."]}
-        intro="Arriving at Heathrow or heading to departures? Find the right guidance for your journey and confirm the details before you travel."
-        cta={{ href: BOOK_ONLINE_HREF, label: "Arrange your transfer" }}
+        title="Heathrow pickups and drop-offs, made simple."
+        intro="Flying out or arriving home? Arrange your Heathrow transfer and find clear guidance on pickups, drop-offs and terminal meeting arrangements."
+        primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Transfer" }}
         image={{
-          src: "/images/heathrow-hero.png",
-          width: 1672,
-          height: 941,
-          alt: "Black saloon car parked outside an airport terminal as a plane takes off",
-          position: "82% 55%",
+          src: "/images/airport-transfers-overview-hero.png",
+          width: 1536,
+          height: 1024,
+          alt: "Driver helping a traveller with luggage beside a navy car outside an airport terminal.",
         }}
       />
 

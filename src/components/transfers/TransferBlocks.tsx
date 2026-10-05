@@ -38,55 +38,60 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 type HeroProps = {
   crumbs: { href?: string; label: string }[];
   eyebrow: string;
-  // Two lines from md (each string is a line); natural wrapping below.
-  title: [string, string];
+  title: string;
   intro: string;
-  cta: { href: string; label: string };
-  image: { src: string; width: number; height: number; alt: string; position: string };
+  primary: { href: string; label: string };
+  image: { src: string; width: number; height: number; alt: string };
 };
 
-// Text on the left (~55%), one photograph on the right (~45%); text first on mobile.
-export function TransfersHero({ crumbs, eyebrow, title, intro, cta, image }: HeroProps) {
-  const isInternal = cta.href.startsWith("/") || cta.href.startsWith("#");
-  const ctaClass = `${ctaButtonClass} mt-2 min-h-12 px-6 text-base ${focusNavy}`;
+// About equal text and photo columns, the photo shown whole at its natural ratio; text first on
+// mobile. Primary action plus a navy-outline "Call to Book".
+export function TransfersHero({ crumbs, eyebrow, title, intro, primary, image }: HeroProps) {
+  const isInternal = primary.href.startsWith("/") || primary.href.startsWith("#");
+  const primaryClass = `${ctaButtonClass} min-h-12 px-6 text-base ${focusNavy}`;
   return (
     <section aria-labelledby="page-heading" className={SECTION_CONTAINER}>
       <div className="pt-6">
         <Breadcrumb tone="light" items={crumbs} />
       </div>
-      <div className="grid items-center gap-8 pt-4 pb-10 md:grid-cols-[1.3fr_1fr] md:gap-10 md:pb-12">
+      <div className="grid items-center gap-8 pt-4 pb-10 md:grid-cols-2 md:gap-12 md:pb-12">
         <div>
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1
             id="page-heading"
-            className="mt-3 text-3xl leading-tight font-bold tracking-tight text-[#0A2740] md:text-[2.375rem] md:leading-[1.16]"
+            className="mt-3 max-w-[34rem] text-[clamp(1.875rem,1.2rem+2.4vw,2.75rem)] leading-[1.15] font-bold tracking-tight text-balance text-[#0A2740]"
           >
-            <span className="md:block">{title[0]}</span>{" "}
-            <span className="md:block">{title[1]}</span>
+            {title}
           </h1>
-          <p className="mt-4 mb-6 max-w-[34rem] text-lg leading-relaxed text-[#0A2740]/80">
-            {intro}
-          </p>
-          {isInternal ? (
-            <Link href={cta.href} className={ctaClass}>
-              {cta.label}
-            </Link>
-          ) : (
-            <a href={cta.href} className={ctaClass}>
-              {cta.label}
+          <p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-[#0A2740]/80">{intro}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {isInternal ? (
+              <Link href={primary.href} className={primaryClass}>
+                {primary.label}
+              </Link>
+            ) : (
+              <a href={primary.href} className={primaryClass}>
+                {primary.label}
+              </a>
+            )}
+            <a
+              href={`tel:${PRIMARY_PHONE.tel}`}
+              aria-label={`Call to Book: ${PRIMARY_PHONE.display}`}
+              className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] bg-white px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] ${focusNavy}`}
+            >
+              Call to Book
+              <PhoneIcon className="h-5 w-5" />
             </a>
-          )}
+          </div>
         </div>
         <Image
           src={image.src}
           alt={image.alt}
           width={image.width}
           height={image.height}
-          sizes="(min-width: 1024px) 420px, (min-width: 768px) 40vw, 100vw"
-          loading="eager"
-          fetchPriority="high"
-          style={{ objectPosition: image.position }}
-          className="aspect-[16/10] w-full rounded-xl object-cover md:aspect-[4/3]"
+          sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
+          priority
+          className="h-auto w-full rounded-xl"
         />
       </div>
     </section>

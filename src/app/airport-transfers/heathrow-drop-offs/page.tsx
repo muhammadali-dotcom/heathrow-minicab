@@ -27,16 +27,15 @@ export default function Page() {
           { href: "/airport-transfers", label: "Airport Transfers" },
           { label: "Heathrow Drop-offs" },
         ]}
-        eyebrow="Departing from Heathrow"
-        title={["Plan the journey", "before the flight."]}
-        intro="Agree your collection time and departure terminal so your transfer fits your travel plans."
-        cta={{ href: BOOK_ONLINE_HREF, label: "Arrange a Heathrow drop-off" }}
+        eyebrow="Heathrow drop-offs"
+        title="Heathrow drop-offs, from your door to departures."
+        intro="We collect you from your door at a time planned around your flight and take you to your departure terminal, so you can relax before you fly."
+        primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Drop-off" }}
         image={{
           src: "/images/family-transfer.png",
           width: 1536,
           height: 1024,
           alt: "Family with suitcases loading luggage into a car outside an airport terminal",
-          position: "45% 50%",
         }}
       />
 
@@ -123,7 +122,7 @@ export default function Page() {
       </Section>
 
       <ClosingCta
-        tone="pale"
+        tone="photo"
         title="Plan your Heathrow drop-off"
         text="Share your address, flight time and terminal."
         buttonLabel="Call to Book"
