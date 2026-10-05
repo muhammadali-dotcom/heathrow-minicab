@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import FlapTile from "@/components/FlapTile";
+import JourneyRoute from "@/components/JourneyRoute";
 import PhoneIcon from "@/components/PhoneIcon";
+import StepIcon from "@/components/StepIcon";
 import type { InfoItem } from "@/lib/airportGuidance";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { MEETING_MESSAGE } from "@/lib/airportGuidance";
@@ -15,16 +18,30 @@ export const inlineLink = `inline-flex min-h-11 items-center rounded-sm font-sem
 
 export const sectionHeading = "text-2xl font-bold text-[#0A2740] md:text-3xl";
 
-export function InfoList({ items }: { items: InfoItem[] }) {
+// Steps as a route: numbered flap tiles joined by the animated dashed road from the homepage's
+// How to Book section (straight and car-free when stacked on phones).
+export function JourneySteps({ items }: { items: InfoItem[] }) {
   return (
-    <ul className="mt-8 grid gap-8 md:grid-cols-3 md:gap-6">
-      {items.map((item) => (
-        <li key={item.heading} className="border-t-2 border-[#1FA3D6] pt-4">
-          <h3 className="text-lg font-semibold text-[#0A2740]">{item.heading}</h3>
-          <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
-        </li>
-      ))}
-    </ul>
+    <div className="mt-10">
+      <JourneyRoute>
+        <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
+          {items.map((item, i) => (
+            <li key={item.heading} className="flex gap-5 md:flex-col md:gap-6">
+              <span data-stop className="relative z-10 self-start">
+                <FlapTile size="step">{String(i + 1).padStart(2, "0")}</FlapTile>
+              </span>
+              <div className="pt-1 md:pt-0 md:pr-6">
+                <h3 className="flex items-start gap-2 text-lg font-semibold text-[#0A2740]">
+                  <StepIcon name={item.icon} className="mt-1 h-5 w-5 text-[#1FA3D6]" />
+                  {item.heading}
+                </h3>
+                <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </JourneyRoute>
+    </div>
   );
 }
 

@@ -82,7 +82,7 @@ export default async function Page({ params }: PageProps<"/services/[service]">)
       <PageBanner
         image={service.image}
         crumb={service.title}
-        parent={{ href: "/services", label: "Services" }}
+        parents={[{ href: "/services", label: "Services" }]}
         title={service.title}
         intro={service.text}
       />

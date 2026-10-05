@@ -1,7 +1,7 @@
 import BookingCta from "@/components/BookingCta";
 import {
   CheckList,
-  InfoList,
+  JourneySteps,
   MeetingPanel,
   RelatedLinks,
   inlineLink,
@@ -40,7 +40,7 @@ export default function HeathrowGuidePage({
       <PageBanner
         image={image}
         crumb={title}
-        parent={{ href: "/airport-transfers", label: "Airport Transfers" }}
+        parents={[{ href: "/airport-transfers", label: "Airport Transfers" }]}
         title={title}
         intro={intro}
       />
@@ -50,7 +50,7 @@ export default function HeathrowGuidePage({
           <h2 id="steps-heading" className={sectionHeading}>
             {stepsHeading}
           </h2>
-          <InfoList items={steps} />
+          <JourneySteps items={steps} />
         </div>
       </section>
 

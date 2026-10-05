@@ -3,14 +3,12 @@ import Link from "next/link";
 import {
   CheckList,
   GuideCard,
-  MeetingPanel,
   inlineLink,
   sectionHeading,
 } from "@/components/GuideBlocks";
 import PageBanner, { BANNER_IMAGES } from "@/components/PageBanner";
 import { CHECKLIST } from "@/lib/airportGuidance";
 import { SECTION_CONTAINER } from "@/lib/layout";
-import { TERMINALS } from "@/lib/terminals";
 
 export const metadata: Metadata = {
   title: "Heathrow Pickups & Drop-offs | Heathrow Minicab",
@@ -20,11 +18,12 @@ export const metadata: Metadata = {
 
 const PICKUPS_HREF = "/airport-transfers/heathrow-pickups";
 const DROP_OFFS_HREF = "/airport-transfers/heathrow-drop-offs";
+const TERMINAL_GUIDES_HREF = "/airport-transfers/terminal-guides";
 
 const bannerLinks = [
   { href: PICKUPS_HREF, label: "Heathrow pickups" },
   { href: DROP_OFFS_HREF, label: "Heathrow drop-offs" },
-  { href: "#terminal-guides", label: "Terminal guides" },
+  { href: TERMINAL_GUIDES_HREF, label: "Terminal guides" },
 ];
 
 // Overview hub: each topic has its own page.
@@ -65,33 +64,26 @@ export default function Page() {
         </div>
       </section>
 
+      {/* Kept as an anchor for old #terminal-guides links; the guides have their own page. */}
       <section
         id="terminal-guides"
         aria-labelledby="terminal-guides-heading"
-        className="bg-[#E6F6FC] py-14 md:py-20"
+        className="bg-[#E6F6FC] py-12 md:py-14"
       >
-        <div className={SECTION_CONTAINER}>
-          <h2 id="terminal-guides-heading" className={sectionHeading}>
-            Find your terminal information
-          </h2>
-          <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
-            Choose your terminal for its pickup and drop-off page.
-          </p>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TERMINALS.map((terminal) => (
-              <li key={terminal.slug}>
-                <GuideCard
-                  href={`/airport-transfers/${terminal.slug}`}
-                  title={terminal.name}
-                  text={`Pickups from and drop-offs at Heathrow ${terminal.name}.`}
-                  image={BANNER_IMAGES[terminal.image]}
-                />
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8">
-            <MeetingPanel />
+        <div
+          className={`${SECTION_CONTAINER} flex flex-col gap-4 md:flex-row md:items-center md:justify-between`}
+        >
+          <div>
+            <h2 id="terminal-guides-heading" className={sectionHeading}>
+              Heathrow terminal guides
+            </h2>
+            <p className="mt-2 leading-relaxed text-[#0A2740]/80">
+              Pickup and drop-off information for Terminals 2, 3, 4 and 5.
+            </p>
           </div>
+          <Link href={TERMINAL_GUIDES_HREF} className={inlineLink}>
+            Go to Terminal Guides <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 

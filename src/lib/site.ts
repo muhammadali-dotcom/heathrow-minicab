@@ -54,7 +54,7 @@ export const NAV: NavItem[] = [
     children: [
       { label: "Heathrow Pickups", href: "/airport-transfers/heathrow-pickups" },
       { label: "Heathrow Drop-offs", href: "/airport-transfers/heathrow-drop-offs" },
-      { label: "Terminal Guides", href: "/airport-transfers#terminal-guides" },
+      { label: "Terminal Guides", href: "/airport-transfers/terminal-guides" },
     ],
   },
   {

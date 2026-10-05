@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
+import FlapTile from "@/components/FlapTile";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 // Photos are cropped from the supplied terminal images (their yellow labels removed).
@@ -18,11 +19,12 @@ export const BANNER_IMAGES = {
 type PageBannerProps = {
   title: string;
   crumb?: string; // short page name for the breadcrumb (defaults to the title)
-  parent?: { href: string; label: string }; // optional middle breadcrumb level
+  parents?: { href: string; label: string }[]; // optional middle breadcrumb levels
   eyebrow?: string;
   intro?: string;
   image: keyof typeof BANNER_IMAGES;
   links?: { href: string; label: string }[];
+  badge?: string; // large decorative flap tile on the right from md, e.g. "T5"
 };
 
 const focusWhite =
@@ -33,11 +35,12 @@ const focusWhite =
 export default function PageBanner({
   title,
   crumb,
-  parent,
+  parents,
   eyebrow,
   intro,
   image,
   links,
+  badge,
 }: PageBannerProps) {
   return (
     <section aria-labelledby="page-heading" className="relative overflow-hidden bg-[#0A2740]">
@@ -53,35 +56,10 @@ export default function PageBanner({
       <div aria-hidden="true" className="absolute inset-0 bg-[#0A2740]/70" />
 
       <div className={`relative ${SECTION_CONTAINER} py-14 md:py-20`}>
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-white/75">
-            <li>
-              <Link
-                href="/"
-                className={`inline-flex min-h-11 items-center rounded-sm hover:text-white hover:underline hover:underline-offset-4 ${focusWhite}`}
-              >
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            {parent && (
-              <>
-                <li>
-                  <Link
-                    href={parent.href}
-                    className={`inline-flex min-h-11 items-center rounded-sm hover:text-white hover:underline hover:underline-offset-4 ${focusWhite}`}
-                  >
-                    {parent.label}
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-              </>
-            )}
-            <li aria-current="page" className="font-medium text-white">
-              {crumb ?? title}
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb
+          tone="dark"
+          items={[...(parents ?? []), { label: crumb ?? title }]}
+        />
 
         {eyebrow && (
           <p className="mt-2 text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase">
@@ -113,6 +91,15 @@ export default function PageBanner({
               ))}
             </ul>
           </nav>
+        )}
+
+        {badge && (
+          <div
+            aria-hidden="true"
+            className="absolute top-1/2 right-6 hidden -translate-y-1/2 sm:right-8 md:block"
+          >
+            <FlapTile size="giant">{badge}</FlapTile>
+          </div>
         )}
       </div>
     </section>
