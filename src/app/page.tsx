@@ -1,3 +1,4 @@
+import AreasStrip from "@/components/AreasStrip";
 import Faqs from "@/components/Faqs";
 import HeathrowTerminals from "@/components/HeathrowTerminals";
 import Hero from "@/components/Hero";
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <TravelSituations />
       <HeathrowTerminals />
+      <AreasStrip />
       <HowToBook />
       <Vehicles />
       <Faqs />

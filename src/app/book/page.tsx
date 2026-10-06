@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { redirect } from "next/navigation";
 import BookingCta from "@/components/BookingCta";
 import PageBanner from "@/components/PageBanner";
@@ -8,7 +9,11 @@ import { SECTION_CONTAINER } from "@/lib/layout";
 // While online booking is being set up this page asks visitors to call, and stays out of
 // search results. Once NEXT_PUBLIC_BOOKING_URL is set it forwards straight to the booker.
 export const metadata: Metadata = {
-  title: "Book Online | Heathrow Minicab",
+  ...pageMetadata({
+    title: "Book Online | Heathrow Minicab",
+    description: "Book your Heathrow airport transfer online or by phone.",
+    path: "/book",
+  }),
   ...(BOOKING_URL ? {} : { robots: { index: false } }),
 };
 

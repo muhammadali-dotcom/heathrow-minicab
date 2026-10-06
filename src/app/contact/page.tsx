@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import PageBanner from "@/components/PageBanner";
 import { PHONE_NUMBERS } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
-export const metadata: Metadata = { title: "Contact | Heathrow Minicab" };
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: "Contact Heathrow Minicab | Call 020 8343 4444",
+    description:
+      "Call 020 8343 4444 or 020 8569 4040, or message us on WhatsApp, to book or ask about a Heathrow airport transfer. Available 24/7.",
+    path: "/contact",
+  }),
+};
 
 export default function Page() {
   return (

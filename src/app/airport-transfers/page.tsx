@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ServiceJsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import {
   BulletList,
   ClosingCta,
@@ -14,14 +16,23 @@ import {
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Heathrow Airport Transfers | Heathrow Minicab",
-  description:
-    "Heathrow pickups and drop-offs: choose your journey, check what your quote should cover and find your terminal.",
+  ...pageMetadata({
+    title: "Heathrow Airport Transfers | Pickups & Drop-offs",
+    description:
+      "Book a Heathrow airport transfer to or from Terminals 2–5. Fixed price once confirmed, 15 minutes’ free waiting and child seats at no extra cost.",
+    path: "/airport-transfers",
+  }),
 };
 
 export default function Page() {
   return (
     <>
+      <ServiceJsonLd
+        name="Heathrow airport transfers"
+        serviceType="Airport transfer"
+        description="24/7 minicab transfers to and from Heathrow Terminals 2, 3, 4 and 5 for North and West London."
+        path="/airport-transfers"
+      />
       <TransfersHero
         crumbs={[{ label: "Airport Transfers" }]}
         eyebrow="Heathrow airport transfers"
@@ -29,7 +40,7 @@ export default function Page() {
         intro="Reliable Heathrow transfers, booked in minutes and planned around your flight."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Transfer" }}
         image={{
-          src: "/images/airport-transfers-overview-hero.png",
+          src: "/images/airport-transfers-overview-hero.webp",
           width: 1536,
           height: 1024,
           alt: "Driver helping a traveller with luggage beside a navy car outside an airport terminal.",
@@ -136,17 +147,27 @@ export default function Page() {
               You get a fixed price before you book. There’s no meter, so traffic won’t change what
               you pay.
             </p>
-            <p className="mt-3 leading-relaxed text-[#0A2740]/80">
-              Your quote shows everything up front, so you know the total before you confirm.
-            </p>
           </div>
           <QuoteReceipt
-            included={[
-              { label: "Journey price", value: "Fixed" },
-              { label: "First 15 minutes’ waiting", value: "Included" },
-              { label: "Child seats", value: "Included" },
+            title="How your quote works"
+            points={[
+              {
+                title: "Fixed once confirmed",
+                text: "The price we confirm is the price you pay. There’s no meter.",
+              },
+              {
+                title: "Based on your journey",
+                text: "Your price depends on the time, day and route of your journey.",
+              },
+              {
+                title: "Agreed up front",
+                text: "Waiting, parking and any extras are covered as agreed in your quote.",
+              },
+              {
+                title: "Included as standard",
+                text: "15 minutes’ free waiting and child seats at no extra cost.",
+              },
             ]}
-            inQuote={["Drop-off or parking charge", "Waiting after 15 minutes", "Extra stops"]}
           />
         </div>
       </Section>

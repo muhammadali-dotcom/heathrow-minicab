@@ -19,7 +19,7 @@ export const VEHICLES: Vehicle[] = [
     passengers: 4,
     luggage: { large: 2, small: 2 },
     image: {
-      src: "/images/vehicles/saloon.png",
+      src: "/images/vehicles/saloon.webp",
       alt: "Charcoal Skoda Octavia saloon with a Heathrow Minicab number plate",
     },
   },
@@ -30,7 +30,7 @@ export const VEHICLES: Vehicle[] = [
     passengers: 4,
     luggage: { large: 3, small: 2 },
     image: {
-      src: "/images/vehicles/estate.png",
+      src: "/images/vehicles/estate.webp",
       alt: "Charcoal Skoda Superb Estate with a Heathrow Minicab number plate",
     },
   },
@@ -41,7 +41,7 @@ export const VEHICLES: Vehicle[] = [
     passengers: 6,
     luggage: { large: 4, small: 2 },
     image: {
-      src: "/images/vehicles/mpv.png",
+      src: "/images/vehicles/mpv.webp",
       alt: "Charcoal Ford Galaxy MPV with a Heathrow Minicab number plate",
     },
   },
@@ -52,7 +52,7 @@ export const VEHICLES: Vehicle[] = [
     passengers: 4,
     luggage: { large: 2, small: 2 },
     image: {
-      src: "/images/vehicles/executive.png",
+      src: "/images/vehicles/executive.webp",
       alt: "Charcoal Mercedes E-Class saloon with a Heathrow Minicab number plate",
     },
   },

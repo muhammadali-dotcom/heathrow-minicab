@@ -9,10 +9,10 @@ export const BANNER_IMAGES = {
   t3: "/images/banners/t3.jpg",
   t4: "/images/banners/t4.jpg",
   t5: "/images/cta-terminal5.jpg",
-  hero: "/images/heathrow-hero-wide.png",
-  arrival: "/images/airport-arrival.png",
-  family: "/images/family-transfer.png",
-  early: "/images/early-flight.png",
+  hero: "/images/heathrow-hero-wide.webp",
+  arrival: "/images/airport-arrival.webp",
+  family: "/images/family-transfer.webp",
+  early: "/images/early-flight.webp",
 } as const;
 
 type PageBannerProps = {

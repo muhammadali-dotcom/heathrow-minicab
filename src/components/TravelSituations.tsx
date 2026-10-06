@@ -11,19 +11,19 @@ type TravelSituationCard = {
 
 const cards: TravelSituationCard[] = [
   {
-    image: "/images/early-flight.png",
+    image: "/images/early-flight.webp",
     alt: "Traveller wheeling a suitcase down a driveway at sunrise towards a waiting black car with its door open",
     heading: "An early flight to catch?",
     text: "Arrange your journey to Heathrow in advance, with your pickup address and departure terminal ready.",
   },
   {
-    image: "/images/airport-arrival.png",
+    image: "/images/airport-arrival.webp",
     alt: "Smiling traveller walking through a bright airport terminal pulling a navy suitcase",
     heading: "A long flight behind you?",
     text: "Plan your journey from Heathrow to your home, hotel or next destination before you travel.",
   },
   {
-    image: "/images/family-transfer.png",
+    image: "/images/family-transfer.webp",
     alt: "Family with two suitcases and a holdall loading their luggage into the boot of a car outside an airport terminal",
     heading: "Travelling with family and bags?",
     text: "Tell us your passenger numbers and luggage so we can help you choose a suitable vehicle.",

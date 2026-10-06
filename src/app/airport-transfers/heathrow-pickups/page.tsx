@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ServiceJsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import {
   Checklist,
@@ -15,14 +17,23 @@ import {
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Heathrow Pickups | Heathrow Minicab",
-  description:
-    "Arriving at Heathrow? What happens after landing, how your driver meeting is arranged and how waiting time works.",
+  ...pageMetadata({
+    title: "Heathrow Airport Pickups | Meet & Greet Minicab",
+    description:
+      "Heathrow airport pickup with a name board in arrivals. We monitor your flight, and 15 minutes’ free waiting starts at your agreed pickup time.",
+    path: "/airport-transfers/heathrow-pickups",
+  }),
 };
 
 export default function Page() {
   return (
     <>
+      <ServiceJsonLd
+        name="Heathrow airport pickups"
+        serviceType="Airport pickup"
+        description="Meet and greet with a name board in Heathrow arrivals, with flight monitoring and 15 minutes' free waiting."
+        path="/airport-transfers/heathrow-pickups"
+      />
       <TransfersHero
         crumbs={[
           { href: "/airport-transfers", label: "Airport Transfers" },
@@ -33,10 +44,10 @@ export default function Page() {
         intro="Your driver meets you inside arrivals with a name board, with your pickup time planned around your flight."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Pickup" }}
         image={{
-          src: "/images/airport-arrival.png",
+          src: "/images/pickups-hero.webp",
           width: 1536,
           height: 1024,
-          alt: "Traveller with a suitcase walking through an airport arrivals hall",
+          alt: "Driver in a suit holding a welcome sign, greeting a smiling traveller with a suitcase in an airport arrivals hall",
         }}
       />
 
@@ -61,7 +72,7 @@ export default function Page() {
           </div>
           <div className="md:order-1">
             <Image
-              src="/images/pickups-meet-and-greet.png"
+              src="/images/pickups-meet-and-greet.webp"
               alt="Illustration of a smiling driver holding a Heathrow Minicab name board that reads Welcomes J. Smith"
               width={1024}
               height={1536}

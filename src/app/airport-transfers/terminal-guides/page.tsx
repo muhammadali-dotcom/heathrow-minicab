@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   HelpPanel,
@@ -10,9 +11,12 @@ import {
 import TerminalSelector from "@/components/transfers/TerminalSelector";
 
 export const metadata: Metadata = {
-  title: "Heathrow Terminal Guides | Heathrow Minicab",
-  description:
-    "Explore Heathrow Terminals 2, 3, 4 and 5, with arrival and departure guidance and help meeting your driver.",
+  ...pageMetadata({
+    title: "Heathrow Terminals 2, 3, 4 & 5 Guide for Transfers",
+    description:
+      "Arriving at or flying from Heathrow Terminal 2, 3, 4 or 5? Arrival and departure guidance and help meeting your minicab driver.",
+    path: "/airport-transfers/terminal-guides",
+  }),
 };
 
 export default function Page() {
@@ -29,10 +33,10 @@ export default function Page() {
         primary={{ href: "#choose-terminal", label: "Choose Your Terminal" }}
         secondaryLabel="Call for Help"
         image={{
-          src: "/images/terminal-guides-hero.png",
+          src: "/images/terminal-guides-hero-2.webp",
           width: 1536,
           height: 1024,
-          alt: "Traveller with a suitcase approaching an airport terminal",
+          alt: "Traveller with a suitcase looking up at an Arrivals and Departures sign inside an airport terminal",
         }}
       />
 

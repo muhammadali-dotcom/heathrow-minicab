@@ -1,0 +1,95 @@
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { ctaButtonClass } from "@/components/BookingCta";
+import PageBanner from "@/components/PageBanner";
+import PhoneIcon from "@/components/PhoneIcon";
+import { AREA_REGIONS, AREAS } from "@/lib/areas";
+import { SECTION_CONTAINER } from "@/lib/layout";
+import { PRIMARY_PHONE } from "@/lib/site";
+
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: "Minicab to Heathrow from North & West London",
+    description:
+      "Heathrow airport transfers from Finchley, Hendon, Barnet, Mill Hill, Edgware, Ealing, Hounslow, Southall and more. Available 24/7.",
+    path: "/areas",
+  }),
+};
+
+function PinIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 fill-none stroke-current"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11Z" />
+      <circle cx="12" cy="10" r="2" />
+    </svg>
+  );
+}
+
+export default function Page() {
+  return (
+    <>
+      <PageBanner
+        image="hero"
+        crumb="Areas We Cover"
+        eyebrow="Areas we cover"
+        title="Heathrow transfers from North and West London"
+        intro="Pickups and drop-offs between Heathrow and your door."
+      />
+
+      <section aria-label="Areas we cover" className="bg-white py-14 md:py-20">
+        <div className={SECTION_CONTAINER}>
+          {AREA_REGIONS.map((region) => {
+            const areas = AREAS.filter((area) => area.region === region.id);
+            return (
+              <div key={region.id} className="mt-12 first:mt-0">
+                <h2
+                  id={`${region.id}-heading`}
+                  className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
+                >
+                  {region.label}
+                </h2>
+                <ul
+                  aria-labelledby={`${region.id}-heading`}
+                  className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4"
+                >
+                  {areas.map((area) => (
+                    <li
+                      key={area.slug}
+                      className="flex items-center gap-3 rounded-xl border border-[#D5E8F2] bg-white p-4"
+                    >
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740]">
+                        <PinIcon />
+                      </span>
+                      <h3 className="leading-snug font-semibold text-[#0A2740]">{area.name}</h3>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+
+          <div className="mt-12 flex flex-col gap-5 rounded-xl bg-[#E6F6FC] p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
+            <div>
+              <h2 className="text-xl font-bold text-[#0A2740]">Don’t see your area?</h2>
+              <p className="mt-1 text-[#0A2740]/80">Call us to check.</p>
+            </div>
+            <a
+              href={`tel:${PRIMARY_PHONE.tel}`}
+              className={`${ctaButtonClass} min-h-12 shrink-0 px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]`}
+            >
+              Call {PRIMARY_PHONE.display}
+              <PhoneIcon className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

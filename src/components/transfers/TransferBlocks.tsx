@@ -376,51 +376,35 @@ export function Checklist({ items }: { items: string[] }) {
   );
 }
 
-// Receipt-style summary of what a quote includes (no prices shown).
+// Pricing explainer card: navy header strip, then ticked points in plain words (no prices).
 export function QuoteReceipt({
-  included,
-  inQuote,
+  title,
+  points,
 }: {
-  included: { label: string; value: string }[];
-  inQuote: string[];
+  title: string;
+  points: { title: string; text: string }[];
 }) {
   return (
     <div className="mx-auto w-full max-w-[28rem] overflow-hidden rounded-xl border border-[#D5E8F2] bg-white">
       <div className="flex items-center justify-between gap-3 bg-[#0A2740] px-6 py-4">
-        <p className="text-xs font-bold tracking-[0.15em] text-white uppercase">
-          Your Heathrow quote
-        </p>
+        <p className="text-xs font-bold tracking-[0.15em] text-white uppercase">{title}</p>
         <span className="text-[#4FB8E0]">
           <PlaneIcon className="h-5 w-5" />
         </span>
       </div>
-      <dl className="px-6 pt-2">
-        {included.map((row) => (
-          <div key={row.label} className="flex items-center justify-between gap-4 py-3">
-            <dt className="flex items-center gap-3 text-[#0A2740]">
+      <ul className="divide-y divide-[#D5E8F2] px-6">
+        {points.map((point) => (
+          <li key={point.title} className="flex gap-3 py-4">
+            <span className="mt-0.5">
               <TickBadge />
-              {row.label}
-            </dt>
-            <dd className="font-bold whitespace-nowrap text-[#0A2740]">{row.value}</dd>
-          </div>
+            </span>
+            <div>
+              <p className="font-semibold text-[#0A2740]">{point.title}</p>
+              <p className="mt-0.5 leading-relaxed text-[#0A2740]/80">{point.text}</p>
+            </div>
+          </li>
         ))}
-
-        {inQuote.map((label, i) => (
-          <div
-            key={label}
-            className={`flex items-center justify-between gap-4 py-3 ${i === 0 ? "mt-2 border-t-2 border-dashed border-[#D5E8F2] pt-5" : ""}`}
-          >
-            <dt className="text-[#0A2740]/80">{label}</dt>
-            <dd className="rounded-full bg-[#E6F6FC] px-3 py-1 text-sm font-semibold whitespace-nowrap text-[#0A2740]">
-              In your quote
-            </dd>
-          </div>
-        ))}
-      </dl>
-      <div className="mx-6 mt-2 mb-5 flex items-center justify-between gap-4 border-t-4 border-double border-[#0A2740] pt-4">
-        <p className="text-lg font-bold text-[#0A2740]">Total</p>
-        <p className="text-right font-bold text-[#0A2740]">Agreed before you travel</p>
-      </div>
+      </ul>
     </div>
   );
 }

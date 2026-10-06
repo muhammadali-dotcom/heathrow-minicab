@@ -73,6 +73,7 @@ export const NAV: NavItem[] = [
 
 export const COMPANY_LINKS: NavLink[] = [
   { label: "Our Vehicles", href: "/our-vehicles" },
+  { label: "Areas We Cover", href: "/areas" },
   { label: "FAQs", href: "/faqs" },
   { label: "Contact", href: "/contact" },
   { label: "About Us", href: "/about" },

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ServiceJsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   Checklist,
@@ -15,14 +17,23 @@ import {
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Heathrow Drop-offs | Heathrow Minicab",
-  description:
-    "Heading to Heathrow? Agree a suitable collection time, confirm your departure terminal and check what your quote includes.",
+  ...pageMetadata({
+    title: "Minicab to Heathrow | Heathrow Airport Drop-offs",
+    description:
+      "Door-to-terminal minicab to Heathrow from North and West London, timed around your flight. Saloon, estate, MPV and executive cars.",
+    path: "/airport-transfers/heathrow-drop-offs",
+  }),
 };
 
 export default function Page() {
   return (
     <>
+      <ServiceJsonLd
+        name="Heathrow airport drop-offs"
+        serviceType="Airport drop-off"
+        description="Door-to-terminal minicab journeys to Heathrow departures, timed around your flight."
+        path="/airport-transfers/heathrow-drop-offs"
+      />
       <TransfersHero
         crumbs={[
           { href: "/airport-transfers", label: "Airport Transfers" },
@@ -33,10 +44,10 @@ export default function Page() {
         intro="We collect you from your door at a time planned around your flight and take you to your departure terminal, so you can relax before you fly."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Drop-off" }}
         image={{
-          src: "/images/family-transfer.png",
+          src: "/images/drop-offs-hero.webp",
           width: 1536,
           height: 1024,
-          alt: "Family with suitcases loading luggage into a car outside an airport terminal",
+          alt: "Driver loading suitcases into a navy estate car outside an airport terminal as a family walks up",
         }}
       />
 

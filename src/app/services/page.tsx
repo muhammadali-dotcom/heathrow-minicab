@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { GuideCard, sectionHeading } from "@/components/GuideBlocks";
 import PageBanner, { BANNER_IMAGES } from "@/components/PageBanner";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { SERVICES } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Services | Heathrow Minicab",
-  description:
-    "Airport-to-airport transfers, family and group travel, business airport travel and child seats on request.",
+  ...pageMetadata({
+    title: "Heathrow Transfer Services | Heathrow Minicab",
+    description:
+      "Airport-to-airport transfers, family and group travel, business airport travel and child seats on request, for Heathrow journeys.",
+    path: "/services",
+  }),
 };
 
 // Overview hub: each service has its own page.

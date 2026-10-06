@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 type Crumb = { href?: string; label: string };
 
@@ -24,6 +25,7 @@ export default function Breadcrumb({ items, tone }: { items: Crumb[]; tone: "lig
   const all: Crumb[] = [{ href: "/", label: "Home" }, ...items];
   return (
     <nav aria-label="Breadcrumb">
+      <BreadcrumbJsonLd items={all} />
       <ol className={`flex flex-wrap items-center gap-2 text-sm ${t.list}`}>
         {all.map((crumb, i) => {
           const isLast = i === all.length - 1;

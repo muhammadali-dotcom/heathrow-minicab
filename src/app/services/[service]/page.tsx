@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,10 +24,11 @@ export async function generateMetadata({
 }: PageProps<"/services/[service]">): Promise<Metadata> {
   const service = findService((await params).service);
   if (!service) return {};
-  return {
+  return pageMetadata({
     title: `${service.title} | Heathrow Minicab`,
     description: service.text,
-  };
+    path: `/services/${service.slug}`,
+  });
 }
 
 // Same details as the vehicle cards, read from VEHICLES.

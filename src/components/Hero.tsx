@@ -9,9 +9,9 @@ const alt =
 
 // Desktop (xl+): the wide 2.4:1 composition, shown whole: the hero takes the image's own
 // proportions, so the plane, sign and full car are never cropped.
-const DESKTOP_PHOTO = { src: "/images/heathrow-hero-wide.png", width: 1942, height: 809 };
+const DESKTOP_PHOTO = { src: "/images/heathrow-hero-wide.webp", width: 1942, height: 809 };
 // Phones and tablets: the tighter 16:9 photo above the text, so the car stays large.
-const MOBILE_PHOTO = { src: "/images/heathrow-hero.png", width: 1672, height: 941 };
+const MOBILE_PHOTO = { src: "/images/heathrow-hero.webp", width: 1672, height: 941 };
 
 export default function Hero() {
   const common = { alt, sizes: "100vw" };
