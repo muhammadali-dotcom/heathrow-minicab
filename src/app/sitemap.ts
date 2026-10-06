@@ -2,8 +2,7 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 
-// Indexable pages only. About, Terms and Privacy stay out (and noindex) while they're
-// placeholders; /book stays out while it only asks visitors to call.
+// Indexable pages only. Terms and Privacy stay out (and noindex) while they are placeholders.
 type Entry = { path: string; priority: number; changeFrequency: "weekly" | "monthly" };
 
 const ENTRIES: Entry[] = [
@@ -19,6 +18,7 @@ const ENTRIES: Entry[] = [
     changeFrequency: "monthly" as const,
   })),
   { path: "/our-vehicles", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/about", priority: 0.6, changeFrequency: "monthly" },
   { path: "/faqs", priority: 0.6, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
 ];

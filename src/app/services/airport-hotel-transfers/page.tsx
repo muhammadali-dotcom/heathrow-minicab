@@ -33,7 +33,8 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Airport & hotel transfers"
-        title="Bags packed? Airport or hotel, we’ll take you."
+        title="Bags packed?"
+        titleAccent="Airport or hotel, we’ll take you."
         intro="Tell us your hotel and flight details. We’ll arrange the ride so you can focus on your stay."
         primary={{ href: BOOK_ONLINE_HREF, label: "Arrange Your Transfer" }}
         image={service.image}
@@ -101,7 +102,7 @@ export default function Page() {
         <Checklist
           items={[
             "Full hotel name and address",
-            "Flight number and terminal",
+            "Flight number, terminal and arrival/departure time",
             "Travel date",
             "Collection time, for hotel-to-airport journeys",
             "Number of passengers",

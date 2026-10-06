@@ -46,13 +46,14 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Airport-to-airport transfers"
-        title="Two airports. One easy ride."
+        title="Two airports."
+        titleAccent="One easy ride."
         intro="Landing at one airport and flying from another? We’ll help arrange the journey between them."
         primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Transfer" }}
         image={service.image}
       />
 
-      <Section tone="pale" id="routes" title="Which airports are you travelling between?">
+      <Section tone="navy" id="routes" title="Which airports are you travelling between?">
         <RouteBoard
           routes={AIRPORTS.map((airport) => ({
             from: "LHR",
@@ -64,7 +65,7 @@ export default function Page() {
       </Section>
 
       <Section
-        tone="navy"
+        tone="pale"
         id="timing"
         title="Leave time for your next flight"
         intro="We plan around both flights, but we can’t guarantee connection times, so leave a comfortable margin."
@@ -113,7 +114,7 @@ export default function Page() {
               items: ["Airport", "Flight number", "Date and time", "Terminal"],
             },
             {
-              title: "Your party",
+              title: "Passengers & luggage",
               items: ["Number of passengers", "Large suitcases and small bags", "A mobile number"],
             },
           ]}

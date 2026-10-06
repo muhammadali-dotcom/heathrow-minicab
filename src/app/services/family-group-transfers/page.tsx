@@ -41,7 +41,8 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Family & group transfers"
-        title="Your holiday starts together."
+        title="Your holiday"
+        titleAccent="starts together."
         intro="Bring the family, friends and bags. We’ll help you choose a suitable vehicle for your airport journey."
         primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Family Transfer" }}
         image={service.image}
@@ -95,13 +96,11 @@ export default function Page() {
         <PathCards
           items={[
             {
-              from: "Child seats",
-              to: "No extra cost",
+              title: "Child seats at no extra cost",
               text: "Request a child seat when you book and tell us each child’s age so we can confirm a suitable seat. Arrangements are confirmed when you book.",
             },
             {
-              from: "Extra pickups",
-              to: "One journey",
+              title: "Extra collection stops",
               text: "Give us every collection address when you book. Extra stops are agreed in your quote and confirmed when you book.",
             },
           ]}
@@ -118,6 +117,7 @@ export default function Page() {
             "Collection address(es)",
             "Destination",
             "Flight number, date and time",
+            "Airport and terminal",
             "A mobile number we can reach you on",
           ]}
         />

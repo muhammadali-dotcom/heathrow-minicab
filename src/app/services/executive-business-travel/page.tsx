@@ -4,7 +4,7 @@ import {
   ComparisonTable,
   DetailCards,
   JourneyList,
-  SplitChecklist,
+  GroupedChecklist,
 } from "@/components/services/ServiceBlocks";
 import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
@@ -35,13 +35,14 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Executive & business travel"
-        title="Your next meeting starts with a good journey."
+        title="Your next meeting"
+        titleAccent="starts with a good journey."
         intro="From Heathrow to your office, hotel or meeting, with a comfortable ride planned around your day."
         primary={{ href: BOOK_ONLINE_HREF, label: "Arrange Business Travel" }}
         image={service.image}
       />
 
-      <Section tone="pale" id="journeys" title="From Heathrow to your working day">
+      <Section tone="navy" id="journeys" title="From Heathrow to your working day">
         <JourneyList
           journeys={[
             {
@@ -61,10 +62,10 @@ export default function Page() {
             },
           ]}
         />
-        <p className="mt-6 text-[#0A2740]/80">Return journeys can be arranged at the same time.</p>
+        <p className="mt-6 text-white/85">Return journeys can be arranged at the same time.</p>
       </Section>
 
-      <Section tone="navy" id="vehicles" title="Standard or executive?">
+      <Section tone="pale" id="vehicles" title="Standard or executive?">
         <ComparisonTable
           caption="Standard and executive cars compared"
           columns={["Standard", "Executive"]}
@@ -102,7 +103,7 @@ export default function Page() {
       </Section>
 
       <Section tone="pale" id="booking-checklist" title="Have these details ready">
-        <SplitChecklist
+        <GroupedChecklist
           groups={[
             {
               title: "Passenger & booker",

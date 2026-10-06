@@ -42,10 +42,14 @@ type HeroProps = {
   crumbs: { href?: string; label: string }[];
   eyebrow: string;
   title: string;
+  // Optional second part of the headline, shown in blue within the same H1.
+  titleAccent?: string;
   intro: string;
   primary: { href: string; label: string };
   // Label for the navy-outline phone button; defaults to "Call to Book".
   secondaryLabel?: string;
+  // false hides the phone button (e.g. a page with a single contact CTA).
+  showCall?: boolean;
   image: { src: string; width: number; height: number; alt: string };
 };
 
@@ -55,9 +59,11 @@ export function TransfersHero({
   crumbs,
   eyebrow,
   title,
+  titleAccent,
   intro,
   primary,
   secondaryLabel = "Call to Book",
+  showCall = true,
   image,
 }: HeroProps) {
   const isInternal = primary.href.startsWith("/") || primary.href.startsWith("#");
@@ -67,14 +73,19 @@ export function TransfersHero({
       <div className="pt-6">
         <Breadcrumb tone="light" items={crumbs} />
       </div>
-      <div className="grid items-center gap-8 pt-4 pb-10 md:grid-cols-2 md:gap-12 md:pb-12">
+      <div className="grid items-center gap-8 pt-4 pb-10 md:grid-cols-[1.2fr_1fr] md:items-start md:gap-12 md:pb-12">
         <div>
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1
             id="page-heading"
-            className="mt-3 max-w-[34rem] text-[clamp(1.875rem,1.2rem+2.4vw,2.75rem)] leading-[1.15] font-bold tracking-tight text-balance text-[#0A2740]"
+            className="mt-3 text-[1.875rem] leading-[1.15] font-bold tracking-tight text-balance text-[#0A2740] md:text-[1.75rem] lg:text-[2rem]"
           >
-            {title}
+            {/* From lg each part is one line: navy title, then the blue accent. The accent's leading
+                space keeps the words apart where the parts wrap inline (phones, tablets). */}
+            <span className="lg:block lg:whitespace-nowrap">{title}</span>
+            {titleAccent && (
+              <span className="text-[#1786BB] lg:block lg:whitespace-nowrap"> {titleAccent}</span>
+            )}
           </h1>
           <p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-[#0A2740]/80">{intro}</p>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -87,14 +98,16 @@ export function TransfersHero({
                 {primary.label}
               </a>
             )}
-            <a
-              href={`tel:${PRIMARY_PHONE.tel}`}
-              aria-label={`${secondaryLabel}: ${PRIMARY_PHONE.display}`}
-              className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] bg-white px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] ${focusNavy}`}
-            >
-              {secondaryLabel}
-              <PhoneIcon className="h-5 w-5" />
-            </a>
+            {showCall && (
+              <a
+                href={`tel:${PRIMARY_PHONE.tel}`}
+                aria-label={`${secondaryLabel}: ${PRIMARY_PHONE.display}`}
+                className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] bg-white px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] ${focusNavy}`}
+              >
+                {secondaryLabel}
+                <PhoneIcon className="h-5 w-5" />
+              </a>
+            )}
           </div>
         </div>
         <Image
@@ -103,8 +116,10 @@ export function TransfersHero({
           width={image.width}
           height={image.height}
           sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
-          priority
-          className="h-auto w-full rounded-xl"
+          preload
+          loading="eager"
+          fetchPriority="high"
+          className="h-auto w-full rounded-xl bg-[#E6F6FC]"
         />
       </div>
     </section>
@@ -231,7 +246,7 @@ export function RouteCard({
 }
 
 export type FeatureIconName =
-  "plane" | "board" | "clock" | "seat" | "car" | "allday" | "home" | "luggage";
+  "plane" | "board" | "clock" | "seat" | "car" | "allday" | "home" | "luggage" | "chat" | "people";
 
 // Simple 24x24 line icons for the feature cards; the plane reuses the site's PlaneIcon.
 const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
@@ -260,6 +275,20 @@ const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
       <path d="M4 12h16" />
       <circle cx="8" cy="16.5" r="1.5" />
       <circle cx="16" cy="16.5" r="1.5" />
+    </>
+  ),
+  chat: (
+    <>
+      <path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+      <path d="M8 9.5h8M8 12.5h5" />
+    </>
+  ),
+  people: (
+    <>
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+      <circle cx="17" cy="9" r="2.25" />
+      <path d="M16 13.6A4.5 4.5 0 0 1 21 18" />
     </>
   ),
   luggage: (

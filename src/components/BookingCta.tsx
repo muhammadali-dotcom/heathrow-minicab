@@ -1,4 +1,3 @@
-import Link from "next/link";
 import ArrowRightIcon from "@/components/ArrowRightIcon";
 import CalendarIcon from "@/components/CalendarIcon";
 import PhoneIcon from "@/components/PhoneIcon";
@@ -19,8 +18,8 @@ type BookingCtaProps = {
 export const ctaButtonClass =
   "inline-flex items-center justify-center gap-3 rounded-md bg-[#1FA3D6] font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#1C98C9]";
 
-// The booking CTA used across the site: "Book Online" (to /book until NEXT_PUBLIC_BOOKING_URL
-// is set, then to the hosted booker) and "Call 020 8343 4444".
+// The booking CTA used across the site: "Book Online" (to the hosted web booker) and
+// "Call 020 8343 4444".
 export default function BookingCta({
   tone = "light",
   align = "start",
@@ -40,10 +39,10 @@ export default function BookingCta({
 
   if (onlineOnly) {
     return (
-      <Link href={BOOK_ONLINE_HREF} className={button}>
+      <a href={BOOK_ONLINE_HREF} className={button}>
         Book Online
         <ArrowRightIcon className={icon} />
-      </Link>
+      </a>
     );
   }
 
@@ -62,10 +61,10 @@ export default function BookingCta({
     >
       {online ? (
         <>
-          <Link href={BOOK_ONLINE_HREF} className={button}>
+          <a href={BOOK_ONLINE_HREF} className={button}>
             Book Online
             <CalendarIcon className={icon} />
-          </Link>
+          </a>
           {callButton(PRIMARY_PHONE)}
         </>
       ) : (

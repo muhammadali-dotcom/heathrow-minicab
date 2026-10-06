@@ -36,7 +36,8 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Airport Transfers" }]}
         eyebrow="Heathrow airport transfers"
-        title="Heathrow pickups and drop-offs, made simple."
+        title="Heathrow pickups and drop-offs,"
+        titleAccent="made simple."
         intro="Reliable Heathrow transfers, booked in minutes and planned around your flight."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Transfer" }}
         image={{
@@ -85,7 +86,7 @@ export default function Page() {
       </Section>
 
       <Section
-        tone="white"
+        tone="pale"
         id="why-us"
         eyebrow="Why travel with us"
         title="Why travel with Heathrow Minicab"
@@ -128,7 +129,7 @@ export default function Page() {
       </Section>
 
       <Section
-        tone="pale"
+        tone="white"
         id="vehicles"
         eyebrow="Our vehicles"
         title="Room for you and your luggage"
@@ -136,8 +137,8 @@ export default function Page() {
         <VehicleCards />
       </Section>
 
-      <Section tone="white" id="pricing">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
+      <Section tone="pale" id="pricing">
+        <div className="grid items-start gap-10 md:grid-cols-2 md:gap-12">
           <div>
             <Eyebrow>Pricing</Eyebrow>
             <div className="mt-3">
@@ -177,6 +178,7 @@ export default function Page() {
         title="Ready to plan your transfer?"
         text="Book online or call for help with your journey."
         buttonLabel="Call to Book"
+        whatsapp
       />
     </>
   );

@@ -33,7 +33,8 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Long-distance airport transfers"
-        title="Land at Heathrow. Let us take you home."
+        title="Land at Heathrow."
+        titleAccent="Let us take you home."
         intro="Your flight is over. Sit back while we take you home, with your journey arranged before you land."
         primary={{ href: BOOK_ONLINE_HREF, label: "Get a Quote" }}
         image={service.image}
@@ -49,7 +50,20 @@ export default function Page() {
             { name: "Oxford & Cambridge", places: ["Oxford", "Cambridge"] },
           ]}
         />
-        <p className="mt-6 text-white/85">Another destination? Ask us.</p>
+        <p className="mt-6 text-white/85">
+          Another destination?{" "}
+          <a
+            href={`https://wa.me/442083434444?text=${encodeURIComponent(
+              "Hi, do you offer a Heathrow transfer to/from [destination]?",
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-white underline decoration-[#4FB8E0] decoration-2 underline-offset-4 hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Ask us on WhatsApp <span aria-hidden="true">→</span>
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </p>
       </Section>
 
       <Section tone="pale" id="directions" title="To Heathrow or home again">

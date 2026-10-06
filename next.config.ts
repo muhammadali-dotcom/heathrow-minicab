@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         destination: "/airport-transfers/terminal-guides",
         permanent: true,
       })),
+      // Online booking happens on the hosted web booker.
+      {
+        source: "/book",
+        destination: "https://www.bittacycars.com/booking",
+        permanent: false,
+      },
       // The Services overview was removed; the menu opens the service pages directly.
       {
         source: "/services",

@@ -63,8 +63,8 @@ export default function SiteFooter() {
   return (
     <footer className="bg-[#0A2740] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
       {/* Airport Transfers and individual service pages end with their own closing CTA, so the
-          band is skipped there (the /services hub keeps it). */}
-      <HideOnPaths prefixes={["/airport-transfers", "/services/"]}>
+          band is skipped there; so is About, which ends with its own contact panel. */}
+      <HideOnPaths prefixes={["/airport-transfers", "/services/", "/about"]}>
         <CtaBand />
       </HideOnPaths>
 

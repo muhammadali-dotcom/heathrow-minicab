@@ -40,7 +40,8 @@ export default function Page() {
           { label: "Heathrow Pickups" },
         ]}
         eyebrow="Heathrow pickups"
-        title="Heathrow pickups, from arrivals to your door."
+        title="Heathrow pickups,"
+        titleAccent="from arrivals to your door."
         intro="Meet your driver inside arrivals with a name board, or at the pickup location confirmed when you book."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Pickup" }}
         image={{

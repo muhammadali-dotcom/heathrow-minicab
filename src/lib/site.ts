@@ -20,12 +20,12 @@ export type NavItem = {
 
 export const SITE_NAME = "Heathrow Minicab";
 
-// Set NEXT_PUBLIC_BOOKING_URL when the online booker is ready.
-export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL;
+// The hosted web booker. NEXT_PUBLIC_BOOKING_URL overrides it (e.g. for testing).
+export const BOOKING_URL =
+  process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://www.bittacycars.com/booking";
 
-// Where every "Book Online" button goes: the hosted booker once configured,
-// otherwise /book, which asks visitors to call while online booking is set up.
-export const BOOK_ONLINE_HREF = BOOKING_URL ?? "/book";
+// Where every "Book Online" / "Get a Quote" button goes (same tab).
+export const BOOK_ONLINE_HREF = BOOKING_URL;
 
 export const PHONE_NUMBERS: PhoneNumber[] = [
   { label: "Bookings", display: "020 8343 4444", tel: "+442083434444" },
