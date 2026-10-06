@@ -11,7 +11,10 @@ export type NavLink = {
   href: string;
 };
 
-export type NavItem = NavLink & {
+// An item without href is a dropdown-only menu (no landing page of its own).
+export type NavItem = {
+  label: string;
+  href?: string;
   children?: NavLink[];
 };
 
@@ -60,7 +63,6 @@ export const NAV: NavItem[] = [
   },
   {
     label: "Services",
-    href: "/services",
     // Built from SERVICES so labels and URLs match the service pages.
     children: SERVICES.map((service) => ({
       label: service.title,

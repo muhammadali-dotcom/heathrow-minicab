@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ServiceJsonLd } from "@/components/JsonLd";
+import { DetailCards, PathCards, RuleColumns } from "@/components/services/ServiceBlocks";
 import {
-  ComparisonTable,
-  ProblemSolution,
-  RuleColumns,
-  SplitChecklist,
-} from "@/components/services/ServiceBlocks";
-import {
+  Checklist,
   ClosingCta,
   Section,
   TransfersHero,
-  textLink,
 } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
@@ -37,128 +31,93 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
+        crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Airport & hotel transfers"
         title="Bags packed? Airport or hotel, we’ll take you."
         intro="Tell us your hotel and flight details. We’ll arrange the ride so you can focus on your stay."
-        primary={{ href: BOOK_ONLINE_HREF, label: "Arrange Your Hotel Transfer" }}
+        primary={{ href: BOOK_ONLINE_HREF, label: "Arrange Your Transfer" }}
         image={service.image}
       />
 
-      <Section tone="navy" id="worries" title="Straight to your room, not the taxi queue">
-        <ProblemSolution
-          worries={[
-            "Finding transport after a long flight",
-            "Explaining a hotel address in a new city",
-            "Remembering to arrange the trip back",
-          ]}
-          answers={[
-            "Your driver meets you inside arrivals with a name board, or at the pickup point confirmed when you book.",
-            "Give us the hotel name and postcode; we agree the entrance or meeting point.",
-            "Book your return to Heathrow at the same time.",
-          ]}
-        />
-      </Section>
-
-      <Section tone="pale" id="journeys" title="Arriving or leaving?">
-        <ComparisonTable
-          caption="Airport-to-hotel and hotel-to-airport journeys compared"
-          columns={["Heathrow → hotel", "Hotel → Heathrow"]}
-          rows={[
+      <Section tone="navy" id="journeys" title="Arriving or heading to the airport?">
+        <PathCards
+          items={[
             {
-              label: "Where you meet",
-              values: [
-                "Inside arrivals with a name board, or at the confirmed pickup point",
-                "Your hotel’s entrance or the meeting point we agree",
-              ],
+              from: "Heathrow",
+              to: "Hotel",
+              text: "Your driver meets you at Heathrow and takes you to your hotel.",
+              link: { href: "/airport-transfers/heathrow-pickups", label: "Read the pickup guide" },
             },
             {
-              label: "Planned around",
-              values: ["Your landing time", "Your flight and departure terminal"],
-            },
-            {
-              label: "Tell us",
-              values: [
-                "Flight number and hotel address",
-                "Hotel address, collection time and terminal",
-              ],
-            },
-            {
-              label: "More detail",
-              values: [
-                <Link key="p" href="/airport-transfers/heathrow-pickups" className={textLink}>
-                  Pickup guide
-                </Link>,
-                <Link key="d" href="/airport-transfers/heathrow-drop-offs" className={textLink}>
-                  Drop-off guide
-                </Link>,
-              ],
+              from: "Hotel",
+              to: "Heathrow",
+              text: "We collect you from your hotel and take you to your departure terminal.",
+              link: {
+                href: "/airport-transfers/heathrow-drop-offs",
+                label: "Read the drop-off guide",
+              },
             },
           ]}
         />
       </Section>
 
-      <Section tone="white" id="hotels" title="Hotels we cover">
+      <Section tone="pale" id="hotels" title="Hotels near Heathrow and across London">
+        <DetailCards
+          items={[
+            {
+              label: "Heathrow area",
+              hint: "Hotels around the airport, for late arrivals and early departures.",
+            },
+            { label: "Central London", hint: "Hotels across central London." },
+            {
+              label: "North & West London",
+              hint: "Hotels across the areas we cover.",
+              link: { href: "/areas", label: "See areas we cover" },
+            },
+          ]}
+        />
+      </Section>
+
+      <Section tone="white" id="meeting" title="Know where to meet your driver">
         <RuleColumns
           columns={[
             {
-              title: "Heathrow-area hotels",
-              text: "Hotels around the airport, for late arrivals or early departures.",
+              title: "At Heathrow",
+              text: "Follow the meeting instructions confirmed with your booking: inside arrivals with a name board, or at the agreed pickup point.",
             },
             {
-              title: "Central London hotels",
-              text: "Hotels across central London, to and from any Heathrow terminal.",
+              title: "At your hotel",
+              text: "Give us the full hotel address and agree the entrance or collection point.",
             },
             {
-              title: "North & West London",
-              text: "Hotels across the areas we cover.",
-              link: (
-                <Link href="/areas" className={`${textLink} mt-1`}>
-                  See areas we cover <span aria-hidden="true">→</span>
-                </Link>
-              ),
+              title: "Coming back?",
+              text: "Arrange your return to Heathrow at the same time. Just give us both dates and times.",
             },
           ]}
         />
       </Section>
 
-      <Section
-        tone="pale"
-        id="booking-checklist"
-        eyebrow="Before you book"
-        title="Have these details ready"
-      >
-        <SplitChecklist
-          groups={[
-            {
-              title: "Your arrival",
-              items: [
-                "Flight number, date and terminal",
-                "Hotel name and full address",
-                "Passengers, suitcases and bags",
-              ],
-            },
-            {
-              title: "Your return",
-              items: [
-                "Collection date and time from the hotel",
-                "Departure flight and terminal",
-                "A mobile number we can reach you on",
-              ],
-            },
+      <Section tone="pale" id="booking-checklist" title="Have your hotel and flight details ready">
+        <Checklist
+          items={[
+            "Full hotel name and address",
+            "Flight number and terminal",
+            "Travel date",
+            "Collection time, for hotel-to-airport journeys",
+            "Number of passengers",
+            "Large suitcases and small bags",
+            "A mobile number we can reach you on",
+            "Return journey details, if needed",
           ]}
         />
-        <Link href="/airport-transfers/heathrow-pickups" className={`${textLink} mt-6`}>
-          How Heathrow pickups work <span aria-hidden="true">→</span>
-        </Link>
       </Section>
 
       <ClosingCta
         tone="photo"
-        title="Arrange Your Hotel Transfer"
-        text="Call or WhatsApp us with your hotel and flight details."
+        title="Your hotel journey, arranged"
+        text="Tell us where you’re staying and when you’re flying."
         buttonLabel="Call to Book"
-        whatsapp
+        whatsapp="Hi, I’d like to arrange a transfer between Heathrow and my hotel."
       />
     </>
   );

@@ -115,16 +115,20 @@ export function BreadcrumbJsonLd({
       data={{
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        itemListElement: items.map((item, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          name: item.label,
-          ...(item.href
-            ? { item: absoluteUrl(item.href) }
-            : currentPath
-              ? { item: absoluteUrl(currentPath) }
-              : {}),
-        })),
+        // Middle crumbs without a page (e.g. "Services") are left out; Google needs a URL on
+        // every item except the last.
+        itemListElement: items
+          .filter((item, i) => item.href || i === items.length - 1)
+          .map((item, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: item.label,
+            ...(item.href
+              ? { item: absoluteUrl(item.href) }
+              : currentPath
+                ? { item: absoluteUrl(currentPath) }
+                : {}),
+          })),
       }}
     />
   );

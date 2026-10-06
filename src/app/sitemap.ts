@@ -13,7 +13,6 @@ const ENTRIES: Entry[] = [
   { path: "/airport-transfers/heathrow-drop-offs", priority: 0.9, changeFrequency: "monthly" },
   { path: "/airport-transfers/terminal-guides", priority: 0.9, changeFrequency: "monthly" },
   { path: "/areas", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/services", priority: 0.8, changeFrequency: "monthly" },
   ...SERVICES.map((service) => ({
     path: `/services/${service.slug}`,
     priority: 0.8,

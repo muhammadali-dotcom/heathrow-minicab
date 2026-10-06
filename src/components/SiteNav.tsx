@@ -77,26 +77,41 @@ function Dropdown({ item }: { item: NavItem }) {
         if (!ref.current?.contains(e.relatedTarget as Node)) setOpen(false);
       }}
     >
-      {/* The label goes to the section's page; the chevron is a separate toggle for its links. */}
-      <div className="flex items-center">
-        <Link
-          href={item.href}
-          className={`inline-flex min-h-11 items-center rounded-md pr-0.5 pl-0 text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
-        >
-          {item.label}
-        </Link>
+      {/* With an href, the label goes to the section's page and the chevron is a separate toggle;
+          without one, the label and chevron are a single toggle button. */}
+      {item.href ? (
+        <div className="flex items-center">
+          <Link
+            href={item.href}
+            className={`inline-flex min-h-11 items-center rounded-md pr-0.5 pl-0 text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
+          >
+            {item.label}
+          </Link>
+          <button
+            ref={buttonRef}
+            type="button"
+            aria-expanded={open}
+            aria-controls={panelId}
+            aria-label={`${open ? "Hide" : "Show"} ${item.label} links`}
+            onClick={() => setOpen((v) => !v)}
+            className={`inline-flex h-11 w-5 items-center justify-center rounded-md text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
+          >
+            <Chevron open={open} />
+          </button>
+        </div>
+      ) : (
         <button
           ref={buttonRef}
           type="button"
           aria-expanded={open}
           aria-controls={panelId}
-          aria-label={`${open ? "Hide" : "Show"} ${item.label} links`}
           onClick={() => setOpen((v) => !v)}
-          className={`inline-flex h-11 w-5 items-center justify-center rounded-md text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
+          className={`inline-flex min-h-11 items-center gap-0.5 rounded-md text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
         >
+          {item.label}
           <Chevron open={open} />
         </button>
-      </div>
+      )}
       {/* Top padding (not margin) bridges the gap, so moving the mouse into the menu keeps it open. */}
       <div id={panelId} hidden={!open} className="absolute top-full left-0 z-30 pt-2">
         <ul className="w-64 rounded-xl border border-[#D5E8F2] bg-white p-2">
@@ -124,14 +139,29 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
   return (
     <li className="border-b border-[#D5E8F2] last:border-b-0">
       <div className="flex items-center justify-between gap-2">
-        <Link
-          href={item.href}
-          onClick={onNavigate}
-          className={`flex min-h-12 flex-1 items-center rounded-md font-medium text-[#0A2740] ${focusRing}`}
-        >
-          {item.label}
-        </Link>
-        {item.children && (
+        {item.href ? (
+          <Link
+            href={item.href}
+            onClick={onNavigate}
+            className={`flex min-h-12 flex-1 items-center rounded-md font-medium text-[#0A2740] ${focusRing}`}
+          >
+            {item.label}
+          </Link>
+        ) : (
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls={panelId}
+            onClick={() => setOpen((v) => !v)}
+            className={`flex min-h-12 flex-1 items-center justify-between rounded-md text-left font-medium text-[#0A2740] ${focusRing}`}
+          >
+            {item.label}
+            <span className="flex h-11 w-11 items-center justify-center">
+              <Chevron open={open} />
+            </span>
+          </button>
+        )}
+        {item.href && item.children && (
           <button
             type="button"
             aria-expanded={open}
@@ -190,11 +220,11 @@ export default function SiteNav({ nav }: SiteNavProps) {
         <ul className="flex flex-1 items-center justify-center gap-6">
           {nav.map((item) =>
             item.children ? (
-              <Dropdown key={item.href} item={item} />
+              <Dropdown key={item.label} item={item} />
             ) : (
-              <li key={item.href}>
+              <li key={item.label}>
                 <Link
-                  href={item.href}
+                  href={item.href ?? "/"}
                   className={`inline-flex min-h-11 items-center rounded-md px-0 text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
                 >
                   {item.label}
@@ -237,7 +267,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
         >
           <ul className={`${SECTION_CONTAINER} py-2`}>
             {nav.map((item) => (
-              <MobileItem key={item.href} item={item} onNavigate={close} />
+              <MobileItem key={item.label} item={item} onNavigate={close} />
             ))}
           </ul>
           <div className={`${SECTION_CONTAINER} border-t border-[#D5E8F2] pt-4 pb-6`}>

@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         destination: "/airport-transfers/terminal-guides",
         permanent: true,
       })),
+      // The Services overview was removed; the menu opens the service pages directly.
+      {
+        source: "/services",
+        destination: "/services/family-group-transfers",
+        permanent: true,
+      },
       // Renamed service page.
       {
         source: "/services/business-airport-travel",

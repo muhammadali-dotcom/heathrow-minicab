@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { ctaButtonClass } from "@/components/BookingCta";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
@@ -24,51 +25,10 @@ function Tick({ className = "text-[#1FA3D6]" }: { className?: string }) {
   );
 }
 
-function Cross() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="mt-0.5 h-5 w-5 shrink-0 fill-none stroke-current text-[#5B7A93]"
-      strokeWidth={2.25}
-      strokeLinecap="round"
-    >
-      <path d="M7 7l10 10M17 7L7 17" />
-    </svg>
-  );
-}
 
-const label = "text-xs font-bold tracking-[0.15em] uppercase";
-
-// The worry on the left, how we handle it on the right; stacks on phones.
-export function ProblemSolution({ worries, answers }: { worries: string[]; answers: ReactNode[] }) {
-  return (
-    <div className="mt-8 grid overflow-hidden rounded-xl border border-white/10 md:grid-cols-2">
-      <div className="bg-white p-6 md:p-8">
-        <p className={`${label} text-[#5B7A93]`}>The worry</p>
-        <ul className="mt-4 space-y-4">
-          {worries.map((worry) => (
-            <li key={worry} className="flex gap-3 leading-relaxed text-[#0A2740]">
-              <Cross />
-              {worry}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="bg-[#12385A] p-6 md:p-8">
-        <p className={`${label} text-[#4FB8E0]`}>How we handle it</p>
-        <ul className="mt-4 space-y-4">
-          {answers.map((answer, i) => (
-            <li key={i} className="flex gap-3 leading-relaxed text-white">
-              <Tick className="text-[#4FB8E0]" />
-              <span>{answer}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
+// Navy text link for use inside white cards (any band colour).
+const cardLink =
+  "inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-[#0A2740] underline decoration-[#1FA3D6] decoration-2 underline-offset-4 hover:decoration-[#0A2740] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]";
 
 // Accessible comparison table from md up; on phones each column becomes a card so nothing is
 // hidden off-screen. CSS hides the inactive layout, so assistive tech meets only one.
@@ -174,39 +134,6 @@ export function ComparisonTable({
   );
 }
 
-// A bold statement on the left, short numbered lines on the right.
-export function HighlightPanel({
-  kicker,
-  statement,
-  steps,
-}: {
-  kicker: string;
-  statement: string;
-  steps: string[];
-}) {
-  return (
-    <div className="grid overflow-hidden rounded-xl border border-[#D5E8F2] md:grid-cols-[1fr_1.4fr]">
-      <div className="flex flex-col justify-center bg-[#0A2740] p-8 md:p-10">
-        <p className={`${label} text-[#4FB8E0]`}>{kicker}</p>
-        <p className="mt-3 text-3xl leading-tight font-bold text-white md:text-4xl">{statement}</p>
-      </div>
-      <ol className="divide-y divide-[#D5E8F2] bg-white px-6 md:px-8">
-        {steps.map((step, i) => (
-          <li key={step} className="flex items-center gap-5 py-5">
-            <span
-              aria-hidden="true"
-              className="font-mono text-2xl font-bold text-[#1FA3D6] tabular-nums"
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <span className="text-lg text-[#0A2740]">{step}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  );
-}
-
 // Airport-departures-board rows: IATA codes in mono, airport name, direction.
 export function RouteBoard({
   routes,
@@ -286,7 +213,9 @@ export function JourneyList({
 // Two titled tick lists side by side (e.g. outbound and return).
 export function SplitChecklist({ groups }: { groups: { title: string; items: string[] }[] }) {
   return (
-    <div className="mt-6 grid gap-6 md:grid-cols-2">
+    <div
+      className={`mt-6 grid gap-6 md:grid-cols-2 ${groups.length === 3 ? "lg:grid-cols-3" : ""}`}
+    >
       {groups.map((group) => (
         <div key={group.title} className="rounded-xl border border-[#D5E8F2] bg-white p-6">
           <h3 className="text-lg font-semibold text-[#0A2740]">{group.title}</h3>
@@ -360,24 +289,63 @@ export function MessagePreview({ intro, lines }: { intro: string; lines: string[
   );
 }
 
-// A booking-form look (not a real form): labelled blank fields. Screen readers get the list.
-export function FormPreview({ fields }: { fields: string[] }) {
+// Labelled cards with a short explanation and an optional link.
+export function DetailCards({
+  items,
+}: {
+  items: { label: string; hint: string; link?: { href: string; label: string } }[];
+}) {
+  const cols = items.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3";
   return (
-    <div className="mt-6 rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8">
-      <ul className="sr-only">
-        {fields.map((field) => (
-          <li key={field}>{field}</li>
-        ))}
-      </ul>
-      <div aria-hidden="true" className="grid gap-x-6 gap-y-5 sm:grid-cols-2">
-        {fields.map((field) => (
-          <div key={field}>
-            <p className="text-sm font-semibold text-[#0A2740]">{field}</p>
-            <div className="mt-2 h-11 rounded-md border border-[#D5E8F2] bg-[#F5FBFE]" />
-          </div>
-        ))}
-      </div>
-    </div>
+    <ul className={`mt-6 grid gap-4 sm:grid-cols-2 ${cols}`}>
+      {items.map((item) => (
+        <li
+          key={item.label}
+          className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5"
+        >
+          <p className="font-semibold text-[#0A2740]">{item.label}</p>
+          <p className="mt-1 flex-1 text-sm leading-relaxed text-[#5B7A93]">{item.hint}</p>
+          {item.link && (
+            <Link href={item.link.href} className={`${cardLink} mt-2 self-start`}>
+              {item.link.label} <span aria-hidden="true">→</span>
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Two journeys side by side, each headed "From → To".
+export function PathCards({
+  items,
+}: {
+  items: { from: string; to: string; text: string; link?: { href: string; label: string } }[];
+}) {
+  return (
+    <ul className="mt-8 grid gap-6 md:grid-cols-2">
+      {items.map((item) => (
+        <li
+          key={item.from + item.to}
+          className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8"
+        >
+          <h3 className="flex flex-wrap items-center gap-3 text-2xl font-bold text-[#0A2740]">
+            {item.from}
+            <span aria-hidden="true" className="text-[#1FA3D6]">
+              →
+            </span>
+            <span className="sr-only">to</span>
+            {item.to}
+          </h3>
+          <p className="mt-3 flex-1 leading-relaxed text-[#0A2740]/80">{item.text}</p>
+          {item.link && (
+            <Link href={item.link.href} className={`${cardLink} mt-3 self-start`}>
+              {item.link.label} <span aria-hidden="true">→</span>
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
   );
 }
 

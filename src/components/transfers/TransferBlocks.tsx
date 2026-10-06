@@ -628,8 +628,8 @@ export function ClosingCta({
   title: string;
   text: string;
   buttonLabel: string;
-  // Adds a "WhatsApp Us" button beside the call button.
-  whatsapp?: boolean;
+  // Adds a "WhatsApp Us" button beside the call button; a string pre-fills the message.
+  whatsapp?: boolean | string;
 }) {
   const isPhoto = tone === "photo";
   return (
@@ -670,7 +670,11 @@ export function ClosingCta({
           </a>
           {whatsapp && (
             <a
-              href={WHATSAPP_URL}
+              href={
+                typeof whatsapp === "string"
+                  ? `https://wa.me/${PRIMARY_PHONE.tel.replace("+", "")}?text=${encodeURIComponent(whatsapp)}`
+                  : WHATSAPP_URL
+              }
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] in-data-[tone=navy]:border-white in-data-[tone=navy]:text-white in-data-[tone=navy]:hover:bg-white/10 ${focusNavy}`}

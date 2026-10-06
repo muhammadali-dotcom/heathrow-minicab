@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ServiceJsonLd } from "@/components/JsonLd";
-import {
-  ComparisonTable,
-  HighlightPanel,
-  ProblemSolution,
-} from "@/components/services/ServiceBlocks";
+import { ComparisonTable, DetailCards, PathCards } from "@/components/services/ServiceBlocks";
 import {
   Checklist,
   ClosingCta,
   Section,
   TransfersHero,
-  textLink,
 } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
@@ -20,7 +14,6 @@ import { VEHICLES } from "@/lib/vehicles";
 
 const service = findService("family-group-transfers");
 const path = `/services/${service.slug}`;
-const mpv = VEHICLES.find((v) => v.id === "mpv");
 
 const GOOD_FOR: Record<string, string> = {
   saloon: "Couples and small families",
@@ -46,7 +39,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
+        crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Family & group transfers"
         title="Your holiday starts together."
         intro="Bring the family, friends and bags. We’ll help you choose a suitable vehicle for your airport journey."
@@ -54,19 +47,23 @@ export default function Page() {
         image={service.image}
       />
 
-      <Section tone="navy" id="worries" title="Travelling together, without the squeeze">
-        <ProblemSolution
-          worries={[
-            "Will all the luggage fit?",
-            "Will we need two taxis?",
-            "What about car seats for the children?",
-            "Can we collect grandparents on the way?",
-          ]}
-          answers={[
-            "We match the vehicle to your passengers and your bags.",
-            `An MPV takes up to ${mpv?.passengers} passengers and ${mpv?.luggage.large} large cases; bigger groups can book two vehicles travelling together.`,
-            "Child seats on request, at no extra cost.",
-            "Extra pickups are added to your journey and agreed in your quote.",
+      <Section
+        tone="navy"
+        id="room"
+        title="Room for your people and your bags"
+        intro="The right vehicle depends on two numbers: how many people are travelling and how much luggage you’re bringing."
+      >
+        <DetailCards
+          items={[
+            { label: "Count everyone", hint: "Adults, children and infants all need a seat." },
+            {
+              label: "Count every bag",
+              hint: "Large suitcases and small bags, counted separately.",
+            },
+            {
+              label: "Mention bulky items",
+              hint: "Pushchairs, golf bags or anything oversized.",
+            },
           ]}
         />
       </Section>
@@ -88,50 +85,50 @@ export default function Page() {
             { label: "Good for", values: VEHICLES.map((v) => GOOD_FOR[v.id]) },
           ]}
         />
+        <p className="mt-6 text-[#0A2740]/80">
+          <strong className="font-semibold text-[#0A2740]">More than 6 travelling?</strong> Larger
+          groups can book two vehicles travelling together.
+        </p>
       </Section>
 
-      <Section tone="white" id="child-seats" eyebrow="Travelling with children" title="Child seats">
-        <div className="mt-8">
-          <HighlightPanel
-            kicker="On request"
-            statement="No extra cost."
-            steps={[
-              "Ask for a child seat when you book",
-              "Tell us each child’s age",
-              "We confirm a suitable seat",
-            ]}
-          />
-        </div>
+      <Section tone="white" id="child-seats" title="Little travellers and extra pickups">
+        <PathCards
+          items={[
+            {
+              from: "Child seats",
+              to: "No extra cost",
+              text: "Request a child seat when you book and tell us each child’s age so we can confirm a suitable seat. Arrangements are confirmed when you book.",
+            },
+            {
+              from: "Extra pickups",
+              to: "One journey",
+              text: "Give us every collection address when you book. Extra stops are agreed in your quote and confirmed when you book.",
+            },
+          ]}
+        />
       </Section>
 
-      <Section
-        tone="pale"
-        id="booking-checklist"
-        eyebrow="Before you book"
-        title="Your booking checklist"
-      >
+      <Section tone="pale" id="booking-checklist" title="Tell us who’s travelling">
         <Checklist
           items={[
             "Number of adults",
-            "Number and ages of children",
-            "Large suitcases and small bags",
+            "Children and their ages",
             "Child seat requests",
-            "Pickup address(es) and destination",
-            "Flight number, date and terminal",
+            "Large suitcases and small bags",
+            "Collection address(es)",
+            "Destination",
+            "Flight number, date and time",
             "A mobile number we can reach you on",
           ]}
         />
-        <Link href="/airport-transfers/heathrow-pickups" className={`${textLink} mt-6`}>
-          How Heathrow pickups work <span aria-hidden="true">→</span>
-        </Link>
       </Section>
 
       <ClosingCta
         tone="photo"
-        title="Plan Your Family Transfer"
-        text="Call or WhatsApp us with your group size and luggage."
+        title="Start your holiday with the ride arranged"
+        text="Share your group size and luggage so we can help choose a vehicle."
         buttonLabel="Call to Book"
-        whatsapp
+        whatsapp="Hi, I’d like to arrange a family or group transfer to or from Heathrow."
       />
     </>
   );

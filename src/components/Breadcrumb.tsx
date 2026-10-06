@@ -33,7 +33,10 @@ export default function Breadcrumb({ items, tone }: { items: Crumb[]; tone: "lig
             <Fragment key={`${crumb.label}-${i}`}>
               {i > 0 && <li aria-hidden="true">/</li>}
               {isLast || !crumb.href ? (
-                <li aria-current={isLast ? "page" : undefined} className={`font-medium ${t.current}`}>
+                <li
+                  aria-current={isLast ? "page" : undefined}
+                  className={isLast ? `font-medium ${t.current}` : undefined}
+                >
                   {crumb.label}
                 </li>
               ) : (

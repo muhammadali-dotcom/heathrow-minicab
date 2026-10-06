@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ServiceJsonLd } from "@/components/JsonLd";
 import {
   ComparisonTable,
-  FormPreview,
+  DetailCards,
   JourneyList,
-  ProblemSolution,
+  SplitChecklist,
 } from "@/components/services/ServiceBlocks";
-import {
-  ClosingCta,
-  Section,
-  TransfersHero,
-  textLink,
-} from "@/components/transfers/TransferBlocks";
+import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
@@ -39,7 +33,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
+        crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Executive & business travel"
         title="Your next meeting starts with a good journey."
         intro="From Heathrow to your office, hotel or meeting, with a comfortable ride planned around your day."
@@ -47,22 +41,30 @@ export default function Page() {
         image={service.image}
       />
 
-      <Section tone="navy" id="worries" title="Business travel, without the admin">
-        <ProblemSolution
-          worries={[
-            "Booking for a client you’ve never met",
-            "Making sure they’re easy to find on arrival",
-            "Arranging the trip back",
-          ]}
-          answers={[
-            "We put the passenger’s name on the name board.",
-            "We can reach them on their own mobile, and you on yours.",
-            "Book their return to Heathrow at the same time. Pay by cash or card/online.",
+      <Section tone="pale" id="journeys" title="From Heathrow to your working day">
+        <JourneyList
+          journeys={[
+            {
+              from: "Heathrow",
+              to: "Office",
+              note: "Straight from arrivals to your office, or back for your flight.",
+            },
+            {
+              from: "Heathrow",
+              to: "Hotel",
+              note: "To your hotel on arrival, and back to Heathrow when you leave.",
+            },
+            {
+              from: "Heathrow",
+              to: "Meeting or conference venue",
+              note: "Directly to your meeting, conference or event.",
+            },
           ]}
         />
+        <p className="mt-6 text-[#0A2740]/80">Return journeys can be arranged at the same time.</p>
       </Section>
 
-      <Section tone="pale" id="vehicles" title="Standard or executive?">
+      <Section tone="navy" id="vehicles" title="Standard or executive?">
         <ComparisonTable
           caption="Standard and executive cars compared"
           columns={["Standard", "Executive"]}
@@ -81,62 +83,52 @@ export default function Page() {
         />
       </Section>
 
-      <Section tone="white" id="journeys" title="Journeys we arrange">
-        <JourneyList
-          journeys={[
+      <Section tone="white" id="booking-for-others" title="Booking for yourself or someone else?">
+        <DetailCards
+          items={[
+            { label: "Passenger name", hint: "Shown on the name board when they arrive." },
+            { label: "Passenger mobile", hint: "So the driver can reach them on the day." },
+            { label: "Your contact details", hint: "So we can reach you as the booker." },
             {
-              from: "Heathrow",
-              to: "Office",
-              note: "Straight from arrivals to your office, or back for your flight.",
+              label: "Meeting arrangements",
+              hint: "Confirmed with the booking. Share them with your passenger.",
             },
             {
-              from: "Heathrow",
-              to: "Hotel",
-              note: "To your hotel on arrival, and back to Heathrow when you leave.",
-            },
-            {
-              from: "Heathrow",
-              to: "Meeting venue",
-              note: "Directly to your meeting, conference or event.",
-            },
-            {
-              from: "Outbound",
-              to: "Return",
-              note: "Book both journeys together in one call or message.",
+              label: "Payment",
+              hint: "Cash or card/online. Tell us your preferred method when you book.",
             },
           ]}
         />
       </Section>
 
-      <Section
-        tone="pale"
-        id="booking-checklist"
-        eyebrow="Before you book"
-        title="What we’ll ask you"
-      >
-        <FormPreview
-          fields={[
-            "Passenger name",
-            "Passenger mobile",
-            "Your contact details",
-            "Flight number and terminal",
-            "Destination address",
-            "Vehicle: standard or executive",
-            "Any stops",
-            "Return journey",
+      <Section tone="pale" id="booking-checklist" title="Have these details ready">
+        <SplitChecklist
+          groups={[
+            {
+              title: "Passenger & booker",
+              items: ["Passenger name and mobile", "Your name and contact details"],
+            },
+            {
+              title: "Journey",
+              items: [
+                "Flight number, date and time",
+                "Terminal",
+                "Destination address",
+                "Vehicle: standard or executive",
+                "Any stops",
+                "Return journey details",
+              ],
+            },
           ]}
         />
-        <Link href="/airport-transfers/heathrow-pickups" className={`${textLink} mt-6`}>
-          How Heathrow pickups work <span aria-hidden="true">→</span>
-        </Link>
       </Section>
 
       <ClosingCta
         tone="photo"
-        title="Arrange Business Travel"
-        text="Call or WhatsApp us with your flight and destination."
+        title="Your next airport journey, arranged"
+        text="Book for yourself, a colleague or a visiting client."
         buttonLabel="Call to Book"
-        whatsapp
+        whatsapp="Hi, I’d like to arrange business travel to or from Heathrow."
       />
     </>
   );

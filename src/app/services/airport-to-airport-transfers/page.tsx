@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ServiceJsonLd } from "@/components/JsonLd";
 import {
-  ComparisonTable,
+  DetailCards,
   NumberedStrip,
-  ProblemSolution,
   RouteBoard,
+  SplitChecklist,
 } from "@/components/services/ServiceBlocks";
 import {
   ClosingCta,
@@ -19,6 +19,13 @@ import { BOOK_ONLINE_HREF } from "@/lib/site";
 
 const service = findService("airport-to-airport-transfers");
 const path = `/services/${service.slug}`;
+
+const AIRPORTS = [
+  { code: "LGW", name: "Gatwick" },
+  { code: "STN", name: "Stansted" },
+  { code: "LTN", name: "Luton" },
+  { code: "LCY", name: "London City" },
+];
 
 export const metadata: Metadata = pageMetadata({
   title: "Heathrow to Gatwick, Stansted, Luton & City Transfers",
@@ -37,87 +44,88 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
+        crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Airport-to-airport transfers"
         title="Two airports. One easy ride."
         intro="Landing at one airport and flying from another? We’ll help arrange the journey between them."
-        primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Airport Connection" }}
+        primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Transfer" }}
         image={service.image}
       />
 
-      <Section tone="navy" id="worries" title="One trip between two airports, without the hassle">
-        <ProblemSolution
-          worries={[
-            "Hauling luggage across trains and platforms",
-            "Working out a route between airports",
-            "Worrying about a flight change",
-          ]}
-          answers={[
-            "Your bags are loaded once and stay with you in the car.",
-            "A road transfer straight from one terminal to the next.",
-            "Tell us if either flight changes and we’ll confirm your arrangements.",
-          ]}
-        />
-      </Section>
-
-      <Section tone="pale" id="compare" title="Public transport or a private transfer?">
-        <ComparisonTable
-          caption="Public transport and a private transfer compared"
-          columns={["Public transport", "Heathrow Minicab"]}
-          highlight={1}
-          highlightLabel="Door to terminal"
-          rows={[
-            {
-              label: "Luggage",
-              values: ["You carry it between stations and platforms", "Loaded once at the kerb"],
-            },
-            { label: "Changes", values: ["Often one or more", "None, direct by road"] },
-            { label: "Timing", values: ["A fixed timetable", "Planned around your flights"] },
-            { label: "Cost", values: ["Usually cheaper", "Fare fixed when confirmed"] },
-          ]}
-        />
-      </Section>
-
-      <Section tone="white" id="routes" title="Routes we cover">
+      <Section tone="pale" id="routes" title="Which airports are you travelling between?">
         <RouteBoard
-          routes={[
-            { from: "LHR", to: "LGW", name: "Heathrow and Gatwick", note: "Either direction" },
-            { from: "LHR", to: "STN", name: "Heathrow and Stansted", note: "Either direction" },
-            { from: "LHR", to: "LTN", name: "Heathrow and Luton", note: "Either direction" },
-            { from: "LHR", to: "LCY", name: "Heathrow and London City", note: "Either direction" },
-          ]}
+          routes={AIRPORTS.map((airport) => ({
+            from: "LHR",
+            to: airport.code,
+            name: `Heathrow and ${airport.name}`,
+            note: `Heathrow → ${airport.name} · ${airport.name} → Heathrow`,
+          }))}
         />
       </Section>
 
       <Section
-        tone="pale"
-        id="booking-checklist"
-        eyebrow="Before you book"
-        title="Have these ready"
+        tone="navy"
+        id="timing"
+        title="Leave time for your next flight"
+        intro="We plan around both flights, but we can’t guarantee connection times, so leave a comfortable margin."
       >
-        <NumberedStrip
+        <DetailCards
           items={[
-            "Arrival flight, airport and terminal",
-            "Departure flight, airport and terminal",
-            "Passengers, suitcases and bags",
-            "A mobile number we can reach you on",
+            {
+              label: "Immigration",
+              hint: "Allow time for passport control at your arrival airport.",
+            },
+            {
+              label: "Baggage collection",
+              hint: "Collecting checked bags can take time after landing.",
+            },
+            { label: "Road travel", hint: "Journey times between airports vary with traffic." },
+            {
+              label: "Next check-in",
+              hint: "Check your airline’s check-in and bag-drop deadline for your next flight.",
+            },
           ]}
         />
-        <p className="mt-6 max-w-[44rem] rounded-xl border-l-4 border-[#1FA3D6] bg-white px-5 py-4 leading-relaxed text-[#0A2740]">
-          Allow time for immigration, baggage, road traffic and your next check-in deadline. We
-          can’t control queues or traffic, so leave a comfortable margin.
-        </p>
+      </Section>
+
+      <Section tone="white" id="how-it-works" title="From arrivals to your next airport">
+        <NumberedStrip
+          items={[
+            "Meet your driver at the confirmed point",
+            "Travel directly by road",
+            "Arrive at your departure terminal",
+          ]}
+        />
         <Link href="/airport-transfers/heathrow-pickups" className={`${textLink} mt-6`}>
-          How Heathrow pickups work <span aria-hidden="true">→</span>
+          Read the pickup guide <span aria-hidden="true">→</span>
         </Link>
+      </Section>
+
+      <Section tone="pale" id="booking-checklist" title="Have both flight details ready">
+        <SplitChecklist
+          groups={[
+            {
+              title: "Arriving",
+              items: ["Airport", "Flight number", "Date and time", "Terminal"],
+            },
+            {
+              title: "Departing",
+              items: ["Airport", "Flight number", "Date and time", "Terminal"],
+            },
+            {
+              title: "Your party",
+              items: ["Number of passengers", "Large suitcases and small bags", "A mobile number"],
+            },
+          ]}
+        />
       </Section>
 
       <ClosingCta
         tone="photo"
-        title="Plan Your Airport Connection"
-        text="Call or WhatsApp us with both flights and terminals."
+        title="Let’s plan your airport connection"
+        text="Share both flights and we’ll help arrange the transfer."
         buttonLabel="Call to Book"
-        whatsapp
+        whatsapp="Hi, I’d like to arrange a transfer between Heathrow and another airport."
       />
     </>
   );
