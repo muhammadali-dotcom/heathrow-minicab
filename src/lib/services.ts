@@ -1,76 +1,74 @@
-import { VEHICLES, type Vehicle } from "@/lib/vehicles";
-
+// The service pages, in menu order. Drives the Services dropdown, footer column, /services hub,
+// sitemap and llms.txt. Each page lives in its own folder under src/app/services/.
 export type Service = {
   slug: string;
   title: string;
-  summary: string; // one line for hub cards
-  text: string; // page intro
-  points: string[];
-  vehicleId?: Vehicle["id"];
-  image: "t4" | "family" | "hero";
+  summary: string; // one line for hub cards and llms.txt
+  // Placeholder photos until each service has its own; swap the src here and in the page hero.
+  image: { src: string; alt: string; width: number; height: number };
 };
 
-export const findVehicle = (id: Vehicle["id"]) => {
-  const found = VEHICLES.find((v) => v.id === id);
-  if (!found) throw new Error(`Unknown vehicle: ${id}`);
-  return found;
-};
-
-// Same values as the vehicle cards, so capacities stay in one place (src/lib/vehicles.ts).
-export const capacity = (v: Vehicle) =>
-  `${v.passengers === null ? "Passenger numbers confirmed when booking" : `Up to ${v.passengers} passengers`}, ${v.luggage.large} large suitcases and ${v.luggage.small} small bags`;
-
-const mpv = findVehicle("mpv");
-const executive = findVehicle("executive");
-
-// Only services the business has confirmed it offers.
 export const SERVICES: Service[] = [
+  {
+    slug: "family-group-transfers",
+    title: "Family & Group Airport Transfers",
+    summary: "Room for your family or group and everyone’s luggage, with child seats on request.",
+    image: {
+      src: "/images/service-family.webp",
+      alt: "Driver loading suitcases into a navy MPV as a family with two children waits at an airport terminal",
+      width: 1536,
+      height: 1024,
+    },
+  },
+  {
+    slug: "airport-hotel-transfers",
+    title: "Airport & Hotel Transfers",
+    summary:
+      "Between Heathrow and your hotel, in either direction, with returns bookable together.",
+    image: {
+      src: "/images/service-hotel.webp",
+      alt: "Driver opening the car door for a smiling guest with a suitcase outside a London hotel",
+      width: 1536,
+      height: 1024,
+    },
+  },
   {
     slug: "airport-to-airport-transfers",
     title: "Airport-to-Airport Transfers",
-    summary: "Connecting between Heathrow and another airport, planned around both flights.",
-    text: "Connecting between Heathrow and another airport? We’ll plan your transfer around both flights.",
-    points: [
-      "Tell us both airports, your flight times and terminals when booking.",
-      "Let us know your passenger numbers and luggage so we can suggest a suitable vehicle.",
-      "Contact us if either flight time or terminal changes.",
-    ],
-    image: "t4",
+    summary: "Road transfers between Heathrow and Gatwick, Stansted, Luton or London City.",
+    image: {
+      src: "/images/service-airport-to-airport.webp",
+      alt: "Driver loading suitcases into a navy estate car for two travellers at an airport terminal",
+      width: 1536,
+      height: 1024,
+    },
   },
   {
-    slug: "family-group-transfers",
-    title: "Family & Group Transfers",
-    summary: "Room for your group and luggage in one vehicle.",
-    text: `Travelling together? Our MPV (${mpv.model} or similar) keeps your group and luggage in one vehicle.`,
-    points: [
-      `${capacity(mpv)}.`,
-      "Tell us everyone’s luggage, including pushchairs or bulky items, when booking.",
-      "Child seats are available on request.",
-    ],
-    vehicleId: "mpv",
-    image: "family",
+    slug: "long-distance-airport-transfers",
+    title: "Long-Distance Airport Transfers",
+    summary: "Heathrow transfers to and from the South East, Oxford and Cambridge.",
+    image: {
+      src: "/images/service-long-distance.webp",
+      alt: "Navy estate car on a countryside road with Heathrow Airport and a departing plane in the distance",
+      width: 1536,
+      height: 1024,
+    },
   },
   {
-    slug: "business-airport-travel",
-    title: "Business Airport Travel",
-    summary: "An executive car for your Heathrow business trip.",
-    text: `Travelling for work? Choose our executive car (${executive.model} or similar) for your Heathrow journey.`,
-    points: [
-      `${capacity(executive)}.`,
-      "Share your flight and meeting details when booking so we can plan your pickup time.",
-    ],
-    vehicleId: "executive",
-    image: "hero",
-  },
-  {
-    slug: "child-seats",
-    title: "Child Seats",
-    summary: "Child seats available on request for your Heathrow journey.",
-    text: "Travelling with young children? Child seats are available on request.",
-    points: [
-      "Request a child seat when you book.",
-      "Tell us your child’s age so we can confirm a suitable seat.",
-    ],
-    image: "family",
+    slug: "executive-business-travel",
+    title: "Executive & Business Airport Travel",
+    summary: "Airport transfers to offices, hotels and meetings, in a standard or executive car.",
+    image: {
+      src: "/images/service-executive.webp",
+      alt: "Driver holding the car door open for a business traveller with a suitcase outside an airport terminal",
+      width: 1536,
+      height: 1024,
+    },
   },
 ];
+
+export const findService = (slug: string) => {
+  const found = SERVICES.find((service) => service.slug === slug);
+  if (!found) throw new Error(`Unknown service: ${slug}`);
+  return found;
+};

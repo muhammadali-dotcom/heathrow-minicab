@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PRIMARY_PHONE } from "@/lib/site";
+import Link from "next/link";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 type Terminal = {
@@ -103,13 +103,12 @@ export default function HeathrowTerminals() {
                   <p className="mt-3 flex-1 text-white/85">
                     Drop-offs and pickups at {terminal.name}.
                   </p>
-                  <a
-                    href={`tel:${PRIMARY_PHONE.tel}`}
-                    aria-label={`Ask about your pickup at ${terminal.name}, call ${PRIMARY_PHONE.display}`}
+                  <Link
+                    href={`/airport-transfers/terminal-guides#terminal-${terminal.number}`}
                     className="mt-3 inline-flex min-h-11 items-center gap-1 self-start rounded-sm text-sm font-semibold whitespace-nowrap text-[#4FB8E0] underline-offset-4 hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   >
-                    Ask about your pickup <span aria-hidden="true">→</span>
-                  </a>
+                    View {terminal.name} guide <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
               </article>
             </li>

@@ -41,7 +41,7 @@ export default function Page() {
         ]}
         eyebrow="Heathrow pickups"
         title="Heathrow pickups, from arrivals to your door."
-        intro="Your driver meets you inside arrivals with a name board, with your pickup time planned around your flight."
+        intro="Meet your driver inside arrivals with a name board, or at the pickup location confirmed when you book."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Pickup" }}
         image={{
           src: "/images/pickups-hero.webp",
@@ -128,7 +128,7 @@ export default function Page() {
             },
             {
               title: "Your agreed pickup time",
-              text: "Set a short time after landing, to allow for passport control and baggage collection.",
+              text: "Agree a pickup time that allows for passport control and baggage collection.",
             },
             {
               title: "15 minutes’ free waiting",

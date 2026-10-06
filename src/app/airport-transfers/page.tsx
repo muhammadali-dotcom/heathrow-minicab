@@ -144,8 +144,8 @@ export default function Page() {
               <SubHeading id="pricing-heading">Clear pricing before you travel</SubHeading>
             </div>
             <p className="mt-3 text-lg leading-relaxed text-[#0A2740]/80">
-              You get a fixed price before you book. There’s no meter, so traffic won’t change what
-              you pay.
+              You get a fixed price before you book. There’s no meter, so traffic won’t change your
+              fare.
             </p>
           </div>
           <QuoteReceipt
@@ -153,7 +153,7 @@ export default function Page() {
             points={[
               {
                 title: "Fixed once confirmed",
-                text: "The price we confirm is the price you pay. There’s no meter.",
+                text: "Your journey fare is fixed when confirmed. Any additional waiting or changes are charged as explained before booking.",
               },
               {
                 title: "Based on your journey",

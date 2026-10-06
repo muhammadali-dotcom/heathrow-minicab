@@ -62,8 +62,9 @@ export default function SiteFooter() {
   // Bottom padding leaves room for the fixed MobileCallBar below lg.
   return (
     <footer className="bg-[#0A2740] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
-      {/* Airport Transfers pages end with their own closing CTA, so the band is skipped there. */}
-      <HideOnPaths prefixes={["/airport-transfers"]}>
+      {/* Airport Transfers and individual service pages end with their own closing CTA, so the
+          band is skipped there (the /services hub keeps it). */}
+      <HideOnPaths prefixes={["/airport-transfers", "/services/"]}>
         <CtaBand />
       </HideOnPaths>
 

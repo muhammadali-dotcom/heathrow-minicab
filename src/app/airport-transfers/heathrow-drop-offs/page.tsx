@@ -115,6 +115,9 @@ export default function Page() {
                 Confirm the terminal with your airline or flight confirmation. Let us know if it
                 changes after you book.
               </p>
+              <Link href="/airport-transfers/terminal-guides" className={`${textLink} mt-2`}>
+                Explore Heathrow terminal guides <span aria-hidden="true">→</span>
+              </Link>
             </>
           }
           aside={

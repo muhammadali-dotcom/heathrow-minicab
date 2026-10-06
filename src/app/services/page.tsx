@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import { GuideCard, sectionHeading } from "@/components/GuideBlocks";
-import PageBanner, { BANNER_IMAGES } from "@/components/PageBanner";
+import PageBanner from "@/components/PageBanner";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { SERVICES } from "@/lib/services";
 
@@ -37,7 +37,7 @@ export default function Page() {
                   href={`/services/${service.slug}`}
                   title={service.title}
                   text={service.summary}
-                  image={BANNER_IMAGES[service.image]}
+                  image={service.image.src}
                 />
               </li>
             ))}

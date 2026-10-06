@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import PhoneIcon from "@/components/PhoneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { PRIMARY_PHONE } from "@/lib/site";
@@ -80,6 +80,20 @@ export default function TerminalSelector() {
   const [open, setOpen] = useState<number | null>(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
+  // Links such as /airport-transfers/terminal-guides#terminal-4 open that terminal.
+  useEffect(() => {
+    function selectFromHash() {
+      const match = window.location.hash.match(/^#terminal-([2-5])$/);
+      const index = match ? TERMINALS.findIndex((t) => t.number === match[1]) : -1;
+      if (index < 0) return;
+      setSelected(index);
+      setOpen(index);
+    }
+    selectFromHash();
+    window.addEventListener("hashchange", selectFromHash);
+    return () => window.removeEventListener("hashchange", selectFromHash);
+  }, []);
+
   function onTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     const last = TERMINALS.length - 1;
     const next =
@@ -106,6 +120,14 @@ export default function TerminalSelector() {
 
   return (
     <div className="mt-8">
+      {/* Scroll targets for #terminal-N links; all sit at the top of the selector. */}
+      {TERMINALS.map((terminal) => (
+        <span
+          key={terminal.number}
+          id={`terminal-${terminal.number}`}
+          className="block scroll-mt-4"
+        />
+      ))}
       {/* Tabs (md and up) */}
       <div className="hidden md:block">
         <div role="tablist" aria-label="Heathrow terminals" className="grid grid-cols-4 gap-3">

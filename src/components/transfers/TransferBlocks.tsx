@@ -7,8 +7,8 @@ import PhoneIcon from "@/components/PhoneIcon";
 import PlaneIcon from "@/components/PlaneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { SECTION_CONTAINER } from "@/lib/layout";
-import { ALT_PHONE, PRIMARY_PHONE } from "@/lib/site";
-import { VEHICLES } from "@/lib/vehicles";
+import { ALT_PHONE, PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
+import { VEHICLES, type Vehicle } from "@/lib/vehicles";
 
 // Building blocks for the Airport Transfers pages, following the supplied design reference
 // (design-reference/heathrow-airport-transfers-preview.html) in the site's own palette.
@@ -304,7 +304,10 @@ function FeatureIcon({ name }: { name: FeatureIconName }) {
 // Icon cards for the reasons to travel with us; 1 / 2 / 3 columns.
 export function FeatureGrid({
   items,
+  columns = 3,
 }: {
+  // Desktop columns; 2 or 4 suit smaller or even-numbered sets.
+  columns?: 2 | 3 | 4;
   items: {
     icon: FeatureIconName;
     title: string;
@@ -313,7 +316,9 @@ export function FeatureGrid({
   }[];
 }) {
   return (
-    <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <ul
+      className={`mt-8 grid gap-6 sm:grid-cols-2 ${columns === 4 ? "lg:grid-cols-4" : columns === 3 ? "lg:grid-cols-3" : ""}`}
+    >
       {items.map((item) => (
         <li
           key={item.title}
@@ -410,10 +415,13 @@ export function QuoteReceipt({
 }
 
 // Compact vehicle cards: cutout, name and capacity rows; 1 / 2 / 4 columns.
-export function VehicleCards() {
+export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
+  const vehicles = ids ? VEHICLES.filter((v) => ids.includes(v.id)) : VEHICLES;
   return (
-    <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {VEHICLES.map((vehicle) => {
+    <ul
+      className={`mt-8 grid gap-6 sm:grid-cols-2 ${vehicles.length > 2 ? "lg:grid-cols-4" : "lg:max-w-[38rem]"}`}
+    >
+      {vehicles.map((vehicle) => {
         const rows = [
           {
             label: "Passengers",
@@ -614,11 +622,14 @@ export function ClosingCta({
   title,
   text,
   buttonLabel,
+  whatsapp = false,
 }: {
   tone: "white" | "pale" | "photo";
   title: string;
   text: string;
   buttonLabel: string;
+  // Adds a "WhatsApp Us" button beside the call button.
+  whatsapp?: boolean;
 }) {
   const isPhoto = tone === "photo";
   return (
@@ -657,6 +668,18 @@ export function ClosingCta({
             {buttonLabel}
             <PhoneIcon className="h-5 w-5" />
           </a>
+          {whatsapp && (
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] in-data-[tone=navy]:border-white in-data-[tone=navy]:text-white in-data-[tone=navy]:hover:bg-white/10 ${focusNavy}`}
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+              WhatsApp Us
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
         </div>
       </div>
     </section>
