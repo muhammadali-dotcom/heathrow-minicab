@@ -48,8 +48,8 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         eyebrow="Family & group transfers"
-        title="Heathrow transfers with room for everyone."
-        intro="Travel together in one vehicle, with space for your family, your group and your luggage."
+        title="Your holiday starts together."
+        intro="Bring the family, friends and bags. We’ll help you choose a suitable vehicle for your airport journey."
         primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Family Transfer" }}
         image={service.image}
       />

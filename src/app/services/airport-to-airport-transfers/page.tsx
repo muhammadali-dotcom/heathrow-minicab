@@ -39,8 +39,8 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         eyebrow="Airport-to-airport transfers"
-        title="Connecting between Heathrow and another London airport."
-        intro="We plan your road transfer around both flights, from your arrival airport to your departure terminal."
+        title="Two airports. One easy ride."
+        intro="Landing at one airport and flying from another? We’ll help arrange the journey between them."
         primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Airport Connection" }}
         image={service.image}
       />
