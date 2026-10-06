@@ -49,7 +49,7 @@ export const VEHICLES: Vehicle[] = [
     id: "executive",
     name: "Executive",
     model: "Mercedes E-Class",
-    passengers: null,
+    passengers: 4,
     luggage: { large: 2, small: 2 },
     image: {
       src: "/images/vehicles/executive.png",

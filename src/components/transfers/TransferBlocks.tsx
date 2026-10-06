@@ -230,7 +230,8 @@ export function RouteCard({
   );
 }
 
-export type FeatureIconName = "plane" | "board" | "clock" | "seat" | "car" | "allday" | "home";
+export type FeatureIconName =
+  "plane" | "board" | "clock" | "seat" | "car" | "allday" | "home" | "luggage";
 
 // Simple 24x24 line icons for the feature cards; the plane reuses the site's PlaneIcon.
 const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
@@ -259,6 +260,13 @@ const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
       <path d="M4 12h16" />
       <circle cx="8" cy="16.5" r="1.5" />
       <circle cx="16" cy="16.5" r="1.5" />
+    </>
+  ),
+  luggage: (
+    <>
+      <rect x="5" y="7" width="14" height="12" rx="2" />
+      <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+      <path d="M9 11v4M15 11v4M8 19v1.5M16 19v1.5" />
     </>
   ),
   home: (
@@ -552,11 +560,11 @@ export function RouteSteps({
     <ol className="relative mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
       <span
         aria-hidden="true"
-        className="absolute top-7 bottom-7 left-7 border-l-2 border-dashed border-[#4FB8E0]/40 md:hidden"
+        className="absolute top-7 bottom-7 left-7 border-l-2 border-dashed border-[#4FB8E0]/40 in-data-[tone=pale]:border-[#1FA3D6]/40 md:hidden"
       />
       <span
         aria-hidden="true"
-        className="absolute top-7 right-[16.67%] left-[16.67%] hidden border-t-2 border-dashed border-[#4FB8E0]/40 md:block"
+        className="absolute top-7 right-[16.67%] left-[16.67%] hidden border-t-2 border-dashed border-[#4FB8E0]/40 in-data-[tone=pale]:border-[#1FA3D6]/40 md:block"
       />
       {steps.map((step, i) => (
         <li
@@ -565,7 +573,7 @@ export function RouteSteps({
         >
           <span
             aria-hidden="true"
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740] in-data-[tone=navy]:bg-[#12385A] in-data-[tone=navy]:text-[#4FB8E0]"
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740] in-data-[tone=navy]:bg-[#12385A] in-data-[tone=navy]:text-[#4FB8E0] in-data-[tone=pale]:bg-white"
           >
             <FeatureIcon name={step.icon} />
           </span>

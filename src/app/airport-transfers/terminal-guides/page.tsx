@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   HelpPanel,
+  RouteSteps,
   Section,
-  StepRow,
   TransfersHero,
   textLink,
 } from "@/components/transfers/TransferBlocks";
@@ -46,25 +46,30 @@ export default function Page() {
       </Section>
 
       <Section tone="pale" id="after-you-land" title="After you land">
-        <StepRow
+        <RouteSteps
           steps={[
             {
+              icon: "luggage",
               title: "Collect your luggage",
               text: "Clear passport control and collect your bags.",
             },
             {
+              icon: "board",
               title: "Check your meeting instructions",
               text: "Your booking confirmation explains where to meet your driver.",
             },
             {
+              icon: "car",
               title: "Meet your driver",
               text: "Meet your driver, or contact us if you need help.",
             },
           ]}
         />
-        <Link href="/airport-transfers/heathrow-pickups" className={`${textLink} mt-6`}>
-          Read our pickup guide <span aria-hidden="true">→</span>
-        </Link>
+        <div className="mt-8 md:text-center">
+          <Link href="/airport-transfers/heathrow-pickups" className={textLink}>
+            Read our pickup guide <span aria-hidden="true">→</span>
+          </Link>
+        </div>
       </Section>
 
       <Section tone="white">

@@ -120,7 +120,7 @@ export default function Page() {
         tone="pale"
         id="vehicles"
         eyebrow="Our vehicles"
-        title="Choose a car for your luggage"
+        title="Room for you and your luggage"
       >
         <VehicleCards />
       </Section>
