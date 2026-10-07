@@ -6,7 +6,12 @@ import {
   JourneyList,
   GroupedChecklist,
 } from "@/components/services/ServiceBlocks";
-import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
+import {
+  BulletList,
+  ClosingCta,
+  Section,
+  TransfersHero,
+} from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
@@ -82,12 +87,15 @@ export default function Page() {
             { label: "Good for", values: ["Everyday business trips", "Client and VIP travel"] },
           ]}
         />
-        <p className="mt-6 text-[#0A2740]/80">
-          Choosing executive adds a more premium vehicle presentation and a quieter, more
-          comfortable cabin for clients, VIP guests or working between meetings. Journey planning,
-          pickup instructions and return arrangements are confirmed in the same way as a standard
-          booking.
-        </p>
+        <div className="mt-6">
+          <BulletList
+            items={[
+              "A more premium car for clients and VIP guests.",
+              "A quieter cabin for calls or work between meetings.",
+              "Same pickup and return arrangements as a standard booking.",
+            ]}
+          />
+        </div>
       </Section>
 
       <Section tone="white" id="booking-for-others" title="Booking for yourself or someone else?">
@@ -102,7 +110,7 @@ export default function Page() {
             },
             {
               label: "Payment",
-              hint: "Cash or card/online. Tell us your preferred method when you book.",
+              hint: "Cash and online payment. Tell us your preferred method when you book.",
             },
           ]}
         />

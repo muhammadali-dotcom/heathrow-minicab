@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ctaButtonClass } from "@/components/BookingCta";
+import { whatsappButtonLight, whatsappIconClass } from "@/components/BookingCta";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { PRIMARY_PHONE } from "@/lib/site";
 
@@ -46,8 +46,8 @@ export function ComparisonTable({
 }) {
   return (
     <>
-      <div className="mt-8 hidden overflow-hidden rounded-xl border border-[#D5E8F2] bg-white md:block">
-        <table className="w-full border-collapse text-left">
+      <div className="mt-8 hidden overflow-x-auto rounded-xl border border-[#D5E8F2] bg-white md:block">
+        <table className="min-w-[44rem] w-full border-collapse text-left">
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr className="bg-[#0A2740] text-white">
@@ -75,7 +75,7 @@ export function ComparisonTable({
               <tr key={row.label} className={r % 2 ? "bg-[#F5FBFE]" : "bg-white"}>
                 <th
                   scope="row"
-                  className="border-t border-[#D5E8F2] px-5 py-4 align-top text-sm font-semibold text-[#0A2740]"
+                  className="border-t border-[#D5E8F2] px-5 py-4 align-top text-sm font-semibold whitespace-nowrap text-[#0A2740]"
                 >
                   {row.label}
                 </th>
@@ -282,9 +282,9 @@ export function MessagePreview({ intro, lines }: { intro: string; lines: string[
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${ctaButtonClass} mt-5 min-h-12 px-6 text-base ${focusNavy}`}
+        className={`${whatsappButtonLight} mt-5 min-h-12 px-6 text-base ${focusNavy}`}
       >
-        <WhatsAppIcon className="h-5 w-5" />
+        <WhatsAppIcon className={`h-5 w-5 ${whatsappIconClass}`} />
         Send on WhatsApp
         <span className="sr-only">(opens in a new tab)</span>
       </a>

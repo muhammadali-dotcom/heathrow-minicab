@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ctaButtonClass } from "@/components/BookingCta";
+import {
+  callButtonLight,
+  ctaButtonClass,
+  whatsappButtonLight,
+  whatsappIconClass,
+} from "@/components/BookingCta";
 import Breadcrumb from "@/components/Breadcrumb";
+import CalendarIcon from "@/components/CalendarIcon";
 import PhoneIcon from "@/components/PhoneIcon";
 import PlaneIcon from "@/components/PlaneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { SECTION_CONTAINER } from "@/lib/layout";
-import { ALT_PHONE, PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
+import { ALT_PHONE, BOOK_ONLINE_HREF, PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
 import { VEHICLES, type Vehicle } from "@/lib/vehicles";
 
 // Building blocks for the Airport Transfers pages, following the supplied design reference
@@ -25,6 +31,12 @@ const toneBg: Record<Tone, string> = {
 
 const focusNavy =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740] in-data-[tone=navy]:focus-visible:outline-white";
+
+// Call and WhatsApp outlines (see BookingCta): navy on light sections, white inside navy ones.
+const onNavy =
+  "in-data-[tone=navy]:border-white in-data-[tone=navy]:bg-transparent in-data-[tone=navy]:text-white in-data-[tone=navy]:hover:bg-white/10";
+const callOutline = `${callButtonLight} ${onNavy} min-h-12 px-6 text-base ${focusNavy}`;
+const whatsappOutline = `${whatsappButtonLight} ${onNavy} min-h-12 px-6 text-base ${focusNavy}`;
 
 const heading = "text-[#0A2740] in-data-[tone=navy]:text-white";
 const body = "text-[#0A2740]/80 in-data-[tone=navy]:text-white/85";
@@ -480,7 +492,10 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
               />
             </div>
             <h3 className="mt-4 text-lg font-semibold text-[#0A2740]">{vehicle.name}</h3>
-            <p className="pb-3 text-sm text-[#5B7A93] lg:min-h-13">{vehicle.model} or similar</p>
+            <p className="text-sm text-[#5B7A93]">{vehicle.model} or similar</p>
+            <p className="mt-2 pb-3 text-sm text-[#0A2740] lg:min-h-16">
+              <span className="font-semibold">Best for:</span> {vehicle.bestFor}
+            </p>
             <dl className="mt-auto space-y-1.5 border-t border-[#D5E8F2] pt-3">
               {rows.map(({ label, value }) => (
                 <div key={label} className="flex items-baseline justify-between gap-3">
@@ -541,7 +556,6 @@ export function HelpPanel({
   className?: string;
 }) {
   const Heading = headingLevel;
-  const outline = `inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-white px-6 text-base font-semibold whitespace-nowrap text-white hover:bg-white/10 ${focusNavy}`;
   return (
     <div data-tone="navy" className={`rounded-xl bg-[#0A2740] p-6 md:p-8 ${className}`}>
       <Heading className="text-xl font-bold text-white md:text-2xl">
@@ -556,19 +570,24 @@ export function HelpPanel({
               ? undefined
               : `${primaryLabel}: ${PRIMARY_PHONE.display}`
           }
-          className={`${ctaButtonClass} min-h-12 px-6 text-base ${focusNavy}`}
+          className={callOutline}
         >
           {primaryLabel}
           <PhoneIcon className="h-5 w-5" />
         </a>
         {showAltPhone && (
-          <a href={`tel:${ALT_PHONE.tel}`} className={outline}>
+          <a href={`tel:${ALT_PHONE.tel}`} className={callOutline}>
             Call {ALT_PHONE.display}
             <PhoneIcon className="h-5 w-5" />
           </a>
         )}
-        <a href={WHATSAPP_HELP_URL} target="_blank" rel="noopener noreferrer" className={outline}>
-          <WhatsAppIcon className="h-5 w-5" />
+        <a
+          href={WHATSAPP_HELP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={whatsappOutline}
+        >
+          <WhatsAppIcon className={`h-5 w-5 ${whatsappIconClass}`} />
           {whatsappLabel}
           <span className="sr-only">(opens in a new tab)</span>
         </a>
@@ -650,7 +669,8 @@ export function PhoneLink({ tel, display }: { tel: string; display: string }) {
   );
 }
 
-// One closing action per page: a call button to the bookings line. The "photo" tone reuses the
+// Closing actions: Book Online (filled), a call button to the bookings line (outline) and an
+// optional WhatsApp button (secondary outline). The "photo" tone reuses the
 // homepage CTA's Terminal 5 photo under the same even 70% navy tint.
 export function ClosingCta({
   tone,
@@ -696,9 +716,16 @@ export function ClosingCta({
         </div>
         <div className="flex shrink-0 flex-wrap gap-3">
           <a
+            href={BOOK_ONLINE_HREF}
+            className={`${ctaButtonClass} min-h-12 shrink-0 px-6 text-base ${focusNavy}`}
+          >
+            Book Online
+            <CalendarIcon className="h-5 w-5" />
+          </a>
+          <a
             href={`tel:${PRIMARY_PHONE.tel}`}
             aria-label={`${buttonLabel}: ${PRIMARY_PHONE.display}`}
-            className={`${ctaButtonClass} min-h-12 shrink-0 px-6 text-base ${focusNavy}`}
+            className={`${callOutline} shrink-0`}
           >
             {buttonLabel}
             <PhoneIcon className="h-5 w-5" />
@@ -712,9 +739,9 @@ export function ClosingCta({
               }
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex min-h-12 items-center justify-center gap-3 rounded-md border-2 border-[#0A2740] px-6 text-base font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] in-data-[tone=navy]:border-white in-data-[tone=navy]:text-white in-data-[tone=navy]:hover:bg-white/10 ${focusNavy}`}
+              className={`${whatsappOutline} shrink-0`}
             >
-              <WhatsAppIcon className="h-5 w-5" />
+              <WhatsAppIcon className={`h-5 w-5 ${whatsappIconClass}`} />
               WhatsApp Us
               <span className="sr-only">(opens in a new tab)</span>
             </a>

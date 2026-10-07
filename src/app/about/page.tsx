@@ -40,10 +40,10 @@ export default function Page() {
 
       <Section tone="navy" id="who-we-are" title="Airport journeys, made simple.">
         <p className="mt-4 max-w-[44rem] text-lg leading-relaxed text-white/85">
-          Heathrow Minicab is a 24/7 airport transfer service for Heathrow Terminals 2, 3, 4 and 5.
-          The brand is run as a service-area minicab business, with bookings handled online, by
-          phone and on WhatsApp. We collect you from your door or meet you at arrivals as confirmed
-          when you book, and plan each journey around your flight and terminal. We also arrange
+          Heathrow Minicab is a local private hire service for North and West London, running 24/7
+          to and from Heathrow Terminals 2, 3, 4 and 5. Book online, by phone or on WhatsApp. We
+          collect you from your door or meet you in arrivals, and plan each journey around your
+          flight and terminal. We also arrange
           hotel transfers, airport-to-airport connections, long-distance journeys, business travel
           and family trips, in saloon, estate, MPV and executive cars.
         </p>

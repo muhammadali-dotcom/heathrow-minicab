@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
-import { ctaButtonClass } from "@/components/BookingCta";
+import { callButtonLight } from "@/components/BookingCta";
 import PageBanner from "@/components/PageBanner";
 import PhoneIcon from "@/components/PhoneIcon";
 import { AREA_REGIONS, AREAS } from "@/lib/areas";
@@ -46,39 +46,47 @@ export default function Page() {
 
       <section aria-label="Areas we cover" className="bg-white py-14 md:py-20">
         <div className={SECTION_CONTAINER}>
-          {AREA_REGIONS.map((region) => {
-            const areas = AREAS.filter((area) => area.region === region.id);
-            return (
-              <div key={region.id} className="mt-12 first:mt-0">
-                <h2
-                  id={`${region.id}-heading`}
-                  className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
+          {/* One compact panel per region, names listed in columns. */}
+          <div className="grid gap-6 md:grid-cols-2">
+            {AREA_REGIONS.map((region) => {
+              const areas = AREAS.filter((area) => area.region === region.id);
+              return (
+                <div
+                  key={region.id}
+                  className="rounded-xl bg-[#E6F6FC] p-6 md:p-8"
                 >
-                  {region.label}
-                </h2>
-                <ul
-                  aria-labelledby={`${region.id}-heading`}
-                  className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4"
-                >
-                  {areas.map((area) => (
-                    <li
-                      key={area.slug}
-                      className="flex items-center gap-3 rounded-xl border border-[#D5E8F2] bg-white p-4"
-                    >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740]">
-                        <PinIcon />
-                      </span>
-                      <h3 className="leading-snug font-semibold text-[#0A2740]">{area.name}</h3>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+                  <h2
+                    id={`${region.id}-heading`}
+                    className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
+                  >
+                    {region.label}
+                  </h2>
+                  <ul
+                    aria-labelledby={`${region.id}-heading`}
+                    className="mt-4 columns-2 gap-6"
+                  >
+                    {areas.map((area) => (
+                      <li
+                        key={area.slug}
+                        className="flex break-inside-avoid items-start gap-2 py-1.5 font-medium text-[#0A2740]"
+                      >
+                        <span className="mt-1 text-[#1FA3D6]">
+                          <PinIcon />
+                        </span>
+                        {area.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
 
           <div className="mt-12 flex flex-col gap-5 rounded-xl bg-[#E6F6FC] p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
             <div>
-              <h2 className="text-xl font-bold text-[#0A2740]">Don’t see your area?</h2>
+              <h2 className="text-xl font-bold text-[#0A2740]">
+                Don’t see your area?
+              </h2>
               <p className="mt-1 text-[#0A2740]/80">
                 Call us to check, or see{" "}
                 <Link
@@ -92,7 +100,7 @@ export default function Page() {
             </div>
             <a
               href={`tel:${PRIMARY_PHONE.tel}`}
-              className={`${ctaButtonClass} min-h-12 shrink-0 px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]`}
+              className={`${callButtonLight} min-h-12 shrink-0 px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]`}
             >
               Call {PRIMARY_PHONE.display}
               <PhoneIcon className="h-5 w-5" />

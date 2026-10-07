@@ -35,6 +35,6 @@ export const FAQS: Faq[] = [
     id: "cancellations",
     question: "Can I change or cancel my booking?",
     answer:
-      "Please call us as soon as possible if you need to change or cancel your booking. We’ll explain the available options and any applicable charges before proceeding.",
+      "Please call us as soon as possible if you need to change or cancel your booking. We’ll confirm your options and any applicable charges before proceeding.",
   },
 ];

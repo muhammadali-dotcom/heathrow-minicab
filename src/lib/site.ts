@@ -37,6 +37,9 @@ export const PRIMARY_PHONE: PhoneNumber = PHONE_NUMBERS[0];
 export const ALT_PHONE: PhoneNumber = PHONE_NUMBERS[1];
 
 // WhatsApp Business is on the main bookings line; chats open with a ready-to-send message.
+// Bittacy Cars' published address (bittacycars.com/contact), used until the brand has its own.
+export const BUSINESS_EMAIL = "bittacycs@hotmail.com";
+
 export const WHATSAPP_URL = `https://wa.me/442083434444?text=${encodeURIComponent(
   "Hi, I'd like to book a Heathrow transfer.",
 )}`;

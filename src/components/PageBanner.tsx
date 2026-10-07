@@ -46,6 +46,7 @@ export default function PageBanner({
         alt=""
         fill
         sizes="100vw"
+        preload
         loading="eager"
         fetchPriority="high"
         className="object-cover"

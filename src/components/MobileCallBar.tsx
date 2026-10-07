@@ -1,16 +1,26 @@
-import { ctaButtonClass } from "@/components/BookingCta";
+import { callButtonDark, ctaButtonClass } from "@/components/BookingCta";
+import CalendarIcon from "@/components/CalendarIcon";
 import PhoneIcon from "@/components/PhoneIcon";
-import { PRIMARY_PHONE } from "@/lib/site";
+import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 
-// Fixed call button on phones and tablets; desktop has the numbers in the top bar.
+const sizing =
+  "min-h-12 flex-1 px-4 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+// Fixed bar on phones and tablets: Book Online (filled) beside Call (outline); desktop has the
+// numbers in the top bar.
 export default function MobileCallBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-[#0A2740] px-6 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-30 flex gap-3 border-t border-white/10 bg-[#0A2740] px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:px-6 lg:hidden">
+      <a href={BOOK_ONLINE_HREF} className={`${ctaButtonClass} ${sizing}`}>
+        Book Online
+        <CalendarIcon className="h-5 w-5" />
+      </a>
       <a
         href={`tel:${PRIMARY_PHONE.tel}`}
-        className={`${ctaButtonClass} min-h-12 w-full px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white`}
+        aria-label={`Call ${PRIMARY_PHONE.display}`}
+        className={`${callButtonDark} ${sizing}`}
       >
-        Call {PRIMARY_PHONE.display}
+        Call
         <PhoneIcon className="h-5 w-5" />
       </a>
     </div>

@@ -67,12 +67,15 @@ export default function Page() {
           items={[
             {
               label: "Heathrow area",
-              hint: "Hotels around the airport, for late arrivals and early departures.",
+              hint: "Hotels on Bath Road and in Harlington, Hayes and Hounslow, for late arrivals and early departures.",
             },
-            { label: "Central London", hint: "Hotels across central London." },
+            {
+              label: "Central London",
+              hint: "Hotels in Paddington, Kensington, Westminster and King’s Cross.",
+            },
             {
               label: "North & West London",
-              hint: "Hotels across the areas we cover.",
+              hint: "Hotels in Ealing, Hendon, Finchley, Mill Hill and the other areas we cover.",
               link: { href: "/areas", label: "See areas we cover" },
             },
           ]}

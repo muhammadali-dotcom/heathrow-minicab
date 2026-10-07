@@ -72,12 +72,12 @@ export default function Page() {
           </div>
           <div className="md:order-1">
             <Image
-              src="/images/pickups-meet-and-greet.webp"
-              alt="Illustration of a smiling driver holding a Heathrow Minicab name board that reads Welcomes J. Smith"
-              width={1024}
-              height={1536}
-              sizes="(min-width: 768px) 320px, 80vw"
-              className="mx-auto h-auto w-full max-w-[20rem] rounded-xl"
+              src="/images/pickups-meet-and-greet-v2.jpg"
+              alt="Professional private hire driver holding a welcome board inside Heathrow arrivals"
+              width={768}
+              height={1152}
+              sizes="(min-width: 768px) 256px, 70vw"
+              className="mx-auto h-auto w-full max-w-[16rem] rounded-xl"
             />
           </div>
         </div>

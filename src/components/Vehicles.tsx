@@ -84,6 +84,9 @@ export default function Vehicles({ showHeader = true }: VehiclesProps) {
                   <p className="mt-1 text-sm font-medium text-[#5B7A93] lg:min-h-10">
                     {vehicle.model} or similar
                   </p>
+                  <p className="mt-2 text-sm text-[#0A2740] lg:min-h-10">
+                    <span className="font-semibold">Best for:</span> {vehicle.bestFor}
+                  </p>
                   <Capacity vehicle={vehicle} />
                 </div>
               </article>

@@ -13,11 +13,18 @@ type BookingCtaProps = {
   onlineOnly?: boolean; // just "Book Online →" (desktop header)
 };
 
-// Shared shape for every booking button: square-ish, filled brand blue with navy text,
-// icon on the right. Navy on #1FA3D6 is 5.3:1; the light-blue hover #4FB8E0 is 6.7:1.
+// Button hierarchy used site-wide:
+// - main booking/quote action: filled brand blue with navy text (5.3:1; hover #4FB8E0 is 6.7:1)
+// - Call: 2px outline (navy on light backgrounds, white on navy/photo)
+// - WhatsApp: 1px secondary outline with the green WhatsApp icon
 const ctaShape =
   "inline-flex items-center justify-center gap-3 rounded-md font-semibold whitespace-nowrap";
 export const ctaButtonClass = `${ctaShape} bg-[#1FA3D6] text-[#0A2740] hover:bg-[#4FB8E0]`;
+export const callButtonLight = `${ctaShape} border-2 border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
+export const callButtonDark = `${ctaShape} border-2 border-white text-white hover:bg-white/10`;
+export const whatsappButtonLight = `${ctaShape} border border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
+export const whatsappButtonDark = `${ctaShape} border border-white text-white hover:bg-white/10`;
+export const whatsappIconClass = "text-[#25D366]";
 // The desktop header's Book Online is navy with white text (about 14:1) so it stands out on white.
 const headerButtonClass = `${ctaShape} bg-[#0A2740] text-white hover:bg-[#12385A]`;
 
@@ -39,6 +46,7 @@ export default function BookingCta({
     fullWidth ? "w-full" : ""
   } ${focus}`;
   const button = `${ctaButtonClass} ${sizing}`;
+  const outline = `${tone === "dark" ? callButtonDark : callButtonLight} ${sizing}`;
   const icon = size === "sm" ? "h-4 w-4" : "h-5 w-5";
 
   if (onlineOnly) {
@@ -51,7 +59,7 @@ export default function BookingCta({
   }
 
   const callButton = (phone: typeof PRIMARY_PHONE) => (
-    <a key={phone.tel} href={`tel:${phone.tel}`} className={button}>
+    <a key={phone.tel} href={`tel:${phone.tel}`} className={outline}>
       Call {phone.display}
       <PhoneIcon className={icon} />
     </a>

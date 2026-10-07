@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { ctaButtonClass } from "@/components/BookingCta";
+import { callButtonLight, whatsappIconClass } from "@/components/BookingCta";
 import CalendarIcon from "@/components/CalendarIcon";
+import MailIcon from "@/components/MailIcon";
 import PhoneIcon from "@/components/PhoneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { FeatureIcon, PhoneLink, TransfersHero } from "@/components/transfers/TransferBlocks";
+import {
+  FeatureIcon,
+  PhoneLink,
+  Section,
+  TransfersHero,
+} from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
-import { ALT_PHONE, BOOK_ONLINE_HREF, PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
+import {
+  ALT_PHONE,
+  BOOK_ONLINE_HREF,
+  BUSINESS_EMAIL,
+  PRIMARY_PHONE,
+  WHATSAPP_URL,
+} from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 export const metadata: Metadata = {
@@ -18,7 +30,11 @@ export const metadata: Metadata = {
   }),
 };
 
-const button = `${ctaButtonClass} mt-6 min-h-12 w-full px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]`;
+const sizing =
+  "mt-4 min-h-11 w-full px-4 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]";
+// All four card buttons share one outline style so the row reads as equal choices; the hero
+// above keeps the filled Book Online as the main action.
+const button = `${callButtonLight} ${sizing}`;
 
 type ContactWay = {
   title: string;
@@ -27,14 +43,32 @@ type ContactWay = {
   action: ReactNode;
 };
 
+// Book Online is the main action, so it leads; email gets the secondary outline.
 const ways: ContactWay[] = [
   {
+    title: "Book online",
+    icon: <CalendarIcon className="h-5 w-5" />,
+    text: "Get a quote and book your transfer online.",
+    action: (
+      <a href={BOOK_ONLINE_HREF} className={button}>
+        Book Online
+        <CalendarIcon className="h-4 w-4" />
+      </a>
+    ),
+  },
+  {
     title: "Call us",
-    icon: <PhoneIcon className="h-6 w-6" />,
+    icon: <PhoneIcon className="h-5 w-5" />,
     text: (
       <>
-        Bookings <PhoneLink tel={PRIMARY_PHONE.tel} display={PRIMARY_PHONE.display} />, or our
-        alternative line <PhoneLink tel={ALT_PHONE.tel} display={ALT_PHONE.display} />.
+        {[PRIMARY_PHONE, ALT_PHONE].map((phone, i) => (
+          <span key={phone.tel} className="block">
+            {i === 0 ? "Bookings" : "Alternative"}{" "}
+            <span className="whitespace-nowrap">
+              <PhoneLink tel={phone.tel} display={phone.display} />
+            </span>
+          </span>
+        ))}
       </>
     ),
     action: (
@@ -44,30 +78,42 @@ const ways: ContactWay[] = [
         className={button}
       >
         Call Now
-        <PhoneIcon className="h-5 w-5" />
+        <PhoneIcon className="h-4 w-4" />
       </a>
     ),
   },
   {
     title: "WhatsApp",
-    icon: <WhatsAppIcon className="h-7 w-7" />,
+    icon: <WhatsAppIcon className="h-5 w-5" />,
     text: "Message us your journey details, day or night.",
     action: (
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={button}>
-        <WhatsAppIcon className="h-5 w-5" />
-        Chat on WhatsApp
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={button}
+      >
+        WhatsApp Us
+        <WhatsAppIcon className={`h-4 w-4 ${whatsappIconClass}`} />
         <span className="sr-only">(opens in a new tab)</span>
       </a>
     ),
   },
   {
-    title: "Book online",
-    icon: <CalendarIcon className="h-7 w-7" />,
-    text: "Get a quote and book your transfer online.",
+    title: "Email us",
+    icon: <MailIcon className="h-5 w-5" />,
+    text: (
+      <>
+        For general enquiries.
+        <span className="block font-semibold whitespace-nowrap text-[#0A2740]">
+          {BUSINESS_EMAIL}
+        </span>
+      </>
+    ),
     action: (
-      <a href={BOOK_ONLINE_HREF} className={button}>
-        Book Online
-        <CalendarIcon className="h-5 w-5" />
+      <a href={`mailto:${BUSINESS_EMAIL}`} className={button}>
+        Email Us
+        <MailIcon className="h-4 w-4" />
       </a>
     ),
   },
@@ -91,49 +137,39 @@ export default function Page() {
         }}
       />
 
-      {/* Centred header as on the home page sections; text takes the slack (flex-1) so the
-          three full-width buttons line up along the bottom. */}
-      <section aria-labelledby="ways-heading" className="bg-[#E6F6FC] py-16 md:py-20">
-        <div className={SECTION_CONTAINER}>
-          <div className="mx-auto max-w-2xl text-center">
-            <span
-              aria-hidden="true"
-              className="mx-auto mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
-            />
-            <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
-              Get in touch
-            </p>
-            <h2
-              id="ways-heading"
-              className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
+      {/* Standard section header and FeatureGrid's compact card style; the text takes the
+          slack (flex-1) so the buttons line up along the bottom. */}
+      <Section
+        tone="pale"
+        id="ways-to-reach-us"
+        eyebrow="Get in touch"
+        title="Ways to reach us"
+        intro="Choose whichever suits you. We’re here 24/7."
+      >
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {ways.map((way) => (
+            <li
+              key={way.title}
+              className="flex h-full flex-col rounded-xl border border-[#D5E8F2] bg-white p-5"
             >
-              Ways to reach us
-            </h2>
-            <p className="mt-3 text-lg leading-relaxed text-[#0A2740]/80">
-              Choose whichever suits you. We’re here 24/7.
-            </p>
-          </div>
-
-          <ul className="mt-10 grid gap-6 md:grid-cols-3">
-            {ways.map((way) => (
-              <li
-                key={way.title}
-                className="flex h-full flex-col items-center rounded-2xl border-t-4 border-[#1FA3D6] bg-white p-8 text-center shadow-sm shadow-[#0A2740]/5 transition hover:-translate-y-1 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#E6F6FC] text-[#0A2740]"
               >
-                <span
-                  aria-hidden="true"
-                  className="flex h-16 w-16 items-center justify-center rounded-full bg-[#1FA3D6] text-[#0A2740]"
-                >
-                  {way.icon}
-                </span>
-                <h3 className="mt-5 text-xl font-semibold text-[#0A2740]">{way.title}</h3>
-                <p className="mt-2 flex-1 leading-relaxed text-[#0A2740]/80">{way.text}</p>
-                {way.action}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+                {way.icon}
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-[#0A2740]">{way.title}</h3>
+              <p className="mt-1.5 flex-1 text-sm leading-relaxed text-[#0A2740]/80">{way.text}</p>
+              {way.action}
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-6 flex items-center gap-2 text-sm font-semibold text-[#0A2740]">
+          <PhoneIcon className="h-4 w-4" />
+          For urgent pickup help or booking changes, please call.
+        </p>
+      </Section>
 
       {/* Slim white strip before the navy footer. */}
       <section aria-label="Opening hours" className="bg-white py-8">

@@ -19,11 +19,32 @@ const activeDesktop =
 const inactiveDesktop =
   "text-[#0A2740] after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-[#1FA3D6] after:transition-transform after:duration-300 hover:after:scale-x-100 motion-reduce:after:transition-none";
 
-function isCurrentPath(pathname: string, href?: string, children?: NavItem["children"]) {
+function isCurrentPath(
+  pathname: string,
+  href?: string,
+  children?: NavItem["children"],
+) {
   if (!href && !children?.length) return false;
   if (href === "/") return pathname === "/";
-  if (href && (pathname === href || pathname.startsWith(`${href}/`))) return true;
-  return children?.some((child) => pathname === child.href || pathname.startsWith(`${child.href}/`)) ?? false;
+  if (href && (pathname === href || pathname.startsWith(`${href}/`)))
+    return true;
+  return (
+    children?.some(
+      (child) =>
+        pathname === child.href || pathname.startsWith(`${child.href}/`),
+    ) ?? false
+  );
+}
+
+// The single child link for this page: the longest href that matches, so "Overview"
+// (/airport-transfers) loses to "Heathrow Drop-offs" (/airport-transfers/heathrow-drop-offs).
+function currentChildHref(
+  pathname: string,
+  children: NavItem["children"] = [],
+) {
+  return children
+    .filter((c) => pathname === c.href || pathname.startsWith(`${c.href}/`))
+    .sort((a, b) => b.href.length - a.href.length)[0]?.href;
 }
 
 function Chevron({ open }: { open: boolean }) {
@@ -134,14 +155,22 @@ function Dropdown({
         </button>
       )}
       {/* Top padding (not margin) bridges the gap, so moving the mouse into the menu keeps it open. */}
-      <div id={panelId} hidden={!open} className="absolute top-full left-0 z-30 pt-2">
+      <div
+        id={panelId}
+        hidden={!open}
+        className="absolute top-full left-0 z-30 pt-2"
+      >
         <ul className="w-64 rounded-xl border border-[#D5E8F2] bg-white p-2">
           {item.children?.map((child) => (
             <li key={child.href}>
               <Link
                 href={child.href}
                 onClick={() => setOpen(false)}
-                aria-current={isCurrentPath(pathname, child.href) ? "page" : undefined}
+                aria-current={
+                  child.href === currentChildHref(pathname, item.children)
+                    ? "page"
+                    : undefined
+                }
                 className={`block rounded-lg px-3 py-2.5 text-sm text-[#0A2740] hover:bg-[#E6F6FC] aria-[current=page]:bg-[#E6F6FC] aria-[current=page]:font-semibold ${focusRing}`}
               >
                 {child.label}
@@ -214,7 +243,11 @@ function MobileItem({
               <Link
                 href={child.href}
                 onClick={onNavigate}
-                aria-current={isCurrentPath(pathname, child.href) ? "page" : undefined}
+                aria-current={
+                  child.href === currentChildHref(pathname, item.children)
+                    ? "page"
+                    : undefined
+                }
                 className={`flex min-h-11 items-center rounded-md px-3 text-sm text-[#0A2740] aria-[current=page]:font-semibold aria-[current=page]:text-[#1786BB] ${focusRing}`}
               >
                 {child.label}
@@ -251,7 +284,10 @@ export default function SiteNav({ nav }: SiteNavProps) {
     <>
       {/* Desktop */}
       {/* The menu fills the space between logo and buttons, centred, with equal gaps. */}
-      <nav aria-label="Main" className="hidden flex-1 items-center gap-4 lg:flex">
+      <nav
+        aria-label="Main"
+        className="hidden flex-1 items-center gap-4 lg:flex"
+      >
         <ul className="flex flex-1 items-center justify-center gap-6">
           {nav.map((item) =>
             item.children ? (
@@ -265,7 +301,9 @@ export default function SiteNav({ nav }: SiteNavProps) {
               <li key={item.label}>
                 <Link
                   href={item.href ?? "/"}
-                  aria-current={isCurrentPath(pathname, item.href) ? "page" : undefined}
+                  aria-current={
+                    isCurrentPath(pathname, item.href) ? "page" : undefined
+                  }
                   className={`relative inline-flex min-h-11 items-center rounded-md px-0 text-sm font-medium whitespace-nowrap ${isCurrentPath(pathname, item.href) ? activeDesktop : inactiveDesktop} ${focusRing}`}
                 >
                   {item.label}
@@ -317,7 +355,9 @@ export default function SiteNav({ nav }: SiteNavProps) {
               />
             ))}
           </ul>
-          <div className={`${SECTION_CONTAINER} border-t border-[#D5E8F2] pt-4 pb-6`}>
+          <div
+            className={`${SECTION_CONTAINER} border-t border-[#D5E8F2] pt-4 pb-6`}
+          >
             <BookingCta fullWidth stacked />
           </div>
         </nav>

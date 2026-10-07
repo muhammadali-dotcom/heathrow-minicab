@@ -130,7 +130,11 @@ export default function TerminalSelector() {
       ))}
       {/* Tabs (md and up) */}
       <div className="hidden md:block">
-        <div role="tablist" aria-label="Heathrow terminals" className="grid grid-cols-4 gap-3">
+        <div
+          role="tablist"
+          aria-label="Heathrow terminals"
+          className="grid grid-cols-4 gap-2 lg:gap-3"
+        >
           {TERMINALS.map((terminal, i) => {
             const isSelected = i === selected;
             return (
@@ -147,7 +151,7 @@ export default function TerminalSelector() {
                 tabIndex={isSelected ? 0 : -1}
                 onClick={() => setSelected(i)}
                 onKeyDown={(event) => onTabKey(event, i)}
-                className={`min-h-12 rounded-lg px-4 text-base font-semibold ${focusRing} ${
+                className={`min-h-12 rounded-lg px-3 text-sm font-semibold lg:px-4 lg:text-base ${focusRing} ${
                   isSelected
                     ? "bg-[#1FA3D6] text-[#0A2740]"
                     : "bg-[#12385A] text-white hover:bg-[#174468]"

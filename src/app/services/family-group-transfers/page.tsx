@@ -102,11 +102,11 @@ export default function Page() {
           items={[
             {
               title: "Child seats at no extra cost",
-              text: "Request a child seat when you book and tell us each child’s age so we can confirm a suitable seat. Arrangements are confirmed when you book.",
+              text: "Request a child seat when you book and tell us each child’s age so we can arrange a suitable seat.",
             },
             {
               title: "Extra collection stops",
-              text: "Give us every collection address when you book. Extra stops are agreed in your quote and confirmed when you book.",
+              text: "Give us every collection address when you book, and we’ll include the extra stops in your quote.",
             },
           ]}
         />
