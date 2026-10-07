@@ -99,3 +99,9 @@ export const COMPANY_LINKS: NavLink[] = [
   { label: "Contact", href: "/contact" },
   { label: "About Us", href: "/about" },
 ];
+
+// Policy pages, linked from the footer on every page.
+export const LEGAL_LINKS: NavLink[] = [
+  { label: "Privacy policy", href: "/privacy" },
+  { label: "Booking terms", href: "/terms" },
+];

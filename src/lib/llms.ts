@@ -72,6 +72,8 @@ ${areas}
 - [FAQs](${absoluteUrl("/faqs")}): every common question, grouped by topic.
 - [About](${absoluteUrl("/about")})
 - [Contact](${absoluteUrl("/contact")})
+- [Privacy policy](${absoluteUrl("/privacy")})
+- [Booking terms](${absoluteUrl("/terms")}): prices, payment, waiting, changes and cancellations.
 - [Full text for AI assistants](${absoluteUrl("/llms-full.txt")}): this summary plus every question and answer.
 
 ## Services

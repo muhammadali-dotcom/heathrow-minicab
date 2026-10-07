@@ -8,6 +8,7 @@ import {
   BUSINESS_BASE_LABEL,
   BUSINESS_EMAIL,
   COMPANY_LINKS,
+  LEGAL_LINKS,
   NAV,
   PRIMARY_PHONE,
   SITE_NAME,
@@ -141,6 +142,13 @@ export default function SiteFooter() {
               ` · Operated by ${TFL_LICENCE.operator}, TfL private hire operator licence ${TFL_LICENCE.number}`}
           </p>
           <ul className="flex flex-wrap items-center gap-x-6">
+            {LEGAL_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className={`inline-flex min-h-11 items-center ${whiteLink}`}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
             <li>
               <a href="#top" className={`inline-flex min-h-11 items-center gap-1 ${whiteLink}`}>
                 Back to top <span aria-hidden="true">↑</span>
