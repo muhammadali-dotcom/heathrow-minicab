@@ -4,7 +4,9 @@ import { CONTENT_UPDATED, SITE_URL, absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 import {
   BOOK_ONLINE_HREF,
+  BUSINESS_BASE,
   BUSINESS_EMAIL,
+  BUSINESS_SUMMARY,
   PHONE_NUMBERS,
   PRIMARY_PHONE,
   SAME_AS,
@@ -58,12 +60,19 @@ export function SiteJsonLd() {
             "@type": "LocalBusiness",
             "@id": BUSINESS_ID,
             name: SITE_NAME,
-            description:
-              "24/7 minicab service for Heathrow airport transfers from North and West London.",
+            description: BUSINESS_SUMMARY,
             url: absoluteUrl("/"),
             logo: absoluteUrl("/images/logo.png"),
             image: absoluteUrl("/images/airport-transfers-overview-hero.webp"),
             telephone: PRIMARY_PHONE.tel,
+            // Base area only; no street address, as a service-area business.
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: BUSINESS_BASE.locality,
+              addressRegion: "London",
+              postalCode: BUSINESS_BASE.postcode,
+              addressCountry: "GB",
+            },
             contactPoint: PHONE_NUMBERS.map((phone) => ({
               "@type": "ContactPoint",
               telephone: phone.tel,

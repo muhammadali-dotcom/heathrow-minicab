@@ -5,6 +5,7 @@ import PlaneIcon from "@/components/PlaneIcon";
 import Wordmark from "@/components/Wordmark";
 import {
   ALT_PHONE,
+  BUSINESS_BASE_LABEL,
   BUSINESS_EMAIL,
   COMPANY_LINKS,
   NAV,
@@ -98,8 +99,9 @@ export default function SiteFooter() {
                 </a>
               </li>
             </ul>
-            {/* Same name, numbers, email and hours on every page, matching the business schema. */}
+            {/* Same name, numbers, email, hours and base on every page, matching the business schema. */}
             <p className="mt-2 text-sm font-semibold text-white">Open 24/7, every day</p>
+            <p className="mt-1 text-sm text-white/70">Based in {BUSINESS_BASE_LABEL}</p>
             <p className="mt-1 text-sm text-white/70">
               Serving North and West London and Heathrow Terminals 2–5
             </p>

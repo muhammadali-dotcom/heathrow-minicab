@@ -6,7 +6,9 @@ import { SERVICES } from "@/lib/services";
 import {
   ALT_PHONE,
   BOOK_ONLINE_HREF,
+  BUSINESS_BASE_LABEL,
   BUSINESS_EMAIL,
+  BUSINESS_SUMMARY,
   PRIMARY_PHONE,
   SITE_NAME,
   TFL_LICENCE,
@@ -36,9 +38,10 @@ const services = SERVICES.map(
 export function llmsSummary() {
   return `# ${SITE_NAME}
 
-> ${SITE_NAME} is a local 24/7 private hire (minicab) service for Heathrow airport transfers: pickups from Heathrow arrivals and drop-offs to Heathrow departures, Terminals 2, 3, 4 and 5, for passengers in North and West London.
+> ${BUSINESS_SUMMARY} Services include pickups from Heathrow arrivals and drop-offs to Heathrow departures.
 
 ## Key facts
+- Base: ${BUSINESS_BASE_LABEL}.
 ${KEY_FACTS.map((f) => `- ${f.label}: ${f.value}.`).join("\n")}
 - Pricing: the price depends on time, day and route, and is fixed once confirmed. Waiting, parking and any extras are covered as agreed in the quote. The Heathrow drop-off charge is not included in the journey price; it is added to the quote.
 - Waiting after the 15 free minutes is charged at the rate confirmed before booking.

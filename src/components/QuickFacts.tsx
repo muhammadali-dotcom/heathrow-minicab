@@ -1,6 +1,7 @@
 import PlaneIcon from "@/components/PlaneIcon";
 import { FeatureIcon } from "@/components/transfers/TransferBlocks";
 import { KEY_FACTS, KEY_FACTS_NOTE } from "@/lib/facts";
+import { BUSINESS_BASE_LABEL } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 const TERMINALS = ["2", "3", "4", "5"];
@@ -56,6 +57,7 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
         <p className="mt-3 text-lg leading-relaxed text-[#0A2740]/80">
           The details that make your airport journey easier.
         </p>
+        <p className="mt-1 text-sm font-semibold text-[#0A2740]">Based in {BUSINESS_BASE_LABEL}</p>
 
         <div data-speakable>
           <div className="mt-10 grid gap-4 lg:grid-cols-2">

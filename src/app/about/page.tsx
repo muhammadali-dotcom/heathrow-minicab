@@ -6,14 +6,14 @@ import { FeatureGrid, Section, TransfersHero } from "@/components/transfers/Tran
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
-import { PRIMARY_PHONE } from "@/lib/site";
+import { PRIMARY_PHONE, BUSINESS_SUMMARY } from "@/lib/site";
 
 // Facts here are limited to confirmed service details: no founding date, location, history,
 // figures or credentials, and the parent company isn't named.
 const seo = {
   title: "About Heathrow Minicab | Heathrow Airport Transfers",
   description:
-    "Heathrow Minicab is a local 24/7 private hire service for Heathrow airport transfers from North and West London, to and from Terminals 2, 3, 4 and 5.",
+    "Heathrow Minicab is a 24/7 private hire service based in Mill Hill, North London, for Heathrow airport transfers to and from Terminals 2, 3, 4 and 5.",
   path: "/about",
 };
 
@@ -44,12 +44,10 @@ export default function Page() {
 
       <Section tone="navy" id="who-we-are" title="Airport journeys, made simple.">
         <p className="mt-4 max-w-[44rem] text-lg leading-relaxed text-white/85">
-          Heathrow Minicab is a local private hire service for North and West London, running 24/7
-          to and from Heathrow Terminals 2, 3, 4 and 5. Book online, by phone or on WhatsApp. We
-          collect you from your door or meet you in arrivals, and plan each journey around your
-          flight and terminal. We also arrange hotel transfers, airport-to-airport connections,
-          long-distance journeys, business travel and family trips, in saloon, estate, MPV and
-          executive cars.
+          {BUSINESS_SUMMARY} Book online, by phone or on WhatsApp. We collect you from your door or
+          meet you in arrivals, and plan each journey around your flight and terminal. We also
+          arrange hotel transfers, airport-to-airport connections, long-distance journeys, business
+          travel and family trips, in saloon, estate, MPV and executive cars.
         </p>
       </Section>
 

@@ -3,7 +3,7 @@ import { SITE_NAME } from "@/lib/site";
 
 // Canonical origin for sitemap, robots, canonical links and structured data. Override with
 // NEXT_PUBLIC_SITE_URL (e.g. for a staging domain); no trailing slash.
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://heathrowminicab.uk").replace(
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.heathrowminicab.uk").replace(
   /\/$/,
   "",
 );

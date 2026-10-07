@@ -1,4 +1,4 @@
-# SEO, AEO and GEO plan: heathrowminicab.uk
+# SEO, AEO and GEO plan: www.heathrowminicab.uk
 
 This plan gets Heathrow Minicab found in three places:
 
@@ -37,21 +37,21 @@ The biggest gains come from **local search**: the map pack, which is the three b
 
 | What | Where | Why it matters |
 |---|---|---|
-| robots.txt | https://heathrowminicab.uk/robots.txt | Tells every search engine and AI crawler that it may read the site, and where the sitemap is. GPTBot, Perplexity, Claude, Google-Extended and Applebot are named explicitly. |
-| sitemap.xml | https://heathrowminicab.uk/sitemap.xml | Lists the 14 pages that should be indexed. Unfinished pages (About, Terms, Privacy) and /book are left out. |
+| robots.txt | https://www.heathrowminicab.uk/robots.txt | Tells every search engine and AI crawler that it may read the site, and where the sitemap is. GPTBot, Perplexity, Claude, Google-Extended and Applebot are named explicitly. |
+| sitemap.xml | https://www.heathrowminicab.uk/sitemap.xml | Lists the 14 pages that should be indexed. Unfinished pages (About, Terms, Privacy) and /book are left out. |
 | Canonical links | Every page | Tells Google the one official address of each page, so duplicate copies don't dilute rankings. |
 | Titles and descriptions | Every page | Each page now has a keyword-focused title (e.g. "Heathrow Airport Pickups \| Meet & Greet Minicab") and a description under 160 characters. These are what appear in Google results. |
 | Share previews | Every page | Open Graph and Twitter tags, so links shared on WhatsApp, Facebook and similar show a proper title and image. |
 | Structured data (schema) | Every page | Machine-readable facts: **LocalBusiness** (name, phones, 24/7 hours, the 16 areas and Heathrow served), **WebSite**, **Service** on the three airport pages, **BreadcrumbList** on inner pages, and **FAQPage** on the homepage and /faqs. |
-| llms.txt | https://heathrowminicab.uk/llms.txt | A plain-text fact sheet written for AI assistants: services, prices policy, areas, phones and key pages. |
+| llms.txt | https://www.heathrowminicab.uk/llms.txt | A plain-text fact sheet written for AI assistants: services, prices policy, areas, phones and key pages. |
 | noindex on placeholders | /about, /terms, /privacy | Keeps "Coming soon" pages out of Google until they have real content. **Remove the `robots` line in each page when you fill it in, and add the page to `src/app/sitemap.ts`.** |
 
 **Do straight after launch:**
-1. **Google Search Console** (search.google.com/search-console): add the domain `heathrowminicab.uk`, verify it through your DNS, submit `https://heathrowminicab.uk/sitemap.xml`, then use "URL inspection" and then "Request indexing" for the homepage and the airport pages.
+1. **Google Search Console** (search.google.com/search-console): add the domain `heathrowminicab.uk`, verify it through your DNS, submit `https://www.heathrowminicab.uk/sitemap.xml`, then use "URL inspection" and then "Request indexing" for the homepage and the airport pages.
 2. **Bing Webmaster Tools** (bing.com/webmasters): import the site from Search Console. Bing also feeds ChatGPT search and Copilot.
 3. **Google's Rich Results Test** (search.google.com/test/rich-results): test the homepage and /faqs to confirm the schema is read.
 4. **PageSpeed Insights:** check mobile scores on the homepage and the airport pages, and aim for green Core Web Vitals.
-5. **Domain:** make sure `www.heathrowminicab.uk` redirects to `https://heathrowminicab.uk`, so there's only one version of the site. If you'd rather use www, set `NEXT_PUBLIC_SITE_URL` to the www address instead.
+5. **Domain:** `heathrowminicab.uk` and `heathrow-minicab.vercel.app` redirect to `https://www.heathrowminicab.uk`, so there's only one version of the site. If you'd rather use www, set `NEXT_PUBLIC_SITE_URL` to the www address instead.
 
 ---
 
@@ -65,7 +65,7 @@ For "heathrow minicab" and "{area} to heathrow taxi", Google mostly shows the **
    - **Set it up as a service-area business:** hide the street address and list the service areas from /areas (Finchley, Hendon, Barnet, Mill Hill, Edgware and the rest) plus Heathrow.
    - **Hours:** open 24 hours, 7 days.
    - **Phone:** 020 8343 4444 as the main number, with 020 8569 4040 as an additional number.
-   - **Website:** https://heathrowminicab.uk.
+   - **Website:** https://www.heathrowminicab.uk.
    - **Photos:** the cars (your real fleet), drivers with name boards, and the terminal kerbside. Add new photos monthly.
    - **Services:** list "Heathrow airport transfer", "Heathrow airport pickup (meet and greet)", "Heathrow drop-off", "Airport-to-airport transfers" and "Child seats".
    - **Posts:** one a week, with simple updates such as "Early flight from T5? Book your 4am pickup".
@@ -177,7 +177,7 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 ## 10. 90-day checklist
 
 **Done in code (2026-10-07)**
-- [x] vercel.app hosts send `X-Robots-Tag: noindex` (`next.config.ts`), so only heathrowminicab.uk is indexed.
+- [x] The production vercel.app address redirects to www.heathrowminicab.uk; preview vercel.app hosts send `X-Robots-Tag: noindex` (`next.config.ts`).
 - [x] Business schema: email, slogan, knowsAbout, offer catalogue, Book Online action; `sameAs` and licence fill in from `src/lib/site.ts` once set.
 - [x] WebPage schema with dateModified and speakable on every page; Service schema with 24/7 hours and booking channels.
 - [x] Key facts block on the homepage and /airport-transfers; footer shows phones, email and hours on every page.
@@ -185,12 +185,21 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 - [x] 16 area pages (`/areas/[slug]`), linked from /areas and listed in the sitemap and llms.txt.
 - [x] /llms.txt expanded and /llms-full.txt added (every question and answer).
 
+**Business identity (2026-10-07)**
+- [x] One entity sentence (`BUSINESS_SUMMARY`) and the base "Mill Hill, North London (NW7)" (`BUSINESS_BASE`) in `src/lib/site.ts`, used word for word in the schema (description + area-only address), footer, About, Contact, Key facts and llms.txt.
+- [ ] Google Business Profile as a service-area business: address hidden, base Mill Hill, service areas = the 16 areas, website https://www.heathrowminicab.uk, hours 24/7, same phone numbers. This is the single biggest GEO/local lever.
+- [ ] Bing Places and Apple Business Connect with identical details.
+- [ ] Yell, FreeIndex and Thomson Local listings with identical details.
+- [ ] Ask customers for a Google review after each trip.
+- [ ] Add every profile URL to `SAME_AS` in `src/lib/site.ts` (it feeds the sameAs schema).
+
 **Before deploying these changes**
-- [ ] Connect heathrowminicab.uk to the Vercel project (Settings → Domains), with www redirecting to the main address. Until it's connected, the vercel.app address is marked noindex and the canonical domain shows an empty page.
-- [ ] After deploying, run the audit and Google's Rich Results Test on https://heathrowminicab.uk (homepage, /faqs and one area page).
+- [x] Connected the domain in Vercel: www.heathrowminicab.uk is the main address; heathrowminicab.uk redirects to it.
+- [ ] In Vercel → Environment Variables, make sure `NEXT_PUBLIC_SITE_URL` is unset or set to `https://www.heathrowminicab.uk`.
+- [ ] After deploying, run the audit and Google's Rich Results Test on https://www.heathrowminicab.uk (homepage, /faqs and one area page).
 
 **Weeks 1–2**
-- [ ] Deploy the site on https://heathrowminicab.uk, with www redirecting to the main address.
+- [x] Deploy the site on https://www.heathrowminicab.uk, with heathrowminicab.uk redirecting to it.
 - [ ] Set up Search Console and submit the sitemap; set up Bing Webmaster Tools.
 - [ ] Run the Rich Results Test on the homepage and /faqs.
 - [ ] Create and verify your Google Business Profile (Part 3).

@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 604800,
   },
-  // Only the canonical domain (heathrowminicab.uk) should be indexed; keep the vercel.app
-  // deployment URLs out of search results so they can't compete with it.
+  // Only the canonical domain (www.heathrowminicab.uk) should be indexed; keep preview
+  // deployment URLs on vercel.app out of search results so they can't compete with it.
   headers() {
     return [
       {
@@ -21,6 +21,14 @@ const nextConfig: NextConfig = {
   // The per-terminal pages were merged into the Terminal Guides directory.
   redirects() {
     return [
+      // The production vercel.app address forwards to the real domain. Only this exact host,
+      // so preview deployments (other *.vercel.app hosts) keep working for testing.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "heathrow-minicab.vercel.app" }],
+        destination: "https://www.heathrowminicab.uk/:path*",
+        permanent: true,
+      },
       ...["2", "3", "4", "5"].map((n) => ({
         source: `/airport-transfers/terminal-${n}`,
         destination: "/airport-transfers/terminal-guides",

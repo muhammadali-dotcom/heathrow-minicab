@@ -40,6 +40,14 @@ export const ALT_PHONE: PhoneNumber = PHONE_NUMBERS[1];
 // Bittacy Cars' published address (bittacycars.com/contact), used until the brand has its own.
 export const BUSINESS_EMAIL = "bittacycs@hotmail.com";
 
+// Where the business is based. Area only (no street address): it's a service-area business.
+export const BUSINESS_BASE = { locality: "Mill Hill", area: "North London", postcode: "NW7" };
+export const BUSINESS_BASE_LABEL = `${BUSINESS_BASE.locality}, ${BUSINESS_BASE.area} (${BUSINESS_BASE.postcode})`;
+
+// One sentence that defines the business. Repeated word for word in the schema, About page and
+// llms.txt so search and AI engines recognise the same entity everywhere.
+export const BUSINESS_SUMMARY = `${SITE_NAME} is a 24/7 private hire service based in ${BUSINESS_BASE_LABEL}, providing airport transfers between North and West London and Heathrow Terminals 2, 3, 4 and 5.`;
+
 // Official profiles for the business (Google Business Profile, Bing Places, directories).
 // Each URL is added to the sitewide schema as sameAs, which helps search and AI engines
 // recognise the brand. Add them here as they're created.
