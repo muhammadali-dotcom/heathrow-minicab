@@ -42,7 +42,7 @@ export default function Page() {
         eyebrow="Heathrow pickups"
         title="Heathrow pickups,"
         titleAccent="from arrivals to your door."
-        intro="Meet your driver inside arrivals with a name board, or at the pickup location confirmed when you book."
+        intro="Your pickup point is confirmed when you book, so you know where to go after you land."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Your Pickup" }}
         image={{
           src: "/images/pickups-hero.webp",
@@ -64,8 +64,7 @@ export default function Page() {
             </h2>
             <p className="mt-4 leading-relaxed text-white/85">
               Your driver meets you inside the arrivals hall with a name board, or at a pickup
-              location agreed with your booking. Your meeting arrangements are confirmed when you
-              book.
+              location agreed with your booking.
             </p>
             <p className="mt-4 leading-relaxed text-white/85 italic">
               Keep your phone switched on when you land so we can reach you.
@@ -97,7 +96,7 @@ export default function Page() {
                   },
                   {
                     title: "Check your confirmed meeting instructions",
-                    text: "Your driver meets you inside arrivals with a name board or at an agreed pickup location, as confirmed with your booking. Keep your phone available so you can contact us.",
+                    text: "Check the meeting point confirmed with your booking and keep your phone available.",
                   },
                   {
                     title: "Meet your driver",

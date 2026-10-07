@@ -314,7 +314,7 @@ const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
   ),
 };
 
-function FeatureIcon({ name }: { name: FeatureIconName }) {
+export function FeatureIcon({ name }: { name: FeatureIconName }) {
   if (name === "plane") return <PlaneIcon className="h-6 w-6" />;
   return (
     <svg
@@ -334,9 +334,11 @@ function FeatureIcon({ name }: { name: FeatureIconName }) {
 export function FeatureGrid({
   items,
   columns = 3,
+  compact = false,
 }: {
   // Desktop columns; 2 or 4 suit smaller or even-numbered sets.
   columns?: 2 | 3 | 4;
+  compact?: boolean;
   items: {
     icon: FeatureIconName;
     title: string;
@@ -346,23 +348,27 @@ export function FeatureGrid({
 }) {
   return (
     <ul
-      className={`mt-8 grid gap-6 sm:grid-cols-2 ${columns === 4 ? "lg:grid-cols-4" : columns === 3 ? "lg:grid-cols-3" : ""}`}
+      className={`${compact ? "mt-6 gap-4" : "mt-8 gap-6"} grid sm:grid-cols-2 ${columns === 4 ? "lg:grid-cols-4" : columns === 3 ? "lg:grid-cols-3" : ""}`}
     >
       {items.map((item) => (
         <li
           key={item.title}
-          className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A]"
+          className={`${compact ? "p-5" : "p-6"} flex h-full flex-col rounded-xl border border-[#D5E8F2] bg-white in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A]`}
         >
           <span
             aria-hidden="true"
-            className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#E6F6FC] text-[#0A2740]"
+            className={`${compact ? "h-10 w-10" : "h-11 w-11"} flex items-center justify-center rounded-lg bg-[#E6F6FC] text-[#0A2740]`}
           >
             <FeatureIcon name={item.icon} />
           </span>
-          <h3 className={`mt-4 text-lg font-semibold ${heading}`}>{item.title}</h3>
-          <p className={`mt-2 flex-1 leading-relaxed ${body}`}>{item.text}</p>
+          <h3 className={`${compact ? "mt-3" : "mt-4"} text-lg font-semibold ${heading}`}>
+            {item.title}
+          </h3>
+          <p className={`${compact ? "mt-1.5 text-sm" : "mt-2"} flex-1 leading-relaxed ${body}`}>
+            {item.text}
+          </p>
           {item.link && (
-            <Link href={item.link.href} className={`${textLink} mt-2 self-start`}>
+            <Link href={item.link.href} className={`${textLink} mt-3 self-start`}>
               {item.link.label} <span aria-hidden="true">→</span>
             </Link>
           )}

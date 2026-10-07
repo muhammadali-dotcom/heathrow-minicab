@@ -27,6 +27,53 @@ const AIRPORTS = [
   { code: "LCY", name: "London City" },
 ];
 
+function AirportConnectionIllustration() {
+  return (
+    <div className="mt-8 rounded-xl border border-white/10 bg-[#12385A] p-5 text-white shadow-sm">
+      <div className="grid items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
+        <div className="rounded-lg bg-white/8 p-4">
+          <p className="font-mono text-2xl font-bold tracking-wider text-[#4FB8E0]">LHR</p>
+          <p className="mt-1 text-sm font-semibold">Heathrow</p>
+          <div className="mt-3 h-10 rounded-md border border-white/20 bg-white/10">
+            <div className="mx-auto mt-2 h-2 w-14 rounded-full bg-white/35" />
+            <div className="mx-auto mt-2 h-2 w-20 rounded-full bg-white/20" />
+          </div>
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="flex items-center justify-center gap-2 text-[#4FB8E0] sm:min-w-32"
+        >
+          <span className="h-0.5 w-12 rounded-full bg-current sm:w-16" />
+          <svg
+            viewBox="0 0 24 24"
+            className="h-7 w-7 shrink-0 fill-none stroke-current"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 12h18" />
+            <path d="m15 6 6 6-6 6" />
+          </svg>
+          <span className="h-0.5 w-12 rounded-full bg-current sm:w-16" />
+        </div>
+
+        <div className="rounded-lg bg-white/8 p-4">
+          <p className="font-mono text-2xl font-bold tracking-wider text-[#4FB8E0]">
+            LGW · STN · LTN · LCY
+          </p>
+          <p className="mt-1 text-sm font-semibold">Your next airport</p>
+          <div className="mt-3 grid grid-cols-4 gap-1.5">
+            {[0, 1, 2, 3].map((item) => (
+              <span key={item} className="h-10 rounded-md border border-white/20 bg-white/10" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export const metadata: Metadata = pageMetadata({
   title: "Heathrow to Gatwick, Stansted, Luton & City Transfers",
   description:
@@ -54,6 +101,7 @@ export default function Page() {
       />
 
       <Section tone="navy" id="routes" title="Which airports are you travelling between?">
+        <AirportConnectionIllustration />
         <RouteBoard
           routes={AIRPORTS.map((airport) => ({
             from: "LHR",

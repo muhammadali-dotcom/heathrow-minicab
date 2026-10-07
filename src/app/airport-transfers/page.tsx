@@ -4,16 +4,13 @@ import { pageMetadata } from "@/lib/seo";
 import {
   BulletList,
   ClosingCta,
-  Eyebrow,
   FeatureGrid,
-  QuoteReceipt,
   RouteCard,
   Section,
-  SubHeading,
   TransfersHero,
   VehicleCards,
 } from "@/components/transfers/TransferBlocks";
-import { BOOK_ONLINE_HREF } from "@/lib/site";
+import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -23,6 +20,156 @@ export const metadata: Metadata = {
     path: "/airport-transfers",
   }),
 };
+
+const pricingPoints = [
+  {
+    icon: "lock",
+    title: "Fixed when confirmed",
+    text: "Additional waiting or changes may cost extra.",
+  },
+  {
+    icon: "route",
+    title: "Priced for your journey",
+    text: "Your route, date and time shape your quote.",
+  },
+  {
+    icon: "receipt",
+    title: "Charges explained",
+    text: "Applicable parking and airport charges are shown before booking.",
+  },
+  {
+    icon: "clock",
+    title: "15 minutes included",
+    text: "Free waiting from your agreed pickup time.",
+  },
+] as const;
+
+type PricingIconName = (typeof pricingPoints)[number]["icon"] | "seat";
+
+function PricingIcon({
+  name,
+  className = "h-8 w-8",
+}: {
+  name: PricingIconName;
+  className?: string;
+}) {
+  const common = {
+    strokeWidth: 2.4,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 48 48"
+      className={`fill-none stroke-current ${className}`}
+    >
+      {name === "receipt" && (
+        <>
+          <path
+            {...common}
+            d="M14 8h20a2 2 0 0 1 2 2v30l-4-3-4 3-4-3-4 3-4-3-4 3V10a2 2 0 0 1 2-2Z"
+          />
+          <path {...common} d="M19 17h10M19 24h10M19 31h7" />
+        </>
+      )}
+      {name === "lock" && (
+        <>
+          <rect {...common} x="13" y="21" width="22" height="17" rx="3" />
+          <path {...common} d="M17 21v-5a7 7 0 0 1 14 0v5M24 28v4" />
+        </>
+      )}
+      {name === "route" && (
+        <>
+          <path {...common} d="M13 18c0 5 5 10 5 10s5-5 5-10a5 5 0 0 0-10 0Z" />
+          <circle cx="18" cy="18" r="1.5" fill="currentColor" stroke="none" />
+          <path {...common} d="M30 12c0 5 5 10 5 10s5-5 5-10a5 5 0 0 0-10 0Z" />
+          <circle cx="35" cy="12" r="1.5" fill="currentColor" stroke="none" />
+          <path {...common} d="M19 34c7 0 7-8 14-8" />
+        </>
+      )}
+      {name === "clock" && (
+        <>
+          <circle {...common} cx="24" cy="24" r="15" />
+          <path {...common} d="M24 15v10l7 4" />
+        </>
+      )}
+      {name === "seat" && (
+        <>
+          <path {...common} d="M18 8h12a4 4 0 0 1 4 4v16H14V12a4 4 0 0 1 4-4Z" />
+          <path {...common} d="M12 28h24v5a5 5 0 0 1-5 5H17a5 5 0 0 1-5-5Z" />
+          <path {...common} d="M18 16h12M19 38l-2 4M29 38l2 4" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function PricingSection() {
+  return (
+    <Section tone="pale" id="pricing">
+      <div>
+        <p className="text-xs font-bold tracking-[0.15em] text-[#0A2740] uppercase">
+          Clear pricing
+        </p>
+        <h2 className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]">
+          Know your fare before you go.
+        </h2>
+        <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
+          Your journey fare is fixed when confirmed. Traffic won’t change it.
+        </p>
+      </div>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.2fr] lg:items-stretch">
+        <div className="flex flex-col justify-center rounded-xl bg-[#0A2740] p-6 text-white md:p-8">
+          <PricingIcon name="receipt" className="h-12 w-12 text-white" />
+          <h3 className="mt-4 text-2xl leading-snug font-bold tracking-tight">
+            Your quote, explained.
+          </h3>
+          <p className="mt-3 leading-relaxed text-white/85">
+            See your journey fare and applicable airport charges before you book.
+          </p>
+          <a
+            href={BOOK_ONLINE_HREF}
+            className="mt-5 inline-flex min-h-12 w-full max-w-56 items-center justify-center gap-3 rounded-md bg-[#1FA3D6] px-6 text-base font-semibold text-[#0A2740] hover:bg-[#1C98C9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Get a Quote <span aria-hidden="true">→</span>
+          </a>
+          <p className="mt-4 text-sm text-white/75">
+            Prefer to call?{" "}
+            <a
+              href={`tel:${PRIMARY_PHONE.tel}`}
+              className="rounded-sm font-semibold text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              {PRIMARY_PHONE.display}
+            </a>
+          </p>
+        </div>
+
+        <ul className="grid gap-5 sm:grid-cols-2">
+          {pricingPoints.map((point) => (
+            <li key={point.title} className="rounded-xl border border-[#D5E8F2] bg-white p-6">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740]">
+                <PricingIcon name={point.icon} className="h-7 w-7" />
+              </span>
+              <h3 className="mt-4 text-lg font-semibold text-[#0A2740]">{point.title}</h3>
+              <p className="mt-2 leading-relaxed text-[#0A2740]/80">{point.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-5 flex flex-col items-center justify-center gap-3 rounded-xl border border-[#1FA3D6] bg-white px-6 py-4 text-center md:flex-row md:gap-5 md:text-left">
+        <PricingIcon name="seat" className="h-9 w-9 shrink-0 text-[#0A2740]" />
+        <span className="hidden h-9 w-px bg-[#D5E8F2] md:block" aria-hidden="true" />
+        <p className="text-lg leading-snug font-semibold text-[#0A2740]">
+          Child seats at no extra cost — request when booking.
+        </p>
+      </div>
+    </Section>
+  );
+}
 
 export default function Page() {
   return (
@@ -92,32 +239,32 @@ export default function Page() {
         title="Why travel with Heathrow Minicab"
       >
         <FeatureGrid
+          compact
           items={[
             {
               icon: "plane",
               title: "Flight monitoring",
-              text: "We monitor your flight. If it’s delayed or changes, contact us and we’ll confirm your arrangements.",
+              text: "We track your flight and confirm changes with you.",
             },
             {
               icon: "board",
               title: "Name board meeting",
-              text: "Your driver meets you inside arrivals with a name board, or at a pickup location agreed with your booking.",
+              text: "Meet inside arrivals or at your confirmed pickup point.",
             },
             {
               icon: "clock",
               title: "15 minutes’ waiting included",
-              text: "Your 15 minutes’ free waiting starts at your agreed pickup time. Any rate after that is confirmed before you book.",
+              text: "Free waiting starts from your agreed pickup time.",
             },
             {
               icon: "seat",
               title: "Child seats on request",
-              text: "Let us know when you book and we’ll arrange a child seat for your journey.",
+              text: "Request child seats when you book.",
             },
             {
               icon: "car",
               title: "Saloon to MPV",
-              text: "Saloon, estate, MPV and executive cars, chosen around your passengers and luggage.",
-              link: { href: "/our-vehicles", label: "See our vehicles" },
+              text: "Choose a car around passengers and luggage.",
             },
             {
               icon: "allday",
@@ -126,6 +273,14 @@ export default function Page() {
             },
           ]}
         />
+        <div className="mt-5">
+          <a
+            href="/our-vehicles"
+            className="inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-[#0A2740] underline decoration-[#1FA3D6] decoration-2 underline-offset-4 hover:decoration-[#0A2740] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]"
+          >
+            See our vehicles <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </Section>
 
       <Section
@@ -137,41 +292,7 @@ export default function Page() {
         <VehicleCards />
       </Section>
 
-      <Section tone="pale" id="pricing">
-        <div className="grid items-start gap-10 md:grid-cols-2 md:gap-12">
-          <div>
-            <Eyebrow>Pricing</Eyebrow>
-            <div className="mt-3">
-              <SubHeading id="pricing-heading">Clear pricing before you travel</SubHeading>
-            </div>
-            <p className="mt-3 text-lg leading-relaxed text-[#0A2740]/80">
-              You get a fixed price before you book. There’s no meter, so traffic won’t change your
-              fare.
-            </p>
-          </div>
-          <QuoteReceipt
-            title="How your quote works"
-            points={[
-              {
-                title: "Fixed once confirmed",
-                text: "Your journey fare is fixed when confirmed. Any additional waiting or changes are charged as explained before booking.",
-              },
-              {
-                title: "Based on your journey",
-                text: "Your price depends on the time, day and route of your journey.",
-              },
-              {
-                title: "Agreed up front",
-                text: "Waiting, parking and any extras are covered as agreed in your quote.",
-              },
-              {
-                title: "Included as standard",
-                text: "15 minutes’ free waiting and child seats at no extra cost.",
-              },
-            ]}
-          />
-        </div>
-      </Section>
+      <PricingSection />
 
       <ClosingCta
         tone="photo"

@@ -80,8 +80,3 @@ export const COMPANY_LINKS: NavLink[] = [
   { label: "Contact", href: "/contact" },
   { label: "About Us", href: "/about" },
 ];
-
-export const LEGAL_LINKS: NavLink[] = [
-  { label: "Terms", href: "/terms" },
-  { label: "Privacy", href: "/privacy" },
-];

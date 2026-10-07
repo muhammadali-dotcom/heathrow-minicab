@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 
-// Indexable pages only. Terms and Privacy stay out (and noindex) while they are placeholders.
+// Indexable pages only.
 type Entry = { path: string; priority: number; changeFrequency: "weekly" | "monthly" };
 
 const ENTRIES: Entry[] = [

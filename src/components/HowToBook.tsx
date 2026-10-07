@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import BookingCta from "@/components/BookingCta";
 import FlapTile from "@/components/FlapTile";
 import JourneyRoute from "@/components/JourneyRoute";
-import { PRIMARY_PHONE } from "@/lib/site";
+import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 type Step = {
@@ -12,17 +12,23 @@ type Step = {
 
 const steps: Step[] = [
   {
-    heading: "Call our bookings line",
+    heading: "Book online or call us",
     text: (
       <>
-        Call{" "}
+        <a
+          href={BOOK_ONLINE_HREF}
+          className="rounded-sm font-semibold text-[#0A2740] underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]"
+        >
+          Book online
+        </a>{" "}
+        or call{" "}
         <a
           href={`tel:${PRIMARY_PHONE.tel}`}
           className="rounded-sm font-semibold text-[#0A2740] underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]"
         >
           {PRIMARY_PHONE.display}
         </a>{" "}
-        to discuss your Heathrow transfer.
+        to arrange your Heathrow transfer.
       </>
     ),
   },

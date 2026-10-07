@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import BookingCta from "@/components/BookingCta";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
@@ -13,6 +14,17 @@ type SiteNavProps = {
 
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]";
+const activeDesktop =
+  "text-[#0A2740] after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:rounded-full after:bg-[#1FA3D6] after:transition-transform after:duration-300 motion-reduce:after:transition-none";
+const inactiveDesktop =
+  "text-[#0A2740] after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-[#1FA3D6] after:transition-transform after:duration-300 hover:after:scale-x-100 motion-reduce:after:transition-none";
+
+function isCurrentPath(pathname: string, href?: string, children?: NavItem["children"]) {
+  if (!href && !children?.length) return false;
+  if (href === "/") return pathname === "/";
+  if (href && (pathname === href || pathname.startsWith(`${href}/`))) return true;
+  return children?.some((child) => pathname === child.href || pathname.startsWith(`${child.href}/`)) ?? false;
+}
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -26,7 +38,15 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-function Dropdown({ item }: { item: NavItem }) {
+function Dropdown({
+  item,
+  current,
+  pathname,
+}: {
+  item: NavItem;
+  current: boolean;
+  pathname: string;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLLIElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -83,7 +103,8 @@ function Dropdown({ item }: { item: NavItem }) {
         <div className="flex items-center">
           <Link
             href={item.href}
-            className={`inline-flex min-h-11 items-center rounded-md pr-0.5 pl-0 text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
+            aria-current={current ? "page" : undefined}
+            className={`relative inline-flex min-h-11 items-center rounded-md pr-0.5 pl-0 text-sm font-medium whitespace-nowrap ${current ? activeDesktop : inactiveDesktop} ${focusRing}`}
           >
             {item.label}
           </Link>
@@ -106,7 +127,7 @@ function Dropdown({ item }: { item: NavItem }) {
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpen((v) => !v)}
-          className={`inline-flex min-h-11 items-center gap-0.5 rounded-md text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
+          className={`relative inline-flex min-h-11 items-center gap-0.5 rounded-md text-sm font-medium whitespace-nowrap ${current ? activeDesktop : inactiveDesktop} ${focusRing}`}
         >
           {item.label}
           <Chevron open={open} />
@@ -120,7 +141,8 @@ function Dropdown({ item }: { item: NavItem }) {
               <Link
                 href={child.href}
                 onClick={() => setOpen(false)}
-                className={`block rounded-lg px-3 py-2.5 text-sm text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
+                aria-current={isCurrentPath(pathname, child.href) ? "page" : undefined}
+                className={`block rounded-lg px-3 py-2.5 text-sm text-[#0A2740] hover:bg-[#E6F6FC] aria-[current=page]:bg-[#E6F6FC] aria-[current=page]:font-semibold ${focusRing}`}
               >
                 {child.label}
               </Link>
@@ -132,7 +154,17 @@ function Dropdown({ item }: { item: NavItem }) {
   );
 }
 
-function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
+function MobileItem({
+  item,
+  onNavigate,
+  current,
+  pathname,
+}: {
+  item: NavItem;
+  onNavigate: () => void;
+  current: boolean;
+  pathname: string;
+}) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -143,7 +175,8 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
           <Link
             href={item.href}
             onClick={onNavigate}
-            className={`flex min-h-12 flex-1 items-center rounded-md font-medium text-[#0A2740] ${focusRing}`}
+            aria-current={current ? "page" : undefined}
+            className={`flex min-h-12 flex-1 items-center rounded-md px-3 font-medium text-[#0A2740] ${current ? "bg-[#E6F6FC] font-semibold shadow-[inset_3px_0_0_#1FA3D6]" : ""} ${focusRing}`}
           >
             {item.label}
           </Link>
@@ -153,7 +186,7 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
             aria-expanded={open}
             aria-controls={panelId}
             onClick={() => setOpen((v) => !v)}
-            className={`flex min-h-12 flex-1 items-center justify-between rounded-md text-left font-medium text-[#0A2740] ${focusRing}`}
+            className={`flex min-h-12 flex-1 items-center justify-between rounded-md px-3 text-left font-medium text-[#0A2740] ${current ? "bg-[#E6F6FC] font-semibold shadow-[inset_3px_0_0_#1FA3D6]" : ""} ${focusRing}`}
           >
             {item.label}
             <span className="flex h-11 w-11 items-center justify-center">
@@ -181,7 +214,8 @@ function MobileItem({ item, onNavigate }: { item: NavItem; onNavigate: () => voi
               <Link
                 href={child.href}
                 onClick={onNavigate}
-                className={`flex min-h-11 items-center rounded-md text-sm text-[#0A2740] ${focusRing}`}
+                aria-current={isCurrentPath(pathname, child.href) ? "page" : undefined}
+                className={`flex min-h-11 items-center rounded-md px-3 text-sm text-[#0A2740] aria-[current=page]:font-semibold aria-[current=page]:text-[#1786BB] ${focusRing}`}
               >
                 {child.label}
               </Link>
@@ -197,6 +231,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuId = useId();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -220,12 +255,18 @@ export default function SiteNav({ nav }: SiteNavProps) {
         <ul className="flex flex-1 items-center justify-center gap-6">
           {nav.map((item) =>
             item.children ? (
-              <Dropdown key={item.label} item={item} />
+              <Dropdown
+                key={item.label}
+                item={item}
+                current={isCurrentPath(pathname, item.href, item.children)}
+                pathname={pathname}
+              />
             ) : (
               <li key={item.label}>
                 <Link
                   href={item.href ?? "/"}
-                  className={`inline-flex min-h-11 items-center rounded-md px-0 text-sm font-medium whitespace-nowrap text-[#0A2740] hover:underline hover:underline-offset-4 ${focusRing}`}
+                  aria-current={isCurrentPath(pathname, item.href) ? "page" : undefined}
+                  className={`relative inline-flex min-h-11 items-center rounded-md px-0 text-sm font-medium whitespace-nowrap ${isCurrentPath(pathname, item.href) ? activeDesktop : inactiveDesktop} ${focusRing}`}
                 >
                   {item.label}
                 </Link>
@@ -255,7 +296,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
           aria-expanded={menuOpen}
           aria-controls={mobileMenuId}
           onClick={() => setMenuOpen((v) => !v)}
-          className={`min-h-11 rounded-full border border-[#0A2740] px-4 text-sm font-semibold text-[#0A2740] ${focusRing}`}
+          className={`min-h-11 rounded-full border border-[#0A2740] px-4 text-sm font-semibold text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
         >
           {menuOpen ? "Close" : "Menu"}
         </button>
@@ -267,7 +308,13 @@ export default function SiteNav({ nav }: SiteNavProps) {
         >
           <ul className={`${SECTION_CONTAINER} py-2`}>
             {nav.map((item) => (
-              <MobileItem key={item.label} item={item} onNavigate={close} />
+              <MobileItem
+                key={item.label}
+                item={item}
+                onNavigate={close}
+                current={isCurrentPath(pathname, item.href, item.children)}
+                pathname={pathname}
+              />
             ))}
           </ul>
           <div className={`${SECTION_CONTAINER} border-t border-[#D5E8F2] pt-4 pb-6`}>

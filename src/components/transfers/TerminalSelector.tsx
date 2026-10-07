@@ -149,7 +149,7 @@ export default function TerminalSelector() {
                 onKeyDown={(event) => onTabKey(event, i)}
                 className={`min-h-12 rounded-lg px-4 text-base font-semibold ${focusRing} ${
                   isSelected
-                    ? "bg-white text-[#0A2740]"
+                    ? "bg-[#1FA3D6] text-[#0A2740]"
                     : "bg-[#12385A] text-white hover:bg-[#174468]"
                 }`}
               >
@@ -183,7 +183,7 @@ export default function TerminalSelector() {
                   aria-controls={`terminal-accpanel-${terminal.number}`}
                   onClick={() => setOpen(isOpen ? null : i)}
                   className={`flex min-h-14 w-full items-center justify-between gap-4 rounded-lg px-5 text-left text-lg font-semibold ${focusRing} ${
-                    isOpen ? "bg-white text-[#0A2740]" : "bg-[#12385A] text-white"
+                    isOpen ? "bg-[#1FA3D6] text-[#0A2740]" : "bg-[#12385A] text-white"
                   }`}
                 >
                   {terminal.name}

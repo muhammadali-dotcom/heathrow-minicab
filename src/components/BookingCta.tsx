@@ -14,9 +14,12 @@ type BookingCtaProps = {
 };
 
 // Shared shape for every booking button: square-ish, filled brand blue with navy text,
-// icon on the right. Navy on #1FA3D6 is 5.3:1; the darker hover #1C98C9 is 4.6:1.
-export const ctaButtonClass =
-  "inline-flex items-center justify-center gap-3 rounded-md bg-[#1FA3D6] font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#1C98C9]";
+// icon on the right. Navy on #1FA3D6 is 5.3:1; the light-blue hover #4FB8E0 is 6.7:1.
+const ctaShape =
+  "inline-flex items-center justify-center gap-3 rounded-md font-semibold whitespace-nowrap";
+export const ctaButtonClass = `${ctaShape} bg-[#1FA3D6] text-[#0A2740] hover:bg-[#4FB8E0]`;
+// The desktop header's Book Online is navy with white text (about 14:1) so it stands out on white.
+const headerButtonClass = `${ctaShape} bg-[#0A2740] text-white hover:bg-[#12385A]`;
 
 // The booking CTA used across the site: "Book Online" (to the hosted web booker) and
 // "Call 020 8343 4444".
@@ -32,14 +35,15 @@ export default function BookingCta({
   const focus = `focus-visible:outline-2 focus-visible:outline-offset-2 ${
     tone === "dark" ? "focus-visible:outline-white" : "focus-visible:outline-[#0A2740]"
   }`;
-  const button = `${ctaButtonClass} ${
-    size === "sm" ? "min-h-11 px-4 text-sm" : "min-h-12 px-6 text-base"
-  } ${fullWidth ? "w-full" : ""} ${focus}`;
+  const sizing = `${size === "sm" ? "min-h-11 px-4 text-sm" : "min-h-12 px-6 text-base"} ${
+    fullWidth ? "w-full" : ""
+  } ${focus}`;
+  const button = `${ctaButtonClass} ${sizing}`;
   const icon = size === "sm" ? "h-4 w-4" : "h-5 w-5";
 
   if (onlineOnly) {
     return (
-      <a href={BOOK_ONLINE_HREF} className={button}>
+      <a href={BOOK_ONLINE_HREF} className={`${headerButtonClass} ${sizing}`}>
         Book Online
         <ArrowRightIcon className={icon} />
       </a>

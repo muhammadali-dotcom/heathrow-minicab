@@ -87,6 +87,11 @@ export default function Page() {
           ]}
         />
         <p className="mt-6 text-[#0A2740]/80">
+          Passenger and luggage figures are a guide, not a guarantee that every maximum fits at the
+          same time. For the MPV, 6 passengers with several large suitcases may need luggage kept to
+          the stated allowance, a larger arrangement, or two vehicles.
+        </p>
+        <p className="mt-6 text-[#0A2740]/80">
           <strong className="font-semibold text-[#0A2740]">More than 6 travelling?</strong> Larger
           groups can book two vehicles travelling together.
         </p>

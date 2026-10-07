@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ctaButtonClass } from "@/components/BookingCta";
 import { VEHICLES, type Vehicle } from "@/lib/vehicles";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
@@ -89,9 +91,19 @@ export default function Vehicles({ showHeader = true }: VehiclesProps) {
           ))}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-[60ch] text-center text-[#0A2740]/80">
-          Tell us your passenger numbers and luggage when you book and we’ll help you choose.
-        </p>
+        <div className="mx-auto mt-10 max-w-[62ch] text-center">
+          <p className="text-[#0A2740]/80">
+            Large suitcases means standard checked luggage; small bags means cabin bags or hand
+            luggage. Tell us your passenger numbers, luggage and any bulky items so we can help you
+            choose.
+          </p>
+          <Link
+            href="/contact"
+            className={`${ctaButtonClass} mt-6 min-h-12 px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]`}
+          >
+            Help me choose
+          </Link>
+        </div>
       </div>
     </section>
   );

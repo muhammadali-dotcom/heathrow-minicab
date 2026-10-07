@@ -40,7 +40,12 @@ export default function Page() {
         image={service.image}
       />
 
-      <Section tone="navy" id="destinations" title="Where are you travelling?">
+      <Section
+        tone="navy"
+        id="destinations"
+        title="Example long-distance destinations"
+        intro="These are common journeys, not our full coverage. Ask us if your town or route is not listed."
+      >
         <RegionChips
           regions={[
             {

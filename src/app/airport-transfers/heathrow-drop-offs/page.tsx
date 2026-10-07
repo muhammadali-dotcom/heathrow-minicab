@@ -123,8 +123,8 @@ export default function Page() {
           }
           aside={
             <InfoAside title="Airport charges">
-              The Heathrow drop-off charge isn’t included in the journey price. It’s added to your
-              quote, so you see the total before you book.
+              Your quote includes the journey fare and applicable Heathrow drop-off charge, shown
+              before booking.
             </InfoAside>
           }
         />

@@ -82,6 +82,12 @@ export default function Page() {
             { label: "Good for", values: ["Everyday business trips", "Client and VIP travel"] },
           ]}
         />
+        <p className="mt-6 text-[#0A2740]/80">
+          Choosing executive adds a more premium vehicle presentation and a quieter, more
+          comfortable cabin for clients, VIP guests or working between meetings. Journey planning,
+          pickup instructions and return arrangements are confirmed in the same way as a standard
+          booking.
+        </p>
       </Section>
 
       <Section tone="white" id="booking-for-others" title="Booking for yourself or someone else?">
