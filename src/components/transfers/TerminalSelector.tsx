@@ -25,7 +25,7 @@ function TerminalPanel({
     <div className="rounded-xl bg-[#12385A] p-6 md:p-8">
       {showHeading && <h3 className="mb-2 text-2xl font-bold text-white">{terminal.name}</h3>}
       <p className="max-w-[44rem] text-sm leading-relaxed text-white/80">
-        <span className="font-semibold text-[#4FB8E0]">Good to know: </span>
+        <span className="font-semibold text-[#4FB8E0]">Selected terminal: </span>
         {terminal.goodToKnow}
       </p>
 
@@ -33,8 +33,8 @@ function TerminalPanel({
         <div>
           <h4 className="text-lg font-semibold text-white">Arriving here?</h4>
           <p className="mt-1 leading-relaxed text-white/85">
-            Follow the meeting instructions in your booking confirmation. Contact us if you need
-            help finding your driver.
+            Clear passport control, collect your bags and follow the meeting instructions in your
+            booking confirmation.
           </p>
         </div>
         <div>
@@ -45,6 +45,11 @@ function TerminalPanel({
           </p>
         </div>
       </div>
+
+      <p className="mt-6 rounded-lg border border-white/15 bg-white/5 p-4 text-sm leading-relaxed text-white/80">
+        Your booking confirmation specifies your meeting point. If you need help, stay by a clearly
+        signed landmark and contact us.
+      </p>
 
       <div className="mt-6 border-t border-white/15 pt-6">
         <div>
@@ -91,8 +96,22 @@ export default function TerminalSelector() {
     }
     selectFromHash();
     window.addEventListener("hashchange", selectFromHash);
-    return () => window.removeEventListener("hashchange", selectFromHash);
+    window.addEventListener("popstate", selectFromHash);
+    return () => {
+      window.removeEventListener("hashchange", selectFromHash);
+      window.removeEventListener("popstate", selectFromHash);
+    };
   }, []);
+
+  function selectTerminal(index: number, updateHash = true) {
+    setSelected(index);
+    setOpen(index);
+    if (!updateHash) return;
+    const hash = `#terminal-${TERMINALS[index].number}`;
+    if (window.location.hash !== hash) {
+      window.history.pushState(null, "", hash);
+    }
+  }
 
   function onTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     const last = TERMINALS.length - 1;
@@ -112,7 +131,7 @@ export default function TerminalSelector() {
               : null;
     if (next === null) return;
     event.preventDefault();
-    setSelected(next);
+    selectTerminal(next);
     tabs.current[next]?.focus();
   }
 
@@ -149,7 +168,7 @@ export default function TerminalSelector() {
                 aria-selected={isSelected}
                 aria-controls={`terminal-tabpanel-${terminal.number}`}
                 tabIndex={isSelected ? 0 : -1}
-                onClick={() => setSelected(i)}
+                onClick={() => selectTerminal(i)}
                 onKeyDown={(event) => onTabKey(event, i)}
                 className={`min-h-12 rounded-lg px-3 text-sm font-semibold lg:px-4 lg:text-base ${focusRing} ${
                   isSelected
@@ -185,7 +204,7 @@ export default function TerminalSelector() {
                   id={`terminal-acc-${terminal.number}`}
                   aria-expanded={isOpen}
                   aria-controls={`terminal-accpanel-${terminal.number}`}
-                  onClick={() => setOpen(isOpen ? null : i)}
+                  onClick={() => (isOpen ? setOpen(null) : selectTerminal(i))}
                   className={`flex min-h-14 w-full items-center justify-between gap-4 rounded-lg px-5 text-left text-lg font-semibold ${focusRing} ${
                     isOpen ? "bg-[#1FA3D6] text-[#0A2740]" : "bg-[#12385A] text-white"
                   }`}

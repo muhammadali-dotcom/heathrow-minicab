@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ServiceJsonLd } from "@/components/JsonLd";
-import {
-  DetailCards,
-  NumberedStrip,
-  RouteBoard,
-  SplitChecklist,
-} from "@/components/services/ServiceBlocks";
-import {
-  ClosingCta,
-  Section,
-  TransfersHero,
-  textLink,
-} from "@/components/transfers/TransferBlocks";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
+import { DetailCards, NumberedStrip, SplitChecklist } from "@/components/services/ServiceBlocks";
+import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
@@ -21,69 +10,58 @@ const service = findService("airport-to-airport-transfers");
 const path = `/services/${service.slug}`;
 
 const AIRPORTS = [
-  { code: "LGW", name: "Gatwick" },
-  { code: "STN", name: "Stansted" },
-  { code: "LTN", name: "Luton" },
-  { code: "LCY", name: "London City" },
+  { code: "LGW", name: "Gatwick Airport" },
+  { code: "STN", name: "Stansted Airport" },
+  { code: "LTN", name: "Luton Airport" },
+  { code: "LCY", name: "London City Airport" },
 ];
 
-function AirportConnectionIllustration() {
+function AirportConnections() {
   return (
-    <div className="mt-8 rounded-xl border border-white/10 bg-[#12385A] p-5 text-white shadow-sm">
-      <div className="grid items-center gap-4 sm:grid-cols-[1fr_auto_1fr]">
-        <div className="rounded-lg bg-white/8 p-4">
-          <p className="font-mono text-2xl font-bold tracking-wider text-[#4FB8E0]">LHR</p>
-          <p className="mt-1 text-sm font-semibold">Heathrow</p>
-          <div className="mt-3 h-10 rounded-md border border-white/20 bg-white/10">
-            <div className="mx-auto mt-2 h-2 w-14 rounded-full bg-white/35" />
-            <div className="mx-auto mt-2 h-2 w-20 rounded-full bg-white/20" />
-          </div>
-        </div>
-
-        <div
-          aria-hidden="true"
-          className="flex items-center justify-center gap-2 text-[#4FB8E0] sm:min-w-32"
+    <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {AIRPORTS.map((airport) => (
+        <li
+          key={airport.code}
+          className="flex h-full flex-col rounded-xl border border-white/10 bg-[#12385A] p-5 text-white"
         >
-          <span className="h-0.5 w-12 rounded-full bg-current sm:w-16" />
-          <svg
-            viewBox="0 0 24 24"
-            className="h-7 w-7 shrink-0 fill-none stroke-current"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 12h18" />
-            <path d="m15 6 6 6-6 6" />
-          </svg>
-          <span className="h-0.5 w-12 rounded-full bg-current sm:w-16" />
-        </div>
-
-        <div className="rounded-lg bg-white/8 p-4">
-          <p className="font-mono text-2xl font-bold tracking-wider text-[#4FB8E0]">
-            LGW · STN · LTN · LCY
-          </p>
-          <p className="mt-1 text-sm font-semibold">Your next airport</p>
-          <div className="mt-3 grid grid-cols-4 gap-1.5">
-            {[0, 1, 2, 3].map((item) => (
-              <span key={item} className="h-10 rounded-md border border-white/20 bg-white/10" />
-            ))}
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-white/75">Heathrow</p>
+              <p className="font-mono text-xl font-bold tracking-wider text-[#4FB8E0]">LHR</p>
+            </div>
+            <span aria-hidden="true" className="text-2xl font-semibold text-[#4FB8E0]">
+              ⇄
+            </span>
+            <div className="text-right">
+              <p className="text-sm font-semibold text-white/75">{airport.name}</p>
+              <p className="font-mono text-xl font-bold tracking-wider text-[#4FB8E0]">
+                {airport.code}
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+          <p className="mt-4 border-t border-white/10 pt-4 text-base font-semibold">
+            Heathrow to {airport.name.replace(" Airport", "")}
+          </p>
+          <p className="mt-1 text-sm text-white/75">Available in either direction.</p>
+        </li>
+      ))}
+    </ul>
   );
 }
 
-export const metadata: Metadata = pageMetadata({
+const seo = {
   title: "Heathrow to Gatwick, Stansted, Luton & City Transfers",
   description:
     "Airport-to-airport transfers between Heathrow and Gatwick, Stansted, Luton or London City, planned around both of your flights.",
   path,
-});
+};
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Airport-to-airport transfers"
         serviceType="Airport transfer"
@@ -101,15 +79,7 @@ export default function Page() {
       />
 
       <Section tone="navy" id="routes" title="Which airports are you travelling between?">
-        <AirportConnectionIllustration />
-        <RouteBoard
-          routes={AIRPORTS.map((airport) => ({
-            from: "LHR",
-            to: airport.code,
-            name: `Heathrow and ${airport.name}`,
-            note: `Heathrow → ${airport.name} · ${airport.name} → Heathrow`,
-          }))}
-        />
+        <AirportConnections />
       </Section>
 
       <Section
@@ -121,7 +91,7 @@ export default function Page() {
         <DetailCards
           items={[
             {
-              label: "Immigration",
+              label: "Passport control",
               hint: "Allow time for passport control at your arrival airport.",
             },
             {
@@ -135,19 +105,20 @@ export default function Page() {
             },
           ]}
         />
+        <p className="mt-6 max-w-[46rem] rounded-xl border border-[#D5E8F2] bg-white p-5 leading-relaxed text-[#0A2740]/80">
+          Allow enough time between flights. Road traffic and airport processing times can vary, so
+          we cannot guarantee your connection.
+        </p>
       </Section>
 
       <Section tone="white" id="how-it-works" title="From arrivals to your next airport">
         <NumberedStrip
           items={[
-            "Meet your driver at the confirmed point",
-            "Travel directly by road",
+            "Meet your driver at the confirmed pickup point",
+            "Travel to your next airport",
             "Arrive at your departure terminal",
           ]}
         />
-        <Link href="/airport-transfers/heathrow-pickups" className={`${textLink} mt-6`}>
-          Read the pickup guide <span aria-hidden="true">→</span>
-        </Link>
       </Section>
 
       <Section tone="pale" id="booking-checklist" title="Have both flight details ready">
@@ -163,7 +134,11 @@ export default function Page() {
             },
             {
               title: "Passengers & luggage",
-              items: ["Number of passengers", "Large suitcases and small bags", "A mobile number"],
+              items: [
+                "Number of passengers",
+                "Large suitcases and small bags",
+                "A reachable mobile number",
+              ],
             },
           ]}
         />
@@ -171,9 +146,9 @@ export default function Page() {
 
       <ClosingCta
         tone="photo"
-        title="Let’s plan your airport connection"
-        text="Share both flights and we’ll help arrange the transfer."
-        buttonLabel="Call to Book"
+        title="Plan your airport connection"
+        text="Share both flight details and we’ll help arrange your transfer."
+        buttonLabel="Call Us"
         whatsapp="Hi, I’d like to arrange a transfer between Heathrow and another airport."
       />
     </>

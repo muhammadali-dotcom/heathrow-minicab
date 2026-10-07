@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
 import Faqs from "@/components/Faqs";
+import { WebPageJsonLd } from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Heathrow Minicab FAQs | Delays, Waiting & Payment",
-    description:
-      "Answers about flight delays, meeting your driver at Heathrow, waiting charges, payment and changing your booking.",
-    path: "/faqs",
-  }),
+const seo = {
+  title: "Heathrow Minicab FAQs | Delays, Waiting & Payment",
+  description:
+    "Answers about Heathrow pickups and drop-offs: flight delays, meeting your driver, waiting, prices, child seats, vehicles, areas and payment.",
+  path: "/faqs",
 };
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <PageBanner image="t3" crumb="FAQs" eyebrow="FAQs" title="Questions before you book" />
-      <Faqs showHeader={false} />
+      <Faqs showHeader={false} withSchema />
     </>
   );
 }

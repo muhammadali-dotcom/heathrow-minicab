@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { absoluteUrl } from "@/lib/seo";
+import { AREAS } from "@/lib/areas";
+import { CONTENT_UPDATED, absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 
 // Indexable pages only.
@@ -12,6 +13,11 @@ const ENTRIES: Entry[] = [
   { path: "/airport-transfers/heathrow-drop-offs", priority: 0.9, changeFrequency: "monthly" },
   { path: "/airport-transfers/terminal-guides", priority: 0.9, changeFrequency: "monthly" },
   { path: "/areas", priority: 0.8, changeFrequency: "monthly" },
+  ...AREAS.map((area) => ({
+    path: `/areas/${area.slug}`,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
   ...SERVICES.map((service) => ({
     path: `/services/${service.slug}`,
     priority: 0.8,
@@ -24,7 +30,7 @@ const ENTRIES: Entry[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const lastModified = new Date(CONTENT_UPDATED);
   return ENTRIES.map(({ path, priority, changeFrequency }) => ({
     url: absoluteUrl(path),
     lastModified,

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { PICKUP_FAQS } from "@/lib/faqs";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import {
@@ -16,18 +18,19 @@ import {
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Heathrow Airport Pickups | Meet & Greet Minicab",
-    description:
-      "Heathrow airport pickup with a name board in arrivals. We monitor your flight, and 15 minutes’ free waiting starts at your agreed pickup time.",
-    path: "/airport-transfers/heathrow-pickups",
-  }),
+const seo = {
+  title: "Heathrow Airport Pickups | Meet & Greet Minicab",
+  description:
+    "Heathrow airport pickup with a name board in arrivals. We monitor your flight, and 15 minutes’ free waiting starts at your agreed pickup time.",
+  path: "/airport-transfers/heathrow-pickups",
 };
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Heathrow airport pickups"
         serviceType="Airport pickup"
@@ -170,6 +173,11 @@ export default function Page() {
           ]}
         />
       </Section>
+      <PageFaqs
+        items={PICKUP_FAQS}
+        tone="pale"
+        summary="A Heathrow pickup is a pre-booked minicab from arrivals: your driver meets you inside the arrivals hall with a name board or at an agreed point, monitors your flight and includes 15 minutes’ free waiting."
+      />
     </>
   );
 }

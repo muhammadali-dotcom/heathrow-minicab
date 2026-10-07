@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { BUSINESS_FAQS } from "@/lib/faqs";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import {
   ComparisonTable,
   DetailCards,
@@ -21,16 +23,19 @@ const service = findService("executive-business-travel");
 const path = `/services/${service.slug}`;
 const cars = ["saloon", "executive"].map((id) => VEHICLES.find((v) => v.id === id)!);
 
-export const metadata: Metadata = pageMetadata({
+const seo = {
   title: "Executive & Business Heathrow Transfers | Heathrow Minicab",
   description:
     "Business airport transfers between Heathrow and offices, hotels and meeting venues, in a standard or executive car. Book returns together.",
   path,
-});
+};
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Executive and business Heathrow transfers"
         serviceType="Airport transfer"
@@ -137,6 +142,12 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <PageFaqs
+        items={BUSINESS_FAQS}
+        tone="white"
+        summary="Business Heathrow transfers take you or your guests between Heathrow and offices, hotels and meeting venues, in a standard car or an executive Mercedes E-Class or similar."
+      />
 
       <ClosingCta
         tone="photo"

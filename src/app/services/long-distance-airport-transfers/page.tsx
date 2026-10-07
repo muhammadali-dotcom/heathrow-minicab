@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { LONG_DISTANCE_FAQS } from "@/lib/faqs";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import {
   DetailCards,
   MessagePreview,
@@ -14,16 +16,19 @@ import { BOOK_ONLINE_HREF } from "@/lib/site";
 const service = findService("long-distance-airport-transfers");
 const path = `/services/${service.slug}`;
 
-export const metadata: Metadata = pageMetadata({
-  title: "Long-Distance Heathrow Transfers | South East, Oxford & Cambridge",
+const seo = {
+  title: "Long-Distance Heathrow Transfers | Heathrow Minicab",
   description:
     "Long-distance Heathrow airport transfers to and from Brighton, Southampton, Portsmouth, Kent, Surrey, Sussex, Oxford and Cambridge.",
   path,
-});
+};
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Long-distance Heathrow airport transfers"
         serviceType="Airport transfer"
@@ -127,6 +132,12 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <PageFaqs
+        items={LONG_DISTANCE_FAQS}
+        tone="white"
+        summary="Long-distance Heathrow transfers cover journeys beyond London, such as the South East, Oxford and Cambridge, at a fare fixed when confirmed."
+      />
 
       <ClosingCta
         tone="photo"

@@ -4,17 +4,20 @@ import { ctaButtonClass } from "@/components/BookingCta";
 import PhoneIcon from "@/components/PhoneIcon";
 import { FeatureGrid, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { SECTION_CONTAINER } from "@/lib/layout";
+import { WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { PRIMARY_PHONE } from "@/lib/site";
 
 // Facts here are limited to confirmed service details: no founding date, location, history,
 // figures or credentials, and the parent company isn't named.
-export const metadata: Metadata = pageMetadata({
+const seo = {
   title: "About Heathrow Minicab | Heathrow Airport Transfers",
   description:
-    "Heathrow Minicab is a 24/7 Heathrow airport transfer service. Get to know the care behind your airport journey.",
+    "Heathrow Minicab is a local 24/7 private hire service for Heathrow airport transfers from North and West London, to and from Terminals 2, 3, 4 and 5.",
   path: "/about",
-});
+};
+
+export const metadata: Metadata = pageMetadata(seo);
 
 const focusWhite =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
@@ -22,6 +25,7 @@ const focusWhite =
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} type="AboutPage" />
       <TransfersHero
         crumbs={[{ label: "About Us" }]}
         eyebrow="About Heathrow Minicab"
@@ -43,9 +47,9 @@ export default function Page() {
           Heathrow Minicab is a local private hire service for North and West London, running 24/7
           to and from Heathrow Terminals 2, 3, 4 and 5. Book online, by phone or on WhatsApp. We
           collect you from your door or meet you in arrivals, and plan each journey around your
-          flight and terminal. We also arrange
-          hotel transfers, airport-to-airport connections, long-distance journeys, business travel
-          and family trips, in saloon, estate, MPV and executive cars.
+          flight and terminal. We also arrange hotel transfers, airport-to-airport connections,
+          long-distance journeys, business travel and family trips, in saloon, estate, MPV and
+          executive cars.
         </p>
       </Section>
 

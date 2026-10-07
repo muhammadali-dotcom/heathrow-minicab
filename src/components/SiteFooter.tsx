@@ -5,10 +5,12 @@ import PlaneIcon from "@/components/PlaneIcon";
 import Wordmark from "@/components/Wordmark";
 import {
   ALT_PHONE,
+  BUSINESS_EMAIL,
   COMPANY_LINKS,
   NAV,
   PRIMARY_PHONE,
   SITE_NAME,
+  TFL_LICENCE,
   type NavLink,
 } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
@@ -63,7 +65,7 @@ export default function SiteFooter() {
     <footer className="bg-[#0A2740] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
       {/* Airport Transfers and individual service pages end with their own closing CTA, so the
           band is skipped there; so is About, which ends with its own contact panel. */}
-      <HideOnPaths prefixes={["/airport-transfers", "/services/", "/about"]}>
+      <HideOnPaths prefixes={["/airport-transfers", "/services/", "/areas/", "/about"]}>
         <CtaBand />
       </HideOnPaths>
 
@@ -74,7 +76,7 @@ export default function SiteFooter() {
             <p className="mt-4 leading-relaxed text-white/80">
               Heathrow airport transfers, from your doorstep to departures—and arrivals to home.
             </p>
-            <ul aria-label="Call us" className="mt-4">
+            <ul aria-label="Contact us" className="mt-4">
               {footerNumbers.map(({ phone, label }) => (
                 <li key={phone.tel} className="text-sm text-white/70">
                   {label}{" "}
@@ -86,7 +88,21 @@ export default function SiteFooter() {
                   </a>
                 </li>
               ))}
+              <li className="text-sm text-white/70">
+                Email{" "}
+                <a
+                  href={`mailto:${BUSINESS_EMAIL}`}
+                  className={`inline-flex min-h-11 items-center font-semibold break-all text-white ${whiteLink}`}
+                >
+                  {BUSINESS_EMAIL}
+                </a>
+              </li>
             </ul>
+            {/* Same name, numbers, email and hours on every page, matching the business schema. */}
+            <p className="mt-2 text-sm font-semibold text-white">Open 24/7, every day</p>
+            <p className="mt-1 text-sm text-white/70">
+              Serving North and West London and Heathrow Terminals 2–5
+            </p>
           </div>
 
           <nav aria-label="Footer" className="grid gap-x-6 gap-y-8 sm:grid-cols-3">
@@ -119,6 +135,8 @@ export default function SiteFooter() {
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-white/80 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {SITE_NAME}
+            {TFL_LICENCE &&
+              ` · Operated by ${TFL_LICENCE.operator}, TfL private hire operator licence ${TFL_LICENCE.number}`}
           </p>
           <ul className="flex flex-wrap items-center gap-x-6">
             <li>

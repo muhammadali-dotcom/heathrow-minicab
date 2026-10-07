@@ -176,6 +176,19 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 
 ## 10. 90-day checklist
 
+**Done in code (2026-10-07)**
+- [x] vercel.app hosts send `X-Robots-Tag: noindex` (`next.config.ts`), so only heathrowminicab.uk is indexed.
+- [x] Business schema: email, slogan, knowsAbout, offer catalogue, Book Online action; `sameAs` and licence fill in from `src/lib/site.ts` once set.
+- [x] WebPage schema with dateModified and speakable on every page; Service schema with 24/7 hours and booking channels.
+- [x] Key facts block on the homepage and /airport-transfers; footer shows phones, email and hours on every page.
+- [x] Page-specific FAQs (with FAQPage schema) on every transfer, service, vehicles and areas page; /faqs groups every question.
+- [x] 16 area pages (`/areas/[slug]`), linked from /areas and listed in the sitemap and llms.txt.
+- [x] /llms.txt expanded and /llms-full.txt added (every question and answer).
+
+**Before deploying these changes**
+- [ ] Connect heathrowminicab.uk to the Vercel project (Settings → Domains), with www redirecting to the main address. Until it's connected, the vercel.app address is marked noindex and the canonical domain shows an empty page.
+- [ ] After deploying, run the audit and Google's Rich Results Test on https://heathrowminicab.uk (homepage, /faqs and one area page).
+
 **Weeks 1–2**
 - [ ] Deploy the site on https://heathrowminicab.uk, with www redirecting to the main address.
 - [ ] Set up Search Console and submit the sitemap; set up Bing Webmaster Tools.
@@ -189,7 +202,7 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 - [ ] Write the About, Terms and Privacy pages, then remove their noindex.
 
 **Month 2**
-- [ ] Publish the first 3 area pages with real local detail.
+- [ ] Add real local detail to the first 3 area pages (landmarks, hotels, typical pickups) so they're more than templates.
 - [ ] Publish the first guide article.
 - [ ] Add 5 more directory listings.
 - [ ] Contact 5 local hotels or venues about partnership links.
@@ -207,7 +220,11 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 - Site address: `src/lib/seo.ts` (`SITE_URL`). Override it with the `NEXT_PUBLIC_SITE_URL` environment variable.
 - robots.txt: `src/app/robots.ts`.
 - Sitemap: `src/app/sitemap.ts`. Add new pages here.
-- AI fact sheet: `src/app/llms.txt/route.ts`.
-- Schema: `src/components/JsonLd.tsx` (business, website, service and breadcrumbs) and `src/components/Faqs.tsx` (FAQ).
+- AI fact sheets: `src/lib/llms.ts` builds `/llms.txt` and `/llms-full.txt`.
+- Confirmed key facts: `src/lib/facts.ts` (Key facts block, llms.txt, knowsAbout).
+- Profiles and licence: `SAME_AS` and `TFL_LICENCE` in `src/lib/site.ts`. Add your Google Business Profile and directory URLs to `SAME_AS` as they go live.
+- Content date: `CONTENT_UPDATED` in `src/lib/seo.ts` (page dateModified and sitemap). Bump it after meaningful content changes.
+- Schema: `src/components/JsonLd.tsx` (business, website, web page, service and breadcrumbs) and `src/components/FaqList.tsx` (FAQ).
+- FAQs: `src/lib/faqs.ts`, grouped by topic; `PageFaqs` shows a page's own group.
 - Page titles and descriptions: the `metadata` at the top of each `src/app/**/page.tsx`, using `pageMetadata()`.
-- Areas: `src/lib/areas.ts`.
+- Areas: `src/lib/areas.ts`; each area gets a page at `src/app/areas/[slug]/page.tsx`.

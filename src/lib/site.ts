@@ -40,6 +40,14 @@ export const ALT_PHONE: PhoneNumber = PHONE_NUMBERS[1];
 // Bittacy Cars' published address (bittacycars.com/contact), used until the brand has its own.
 export const BUSINESS_EMAIL = "bittacycs@hotmail.com";
 
+// Official profiles for the business (Google Business Profile, Bing Places, directories).
+// Each URL is added to the sitewide schema as sameAs, which helps search and AI engines
+// recognise the brand. Add them here as they're created.
+export const SAME_AS: string[] = [];
+
+// TfL private hire operator licence. Shown in the footer and schema once set.
+export const TFL_LICENCE: { number: string; operator: string } | null = null;
+
 export const WHATSAPP_URL = `https://wa.me/442083434444?text=${encodeURIComponent(
   "Hi, I'd like to book a Heathrow transfer.",
 )}`;

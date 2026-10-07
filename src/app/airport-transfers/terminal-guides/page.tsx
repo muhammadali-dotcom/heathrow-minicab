@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import PageFaqs from "@/components/PageFaqs";
+import { TERMINAL_FAQS } from "@/lib/faqs";
+import { WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
@@ -10,18 +13,19 @@ import {
 } from "@/components/transfers/TransferBlocks";
 import TerminalSelector from "@/components/transfers/TerminalSelector";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Heathrow Terminals 2, 3, 4 & 5 Guide for Transfers",
-    description:
-      "Arriving at or flying from Heathrow Terminal 2, 3, 4 or 5? Arrival and departure guidance and help meeting your minicab driver.",
-    path: "/airport-transfers/terminal-guides",
-  }),
+const seo = {
+  title: "Heathrow Terminals 2, 3, 4 & 5 Guide for Transfers",
+  description:
+    "Arriving at or flying from Heathrow Terminal 2, 3, 4 or 5? Arrival and departure guidance and help meeting your minicab driver.",
+  path: "/airport-transfers/terminal-guides",
 };
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <TransfersHero
         crumbs={[
           { href: "/airport-transfers", label: "Airport Transfers" },
@@ -87,6 +91,11 @@ export default function Page() {
           whatsappLabel="WhatsApp Us"
         />
       </Section>
+      <PageFaqs
+        items={TERMINAL_FAQS}
+        tone="pale"
+        summary="Heathrow Minicab covers all four Heathrow passenger terminals (2, 3, 4 and 5) for arrivals and departures, with your meeting point confirmed for your terminal when you book."
+      />
     </>
   );
 }

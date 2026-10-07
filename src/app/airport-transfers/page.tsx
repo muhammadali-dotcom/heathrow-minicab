@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { PRICING_FAQS } from "@/lib/faqs";
+import QuickFacts from "@/components/QuickFacts";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
   BulletList,
@@ -12,14 +15,14 @@ import {
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Heathrow Airport Transfers | Pickups & Drop-offs",
-    description:
-      "Book a Heathrow airport transfer to or from Terminals 2–5. Fixed price once confirmed, 15 minutes’ free waiting and child seats at no extra cost.",
-    path: "/airport-transfers",
-  }),
+const seo = {
+  title: "Heathrow Airport Transfers | Pickups & Drop-offs",
+  description:
+    "Book a Heathrow airport transfer to or from Terminals 2–5. Fixed price once confirmed, 15 minutes’ free waiting and child seats at no extra cost.",
+  path: "/airport-transfers",
 };
+
+export const metadata: Metadata = pageMetadata(seo);
 
 const pricingPoints = [
   {
@@ -60,11 +63,7 @@ function PricingIcon({
   };
 
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 48 48"
-      className={`fill-none stroke-current ${className}`}
-    >
+    <svg aria-hidden="true" viewBox="0 0 48 48" className={`fill-none stroke-current ${className}`}>
       {name === "receipt" && (
         <>
           <path
@@ -174,6 +173,7 @@ function PricingSection() {
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Heathrow airport transfers"
         serviceType="Airport transfer"
@@ -194,6 +194,8 @@ export default function Page() {
           alt: "Driver helping a traveller with luggage beside a navy car outside an airport terminal.",
         }}
       />
+
+      <QuickFacts />
 
       <Section
         tone="navy"
@@ -293,6 +295,12 @@ export default function Page() {
       </Section>
 
       <PricingSection />
+
+      <PageFaqs
+        items={PRICING_FAQS}
+        tone="white"
+        summary="Heathrow Minicab provides 24/7 pre-booked minicab transfers to and from Heathrow Terminals 2, 3, 4 and 5 for North and West London, with a fixed price once confirmed."
+      />
 
       <ClosingCta
         tone="photo"

@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Only the canonical domain (heathrowminicab.uk) should be indexed; keep the vercel.app
+  // deployment URLs out of search results so they can't compete with it.
+  headers() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(?<sub>.*)\\.vercel\\.app" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+    ];
+  },
   // The per-terminal pages were merged into the Terminal Guides directory.
   redirects() {
     return [

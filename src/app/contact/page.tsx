@@ -11,6 +11,7 @@ import {
   Section,
   TransfersHero,
 } from "@/components/transfers/TransferBlocks";
+import { WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
   ALT_PHONE,
@@ -21,14 +22,14 @@ import {
 } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Contact Heathrow Minicab | Call 020 8343 4444",
-    description:
-      "Call 020 8343 4444 or 020 8569 4040, or message us on WhatsApp, to book or ask about a Heathrow airport transfer. Available 24/7.",
-    path: "/contact",
-  }),
+const seo = {
+  title: "Contact Heathrow Minicab | Call 020 8343 4444",
+  description:
+    "Call 020 8343 4444 or 020 8569 4040, or message us on WhatsApp, to book or ask about a Heathrow airport transfer. Available 24/7.",
+  path: "/contact",
 };
+
+export const metadata: Metadata = pageMetadata(seo);
 
 const sizing =
   "mt-4 min-h-11 w-full px-4 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]";
@@ -87,12 +88,7 @@ const ways: ContactWay[] = [
     icon: <WhatsAppIcon className="h-5 w-5" />,
     text: "Message us your journey details, day or night.",
     action: (
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={button}
-      >
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={button}>
         WhatsApp Us
         <WhatsAppIcon className={`h-4 w-4 ${whatsappIconClass}`} />
         <span className="sr-only">(opens in a new tab)</span>
@@ -122,6 +118,7 @@ const ways: ContactWay[] = [
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} type="ContactPage" />
       <TransfersHero
         crumbs={[{ label: "Contact" }]}
         eyebrow="Contact Us"

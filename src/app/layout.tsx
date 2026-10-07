@@ -5,7 +5,7 @@ import MobileCallBar from "@/components/MobileCallBar";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { SITE_URL, pageMetadata } from "@/lib/seo";
+import { HOME_SEO, SITE_URL, pageMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,20 +21,12 @@ const geistMono = Geist_Mono({
 // Defaults are the homepage's; every other page sets its own title, description and canonical.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  ...pageMetadata({
-    title: "Heathrow Minicab | Heathrow Airport Transfers 24/7",
-    description:
-      "Heathrow minicab and airport transfers from North and West London. Fixed prices once confirmed, flight monitoring and name-board meet in arrivals.",
-    path: "/",
-  }),
+  ...pageMetadata(HOME_SEO),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en-GB"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en-GB" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <SiteJsonLd />
         <SiteHeader />

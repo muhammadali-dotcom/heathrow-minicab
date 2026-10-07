@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { HOTEL_FAQS } from "@/lib/faqs";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { DetailCards, PathCards, RuleColumns } from "@/components/services/ServiceBlocks";
 import {
   Checklist,
@@ -14,16 +16,19 @@ import { BOOK_ONLINE_HREF } from "@/lib/site";
 const service = findService("airport-hotel-transfers");
 const path = `/services/${service.slug}`;
 
-export const metadata: Metadata = pageMetadata({
+const seo = {
   title: "Heathrow Hotel Transfers | Airport to Hotel & Back",
   description:
     "Transfers between Heathrow and hotels near the airport, in central London and across North and West London. Book your return at the same time.",
   path,
-});
+};
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Heathrow airport and hotel transfers"
         serviceType="Airport transfer"
@@ -115,6 +120,12 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <PageFaqs
+        items={HOTEL_FAQS}
+        tone="white"
+        summary="Heathrow hotel transfers run between Heathrow and hotels near the airport, in central London and across North and West London, in either direction, with returns bookable together."
+      />
 
       <ClosingCta
         tone="photo"

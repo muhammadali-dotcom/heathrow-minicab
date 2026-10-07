@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { DROPOFF_FAQS } from "@/lib/faqs";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
@@ -16,18 +18,19 @@ import {
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: "Minicab to Heathrow | Heathrow Airport Drop-offs",
-    description:
-      "Door-to-terminal minicab to Heathrow from North and West London, timed around your flight. Saloon, estate, MPV and executive cars.",
-    path: "/airport-transfers/heathrow-drop-offs",
-  }),
+const seo = {
+  title: "Minicab to Heathrow | Heathrow Airport Drop-offs",
+  description:
+    "Door-to-terminal minicab to Heathrow from North and West London, timed around your flight. Saloon, estate, MPV and executive cars.",
+  path: "/airport-transfers/heathrow-drop-offs",
 };
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Heathrow airport drop-offs"
         serviceType="Airport drop-off"
@@ -163,6 +166,12 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <PageFaqs
+        items={DROPOFF_FAQS}
+        tone="pale"
+        summary="A Heathrow drop-off is a pre-booked minicab from your door to your departure terminal, with a collection time planned around your flight, available 24/7."
+      />
 
       <ClosingCta
         tone="photo"

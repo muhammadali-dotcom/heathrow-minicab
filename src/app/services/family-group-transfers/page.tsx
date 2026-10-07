@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { ServiceJsonLd } from "@/components/JsonLd";
+import PageFaqs from "@/components/PageFaqs";
+import { FAMILY_FAQS } from "@/lib/faqs";
+import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { ComparisonTable, DetailCards, PathCards } from "@/components/services/ServiceBlocks";
 import {
   Checklist,
@@ -22,16 +24,19 @@ const GOOD_FOR: Record<string, string> = {
   executive: "A more comfortable ride",
 };
 
-export const metadata: Metadata = pageMetadata({
+const seo = {
   title: "Family & Group Heathrow Transfers | Heathrow Minicab",
   description:
     "Heathrow transfers for families and groups, with MPVs for up to 6 passengers, room for luggage and child seats on request at no extra cost.",
   path,
-});
+};
+
+export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
   return (
     <>
+      <WebPageJsonLd {...seo} />
       <ServiceJsonLd
         name="Family and group Heathrow transfers"
         serviceType="Airport transfer"
@@ -127,6 +132,12 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <PageFaqs
+        items={FAMILY_FAQS}
+        tone="white"
+        summary="Family and group Heathrow transfers carry up to 6 passengers in an MPV with room for luggage, with child seats on request at no extra cost and extra stops included in your quote."
+      />
 
       <ClosingCta
         tone="photo"
