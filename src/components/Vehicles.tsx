@@ -39,10 +39,10 @@ export default function Vehicles({ showHeader = true }: VehiclesProps) {
     >
       <div className={SECTION_CONTAINER}>
         {showHeader && (
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl">
             <span
               aria-hidden="true"
-              className="mx-auto mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
+              className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
             />
             <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
               OUR VEHICLES
@@ -94,7 +94,7 @@ export default function Vehicles({ showHeader = true }: VehiclesProps) {
           ))}
         </ul>
 
-        <div className="mx-auto mt-10 max-w-[62ch] text-center">
+        <div className="mt-10 max-w-[62ch]">
           <p className="text-[#0A2740]/80">
             Large suitcases means standard checked luggage; small bags means cabin bags or hand
             luggage. Tell us your passenger numbers, luggage and any bulky items so we can help you

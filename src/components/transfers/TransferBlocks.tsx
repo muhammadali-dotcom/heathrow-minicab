@@ -258,10 +258,26 @@ export function RouteCard({
 }
 
 export type FeatureIconName =
-  "plane" | "board" | "clock" | "seat" | "car" | "allday" | "home" | "luggage" | "chat" | "people";
+  | "plane"
+  | "board"
+  | "clock"
+  | "seat"
+  | "car"
+  | "allday"
+  | "home"
+  | "luggage"
+  | "chat"
+  | "people"
+  | "tag";
 
 // Simple 24x24 line icons for the feature cards; the plane reuses the site's PlaneIcon.
 const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
+  tag: (
+    <>
+      <path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7a1.5 1.5 0 0 1 1.06.44l7.3 7.3a1.5 1.5 0 0 1 0 2.12l-7.7 7.7a1.5 1.5 0 0 1-2.12 0l-7.3-7.3A1.5 1.5 0 0 1 3 12.2Z" />
+      <circle cx="8" cy="8" r="1.5" />
+    </>
+  ),
   board: (
     <>
       <rect x="3" y="5" width="18" height="11" rx="1.5" />
@@ -391,7 +407,7 @@ export function FeatureGrid({
 }
 
 // Booking checklist: ticked items on a white card, 1 / 2 columns.
-// Navy tick in a brand-blue circle, used by the checklist and the quote receipt.
+// Navy tick in a brand-blue circle, used by the checklist.
 function TickBadge() {
   return (
     <span
@@ -421,39 +437,6 @@ export function Checklist({ items }: { items: string[] }) {
               <TickBadge />
             </span>
             {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-// Pricing explainer card: navy header strip, then ticked points in plain words (no prices).
-export function QuoteReceipt({
-  title,
-  points,
-}: {
-  title: string;
-  points: { title: string; text: string }[];
-}) {
-  return (
-    <div className="mx-auto w-full max-w-[28rem] overflow-hidden rounded-xl border border-[#D5E8F2] bg-white">
-      <div className="flex items-center justify-between gap-3 bg-[#0A2740] px-6 py-4">
-        <p className="text-xs font-bold tracking-[0.15em] text-white uppercase">{title}</p>
-        <span className="text-[#4FB8E0]">
-          <PlaneIcon className="h-5 w-5" />
-        </span>
-      </div>
-      <ul className="divide-y divide-[#D5E8F2] px-6">
-        {points.map((point) => (
-          <li key={point.title} className="flex gap-3 py-4">
-            <span className="mt-0.5">
-              <TickBadge />
-            </span>
-            <div>
-              <p className="font-semibold text-[#0A2740]">{point.title}</p>
-              <p className="mt-0.5 leading-relaxed text-[#0A2740]/80">{point.text}</p>
-            </div>
           </li>
         ))}
       </ul>

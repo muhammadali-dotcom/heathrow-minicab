@@ -24,10 +24,10 @@ export default function Faqs({ showHeader = true, withSchema = false }: FaqsProp
     >
       <div className={SECTION_CONTAINER}>
         {showHeader && (
-          <div className="text-center">
+          <div className="max-w-2xl">
             <span
               aria-hidden="true"
-              className="mx-auto mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
+              className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
             />
             <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">FAQS</p>
             <h2
@@ -43,7 +43,7 @@ export default function Faqs({ showHeader = true, withSchema = false }: FaqsProp
           <FaqAccordion items={FAQS} />
         </div>
         {showHeader && (
-          <p className="mt-8 text-center">
+          <p className="mt-8">
             <Link
               href="/faqs"
               className="inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-[#0A2740] underline decoration-[#1FA3D6] decoration-2 underline-offset-4 hover:decoration-[#0A2740] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]"

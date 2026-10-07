@@ -55,10 +55,10 @@ export default function HeathrowTerminals() {
   return (
     <section aria-labelledby="terminals-heading" className="bg-[#0A2740] py-16 md:py-24">
       <div className={SECTION_CONTAINER}>
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl">
           <span
             aria-hidden="true"
-            className="mx-auto mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
+            className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
           />
           <p className="text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase">
             HEATHROW TERMINALS
@@ -69,7 +69,7 @@ export default function HeathrowTerminals() {
           >
             Every Heathrow terminal, covered.
           </h2>
-          <p className="mx-auto mt-4 max-w-[35rem] text-lg leading-relaxed text-white/85">
+          <p className="mt-4 max-w-[35rem] text-lg leading-relaxed text-white/85">
             Departing or arriving at Terminal 2, 3, 4 or 5? Tell us your terminal when you book
             and we’ll plan your drop-off or pickup around it.
           </p>
@@ -115,7 +115,7 @@ export default function HeathrowTerminals() {
           ))}
         </ul>
 
-        <p className="mt-10 text-center text-sm text-white/70">
+        <p className="mt-10 text-sm text-white/70">
           Not sure which terminal? Check with your airline before you travel, as terminals can
           change.
         </p>

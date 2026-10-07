@@ -23,7 +23,6 @@ export const ctaButtonClass = `${ctaShape} bg-[#1FA3D6] text-[#0A2740] hover:bg-
 export const callButtonLight = `${ctaShape} border-2 border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
 export const callButtonDark = `${ctaShape} border-2 border-white text-white hover:bg-white/10`;
 export const whatsappButtonLight = `${ctaShape} border border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
-export const whatsappButtonDark = `${ctaShape} border border-white text-white hover:bg-white/10`;
 export const whatsappIconClass = "text-[#25D366]";
 // The desktop header's Book Online is navy with white text (about 14:1) so it stands out on white.
 const headerButtonClass = `${ctaShape} bg-[#0A2740] text-white hover:bg-[#12385A]`;

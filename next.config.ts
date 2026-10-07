@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // AVIF for browsers that support it (about 20% smaller than WebP), WebP otherwise; optimised
+  // images are cached for 7 days instead of the 4-hour default.
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 604800,
+  },
   // Only the canonical domain (heathrowminicab.uk) should be indexed; keep the vercel.app
   // deployment URLs out of search results so they can't compete with it.
   headers() {

@@ -46,10 +46,10 @@ export default function HowToBook() {
   return (
     <section aria-labelledby="how-to-book-heading" className="bg-[#E6F6FC] py-16 md:py-24">
       <div className={SECTION_CONTAINER}>
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl">
           <span
             aria-hidden="true"
-            className="mx-auto mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
+            className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
           />
           <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
             HOW TO BOOK
@@ -82,7 +82,7 @@ export default function HowToBook() {
         </div>
 
         <div className="mt-12 md:mt-16">
-          <BookingCta align="center" />
+          <BookingCta />
         </div>
       </div>
     </section>

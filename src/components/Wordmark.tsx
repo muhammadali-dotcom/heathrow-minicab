@@ -6,8 +6,7 @@ type WordmarkProps = {
   inverted?: boolean; // white "Heathrow" for navy backgrounds
 };
 
-// Site logo, linking home. Assets are trimmed, transparent versions of the
-// supplied logo (public/images/Elegant Heathrow Minicab car-to-plane logo.png).
+// Site logo, linking home. Assets are trimmed, transparent versions of the supplied logo.
 export default function Wordmark({ inverted = false }: WordmarkProps) {
   return (
     <Link

@@ -133,31 +133,6 @@ export function ComparisonTable({
   );
 }
 
-// Airport-departures-board rows: IATA codes in mono, airport name, direction.
-export function RouteBoard({
-  routes,
-}: {
-  routes: { from: string; to: string; name: string; note: string }[];
-}) {
-  return (
-    <ul className="mt-8 overflow-hidden rounded-xl bg-[#0A2740] in-data-[tone=navy]:border in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A]">
-      {routes.map((route) => (
-        <li
-          key={route.to}
-          className="grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-1 border-b border-white/10 px-6 py-5 last:border-b-0 sm:grid-cols-[10rem_1fr_auto]"
-        >
-          <span className="font-mono text-xl font-bold tracking-wider text-[#4FB8E0]">
-            {route.from} <span aria-hidden="true">⇄</span>
-            <span className="sr-only">to and from</span> {route.to}
-          </span>
-          <span className="text-lg font-semibold text-white">{route.name}</span>
-          <span className="col-start-2 text-sm text-white/70 sm:col-start-auto">{route.note}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 // Region headings with destination chips.
 export function RegionChips({ regions }: { regions: { name: string; places: string[] }[] }) {
   return (
