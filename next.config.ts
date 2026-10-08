@@ -49,12 +49,6 @@ const nextConfig: NextConfig = {
         destination: "https://www.bittacycars.com/booking",
         permanent: false,
       },
-      // The Services overview was removed; the menu opens the service pages directly.
-      {
-        source: "/services",
-        destination: "/services/family-group-transfers",
-        permanent: true,
-      },
       // Renamed service page.
       {
         source: "/services/business-airport-travel",

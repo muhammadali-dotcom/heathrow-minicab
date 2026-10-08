@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
+import ServiceAreas from "@/components/services/ServiceAreas";
 import { BUSINESS_FAQS } from "@/lib/faqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import {
@@ -43,7 +44,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ label: "Services" }, { label: service.title }]}
+        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         title="Your next meeting"
         titleAccent="starts with a good journey."
         intro="From Heathrow to your office, hotel or meeting, with a comfortable ride planned around your day."
@@ -147,6 +148,8 @@ export default function Page() {
         tone="white"
         summary="Business Heathrow transfers take you or your guests between Heathrow and offices, hotels and meeting venues, in a standard car or an executive Mercedes E-Class or similar."
       />
+
+      <ServiceAreas tone="pale" />
 
       <ClosingCta
         tone="photo"

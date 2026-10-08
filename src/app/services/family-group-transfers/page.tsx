@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
+import ServiceAreas from "@/components/services/ServiceAreas";
 import { FAMILY_FAQS } from "@/lib/faqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { DetailCards, PathCards } from "@/components/services/ServiceBlocks";
@@ -46,7 +47,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ label: "Services" }, { label: service.title }]}
+        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         title="Your holiday"
         titleAccent="starts with the right vehicle"
         intro="Bring the family, friends and bags. We’ll help you choose a suitable vehicle for your airport journey."
@@ -123,9 +124,11 @@ export default function Page() {
         />
       </Section>
 
+      <ServiceAreas tone="white" />
+
       <PageFaqs
         items={FAMILY_FAQS}
-        tone="white"
+        tone="pale"
         summary="Family and group Heathrow transfers carry up to 6 passengers in an MPV with room for luggage, with child seats on request at no extra cost and extra stops included in your quote."
       />
 

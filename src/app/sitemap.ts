@@ -13,6 +13,7 @@ const PATHS = [
   "/airport-transfers/terminal-guides",
   "/areas",
   ...AREAS.map((area) => `/areas/${area.slug}`),
+  "/services",
   ...SERVICES.map((service) => `/services/${service.slug}`),
   "/our-vehicles",
   "/about",

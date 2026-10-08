@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
+import ServiceAreas from "@/components/services/ServiceAreas";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { DetailCards, NumberedStrip, SplitChecklist } from "@/components/services/ServiceBlocks";
 import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
@@ -115,7 +116,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ label: "Services" }, { label: service.title }]}
+        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         title="Two airports."
         titleAccent="One easy ride."
         intro="Landing at one airport and flying from another? We’ll help arrange the journey between them."
@@ -246,6 +247,8 @@ export default function Page() {
         tone="pale"
         summary="Airport-to-airport transfers connect Heathrow with Gatwick, Stansted, Luton and London City in either direction, planned around both flight details but without guaranteed connection times."
       />
+
+      <ServiceAreas tone="white" />
 
       <ClosingCta
         tone="photo"

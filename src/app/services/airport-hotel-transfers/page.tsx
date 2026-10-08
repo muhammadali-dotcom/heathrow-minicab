@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
+import ServiceAreas from "@/components/services/ServiceAreas";
 import { HOTEL_FAQS } from "@/lib/faqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { DetailCards, PathCards, RuleColumns } from "@/components/services/ServiceBlocks";
@@ -36,7 +37,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ label: "Services" }, { label: service.title }]}
+        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         title="Bags packed?"
         titleAccent="Airport or hotel, we’ll take you."
         intro="Tell us your hotel and flight details. We’ll arrange the ride so you can focus on your stay."
@@ -125,6 +126,8 @@ export default function Page() {
         tone="white"
         summary="Heathrow hotel transfers run between Heathrow and hotels near the airport, in central London and across North and West London, in either direction, with returns bookable together."
       />
+
+      <ServiceAreas tone="pale" />
 
       <ClosingCta
         tone="photo"

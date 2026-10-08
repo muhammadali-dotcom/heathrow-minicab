@@ -28,6 +28,11 @@ export function JsonLd({ data }: { data: object }) {
 export const BUSINESS_ID = `${SITE_URL}/#business`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
+// Node id for something on one page, e.g. "/#webpage" or "/services/x#service". Keeps the
+// homepage's slash so its ids match the sitewide "/#business" and "/#website" pattern.
+const nodeId = (path: string, fragment: string) =>
+  `${SITE_URL}${path === "/" ? "/" : path}#${fragment}`;
+
 const ALL_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const OPEN_24_7 = {
@@ -148,6 +153,8 @@ export function ServiceJsonLd({
       data={{
         "@context": "https://schema.org",
         "@type": "Service",
+        "@id": nodeId(path, "service"),
+        mainEntityOfPage: { "@id": nodeId(path, "webpage") },
         name,
         serviceType,
         description,
@@ -231,7 +238,7 @@ export function WebPageJsonLd({
       data={{
         "@context": "https://schema.org",
         "@type": type,
-        "@id": `${absoluteUrl(path)}#webpage`,
+        "@id": nodeId(path, "webpage"),
         url: absoluteUrl(path),
         name: title,
         description,

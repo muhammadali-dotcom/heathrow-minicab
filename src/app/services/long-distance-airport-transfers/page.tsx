@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
+import ServiceAreas from "@/components/services/ServiceAreas";
 import { LONG_DISTANCE_FAQS } from "@/lib/faqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import {
@@ -36,7 +37,7 @@ export default function Page() {
         path={path}
       />
       <TransfersHero
-        crumbs={[{ label: "Services" }, { label: service.title }]}
+        crumbs={[{ href: "/services", label: "Services" }, { label: service.title }]}
         title="Land at Heathrow."
         titleAccent="Let us take you home."
         intro="Your flight is over. Sit back while we take you home, with your journey arranged before you land."
@@ -137,6 +138,8 @@ export default function Page() {
         tone="white"
         summary="Long-distance Heathrow transfers cover journeys beyond London, such as the South East, Oxford and Cambridge, at a fare fixed when confirmed."
       />
+
+      <ServiceAreas tone="pale" />
 
       <ClosingCta
         tone="photo"

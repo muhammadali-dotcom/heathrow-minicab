@@ -8,6 +8,8 @@ import { PRIMARY_PHONE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Page not found | Heathrow Minicab",
   robots: { index: false },
+  // Don't inherit the homepage canonical: a missing URL isn't a copy of the homepage.
+  alternates: { canonical: null },
 };
 
 const focusNavy =
