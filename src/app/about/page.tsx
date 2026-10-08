@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ctaButtonClass } from "@/components/BookingCta";
 import PhoneIcon from "@/components/PhoneIcon";
+import { DetailCards, SplitChecklist } from "@/components/services/ServiceBlocks";
 import { FeatureGrid, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { WebPageJsonLd } from "@/components/JsonLd";
@@ -67,6 +68,67 @@ export default function Page() {
               icon: "people",
               title: "Helpful people",
               text: "Our team helps you plan collection times, extra stops and return journeys around your flights, and answers your questions before you book.",
+            },
+          ]}
+        />
+      </Section>
+
+      <Section
+        tone="white"
+        id="what-we-help-with"
+        eyebrow="What we help with"
+        title="Airport transfer help for different journeys"
+        intro="Most bookings start with the same need: a clear plan for getting to or from Heathrow. We help with the details around that journey, not just the drive."
+      >
+        <DetailCards
+          items={[
+            {
+              label: "Heathrow pickups",
+              hint: "Meet your driver in arrivals with a name board or at the agreed pickup point confirmed with your booking.",
+              link: { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" },
+            },
+            {
+              label: "Heathrow drop-offs",
+              hint: "Plan a door-to-terminal journey around your flight time, terminal, passengers and luggage.",
+              link: { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" },
+            },
+            {
+              label: "Hotels and other airports",
+              hint: "Arrange transfers between Heathrow and hotels, Gatwick, Stansted, Luton or London City.",
+              link: {
+                href: "/services/airport-to-airport-transfers",
+                label: "Airport connections",
+              },
+            },
+            {
+              label: "Families, groups and business trips",
+              hint: "Choose saloon, estate, MPV or executive cars, with child seats available on request at no extra cost.",
+              link: { href: "/our-vehicles", label: "Vehicle guide" },
+            },
+          ]}
+        />
+      </Section>
+
+      <Section
+        tone="pale"
+        id="how-we-plan"
+        eyebrow="How we plan"
+        title="The details we check before you travel"
+        intro="A good airport transfer depends on the information being clear before the day, especially when flights, terminals or luggage change."
+      >
+        <SplitChecklist
+          groups={[
+            {
+              title: "Flight and terminal",
+              items: ["Flight number", "Heathrow terminal", "Arrival or departure time"],
+            },
+            {
+              title: "Passengers and luggage",
+              items: ["Number of passengers", "Large suitcases", "Small bags and bulky items"],
+            },
+            {
+              title: "Booking confirmation",
+              items: ["Pickup address or meeting point", "Reachable mobile number", "Return details, if needed"],
             },
           ]}
         />

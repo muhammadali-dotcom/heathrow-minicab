@@ -8,6 +8,7 @@ import {
   BulletList,
   ClosingCta,
   FeatureGrid,
+  JourneyFacts,
   RouteCard,
   Section,
   TransfersHero,
@@ -294,6 +295,16 @@ export default function Page() {
       </Section>
 
       <PricingSection />
+
+      <Section
+        tone="white"
+        id="journey-facts"
+        eyebrow="Before you book"
+        title="Clear answers about prices, times and terminals"
+        intro="These are the core journey facts to check before you book a Heathrow transfer."
+      >
+        <JourneyFacts />
+      </Section>
 
       <PageFaqs
         items={PRICING_FAQS}

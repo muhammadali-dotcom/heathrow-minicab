@@ -64,7 +64,7 @@ export function SiteJsonLd() {
             description: BUSINESS_SUMMARY,
             url: absoluteUrl("/"),
             logo: absoluteUrl("/images/logo.png"),
-            image: absoluteUrl("/images/airport-transfers-overview-hero.webp"),
+            image: absoluteUrl("/images/heathrow-hero.webp"),
             telephone: PRIMARY_PHONE.tel,
             // Base area only; no street address, as a service-area business.
             address: {
@@ -82,6 +82,7 @@ export function SiteJsonLd() {
               availableLanguage: "en",
             })),
             email: BUSINESS_EMAIL,
+            areaServed: AREA_SERVED,
             slogan: "Heathrow airport transfers, from your doorstep to departures.",
             knowsAbout: KNOWS_ABOUT,
             openingHoursSpecification: OPEN_24_7,
@@ -154,6 +155,14 @@ export function ServiceJsonLd({
         provider: { "@id": BUSINESS_ID },
         areaServed,
         hoursAvailable: OPEN_24_7,
+        category: "Airport transfer service",
+        serviceOutput: [
+          "Pre-booked Heathrow airport transfer",
+          "Confirmed pickup or drop-off arrangement",
+          "Fixed price once confirmed",
+          "Flight monitoring for Heathrow pickups",
+        ],
+        termsOfService: absoluteUrl("/terms"),
         availableChannel: [
           {
             "@type": "ServiceChannel",
@@ -164,6 +173,11 @@ export function ServiceJsonLd({
             "@type": "ServiceChannel",
             name: "Phone bookings",
             servicePhone: { "@type": "ContactPoint", telephone: PRIMARY_PHONE.tel },
+          },
+          {
+            "@type": "ServiceChannel",
+            name: "Email enquiries",
+            serviceUrl: `mailto:${BUSINESS_EMAIL}`,
           },
         ],
       }}

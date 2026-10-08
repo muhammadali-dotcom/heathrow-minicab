@@ -254,6 +254,78 @@ export function RouteCard({
   );
 }
 
+export function JourneyFacts({
+  variant = "transfer",
+  links = true,
+}: {
+  variant?: "transfer" | "pickup" | "dropoff" | "area" | "terminal";
+  links?: boolean;
+}) {
+  const copy = {
+    transfer: {
+      heading: "Journey facts before you book",
+      intro:
+        "Heathrow Minicab covers Heathrow Terminals 2, 3, 4 and 5. Your pickup or drop-off details are confirmed when you book, and your price is fixed once confirmed.",
+    },
+    pickup: {
+      heading: "Pickup facts before you land",
+      intro:
+        "A Heathrow pickup is planned around your flight, terminal and agreed meeting instructions. Your meeting point is confirmed when you book.",
+    },
+    dropoff: {
+      heading: "Drop-off facts before you travel",
+      intro:
+        "A Heathrow drop-off is planned around your address, flight time, terminal and luggage. Your collection time is agreed when you book.",
+    },
+    area: {
+      heading: "What affects your Heathrow journey?",
+      intro:
+        "Your Heathrow journey depends on your pickup address, terminal, date, time, passengers, luggage, traffic and any extra stops.",
+    },
+    terminal: {
+      heading: "Terminal facts before you travel",
+      intro:
+        "Heathrow Minicab covers Terminals 2, 3, 4 and 5. Terminal-specific guidance helps you plan, but your booking confirmation is the final meeting instruction.",
+    },
+  }[variant];
+
+  const items = [
+    {
+      icon: "plane" as const,
+      title: "Terminals covered",
+      text: "We cover Heathrow Terminals 2, 3, 4 and 5 for arrivals and departures.",
+      link: links ? { href: "/airport-transfers/terminal-guides", label: "Terminal guides" } : undefined,
+    },
+    {
+      icon: "board" as const,
+      title: "Confirmed meeting details",
+      text: "Your meeting point, pickup point or collection time is confirmed with your booking.",
+      link: links ? { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" } : undefined,
+    },
+    {
+      icon: "tag" as const,
+      title: "Price fixed once confirmed",
+      text: "The price is fixed once confirmed, but it depends on route, time, day, vehicle, stops, waiting, parking and airport charges.",
+    },
+    {
+      icon: "clock" as const,
+      title: "Journey time varies",
+      text: "Journey time varies with traffic, terminal, time of day, roadworks and airport processing time.",
+      link: links ? { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" } : undefined,
+    },
+  ];
+
+  return (
+    <div className="mt-6">
+      <p data-speakable className={`max-w-[46rem] leading-relaxed ${body}`}>
+        <span className={`block text-lg font-semibold ${heading}`}>{copy.heading}</span>
+        <span className="mt-1 block">{copy.intro}</span>
+      </p>
+      <FeatureGrid compact columns={4} items={items} />
+    </div>
+  );
+}
+
 export type FeatureIconName =
   | "plane"
   | "board"

@@ -10,6 +10,7 @@ import {
   Eyebrow,
   HelpPanel,
   InfoAside,
+  JourneyFacts,
   Section,
   StepRow,
   SubHeading,
@@ -154,6 +155,16 @@ export default function Page() {
 
       <Section
         tone="pale"
+        id="pickup-journey-facts"
+        eyebrow="Before you land"
+        title="Clear answers about Heathrow pickups"
+        intro="Your exact meeting arrangement is confirmed with your booking, but these facts apply to Heathrow pickup planning."
+      >
+        <JourneyFacts variant="pickup" />
+      </Section>
+
+      <Section
+        tone="white"
         id="booking-checklist"
         eyebrow="Before you book"
         title="Your booking checklist"

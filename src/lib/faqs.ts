@@ -48,6 +48,12 @@ export const FAQS: Faq[] = [
 // Pricing and what's included: /airport-transfers.
 export const PRICING_FAQS: Faq[] = [
   {
+    id: "why-no-fixed-prices-shown",
+    question: "Why don’t you show fixed prices on the website?",
+    answer:
+      "We don’t show fixed prices because Heathrow transfer fares vary by route, date, time, vehicle, stops, waiting, parking and airport charges. Once your quote is confirmed, the price is fixed.",
+  },
+  {
     id: "how-price-works",
     question: "How is the price of a Heathrow transfer worked out?",
     answer:
@@ -64,6 +70,12 @@ export const PRICING_FAQS: Faq[] = [
     question: "Can I book my return journey at the same time?",
     answer:
       "Yes. Give us both dates and times when you book and we’ll arrange your journey to Heathrow and your pickup when you land.",
+  },
+  {
+    id: "journey-time-guarantee",
+    question: "Can you guarantee the journey time to Heathrow?",
+    answer:
+      "No, journey time cannot be guaranteed because traffic, roadworks, terminal access and airport processing times can vary. We plan your collection around your flight details and recommend allowing a comfortable margin.",
   },
 ];
 
@@ -92,6 +104,12 @@ export const PICKUP_FAQS: Faq[] = [
     answer:
       "Depending on your booking, your driver meets you inside the arrivals hall with a name board, or at a pickup point agreed when you book. Your confirmation shows which applies.",
   },
+  {
+    id: "pickup-terminal-details",
+    question: "What details do you need for a Heathrow pickup?",
+    answer:
+      "Send your flight number, arrival date, terminal if known, destination address, passengers, luggage and mobile number. These details help us confirm the meeting arrangement and suitable vehicle.",
+  },
 ];
 
 // Heathrow departures: /airport-transfers/heathrow-drop-offs.
@@ -114,6 +132,12 @@ export const DROPOFF_FAQS: Faq[] = [
     answer:
       "Yes. We run 24/7, so we can collect you for early-morning and late-night departures to Heathrow Terminals 2, 3, 4 and 5.",
   },
+  {
+    id: "dropoff-journey-time",
+    question: "Why don’t you publish exact Heathrow drop-off journey times?",
+    answer:
+      "We don’t publish exact journey times because traffic, roadworks, terminal access, time of day and extra stops can change the journey. Your collection time is planned around your flight details when you book.",
+  },
 ];
 
 // Terminals: /airport-transfers/terminal-guides.
@@ -134,6 +158,12 @@ export const TERMINAL_FAQS: Faq[] = [
     id: "terminal-change",
     question: "What if my terminal changes?",
     answer: `Contact us as soon as you know, on ${PRIMARY_PHONE.display} or WhatsApp, and we’ll update your pickup or drop-off details.`,
+  },
+  {
+    id: "terminal-final-instruction",
+    question: "Are the terminal guide meeting points my final pickup instruction?",
+    answer:
+      "No. The terminal guide gives useful public meeting information, but your booking confirmation is the final instruction for where to meet your driver.",
   },
 ];
 
@@ -345,6 +375,11 @@ export function areaFaqs(area: string, region: string): Faq[] {
       id: "area-price",
       question: `How do I get a price from ${area} to Heathrow?`,
       answer: `Book online, call ${PRIMARY_PHONE.display} or message us on WhatsApp with your address, date, time and terminal. The price depends on time, day and route, and is fixed once confirmed.`,
+    },
+    {
+      id: "area-journey-time",
+      question: `How long does a journey from ${area} to Heathrow take?`,
+      answer: `Journey time from ${area} to Heathrow varies by traffic, terminal, time of day, roadworks, luggage loading and any extra stops. We plan your collection time around your flight details when you book.`,
     },
   ];
 }

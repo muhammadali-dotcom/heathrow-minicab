@@ -3,7 +3,7 @@ import { callButtonLight, whatsappButtonLight, whatsappIconClass } from "@/compo
 import { FaqAccordion, FaqJsonLd } from "@/components/FaqList";
 import PhoneIcon from "@/components/PhoneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { FAQS } from "@/lib/faqs";
+import { FAQS, FAQ_GROUPS } from "@/lib/faqs";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
 
@@ -11,11 +11,14 @@ type FaqsProps = {
   showHeader?: boolean; // false on its own page, where the PageBanner carries the H1
   // The homepage repeats the general questions from /faqs, so only /faqs emits FAQPage schema.
   withSchema?: boolean;
+  showAll?: boolean;
 };
 
 const SECTION_NAME = "Frequently asked questions";
 
-export default function Faqs({ showHeader = true, withSchema = false }: FaqsProps) {
+export default function Faqs({ showHeader = true, withSchema = false, showAll = false }: FaqsProps) {
+  const schemaItems = showAll ? FAQ_GROUPS.flatMap((group) => group.items) : FAQS;
+
   return (
     <section
       {...(showHeader ? { "aria-labelledby": "faqs-heading" } : { "aria-label": SECTION_NAME })}
@@ -39,8 +42,29 @@ export default function Faqs({ showHeader = true, withSchema = false }: FaqsProp
           </div>
         )}
 
-        <div className={`space-y-3 ${showHeader ? "mt-12 md:mt-16" : ""}`}>
-          <FaqAccordion items={FAQS} />
+        <div className={showHeader ? "mt-12 md:mt-16" : ""}>
+          {showAll ? (
+            <div className="space-y-10 md:space-y-12">
+              {FAQ_GROUPS.map((group) => (
+                <section
+                  key={group.id}
+                  aria-labelledby={`faq-group-${group.id}`}
+                  className="scroll-mt-32"
+                >
+                  <h2 id={`faq-group-${group.id}`} className="text-2xl font-bold text-[#0A2740]">
+                    {group.title}
+                  </h2>
+                  <div className="mt-4">
+                    <FaqAccordion items={group.items} />
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <FaqAccordion items={FAQS} />
+            </div>
+          )}
         </div>
         {showHeader && (
           <p className="mt-8">
@@ -82,7 +106,7 @@ export default function Faqs({ showHeader = true, withSchema = false }: FaqsProp
           </div>
         )}
       </div>
-      {withSchema && <FaqJsonLd items={FAQS} />}
+      {withSchema && <FaqJsonLd items={schemaItems} />}
     </section>
   );
 }

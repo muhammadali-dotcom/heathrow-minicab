@@ -25,11 +25,13 @@ export default function AreasStrip() {
 
         <ul className="mt-10 flex max-w-4xl flex-wrap gap-3">
           {AREAS.map((area) => (
-            <li
-              key={area.slug}
-              className="rounded-full bg-[#E6F6FC] px-4 py-2 font-medium text-[#0A2740]"
-            >
-              {area.name}
+            <li key={area.slug}>
+              <Link
+                href={`/areas/${area.slug}`}
+                className="inline-flex min-h-11 items-center rounded-full bg-[#E6F6FC] px-4 py-2 font-medium text-[#0A2740] transition-colors hover:bg-[#CBEFFA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740] motion-reduce:transition-none"
+              >
+                {area.name}
+              </Link>
             </li>
           ))}
         </ul>

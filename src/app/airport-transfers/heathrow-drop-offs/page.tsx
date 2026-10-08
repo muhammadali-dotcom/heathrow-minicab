@@ -9,6 +9,7 @@ import {
   ClosingCta,
   Columns,
   InfoAside,
+  JourneyFacts,
   RouteSteps,
   Section,
   SubHeading,
@@ -134,6 +135,16 @@ export default function Page() {
 
       <Section
         tone="pale"
+        id="dropoff-journey-facts"
+        eyebrow="Before you travel"
+        title="Clear answers about Heathrow drop-offs"
+        intro="Your collection time is planned around your flight details, but journey time still varies with live conditions."
+      >
+        <JourneyFacts variant="dropoff" />
+      </Section>
+
+      <Section
+        tone="white"
         id="vehicles"
         eyebrow="Our vehicles"
         title="Room for you and your luggage"
@@ -146,7 +157,7 @@ export default function Page() {
       </Section>
 
       <Section
-        tone="white"
+        tone="pale"
         id="booking-checklist"
         eyebrow="Before you book"
         title="Your booking checklist"

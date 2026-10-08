@@ -10,9 +10,16 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.heathr
 
 // When the site's content was last reviewed: the WebPage dateModified and the policy pages'
 // "Last updated" date. Bump it after meaningful content changes.
-export const CONTENT_UPDATED = "2026-10-07";
+export const CONTENT_UPDATED = "2026-10-08";
 
 export const absoluteUrl = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
+
+export const OG_IMAGE = {
+  url: "/images/heathrow-hero.webp",
+  width: 1672,
+  height: 941,
+  alt: "Heathrow Minicab airport transfer vehicle at Heathrow",
+};
 
 // The homepage's title and description, also the sitewide defaults in the root layout.
 export const HOME_SEO = {
@@ -43,7 +50,13 @@ export function pageMetadata({
       url: path,
       title,
       description,
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE.url],
+    },
   };
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import PageFaqs from "@/components/PageFaqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { DetailCards, NumberedStrip, SplitChecklist } from "@/components/services/ServiceBlocks";
 import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
+import type { Faq } from "@/lib/faqs";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
@@ -10,10 +12,26 @@ const service = findService("airport-to-airport-transfers");
 const path = `/services/${service.slug}`;
 
 const AIRPORTS = [
-  { code: "LGW", name: "Gatwick Airport" },
-  { code: "STN", name: "Stansted Airport" },
-  { code: "LTN", name: "Luton Airport" },
-  { code: "LCY", name: "London City Airport" },
+  {
+    code: "LGW",
+    name: "Gatwick Airport",
+    note: "Allow time for terminal changes, baggage collection and road traffic between the two airports.",
+  },
+  {
+    code: "STN",
+    name: "Stansted Airport",
+    note: "Useful for connections across the north and east of London, with timing planned around both flights.",
+  },
+  {
+    code: "LTN",
+    name: "Luton Airport",
+    note: "Share both flight numbers so the pickup time can be planned around arrivals and your next check-in.",
+  },
+  {
+    code: "LCY",
+    name: "London City Airport",
+    note: "A cross-London airport transfer where road conditions and check-in deadlines need extra care.",
+  },
 ];
 
 function AirportConnections() {
@@ -43,11 +61,39 @@ function AirportConnections() {
             Heathrow to {airport.name.replace(" Airport", "")}
           </p>
           <p className="mt-1 text-sm text-white/75">Available in either direction.</p>
+          <p className="mt-3 text-sm leading-relaxed text-white/75">{airport.note}</p>
         </li>
       ))}
     </ul>
   );
 }
+
+const AIRPORT_TRANSFER_FAQS: Faq[] = [
+  {
+    id: "airport-transfer-guarantee",
+    question: "Can you guarantee I will make my connecting flight?",
+    answer:
+      "No. We plan around both flights, but we cannot guarantee connections because passport control, baggage collection, traffic and airline check-in deadlines can all vary.",
+  },
+  {
+    id: "airport-transfer-flight-change",
+    question: "What if my first flight is delayed or changes?",
+    answer:
+      "Contact us as soon as you know. We monitor flights where details are provided, but you should still tell us about cancellations, diversions or changed departure plans.",
+  },
+  {
+    id: "airport-transfer-return",
+    question: "Can I book airport-to-airport transfers in both directions?",
+    answer:
+      "Yes. Give us both sets of flight details and dates when booking, and we can arrange outbound and return airport connections.",
+  },
+  {
+    id: "airport-transfer-luggage",
+    question: "Which vehicle should I choose for luggage?",
+    answer:
+      "Tell us how many passengers, large suitcases and small bags you have. We’ll help you choose between saloon, estate, MPV and executive options.",
+  },
+];
 
 const seo = {
   title: "Heathrow to Gatwick, Stansted, Luton & City Transfers",
@@ -79,6 +125,34 @@ export default function Page() {
 
       <Section tone="navy" id="routes" title="Which airports are you travelling between?">
         <AirportConnections />
+      </Section>
+
+      <Section
+        tone="white"
+        id="route-guidance"
+        title="Airport-specific transfer guidance"
+        intro="Every airport connection has the same basic job, but the practical details vary depending on the two airports, terminals and flight times."
+      >
+        <DetailCards
+          items={[
+            {
+              label: "Heathrow and Gatwick",
+              hint: "A common airport connection where baggage collection, terminal transfers and road traffic all need a comfortable buffer.",
+            },
+            {
+              label: "Heathrow and Stansted",
+              hint: "Often a longer cross-London connection, so check both airlines’ check-in and bag-drop deadlines before booking.",
+            },
+            {
+              label: "Heathrow and Luton",
+              hint: "Share both flight numbers and terminals so the pickup can be planned around arrival processing and the next departure.",
+            },
+            {
+              label: "Heathrow and London City",
+              hint: "A transfer across London where traffic can vary, especially around peak commuting times and central routes.",
+            },
+          ]}
+        />
       </Section>
 
       <Section
@@ -142,6 +216,36 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <Section
+        tone="white"
+        id="connection-planning"
+        title="Connection planning checklist"
+        intro="Before choosing a pickup time, check the parts of the journey that can add time before you even leave the first airport."
+      >
+        <SplitChecklist
+          groups={[
+            {
+              title: "Before the car",
+              items: ["Passport control", "Baggage collection", "Terminal meeting point"],
+            },
+            {
+              title: "On the road",
+              items: ["Traffic conditions", "Airport access roads", "Any agreed stops"],
+            },
+            {
+              title: "Next flight",
+              items: ["Check-in deadline", "Bag-drop deadline", "Security and boarding time"],
+            },
+          ]}
+        />
+      </Section>
+
+      <PageFaqs
+        items={AIRPORT_TRANSFER_FAQS}
+        tone="pale"
+        summary="Airport-to-airport transfers connect Heathrow with Gatwick, Stansted, Luton and London City in either direction, planned around both flight details but without guaranteed connection times."
+      />
 
       <ClosingCta
         tone="photo"

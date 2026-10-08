@@ -22,6 +22,8 @@ export default function Wordmark({ inverted = false }: WordmarkProps) {
         height={224}
         sizes="(min-width: 1024px) 172px, 143px"
         loading={inverted ? "lazy" : "eager"}
+        // Low priority so the header logo isn't preloaded ahead of the hero (the LCP image).
+        fetchPriority={inverted ? undefined : "low"}
         className="h-10 w-auto lg:h-12"
       />
     </Link>

@@ -6,12 +6,14 @@ import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   HelpPanel,
+  JourneyFacts,
   RouteSteps,
   Section,
   TransfersHero,
   textLink,
 } from "@/components/transfers/TransferBlocks";
 import TerminalSelector from "@/components/transfers/TerminalSelector";
+import { TERMINAL_SPECIFIC_FAQS } from "@/lib/terminals";
 
 const seo = {
   title: "Heathrow Terminals 2, 3, 4 & 5 Guide for Transfers",
@@ -23,6 +25,8 @@ const seo = {
 export const metadata: Metadata = pageMetadata(seo);
 
 export default function Page() {
+  const faqs = [...TERMINAL_FAQS, ...TERMINAL_SPECIFIC_FAQS];
+
   return (
     <>
       <WebPageJsonLd {...seo} />
@@ -90,10 +94,21 @@ export default function Page() {
           whatsappLabel="WhatsApp Us"
         />
       </Section>
-      <PageFaqs
-        items={TERMINAL_FAQS}
+
+      <Section
         tone="pale"
-        summary="Heathrow Minicab covers all four Heathrow passenger terminals (2, 3, 4 and 5) for arrivals and departures, with your meeting point confirmed for your terminal when you book."
+        id="terminal-journey-facts"
+        eyebrow="Terminal planning"
+        title="Clear answers about Heathrow terminals"
+        intro="Terminal information helps you plan, but your booking confirmation is the final instruction for your driver meeting point."
+      >
+        <JourneyFacts variant="terminal" />
+      </Section>
+
+      <PageFaqs
+        items={faqs}
+        tone="pale"
+        summary="Heathrow Minicab covers all four Heathrow passenger terminals (2, 3, 4 and 5) for arrivals and departures, with terminal-specific meeting guidance and your exact meeting point confirmed when you book."
       />
     </>
   );

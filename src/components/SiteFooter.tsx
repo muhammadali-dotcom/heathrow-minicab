@@ -109,12 +109,16 @@ export default function SiteFooter() {
           </div>
 
           <nav aria-label="Footer" className="grid gap-x-6 gap-y-8 sm:grid-cols-3">
-            {linkColumns.map((column) => (
+            {/* Column titles are labels, not headings, so they stay out of each page's outline. */}
+            {linkColumns.map((column, i) => (
               <div key={column.title}>
-                <h2 className="text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase">
+                <p
+                  id={`footer-links-${i}`}
+                  className="text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase"
+                >
                   {column.title}
-                </h2>
-                <ul className="mt-3">
+                </p>
+                <ul aria-labelledby={`footer-links-${i}`} className="mt-3">
                   {column.links.map((link) => (
                     <li key={link.href}>
                       <Link

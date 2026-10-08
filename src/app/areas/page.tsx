@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 import { callButtonLight } from "@/components/BookingCta";
 import PageBanner from "@/components/PageBanner";
 import PhoneIcon from "@/components/PhoneIcon";
+import { DetailCards } from "@/components/services/ServiceBlocks";
 import { AREA_REGIONS, AREAS } from "@/lib/areas";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE } from "@/lib/site";
@@ -49,6 +50,17 @@ export default function Page() {
 
       <section aria-label="Areas we cover" className="bg-white py-14 md:py-20">
         <div className={SECTION_CONTAINER}>
+          <div className="mb-10 max-w-[46rem]">
+            <h2 className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]">
+              North and West London coverage
+            </h2>
+            <p className="mt-3 leading-relaxed text-[#0A2740]/80">
+              We cover confirmed pickup areas across North and West London for journeys to Heathrow
+              departures and pickups from Heathrow arrivals back home. Choose your area below for
+              local pickup notes, landmarks, route-planning context and area-specific questions.
+            </p>
+          </div>
+
           {/* One compact panel per region, names listed in columns. */}
           <div className="grid gap-6 md:grid-cols-2">
             {AREA_REGIONS.map((region) => {
@@ -103,6 +115,34 @@ export default function Page() {
               <PhoneIcon className="h-5 w-5" />
             </a>
           </div>
+
+          <DetailCards
+            items={[
+              {
+                label: "Flying from Heathrow",
+                hint: "Plan a door-to-terminal journey around your flight time, departure terminal and luggage.",
+                link: { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" },
+              },
+              {
+                label: "Arriving at Heathrow",
+                hint: "Meet your driver in arrivals or at the agreed pickup point confirmed with your booking.",
+                link: { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" },
+              },
+              {
+                label: "Choosing a vehicle",
+                hint: "Compare saloon, estate, MPV and executive cars by passengers and suitcases.",
+                link: { href: "/our-vehicles", label: "Vehicle guide" },
+              },
+              {
+                label: "Beyond these areas",
+                hint: "For longer journeys outside North and West London, ask us or see our long-distance transfer service.",
+                link: {
+                  href: "/services/long-distance-airport-transfers",
+                  label: "Long-distance transfers",
+                },
+              },
+            ]}
+          />
         </div>
       </section>
       <PageFaqs

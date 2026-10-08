@@ -31,25 +31,41 @@ function TerminalPanel({
 
       <div className="mt-6 grid gap-6 md:grid-cols-2 md:gap-8">
         <div>
-          <h4 className="text-lg font-semibold text-white">Arriving here?</h4>
+          <h4 className="text-lg font-semibold text-white">Where to meet</h4>
           <p className="mt-1 leading-relaxed text-white/85">
-            Clear passport control, collect your bags and follow the meeting instructions in your
-            booking confirmation.
+            {terminal.meetingPoint}
           </p>
         </div>
         <div>
-          <h4 className="text-lg font-semibold text-white">Flying from here?</h4>
+          <h4 className="text-lg font-semibold text-white">Pickup and parking</h4>
           <p className="mt-1 leading-relaxed text-white/85">
-            We drop you at {terminal.name} departures. Check your airline confirms {terminal.name}{" "}
-            before you travel, and tell us if it changes.
+            {terminal.pickupParking}
           </p>
         </div>
       </div>
 
-      <p className="mt-6 rounded-lg border border-white/15 bg-white/5 p-4 text-sm leading-relaxed text-white/80">
-        Your booking confirmation specifies your meeting point. If you need help, stay by a clearly
-        signed landmark and contact us.
-      </p>
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <div className="rounded-lg border border-white/15 bg-white/5 p-4">
+          <h4 className="text-base font-semibold text-white">Flying from here?</h4>
+          <p className="mt-1 text-sm leading-relaxed text-white/80">{terminal.departureTip}</p>
+        </div>
+        <div className="rounded-lg border border-white/15 bg-white/5 p-4">
+          <h4 className="text-base font-semibold text-white">Need help at the terminal?</h4>
+          <p className="mt-1 text-sm leading-relaxed text-white/80">{terminal.helpTip}</p>
+        </div>
+      </div>
+
+      <div className="mt-6 rounded-lg border border-white/15 bg-white/5 p-4">
+        <h4 className="text-base font-semibold text-white">{terminal.name} quick questions</h4>
+        <dl className="mt-3 space-y-4">
+          {terminal.faqs.map((faq) => (
+            <div key={faq.id}>
+              <dt className="text-sm font-semibold text-[#4FB8E0]">{faq.question}</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-white/80">{faq.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
 
       <div className="mt-6 border-t border-white/15 pt-6">
         <div>
