@@ -1,4 +1,3 @@
-import ArrowRightIcon from "@/components/ArrowRightIcon";
 import CalendarIcon from "@/components/CalendarIcon";
 import PhoneIcon from "@/components/PhoneIcon";
 import { ALT_PHONE, BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
@@ -10,7 +9,7 @@ type BookingCtaProps = {
   fullWidth?: boolean;
   stacked?: boolean; // keep buttons in a column, for narrow spaces
   online?: boolean; // false on /book: both call buttons instead of Book Online + Call
-  onlineOnly?: boolean; // just "Book Online →" (desktop header)
+  onlineOnly?: boolean; // just the Book Online button (desktop header)
 };
 
 // Button hierarchy used site-wide:
@@ -24,8 +23,6 @@ export const callButtonLight = `${ctaShape} border-2 border-[#0A2740] bg-white t
 export const callButtonDark = `${ctaShape} border-2 border-white text-white hover:bg-white/10`;
 export const whatsappButtonLight = `${ctaShape} border border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
 export const whatsappIconClass = "text-[#25D366]";
-// The desktop header's Book Online is navy with white text (about 14:1) so it stands out on white.
-const headerButtonClass = `${ctaShape} bg-[#0A2740] text-white hover:bg-[#12385A]`;
 
 // The booking CTA used across the site: "Book Online" (to the hosted web booker) and
 // "Call 020 8343 4444".
@@ -50,9 +47,9 @@ export default function BookingCta({
 
   if (onlineOnly) {
     return (
-      <a href={BOOK_ONLINE_HREF} className={`${headerButtonClass} ${sizing}`}>
+      <a href={BOOK_ONLINE_HREF} className={button}>
         Book Online
-        <ArrowRightIcon className={icon} />
+        <CalendarIcon className={icon} />
       </a>
     );
   }
