@@ -2,6 +2,7 @@ import { AREAS } from "@/lib/areas";
 import { KNOWS_ABOUT } from "@/lib/facts";
 import { CONTENT_UPDATED, SITE_URL, absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
+import { VEHICLES } from "@/lib/vehicles";
 import {
   BOOK_ONLINE_HREF,
   BUSINESS_BASE,
@@ -111,7 +112,6 @@ export function SiteJsonLd() {
                   },
                 }
               : {}),
-            areaServed: AREA_SERVED,
           },
           {
             "@type": "WebSite",
@@ -166,6 +166,34 @@ export function ServiceJsonLd({
             servicePhone: { "@type": "ContactPoint", telephone: PRIMARY_PHONE.tel },
           },
         ],
+      }}
+    />
+  );
+}
+
+// The vehicle types, as an ItemList of transfer services. Service rather than Product/Vehicle:
+// with no prices, Product markup is flagged as incomplete in Search Console.
+export function VehiclesJsonLd({ path }: { path: string }) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "@id": `${absoluteUrl(path)}#vehicles`,
+        name: "Heathrow Minicab vehicle types",
+        numberOfItems: VEHICLES.length,
+        itemListElement: VEHICLES.map((v, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Service",
+            name: `${v.name} Heathrow transfer`,
+            serviceType: "Airport transfer",
+            description: v.description,
+            image: absoluteUrl(v.image.src),
+            provider: { "@id": BUSINESS_ID },
+          },
+        })),
       }}
     />
   );

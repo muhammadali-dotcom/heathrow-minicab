@@ -163,6 +163,36 @@ export const VEHICLE_FAQS: Faq[] = [
     answer:
       "The models shown are examples, so you’ll get that car or a similar one. Choose the vehicle type that fits your passengers and luggage, and we’ll confirm it when you book.",
   },
+  {
+    id: "vehicle-four-people-four-cases",
+    question: "Which car do I need for 4 people and 4 suitcases?",
+    answer:
+      "Book the MPV. It takes 4 large suitcases and 2 small bags. An estate takes 3 large suitcases and a saloon 2.",
+  },
+  {
+    id: "vehicle-more-than-six",
+    question: "What if there are more than 6 of us?",
+    answer:
+      "Book two vehicles travelling together. Tell us how many people and bags there are and we’ll help choose the right pair.",
+  },
+  {
+    id: "vehicle-luggage-sizes",
+    question: "What counts as a large suitcase or a small bag?",
+    answer:
+      "A large suitcase is standard checked luggage. A small bag is a cabin bag or hand luggage.",
+  },
+  {
+    id: "vehicle-bulky-items",
+    question: "Can I bring a pushchair, golf bag or other bulky item?",
+    answer:
+      "Tell us about pushchairs, golf bags or anything oversized when you book, so we can choose a vehicle with room for it.",
+  },
+  {
+    id: "vehicle-full-capacity",
+    question: "Can every car carry its full passenger and luggage limits at once?",
+    answer:
+      "Not always. The figures are a guide, not a guarantee that every maximum fits at the same time. If you’re close to the limits, choose the next size up or two vehicles.",
+  },
 ];
 
 const areaList = (region: (typeof AREA_REGIONS)[number]["id"]) =>

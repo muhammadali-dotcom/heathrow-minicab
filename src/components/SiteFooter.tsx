@@ -67,7 +67,7 @@ export default function SiteFooter() {
     <footer className="bg-[#0A2740] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
       {/* Airport Transfers and individual service pages end with their own closing CTA, so the
           band is skipped there; so is About, which ends with its own contact panel. */}
-      <HideOnPaths prefixes={["/airport-transfers", "/services/", "/areas/", "/about"]}>
+      <HideOnPaths prefixes={["/airport-transfers", "/services/", "/areas/", "/about", "/our-vehicles"]}>
         <CtaBand />
       </HideOnPaths>
 
@@ -119,7 +119,7 @@ export default function SiteFooter() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className={`inline-flex min-h-11 items-center text-white/85 ${whiteLink}`}
+                        className={`inline-flex min-h-11 items-center py-2 leading-snug text-white/85 ${whiteLink}`}
                       >
                         {link.label}
                       </Link>

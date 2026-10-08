@@ -2,25 +2,27 @@ import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
 import { FAMILY_FAQS } from "@/lib/faqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
-import { ComparisonTable, DetailCards, PathCards } from "@/components/services/ServiceBlocks";
+import { DetailCards, PathCards } from "@/components/services/ServiceBlocks";
+import VehiclePicker from "@/components/services/VehiclePicker";
 import {
   Checklist,
   ClosingCta,
+  Eyebrow,
   Section,
   TransfersHero,
 } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
-import { VEHICLES } from "@/lib/vehicles";
+import type { Vehicle } from "@/lib/vehicles";
 
 const service = findService("family-group-transfers");
 const path = `/services/${service.slug}`;
 
-const GOOD_FOR: Record<string, string> = {
+const GOOD_FOR: Record<Vehicle["id"], string> = {
   saloon: "Couples and small families",
   estate: "Families with extra luggage",
-  mpv: "Families and groups of up to 6",
+  mpv: "Families and groups",
   executive: "A more comfortable ride",
 };
 
@@ -47,7 +49,7 @@ export default function Page() {
         crumbs={[{ label: "Services" }, { label: service.title }]}
         eyebrow="Family & group transfers"
         title="Your holiday"
-        titleAccent="starts together."
+        titleAccent="starts with the right vehicle"
         intro="Bring the family, friends and bags. We’ll help you choose a suitable vehicle for your airport journey."
         primary={{ href: BOOK_ONLINE_HREF, label: "Plan Your Family Transfer" }}
         image={service.image}
@@ -74,32 +76,21 @@ export default function Page() {
         />
       </Section>
 
-      <Section tone="pale" id="vehicles" title="Which vehicle fits your group?">
-        <ComparisonTable
-          caption="Vehicle capacity compared"
-          columns={VEHICLES.map((v) => v.name)}
-          highlight={VEHICLES.findIndex((v) => v.id === "mpv")}
-          highlightLabel="Most room"
-          rows={[
-            { label: "Example car", values: VEHICLES.map((v) => `${v.model} or similar`) },
-            {
-              label: "Passengers",
-              values: VEHICLES.map((v) => (v.passengers === null ? "On request" : v.passengers)),
-            },
-            { label: "Large suitcases", values: VEHICLES.map((v) => v.luggage.large) },
-            { label: "Small bags", values: VEHICLES.map((v) => v.luggage.small) },
-            { label: "Good for", values: VEHICLES.map((v) => GOOD_FOR[v.id]) },
-          ]}
-        />
-        <p className="mt-6 text-[#0A2740]/80">
-          Passenger and luggage figures are a guide, not a guarantee that every maximum fits at the
-          same time. For the MPV, 6 passengers with several large suitcases may need luggage kept to
-          the stated allowance, a larger arrangement, or two vehicles.
-        </p>
-        <p className="mt-6 text-[#0A2740]/80">
-          <strong className="font-semibold text-[#0A2740]">More than 6 travelling?</strong> Larger
-          groups can book two vehicles travelling together.
-        </p>
+      <Section tone="pale" id="vehicles">
+        {/* Centred header; Section's aria-labelledby points at this H2 by id. */}
+        <div className="mx-auto max-w-2xl text-center">
+          <Eyebrow>Bring everyone. Bring the bags.</Eyebrow>
+          <h2
+            id="vehicles-heading"
+            className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740] md:text-3xl"
+          >
+            Which vehicle fits your group?
+          </h2>
+          <p className="mt-2 text-lg text-[#0A2740]/75">
+            Find the right fit for your family before you travel.
+          </p>
+        </div>
+        <VehiclePicker goodFor={GOOD_FOR} />
       </Section>
 
       <Section tone="white" id="child-seats" title="Little travellers and extra pickups">

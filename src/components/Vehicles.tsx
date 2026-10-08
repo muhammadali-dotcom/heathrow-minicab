@@ -6,6 +6,8 @@ import { SECTION_CONTAINER } from "@/lib/layout";
 
 type VehiclesProps = {
   showHeader?: boolean; // false on its own page, where the PageBanner carries the H1
+  // A direct answer above the cards, marked for voice assistants (see WebPageJsonLd).
+  intro?: string;
 };
 
 function Capacity({ vehicle }: { vehicle: Vehicle }) {
@@ -31,7 +33,7 @@ function Capacity({ vehicle }: { vehicle: Vehicle }) {
 
 const SECTION_NAME = "Our vehicles";
 
-export default function Vehicles({ showHeader = true }: VehiclesProps) {
+export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
   return (
     <section
       {...(showHeader ? { "aria-labelledby": "vehicles-heading" } : { "aria-label": SECTION_NAME })}
@@ -56,8 +58,14 @@ export default function Vehicles({ showHeader = true }: VehiclesProps) {
           </div>
         )}
 
+        {intro && (
+          <p data-speakable className="max-w-[44rem] text-lg leading-relaxed text-[#0A2740]/85">
+            {intro}
+          </p>
+        )}
+
         <ul
-          className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${showHeader ? "mt-12 md:mt-16" : ""}`}
+          className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${showHeader ? "mt-12 md:mt-16" : intro ? "mt-10" : ""}`}
         >
           {VEHICLES.map((vehicle) => (
             <li key={vehicle.id}>

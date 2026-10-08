@@ -68,7 +68,7 @@ ${areas}
 - [Heathrow drop-offs](${absoluteUrl("/airport-transfers/heathrow-drop-offs")}): door-to-terminal journeys and collection times.
 - [Heathrow terminal guides](${absoluteUrl("/airport-transfers/terminal-guides")}): Terminals 2, 3, 4 and 5 for arrivals and departures.
 - [Areas we cover](${absoluteUrl("/areas")}): North and West London pickup areas, each with its own page.
-- [Our vehicles](${absoluteUrl("/our-vehicles")}): passenger and luggage capacity.
+- [Our vehicles](${absoluteUrl("/our-vehicles")}): which car to book by passengers and suitcases, a capacity comparison and a luggage guide.
 - [FAQs](${absoluteUrl("/faqs")}): every common question, grouped by topic.
 - [About](${absoluteUrl("/about")})
 - [Contact](${absoluteUrl("/contact")})

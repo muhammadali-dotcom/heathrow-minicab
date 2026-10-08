@@ -266,6 +266,7 @@ export type FeatureIconName =
   | "allday"
   | "home"
   | "luggage"
+  | "bag"
   | "chat"
   | "people"
   | "tag";
@@ -324,6 +325,12 @@ const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
       <rect x="5" y="7" width="14" height="12" rx="2" />
       <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
       <path d="M9 11v4M15 11v4M8 19v1.5M16 19v1.5" />
+    </>
+  ),
+  bag: (
+    <>
+      <path d="M5.5 9h13l-1 10a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 19Z" />
+      <path d="M9 9V7a3 3 0 0 1 6 0v2" />
     </>
   ),
   home: (
@@ -689,7 +696,12 @@ export function ClosingCta({
         </>
       )}
       <div
-        className={`${SECTION_CONTAINER} relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between`}
+        // Three buttons (with WhatsApp) need the full row, so they stay stacked until lg.
+        className={`${SECTION_CONTAINER} relative flex flex-col gap-5 ${
+          whatsapp
+            ? "lg:flex-row lg:items-center lg:justify-between"
+            : "sm:flex-row sm:items-center sm:justify-between"
+        }`}
       >
         <div>
           <h2 id="closing-heading" className={`text-xl font-bold md:text-[1.375rem] ${heading}`}>

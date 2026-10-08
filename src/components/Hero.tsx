@@ -63,7 +63,7 @@ export default function Hero() {
             Heathrow airport transfers,{" "}
             <span className="xl:block">
               from your doorstep to <span className="whitespace-nowrap">departures,</span>
-            </span>
+            </span>{" "}
             <span className="xl:block">and arrivals to home.</span>
           </h1>
 

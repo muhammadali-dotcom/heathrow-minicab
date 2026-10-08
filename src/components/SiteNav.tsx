@@ -136,7 +136,7 @@ function Dropdown({
             aria-controls={panelId}
             aria-label={`${open ? "Hide" : "Show"} ${item.label} links`}
             onClick={() => setOpen((v) => !v)}
-            className={`inline-flex h-11 w-5 items-center justify-center rounded-md text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
+            className={`relative inline-flex h-11 w-5 items-center justify-center rounded-md text-[#0A2740] after:absolute after:inset-y-0 after:-right-4 after:-left-1 after:content-[''] hover:bg-[#E6F6FC] ${focusRing}`}
           >
             <Chevron open={open} />
           </button>
