@@ -47,7 +47,7 @@ export default function LegalDocument({
 }) {
   return (
     <>
-      <PageBanner image="t2" crumb={crumb} eyebrow="Policies" title={title} intro={intro} />
+      <PageBanner image="t2" crumb={crumb} title={title} intro={intro} />
 
       <section aria-label={title} className="bg-white py-14 md:py-20">
         <div className={SECTION_CONTAINER}>

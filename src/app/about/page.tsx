@@ -28,7 +28,6 @@ export default function Page() {
       <WebPageJsonLd {...seo} type="AboutPage" />
       <TransfersHero
         crumbs={[{ label: "About Us" }]}
-        eyebrow="About Heathrow Minicab"
         title="Travel calmer."
         titleAccent="We'll take care of the rest."
         intro="Get to know the care behind your airport journey."

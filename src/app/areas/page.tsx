@@ -43,7 +43,6 @@ export default function Page() {
       <PageBanner
         image="hero"
         crumb="Areas We Cover"
-        eyebrow="Areas we cover"
         title="Heathrow transfers from North and West London"
         intro="Pickups and drop-offs between Heathrow and your door."
       />

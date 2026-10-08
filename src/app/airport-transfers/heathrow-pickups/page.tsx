@@ -42,7 +42,6 @@ export default function Page() {
           { href: "/airport-transfers", label: "Airport Transfers" },
           { label: "Heathrow Pickups" },
         ]}
-        eyebrow="Heathrow pickups"
         title="Heathrow pickups,"
         titleAccent="from arrivals to your door."
         intro="Your pickup point is confirmed when you book, so you know where to go after you land."

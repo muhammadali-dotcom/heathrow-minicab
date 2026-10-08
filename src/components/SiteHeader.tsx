@@ -1,4 +1,5 @@
 import PhoneIcon from "@/components/PhoneIcon";
+import ScrollProgress from "@/components/ScrollProgress";
 import SiteNav from "@/components/SiteNav";
 import Wordmark from "@/components/Wordmark";
 import { ALT_PHONE, NAV, PRIMARY_PHONE } from "@/lib/site";
@@ -41,6 +42,7 @@ export default function SiteHeader() {
         <Wordmark />
         <SiteNav nav={NAV} />
       </div>
+      <ScrollProgress />
     </header>
   );
 }

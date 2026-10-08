@@ -37,7 +37,6 @@ export default function Page() {
       />
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
-        eyebrow="Long-distance airport transfers"
         title="Land at Heathrow."
         titleAccent="Let us take you home."
         intro="Your flight is over. Sit back while we take you home, with your journey arranged before you land."

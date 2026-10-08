@@ -182,7 +182,6 @@ export default function Page() {
       />
       <TransfersHero
         crumbs={[{ label: "Airport Transfers" }]}
-        eyebrow="Heathrow airport transfers"
         title="Heathrow pickups and drop-offs,"
         titleAccent="made simple."
         intro="Reliable Heathrow transfers, booked in minutes and planned around your flight."

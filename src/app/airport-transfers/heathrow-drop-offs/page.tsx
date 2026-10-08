@@ -42,7 +42,6 @@ export default function Page() {
           { href: "/airport-transfers", label: "Airport Transfers" },
           { label: "Heathrow Drop-offs" },
         ]}
-        eyebrow="Heathrow drop-offs"
         title="Heathrow drop‑offs,"
         titleAccent="from your door to departures."
         intro="We collect you from your door at a time planned around your flight and take you to your departure terminal, so you can relax before you fly."

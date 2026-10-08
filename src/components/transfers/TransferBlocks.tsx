@@ -52,7 +52,6 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 
 type HeroProps = {
   crumbs: { href?: string; label: string }[];
-  eyebrow: string;
   title: string;
   // Optional second part of the headline, shown in blue within the same H1.
   titleAccent?: string;
@@ -69,7 +68,6 @@ type HeroProps = {
 // mobile. Primary action plus a navy-outline "Call to Book".
 export function TransfersHero({
   crumbs,
-  eyebrow,
   title,
   titleAccent,
   intro,
@@ -87,10 +85,9 @@ export function TransfersHero({
       </div>
       <div className="grid items-center gap-8 pt-4 pb-10 md:grid-cols-[1.2fr_1fr] md:items-start md:gap-12 md:pb-12">
         <div>
-          <Eyebrow>{eyebrow}</Eyebrow>
           <h1
             id="page-heading"
-            className="mt-3 text-[1.875rem] leading-[1.15] font-bold tracking-tight text-balance text-[#0A2740] md:text-[1.75rem] lg:text-[2rem]"
+            className="text-[1.875rem] leading-[1.15] font-bold tracking-tight text-balance text-[#0A2740] md:text-[1.75rem] lg:text-[2rem]"
           >
             {/* From lg each part is one line: navy title, then the blue accent. The accent's leading
                 space keeps the words apart where the parts wrap inline (phones, tablets). */}

@@ -31,7 +31,6 @@ export default function Page() {
           { href: "/airport-transfers", label: "Airport Transfers" },
           { label: "Terminal Guides" },
         ]}
-        eyebrow="Heathrow terminal guides"
         title="Know your terminal."
         titleAccent="Find your driver."
         intro="Explore Heathrow Terminals 2, 3, 4 and 5, with arrival and departure guidance and help meeting your driver."

@@ -80,7 +80,6 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
 
       <TransfersHero
         crumbs={[{ href: "/areas", label: "Areas We Cover" }, { label: area.name }]}
-        eyebrow={`${region} · Heathrow transfers`}
         title={`Minicab from ${area.name}`}
         titleAccent="to Heathrow, 24/7."
         intro={`Door-to-terminal journeys from ${area.name} to Heathrow, and pickups from arrivals back home, planned around your flight.`}

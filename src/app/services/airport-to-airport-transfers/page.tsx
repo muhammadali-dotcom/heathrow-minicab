@@ -70,7 +70,6 @@ export default function Page() {
       />
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
-        eyebrow="Airport-to-airport transfers"
         title="Two airports."
         titleAccent="One easy ride."
         intro="Landing at one airport and flying from another? We’ll help arrange the journey between them."

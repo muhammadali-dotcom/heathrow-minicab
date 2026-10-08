@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <>
       <WebPageJsonLd {...seo} />
-      <PageBanner image="t3" crumb="FAQs" eyebrow="FAQs" title="Questions before you book" />
+      <PageBanner image="t3" crumb="FAQs" title="Questions before you book" />
       <Faqs showHeader={false} withSchema />
     </>
   );

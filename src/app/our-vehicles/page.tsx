@@ -48,7 +48,6 @@ export default function Page() {
       <PageBanner
         image="hero"
         crumb="Our Vehicles"
-        eyebrow="Our vehicles"
         title="Choose a car that fits your journey."
       />
       <Vehicles

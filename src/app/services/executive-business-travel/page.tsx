@@ -44,7 +44,6 @@ export default function Page() {
       />
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
-        eyebrow="Executive & business travel"
         title="Your next meeting"
         titleAccent="starts with a good journey."
         intro="From Heathrow to your office, hotel or meeting, with a comfortable ride planned around your day."

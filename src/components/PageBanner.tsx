@@ -19,7 +19,6 @@ type PageBannerProps = {
   title: string;
   crumb?: string; // short page name for the breadcrumb (defaults to the title)
   parents?: { href: string; label: string }[]; // optional middle breadcrumb levels
-  eyebrow?: string;
   intro?: string;
   image: keyof typeof BANNER_IMAGES;
   links?: { href: string; label: string }[];
@@ -34,7 +33,6 @@ export default function PageBanner({
   title,
   crumb,
   parents,
-  eyebrow,
   intro,
   image,
   links,
@@ -59,11 +57,6 @@ export default function PageBanner({
           items={[...(parents ?? []), { label: crumb ?? title }]}
         />
 
-        {eyebrow && (
-          <p className="mt-2 text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase">
-            {eyebrow}
-          </p>
-        )}
         <h1
           id="page-heading"
           className="mt-3 max-w-[22ch] text-3xl leading-tight font-bold text-balance text-white md:text-5xl"

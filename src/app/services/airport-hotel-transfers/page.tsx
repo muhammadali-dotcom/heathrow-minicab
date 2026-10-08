@@ -37,7 +37,6 @@ export default function Page() {
       />
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
-        eyebrow="Airport & hotel transfers"
         title="Bags packed?"
         titleAccent="Airport or hotel, we’ll take you."
         intro="Tell us your hotel and flight details. We’ll arrange the ride so you can focus on your stay."

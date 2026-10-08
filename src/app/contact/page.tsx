@@ -121,7 +121,6 @@ export default function Page() {
       <WebPageJsonLd {...seo} type="ContactPage" />
       <TransfersHero
         crumbs={[{ label: "Contact" }]}
-        eyebrow="Contact Us"
         title="Contact Heathrow Minicab"
         intro="Book online or call us to plan your Heathrow transfer. We’re based in Mill Hill, North London, and open 24/7."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Online" }}

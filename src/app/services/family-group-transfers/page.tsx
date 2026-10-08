@@ -47,7 +47,6 @@ export default function Page() {
       />
       <TransfersHero
         crumbs={[{ label: "Services" }, { label: service.title }]}
-        eyebrow="Family & group transfers"
         title="Your holiday"
         titleAccent="starts with the right vehicle"
         intro="Bring the family, friends and bags. We’ll help you choose a suitable vehicle for your airport journey."
