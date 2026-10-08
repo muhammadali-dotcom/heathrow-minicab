@@ -121,13 +121,13 @@ export default function Page() {
         />
       </Section>
 
+      <ServiceAreas tone="white" />
+
       <PageFaqs
         items={HOTEL_FAQS}
-        tone="white"
+        tone="pale"
         summary="Heathrow hotel transfers run between Heathrow and hotels near the airport, in central London and across North and West London, in either direction, with returns bookable together."
       />
-
-      <ServiceAreas tone="pale" />
 
       <ClosingCta
         tone="photo"

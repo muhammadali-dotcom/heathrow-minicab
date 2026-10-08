@@ -143,13 +143,13 @@ export default function Page() {
         />
       </Section>
 
+      <ServiceAreas tone="white" />
+
       <PageFaqs
         items={BUSINESS_FAQS}
-        tone="white"
+        tone="pale"
         summary="Business Heathrow transfers take you or your guests between Heathrow and offices, hotels and meeting venues, in a standard car or an executive Mercedes E-Class or similar."
       />
-
-      <ServiceAreas tone="pale" />
 
       <ClosingCta
         tone="photo"

@@ -133,13 +133,13 @@ export default function Page() {
         />
       </Section>
 
+      <ServiceAreas tone="white" />
+
       <PageFaqs
         items={LONG_DISTANCE_FAQS}
-        tone="white"
+        tone="pale"
         summary="Long-distance Heathrow transfers cover journeys beyond London, such as the South East, Oxford and Cambridge, at a fare fixed when confirmed."
       />
-
-      <ServiceAreas tone="pale" />
 
       <ClosingCta
         tone="photo"

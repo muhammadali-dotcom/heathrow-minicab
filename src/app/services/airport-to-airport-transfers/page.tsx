@@ -242,13 +242,13 @@ export default function Page() {
         />
       </Section>
 
+      <ServiceAreas tone="pale" />
+
       <PageFaqs
         items={AIRPORT_TRANSFER_FAQS}
-        tone="pale"
+        tone="white"
         summary="Airport-to-airport transfers connect Heathrow with Gatwick, Stansted, Luton and London City in either direction, planned around both flight details but without guaranteed connection times."
       />
-
-      <ServiceAreas tone="white" />
 
       <ClosingCta
         tone="photo"
