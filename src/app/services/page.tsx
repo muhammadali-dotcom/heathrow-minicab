@@ -26,7 +26,7 @@ export default function Page() {
         image="family"
         crumb="Services"
         title="Heathrow airport transfer services"
-        intro="Every service is a private hire journey to or from Heathrow Terminals 2–5, available 24/7."
+        intro="Every service is a private hire journey to or from Heathrow Terminals 2, 3, 4 and 5, available 24/7."
       />
 
       <Section

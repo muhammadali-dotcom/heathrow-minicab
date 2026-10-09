@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteJsonLd } from "@/components/JsonLd";
-import MobileCallBar from "@/components/MobileCallBar";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -32,7 +31,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main className="flex-1 overflow-x-clip">{children}</main>
         <SiteFooter />
-        <MobileCallBar />
         <WhatsAppFloat />
       </body>
     </html>

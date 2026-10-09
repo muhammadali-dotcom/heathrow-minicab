@@ -215,7 +215,9 @@ function MobileItem({
             aria-expanded={open}
             aria-controls={panelId}
             onClick={() => setOpen((v) => !v)}
-            className={`flex min-h-12 flex-1 items-center justify-between rounded-md px-3 text-left font-medium text-[#0A2740] ${current ? "bg-[#E6F6FC] font-semibold shadow-[inset_3px_0_0_#1FA3D6]" : ""} ${focusRing}`}
+            // No right padding: the 44px chevron box ends at the row edge, in the same column as
+            // the separate chevron button on items that have their own page.
+            className={`flex min-h-12 flex-1 items-center justify-between rounded-md pr-0 pl-3 text-left font-medium text-[#0A2740] ${current ? "bg-[#E6F6FC] font-semibold shadow-[inset_3px_0_0_#1FA3D6]" : ""} ${focusRing}`}
           >
             {item.label}
             <span className="flex h-11 w-11 items-center justify-center">
@@ -317,7 +319,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex min-h-11 items-center gap-2 rounded-md border border-[#0A2740] bg-white px-3 text-sm font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
+            className={`inline-flex min-h-10 items-center gap-2 rounded-md border border-[#0A2740] bg-white px-3 text-sm font-semibold whitespace-nowrap text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
           >
             <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
             WhatsApp
@@ -334,7 +336,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
           aria-expanded={menuOpen}
           aria-controls={mobileMenuId}
           onClick={() => setMenuOpen((v) => !v)}
-          className={`min-h-11 rounded-full border border-[#0A2740] px-4 text-sm font-semibold text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
+          className={`min-h-10 rounded-full border border-[#0A2740] px-4 text-sm font-semibold text-[#0A2740] hover:bg-[#E6F6FC] ${focusRing}`}
         >
           {menuOpen ? "Close" : "Menu"}
         </button>
@@ -342,7 +344,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
           id={mobileMenuId}
           aria-label="Main"
           hidden={!menuOpen}
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-5.8125rem-4.5rem-env(safe-area-inset-bottom))] overflow-y-auto border-b border-[#D5E8F2] bg-white"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-5.3125rem)] overflow-y-auto border-b border-[#D5E8F2] bg-white"
         >
           <ul className={`${SECTION_CONTAINER} py-2`}>
             {nav.map((item) => (

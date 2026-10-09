@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CtaBand from "@/components/CtaBand";
 import HideOnPaths from "@/components/HideOnPaths";
+import MobileCallBar from "@/components/MobileCallBar";
 import PlaneIcon from "@/components/PlaneIcon";
 import Wordmark from "@/components/Wordmark";
 import {
@@ -62,9 +63,8 @@ function TerminalRoute() {
 }
 
 export default function SiteFooter() {
-  // Bottom padding leaves room for the fixed MobileCallBar below lg.
   return (
-    <footer className="bg-[#0A2740] pb-[calc(4.75rem+env(safe-area-inset-bottom))] text-white lg:pb-0">
+    <footer className="bg-[#0A2740] text-white">
       {/* Airport Transfers and individual service pages end with their own closing CTA, so the
           band is skipped there; so is About, which ends with its own contact panel. */}
       <HideOnPaths prefixes={["/airport-transfers", "/services/", "/areas/", "/about", "/our-vehicles"]}>
@@ -76,7 +76,7 @@ export default function SiteFooter() {
           <div className="max-w-xs">
             <Wordmark inverted />
             <p className="mt-4 leading-relaxed text-white/80">
-              Heathrow airport transfers, from your doorstep to departures—and arrivals to home.
+              Heathrow airport transfers, from your doorstep to departures, and arrivals to home.
             </p>
             <ul aria-label="Contact us" className="mt-4">
               {footerNumbers.map(({ phone, label }) => (
@@ -104,7 +104,7 @@ export default function SiteFooter() {
             <p className="mt-2 text-sm font-semibold text-white">Open 24/7, every day</p>
             <p className="mt-1 text-sm text-white/70">Based in {BUSINESS_BASE_LABEL}</p>
             <p className="mt-1 text-sm text-white/70">
-              Serving North and West London and Heathrow Terminals 2–5
+              Serving North and West London and Heathrow Terminals 2, 3, 4 and 5
             </p>
           </div>
 
@@ -159,6 +159,12 @@ export default function SiteFooter() {
               </a>
             </li>
           </ul>
+        </div>
+
+        {/* Phones and tablets: Book Online and Call end the footer. The bottom space is where the
+            floating WhatsApp button rests at the end of the page, so it never covers Call. */}
+        <div className="border-t border-white/10 pt-6 pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:hidden">
+          <MobileCallBar />
         </div>
       </div>
     </footer>

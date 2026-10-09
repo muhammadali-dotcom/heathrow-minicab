@@ -38,7 +38,7 @@ export default function BookingCta({
   const focus = `focus-visible:outline-2 focus-visible:outline-offset-2 ${
     tone === "dark" ? "focus-visible:outline-white" : "focus-visible:outline-[#0A2740]"
   }`;
-  const sizing = `${size === "sm" ? "min-h-11 px-4 text-sm" : "min-h-12 px-6 text-base"} ${
+  const sizing = `${size === "sm" ? "min-h-10 px-4 text-sm" : "min-h-12 px-6 text-base"} ${
     fullWidth ? "w-full" : ""
   } ${focus}`;
   const button = `${ctaButtonClass} ${sizing}`;

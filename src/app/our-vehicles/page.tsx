@@ -72,7 +72,7 @@ export default function Page() {
               hint: "Estate. The same seats as a saloon, with room for one more suitcase.",
             },
             {
-              label: "5–6 people, or 4 large cases",
+              label: "5 or 6 people, or 4 large cases",
               hint: "MPV. Up to 6 passengers with 4 large suitcases and 2 small bags.",
             },
             {

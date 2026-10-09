@@ -18,7 +18,7 @@ import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 const seo = {
   title: "Heathrow Airport Transfers | Pickups & Drop-offs",
   description:
-    "Book a Heathrow airport transfer to or from Terminals 2–5. Fixed price once confirmed, 15 minutes’ free waiting and child seats at no extra cost.",
+    "Book a Heathrow airport transfer to or from Terminals 2, 3, 4 and 5. Fixed price once confirmed, 15 minutes’ free waiting and child seats at no extra cost.",
   path: "/airport-transfers",
 };
 
