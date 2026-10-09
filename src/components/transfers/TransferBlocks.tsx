@@ -254,18 +254,23 @@ export function RouteCard({
   );
 }
 
+type JourneyFactId = "terminals" | "meeting" | "price" | "journey-time";
+
 export function JourneyFacts({
   variant = "transfer",
   links = true,
+  omit = [],
 }: {
   variant?: "transfer" | "pickup" | "dropoff" | "area" | "terminal";
   links?: boolean;
+  // Cards to leave out where the page already covers them in another section.
+  omit?: JourneyFactId[];
 }) {
   const copy = {
     transfer: {
-      heading: "Journey facts before you book",
+      heading: "Meeting details and journey times",
       intro:
-        "Heathrow Minicab covers Heathrow Terminals 2, 3, 4 and 5. Your pickup or drop-off details are confirmed when you book, and your price is fixed once confirmed.",
+        "Two things to plan around: where you’ll meet your driver, and how long the road to or from Heathrow may take.",
     },
     pickup: {
       heading: "Pickup facts before you land",
@@ -289,31 +294,36 @@ export function JourneyFacts({
     },
   }[variant];
 
-  const items = [
+  const allItems = [
     {
+      id: "terminals" as JourneyFactId,
       icon: "plane" as const,
       title: "Terminals covered",
       text: "We cover Heathrow Terminals 2, 3, 4 and 5 for arrivals and departures.",
       link: links ? { href: "/airport-transfers/terminal-guides", label: "Terminal guides" } : undefined,
     },
     {
+      id: "meeting" as JourneyFactId,
       icon: "board" as const,
       title: "Confirmed meeting details",
       text: "Your meeting point, pickup point or collection time is confirmed with your booking.",
       link: links ? { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" } : undefined,
     },
     {
+      id: "price" as JourneyFactId,
       icon: "tag" as const,
       title: "Price fixed once confirmed",
       text: "The price is fixed once confirmed, but it depends on route, time, day, vehicle, stops, waiting, parking and airport charges.",
     },
     {
+      id: "journey-time" as JourneyFactId,
       icon: "clock" as const,
       title: "Journey time varies",
       text: "Journey time varies with traffic, terminal, time of day, roadworks and airport processing time.",
       link: links ? { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" } : undefined,
     },
   ];
+  const items = allItems.filter((item) => !omit.includes(item.id));
 
   return (
     <div className="mt-6">
@@ -321,7 +331,7 @@ export function JourneyFacts({
         <span className={`block text-lg font-semibold ${heading}`}>{copy.heading}</span>
         <span className="mt-1 block">{copy.intro}</span>
       </p>
-      <FeatureGrid compact columns={4} items={items} />
+      <FeatureGrid compact columns={items.length > 2 ? 4 : 2} items={items} />
     </div>
   );
 }

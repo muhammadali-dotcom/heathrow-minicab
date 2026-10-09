@@ -7,7 +7,6 @@ import { pageMetadata } from "@/lib/seo";
 import {
   BulletList,
   ClosingCta,
-  FeatureGrid,
   JourneyFacts,
   RouteCard,
   Section,
@@ -42,13 +41,13 @@ const pricingPoints = [
     text: "Applicable parking and airport charges are shown before booking.",
   },
   {
-    icon: "clock",
-    title: "15 minutes included",
-    text: "Free waiting from your agreed pickup time.",
+    icon: "stops",
+    title: "Extra stops in your quote",
+    text: "Give us every stop when you book and we’ll include them in your quote.",
   },
 ] as const;
 
-type PricingIconName = (typeof pricingPoints)[number]["icon"] | "seat";
+type PricingIconName = (typeof pricingPoints)[number]["icon"];
 
 function PricingIcon({
   name,
@@ -89,17 +88,10 @@ function PricingIcon({
           <path {...common} d="M19 34c7 0 7-8 14-8" />
         </>
       )}
-      {name === "clock" && (
+      {name === "stops" && (
         <>
-          <circle {...common} cx="24" cy="24" r="15" />
-          <path {...common} d="M24 15v10l7 4" />
-        </>
-      )}
-      {name === "seat" && (
-        <>
-          <path {...common} d="M18 8h12a4 4 0 0 1 4 4v16H14V12a4 4 0 0 1 4-4Z" />
-          <path {...common} d="M12 28h24v5a5 5 0 0 1-5 5H17a5 5 0 0 1-5-5Z" />
-          <path {...common} d="M18 16h12M19 38l-2 4M29 38l2 4" />
+          <path {...common} d="M24 40s11-10.5 11-19a11 11 0 0 0-22 0c0 8.5 11 19 11 19Z" />
+          <circle {...common} cx="24" cy="21" r="4" />
         </>
       )}
     </svg>
@@ -160,13 +152,6 @@ function PricingSection() {
         </ul>
       </div>
 
-      <div className="mt-5 flex flex-col items-center justify-center gap-3 rounded-xl border border-[#1FA3D6] bg-white px-6 py-4 text-center md:flex-row md:gap-5 md:text-left">
-        <PricingIcon name="seat" className="h-9 w-9 shrink-0 text-[#0A2740]" />
-        <span className="hidden h-9 w-px bg-[#D5E8F2] md:block" aria-hidden="true" />
-        <p className="text-lg leading-snug font-semibold text-[#0A2740]">
-          Child seats at no extra cost — request when booking.
-        </p>
-      </div>
     </Section>
   );
 }
@@ -235,57 +220,6 @@ export default function Page() {
       </Section>
 
       <Section
-        tone="pale"
-        id="why-us"
-        eyebrow="Why travel with us"
-        title="Why travel with Heathrow Minicab"
-      >
-        <FeatureGrid
-          compact
-          items={[
-            {
-              icon: "plane",
-              title: "Flight monitoring",
-              text: "We track your flight and confirm changes with you.",
-            },
-            {
-              icon: "board",
-              title: "Name board meeting",
-              text: "Meet inside arrivals or at your confirmed pickup point.",
-            },
-            {
-              icon: "clock",
-              title: "15 minutes’ waiting included",
-              text: "Free waiting starts from your agreed pickup time.",
-            },
-            {
-              icon: "seat",
-              title: "Child seats on request",
-              text: "Request child seats when you book.",
-            },
-            {
-              icon: "car",
-              title: "Saloon to MPV",
-              text: "Choose a car around passengers and luggage.",
-            },
-            {
-              icon: "allday",
-              title: "All day, every day",
-              text: "Available 24/7 for early departures and late arrivals.",
-            },
-          ]}
-        />
-        <div className="mt-5">
-          <a
-            href="/our-vehicles"
-            className="inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-[#0A2740] underline decoration-[#1FA3D6] decoration-2 underline-offset-4 hover:decoration-[#0A2740] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]"
-          >
-            See our vehicles <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </Section>
-
-      <Section
         tone="white"
         id="vehicles"
         eyebrow="Our vehicles"
@@ -300,10 +234,10 @@ export default function Page() {
         tone="white"
         id="journey-facts"
         eyebrow="Before you book"
-        title="Clear answers about prices, times and terminals"
-        intro="These are the core journey facts to check before you book a Heathrow transfer."
+        title="What to expect on the day"
       >
-        <JourneyFacts />
+        {/* Terminals and the fixed price are already covered by At a glance and Pricing. */}
+        <JourneyFacts omit={["terminals", "price"]} />
       </Section>
 
       <PageFaqs
