@@ -69,7 +69,7 @@ export default function TravelSituations() {
                   <h3 className="text-xl font-semibold text-[#0A2740]">
                     {card.heading}
                   </h3>
-                  <p className="mt-3 leading-relaxed text-[#5B7A93]">
+                  <p className="mt-3 leading-relaxed text-[#4E6B84]">
                     {card.text}
                   </p>
                 </div>

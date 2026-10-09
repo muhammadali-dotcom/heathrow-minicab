@@ -51,7 +51,7 @@ export default function LegalDocument({
 
       <section aria-label={title} className="bg-white py-14 md:py-20">
         <div className={SECTION_CONTAINER}>
-          <p className="text-sm text-[#5B7A93]">Last updated: {updated}</p>
+          <p className="text-sm text-[#4E6B84]">Last updated: {updated}</p>
 
           <nav aria-label="On this page" className="mt-6">
             <h2 className="text-xs font-bold tracking-[0.15em] text-[#0A2740] uppercase">

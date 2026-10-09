@@ -236,7 +236,7 @@ export function MessagePreview({ intro, lines }: { intro: string; lines: string[
   const href = `https://wa.me/${PRIMARY_PHONE.tel.replace("+", "")}?text=${encodeURIComponent(text)}`;
   return (
     <div className="mx-auto mt-6 w-full max-w-[36rem] rounded-xl border border-[#D5E8F2] bg-white p-5 md:p-6">
-      <p className="flex items-center gap-2 text-sm font-semibold text-[#5B7A93]">
+      <p className="flex items-center gap-2 text-sm font-semibold text-[#4E6B84]">
         <WhatsAppIcon className="h-4 w-4" />
         Your message to {PRIMARY_PHONE.display}
       </p>
@@ -246,7 +246,7 @@ export function MessagePreview({ intro, lines }: { intro: string; lines: string[
           {lines.map((line) => (
             <li key={line}>
               <span className="font-semibold">{line}:</span>{" "}
-              <span aria-hidden="true" className="text-[#5B7A93]">
+              <span aria-hidden="true" className="text-[#4E6B84]">
                 …
               </span>
             </li>
@@ -290,7 +290,7 @@ export function DetailCards({
           className={`flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5 ${span(i)}`}
         >
           <p className="font-semibold text-[#0A2740]">{item.label}</p>
-          <p className="mt-1 flex-1 text-sm leading-relaxed text-[#5B7A93]">{item.hint}</p>
+          <p className="mt-1 flex-1 text-sm leading-relaxed text-[#4E6B84]">{item.hint}</p>
           {item.link && (
             <Link href={item.link.href} className={`${cardLink} mt-2 self-start`}>
               {item.link.label} <span aria-hidden="true">→</span>
@@ -377,7 +377,7 @@ export function GroupedChecklist({ groups }: { groups: { title: string; items: s
               : "md:pr-8"
           }
         >
-          <h3 className="text-xs font-bold tracking-[0.15em] text-[#5B7A93] uppercase">
+          <h3 className="text-xs font-bold tracking-[0.15em] text-[#4E6B84] uppercase">
             {group.title}
           </h3>
           <ul className={`mt-4 grid gap-3 ${group.items.length > 3 ? "sm:grid-cols-2" : ""}`}>

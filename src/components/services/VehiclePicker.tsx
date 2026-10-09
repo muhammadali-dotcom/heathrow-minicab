@@ -195,11 +195,11 @@ export default function VehiclePicker({
                   <th
                     key={col.label}
                     scope="col"
-                    className="px-1 pb-4 text-center align-bottom text-xs font-normal text-[#5B7A93] sm:text-sm"
+                    className="px-1 pb-4 text-center align-bottom text-xs font-normal text-[#4E6B84] sm:text-sm"
                   >
                     <span className="flex flex-col items-center gap-1 text-[#0A2740]">
                       <FeatureIcon name={col.icon} />
-                      <span className="text-[#5B7A93]">{col.label}</span>
+                      <span className="text-[#4E6B84]">{col.label}</span>
                     </span>
                   </th>
                 ))}
@@ -220,7 +220,7 @@ export default function VehiclePicker({
                       }`}
                     >
                       <span className="block text-lg font-bold text-[#0A2740]">{v.name}</span>
-                      <span className="block text-sm text-[#5B7A93]">{goodFor[v.id]}</span>
+                      <span className="block text-sm text-[#4E6B84]">{goodFor[v.id]}</span>
                     </th>
                     {COLUMNS.map((col) => (
                       <td
@@ -235,7 +235,7 @@ export default function VehiclePicker({
               })}
             </tbody>
           </table>
-          <p className="mt-4 flex items-start gap-2 text-sm text-[#5B7A93]">
+          <p className="mt-4 flex items-start gap-2 text-sm text-[#4E6B84]">
             <svg
               aria-hidden="true"
               viewBox="0 0 24 24"

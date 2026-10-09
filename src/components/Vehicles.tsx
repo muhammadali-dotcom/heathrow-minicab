@@ -23,7 +23,7 @@ function Capacity({ vehicle }: { vehicle: Vehicle }) {
     <dl className="mt-4 flex-1 space-y-2.5 border-t border-[#D5E8F2] pt-4">
       {rows.map(({ label, value }) => (
         <div key={label} className="flex items-baseline justify-between gap-3">
-          <dt className="text-sm text-[#5B7A93]">{label}</dt>
+          <dt className="text-sm text-[#4E6B84]">{label}</dt>
           <dd className="text-sm font-semibold whitespace-nowrap text-[#0A2740]">{value}</dd>
         </div>
       ))}
@@ -89,7 +89,7 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="text-xl font-semibold text-[#0A2740]">{vehicle.name}</h3>
                   {/* Two lines reserved from lg so a wrapping model name doesn't push the rows down. */}
-                  <p className="mt-1 text-sm font-medium text-[#5B7A93] lg:min-h-10">
+                  <p className="mt-1 text-sm font-medium text-[#4E6B84] lg:min-h-10">
                     {vehicle.model} or similar
                   </p>
                   <p className="mt-2 text-sm text-[#0A2740] lg:min-h-10">

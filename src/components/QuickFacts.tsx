@@ -125,7 +125,7 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
           </ul>
         </div>
 
-        <p className="mt-6 text-sm text-[#5B7A93]">{KEY_FACTS_NOTE}</p>
+        <p className="mt-6 text-sm text-[#4E6B84]">{KEY_FACTS_NOTE}</p>
       </div>
     </section>
   );

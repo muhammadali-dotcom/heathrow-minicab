@@ -551,14 +551,14 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
               />
             </div>
             <h3 className="mt-4 text-lg font-semibold text-[#0A2740]">{vehicle.name}</h3>
-            <p className="text-sm text-[#5B7A93]">{vehicle.model} or similar</p>
+            <p className="text-sm text-[#4E6B84]">{vehicle.model} or similar</p>
             <p className="mt-2 pb-3 text-sm text-[#0A2740] lg:min-h-16">
               <span className="font-semibold">Best for:</span> {vehicle.bestFor}
             </p>
             <dl className="mt-auto space-y-1.5 border-t border-[#D5E8F2] pt-3">
               {rows.map(({ label, value }) => (
                 <div key={label} className="flex items-baseline justify-between gap-3">
-                  <dt className="text-sm text-[#5B7A93]">{label}</dt>
+                  <dt className="text-sm text-[#4E6B84]">{label}</dt>
                   <dd className="text-sm font-semibold whitespace-nowrap text-[#0A2740]">
                     {value}
                   </dd>
