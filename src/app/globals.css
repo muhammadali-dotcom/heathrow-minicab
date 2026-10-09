@@ -20,14 +20,14 @@
   }
 }
 
-/* The header is sticky (44px top bar + 64px row, 80px row from lg), so in-page anchors
+/* The header is sticky (36px top bar + 56px row, 72px row from lg), so in-page anchors
    land below it. */
 html {
-  scroll-padding-top: 7.5rem;
+  scroll-padding-top: 6.5rem;
 }
 @media (min-width: 64rem) {
   html {
-    scroll-padding-top: 8.75rem;
+    scroll-padding-top: 7.75rem;
   }
 }
 

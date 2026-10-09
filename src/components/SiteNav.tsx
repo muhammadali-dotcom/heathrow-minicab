@@ -342,7 +342,7 @@ export default function SiteNav({ nav }: SiteNavProps) {
           id={mobileMenuId}
           aria-label="Main"
           hidden={!menuOpen}
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-6.75rem-4.5rem-env(safe-area-inset-bottom))] overflow-y-auto border-b border-[#D5E8F2] bg-white"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-5.8125rem-4.5rem-env(safe-area-inset-bottom))] overflow-y-auto border-b border-[#D5E8F2] bg-white"
         >
           <ul className={`${SECTION_CONTAINER} py-2`}>
             {nav.map((item) => (
