@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { WebPageJsonLd } from "@/components/JsonLd";
+import { SERVICES_LIST, WebPageJsonLd } from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
 import { DetailCards } from "@/components/services/ServiceBlocks";
 import ServiceAreas from "@/components/services/ServiceAreas";
@@ -21,7 +21,7 @@ export const metadata: Metadata = pageMetadata(seo);
 export default function Page() {
   return (
     <>
-      <WebPageJsonLd {...seo} type="CollectionPage" />
+      <WebPageJsonLd {...seo} type="CollectionPage" mainEntity={SERVICES_LIST} />
       <PageBanner
         image="family"
         crumb="Services"

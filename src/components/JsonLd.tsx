@@ -227,11 +227,13 @@ export function WebPageJsonLd({
   title,
   description,
   type = "WebPage",
+  mainEntity,
 }: {
   path: string;
   title: string;
   description: string;
   type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
+  mainEntity?: object; // what the page is mainly about, e.g. the /services hub's list of services
 }) {
   return (
     <JsonLd
@@ -250,10 +252,26 @@ export function WebPageJsonLd({
           "@type": "SpeakableSpecification",
           cssSelector: ["h1", "[data-speakable]"],
         },
+        ...(mainEntity ? { mainEntity } : {}),
       }}
     />
   );
 }
+
+// The service pages, in menu order, as a list pointing at each page's Service node (by @id).
+export const SERVICES_LIST = {
+  "@type": "ItemList",
+  "@id": nodeId("/services", "list"),
+  name: "Heathrow Minicab airport transfer services",
+  numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((service, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: service.title,
+    url: absoluteUrl(`/services/${service.slug}`),
+    item: { "@id": nodeId(`/services/${service.slug}`, "service") },
+  })),
+};
 
 // Breadcrumb trail as absolute URLs; the current page has no href.
 export function BreadcrumbJsonLd({
