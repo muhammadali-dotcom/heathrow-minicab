@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 604800,
   },
-  // Only the canonical domain (www.heathrowminicab.uk) should be indexed; keep preview
+  // Only the canonical domain (www.heathrowminicab.com) should be indexed; keep preview
   // deployment URLs on vercel.app out of search results so they can't compete with it.
   headers() {
     return [
@@ -35,7 +35,26 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "heathrow-minicab.vercel.app" }],
-        destination: "https://www.heathrowminicab.uk/:path*",
+        destination: "https://www.heathrowminicab.com/:path*",
+        permanent: true,
+      },
+      // Retired and non-www domains forward to the canonical .com host.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "heathrowminicab.uk" }],
+        destination: "https://www.heathrowminicab.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.heathrowminicab.uk" }],
+        destination: "https://www.heathrowminicab.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "heathrowminicab.com" }],
+        destination: "https://www.heathrowminicab.com/:path*",
         permanent: true,
       },
       ...["2", "3", "4", "5"].map((n) => ({
