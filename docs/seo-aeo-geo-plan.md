@@ -211,10 +211,11 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 - [ ] Write the About, Terms and Privacy pages, then remove their noindex.
 
 **Month 2**
-- [ ] Add real local detail to the first 3 area pages (landmarks, hotels, typical pickups) so they're more than templates.
+- [x] Add real local detail to the top 6 area pages (landmarks, route-planning context, terminal wording, booking details and local FAQs).
 - [ ] Publish the first guide article.
 - [ ] Add 5 more directory listings.
 - [ ] Contact 5 local hotels or venues about partnership links.
+- [ ] Use `docs/citations-local-links.md` to track profile URLs and local outreach.
 
 **Month 3**
 - [ ] Publish 2 more area pages and a second guide.
@@ -232,6 +233,7 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 - AI fact sheets: `src/lib/llms.ts` builds `/llms.txt` and `/llms-full.txt`.
 - Confirmed key facts: `src/lib/facts.ts` (Key facts block, llms.txt, knowsAbout).
 - Profiles and licence: `SAME_AS` and `TFL_LICENCE` in `src/lib/site.ts`. Add your Google Business Profile and directory URLs to `SAME_AS` as they go live.
+- Citations and outreach: `docs/citations-local-links.md` has the NAP profile, listing order and local link targets.
 - Content date: `CONTENT_UPDATED` in `src/lib/seo.ts` (page dateModified and sitemap). Bump it after meaningful content changes.
 - Schema: `src/components/JsonLd.tsx` (business, website, web page, service and breadcrumbs) and `src/components/FaqList.tsx` (FAQ).
 - FAQs: `src/lib/faqs.ts`, grouped by topic; `PageFaqs` shows a page's own group.

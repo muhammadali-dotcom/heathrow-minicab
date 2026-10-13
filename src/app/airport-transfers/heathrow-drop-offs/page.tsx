@@ -19,6 +19,15 @@ import {
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 
+const PRIORITY_AREA_LINKS = [
+  { href: "/areas/finchley", label: "Finchley to Heathrow" },
+  { href: "/areas/hendon", label: "Hendon to Heathrow" },
+  { href: "/areas/mill-hill", label: "Mill Hill to Heathrow" },
+  { href: "/areas/edgware", label: "Edgware to Heathrow" },
+  { href: "/areas/barnet", label: "Barnet to Heathrow" },
+  { href: "/areas/golders-green", label: "Golders Green to Heathrow" },
+];
+
 const seo = {
   title: "Minicab to Heathrow | Heathrow Airport Drop-offs",
   description:
@@ -110,6 +119,36 @@ export default function Page() {
         </div>
       </Section>
 
+      <Section
+        tone="white"
+        id="early-late"
+        eyebrow="24/7 Heathrow departures"
+        title="Early-morning and late-night Heathrow drop-offs"
+        intro="We run 24/7, so your collection can be planned around early departures, late flights and overnight travel from North and West London."
+      >
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Early flights",
+              text: "Share your flight time, terminal and airline guidance so we can agree a practical collection time.",
+            },
+            {
+              title: "Luggage loading",
+              text: "Tell us how many large suitcases and small bags you have so we can suggest the right vehicle.",
+            },
+            {
+              title: "Terminal access",
+              text: "Heathrow terminal access and drop-off arrangements are factored into the quote before you book.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-[#D5E8F2] bg-[#E6F6FC] p-5">
+              <h3 className="text-lg font-semibold text-[#0A2740]">{item.title}</h3>
+              <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section tone="white">
         <Columns
           main={
@@ -141,6 +180,24 @@ export default function Page() {
         intro="Your collection time is planned around your flight details, but journey time still varies with live conditions."
       >
         <JourneyFacts variant="dropoff" />
+      </Section>
+
+      <Section
+        tone="white"
+        id="popular-areas"
+        eyebrow="Popular routes"
+        title="Minicab to Heathrow from North London"
+        intro="These local pages explain common pickup points, planning details and booking tips for high-intent Heathrow drop-off journeys."
+      >
+        <ul className="mt-6 flex flex-wrap gap-3">
+          {PRIORITY_AREA_LINKS.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className={textLink}>
+                {item.label} <span aria-hidden="true">→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section

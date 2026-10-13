@@ -155,6 +155,40 @@ export default function Page() {
 
       <Section
         tone="pale"
+        id="terminal-pickup-notes"
+        eyebrow="Terminal pickup notes"
+        title="Terminals 2, 3, 4 and 5 are covered"
+        intro="Heathrow terminal layouts differ, so your confirmed booking instructions always come first. Use these notes to prepare before you land."
+      >
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {[
+            {
+              title: "Terminal 2 arrivals",
+              text: "Check your confirmed meeting point after baggage reclaim and keep your phone available when you enter arrivals.",
+            },
+            {
+              title: "Terminal 3 arrivals",
+              text: "Follow the arrivals signs, then use the meeting arrangement confirmed with your booking.",
+            },
+            {
+              title: "Terminal 4 arrivals",
+              text: "Terminal 4 can involve a different transfer route, so share your flight number and terminal when booking.",
+            },
+            {
+              title: "Terminal 5 arrivals",
+              text: "Terminal 5 is busy, so follow the agreed meeting point and call us if you cannot see your driver.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-[#D5E8F2] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#0A2740]">{item.title}</h3>
+              <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        tone="white"
         id="pickup-journey-facts"
         eyebrow="Before you land"
         title="Clear answers about Heathrow pickups"
@@ -164,7 +198,7 @@ export default function Page() {
       </Section>
 
       <Section
-        tone="white"
+        tone="pale"
         id="booking-checklist"
         eyebrow="Before you book"
         title="Your booking checklist"

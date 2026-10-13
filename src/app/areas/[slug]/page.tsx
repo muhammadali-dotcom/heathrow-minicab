@@ -5,6 +5,7 @@ import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import PageFaqs from "@/components/PageFaqs";
 import { PathCards } from "@/components/services/ServiceBlocks";
 import {
+  Checklist,
   ClosingCta,
   FeatureGrid,
   JourneyFacts,
@@ -164,6 +165,25 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
             </div>
           </div>
         </div>
+      </Section>
+
+      <Section
+        tone="white"
+        id="booking-details"
+        eyebrow={`Booking from ${area.name}`}
+        title="What to tell us before we confirm"
+        intro={`These details help us plan your ${area.name} Heathrow transfer clearly, choose the right vehicle and confirm the right terminal arrangement.`}
+      >
+        <Checklist
+          items={[
+            `${area.name} pickup address, postcode and nearest landmark`,
+            "Heathrow terminal: 2, 3, 4 or 5",
+            "Flight date, flight time and flight number if available",
+            "Passengers, large suitcases and small bags",
+            "Child seats, extra stops or accessibility notes",
+            "Mobile number for pickup updates",
+          ]}
+        />
       </Section>
 
       <Section

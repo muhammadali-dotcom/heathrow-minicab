@@ -10,7 +10,7 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.heathr
 
 // When the site's content was last reviewed: the WebPage dateModified and the policy pages'
 // "Last updated" date. Bump it after meaningful content changes.
-export const CONTENT_UPDATED = "2026-10-08";
+export const CONTENT_UPDATED = "2026-10-13";
 
 export const absoluteUrl = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
 

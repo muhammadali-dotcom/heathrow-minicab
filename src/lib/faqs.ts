@@ -110,6 +110,18 @@ export const PICKUP_FAQS: Faq[] = [
     answer:
       "Send your flight number, arrival date, terminal if known, destination address, passengers, luggage and mobile number. These details help us confirm the meeting arrangement and suitable vehicle.",
   },
+  {
+    id: "pickup-terminal-guides",
+    question: "Do Heathrow pickup instructions differ by terminal?",
+    answer:
+      "Yes. Terminal layouts differ, so your booking confirmation gives the final meeting point for Terminal 2, 3, 4 or 5. The terminal guides are useful for planning, but your confirmed instructions come first.",
+  },
+  {
+    id: "pickup-parking-charge",
+    question: "Is Heathrow pickup parking confirmed before I book?",
+    answer:
+      "Yes. Any applicable parking or waiting charge is covered as agreed in your quote, so you can see the full arrangement before you book.",
+  },
 ];
 
 // Heathrow departures: /airport-transfers/heathrow-drop-offs.
@@ -137,6 +149,18 @@ export const DROPOFF_FAQS: Faq[] = [
     question: "Why don’t you publish exact Heathrow drop-off journey times?",
     answer:
       "We don’t publish exact journey times because traffic, roadworks, terminal access, time of day and extra stops can change the journey. Your collection time is planned around your flight details when you book.",
+  },
+  {
+    id: "dropoff-luggage-vehicle",
+    question: "Which vehicle should I book for a Heathrow drop-off with luggage?",
+    answer:
+      "Tell us your passenger count and luggage before booking. We’ll help match the journey to a saloon, estate, MPV or executive car depending on the bags and passengers.",
+  },
+  {
+    id: "dropoff-terminal-change",
+    question: "What if my departure terminal changes after I book?",
+    answer:
+      "Contact us as soon as your terminal changes. We’ll update the journey details and confirm the correct Heathrow drop-off arrangement.",
   },
 ];
 

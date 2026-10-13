@@ -17,16 +17,18 @@ const westRoute =
 export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
   finchley: {
     pickupContext:
-      "Finchley bookings often include home pickups around Finchley Central, North Finchley and Church End, plus collections near local stations and shopping parades.",
+      "Finchley bookings often include home pickups around Finchley Central, North Finchley, Church End and residential roads towards East End Road, plus collections near local stations, schools and shopping parades.",
     localPlaces: [
       "Finchley Central Underground station",
       "North Finchley town centre",
       "Regents Park Road and Hendon Lane",
       "Avenue House and nearby residential streets",
+      "East End Road and Church End addresses",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Finchley to Heathrow transfers are planned around your exact address and terminal. Drivers may consider routes via the A406 North Circular, A1, M1, M25, A40 or M4 depending on whether you are travelling to Terminals 2, 3, 4 or 5 and what live traffic looks like.",
     planningTip:
-      "If your pickup is near a station, school or high street, share the exact entrance or nearest landmark so the driver can stop safely and find you quickly.",
+      "When booking from Finchley, share the full pickup address, nearest entrance or landmark, Heathrow terminal, flight time, passengers, luggage and any child seats so we can confirm the right vehicle and collection point.",
     localFaqs: [
       {
         id: "finchley-central-pickup",
@@ -39,6 +41,18 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         question: "Do you cover North Finchley as well as Finchley Central?",
         answer:
           "Yes. We cover Finchley, including North Finchley, Finchley Central and nearby residential streets, for Heathrow transfers.",
+      },
+      {
+        id: "finchley-terminals",
+        question: "Do you go from Finchley to all Heathrow terminals?",
+        answer:
+          "Yes. We arrange Finchley transfers to Heathrow Terminals 2, 3, 4 and 5, and pickups back to Finchley from arrivals.",
+      },
+      {
+        id: "finchley-booking-details",
+        question: "What should I tell you when booking from Finchley?",
+        answer:
+          "Send your Finchley pickup address, Heathrow terminal, flight time, passengers, suitcases, child-seat requests and mobile number so we can confirm the journey clearly.",
       },
     ],
   },
@@ -71,16 +85,18 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
   },
   hendon: {
     pickupContext:
-      "Hendon bookings commonly include collections around Hendon Central, Brent Cross, The Burroughs and nearby residential streets.",
+      "Hendon bookings commonly include collections around Hendon Central, Brent Cross, The Burroughs, West Hendon and residential roads around Watford Way.",
     localPlaces: [
       "Hendon Central Underground station",
       "Brent Cross shopping area",
       "The Burroughs",
       "Watford Way and surrounding residential roads",
+      "West Hendon Broadway and nearby homes",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Hendon to Heathrow journeys are planned around the pickup side of Hendon, your terminal and live traffic. Depending on conditions, drivers may consider routes using the A41, A406 North Circular, M1, M25, A40 or M4 for Terminals 2, 3, 4 and 5.",
     planningTip:
-      "If you are near Brent Cross or Hendon Central, give a precise entrance, road name or building name so your pickup point is clear before travel.",
+      "When booking from Hendon, include the exact address or entrance, Heathrow terminal, flight time, passenger count, luggage and any extra stops, especially if the pickup is near Brent Cross or Hendon Central.",
     localFaqs: [
       {
         id: "hendon-central-pickup",
@@ -94,20 +110,34 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         answer:
           "Yes. We can arrange Heathrow transfers from the Brent Cross area, subject to confirming a clear pickup point.",
       },
+      {
+        id: "hendon-west-hendon",
+        question: "Do you collect from West Hendon?",
+        answer:
+          "Yes. We cover West Hendon and nearby residential roads for pre-booked Heathrow transfers.",
+      },
+      {
+        id: "hendon-terminal-details",
+        question: "Do you need my Heathrow terminal for a Hendon pickup?",
+        answer:
+          "Yes. Please share whether you are travelling to Terminal 2, 3, 4 or 5 so we can plan the drop-off or arrivals pickup correctly.",
+      },
     ],
   },
   "mill-hill": {
     pickupContext:
-      "Mill Hill transfers often start around Mill Hill Broadway, Station Road, Mill Hill East and residential roads across NW7.",
+      "Mill Hill transfers often start around Mill Hill Broadway, Station Road, Mill Hill East, Bittacy Hill and residential roads across NW7.",
     localPlaces: [
       "Mill Hill Broadway station",
       "Station Road",
       "The Broadway",
       "Mill Hill East and nearby residential streets",
+      "Bittacy Hill and Holders Hill Road",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Mill Hill to Heathrow routes depend on your side of NW7, the terminal and the time of day. Drivers may consider the A1, M1, A406, M25, A40 or M4 when planning journeys to Terminals 2, 3, 4 and 5.",
     planningTip:
-      "For pickups around Mill Hill Broadway, tell us whether you need the station side, a shopfront on The Broadway or a nearby residential address.",
+      "For Mill Hill pickups, tell us the exact side of Mill Hill Broadway or Mill Hill East, the Heathrow terminal, flight time, number of passengers, luggage and any mobility or child-seat needs.",
     localFaqs: [
       {
         id: "mill-hill-broadway-pickup",
@@ -121,20 +151,34 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         answer:
           "Yes. We cover Mill Hill East as part of our Mill Hill Heathrow transfer service.",
       },
+      {
+        id: "mill-hill-nw7",
+        question: "Do you cover residential addresses across NW7?",
+        answer:
+          "Yes. We collect from homes, offices and agreed meeting points across Mill Hill and NW7 for Heathrow transfers.",
+      },
+      {
+        id: "mill-hill-terminal",
+        question: "Can I book from Mill Hill to Terminal 5?",
+        answer:
+          "Yes. We cover Terminal 5 as well as Terminals 2, 3 and 4 for Mill Hill journeys to and from Heathrow.",
+      },
     ],
   },
   barnet: {
     pickupContext:
-      "Barnet pickups often include High Barnet, Chipping Barnet, New Barnet and residential roads around the town centre.",
+      "Barnet pickups often include High Barnet, Chipping Barnet, New Barnet, The Spires area, Barnet Hospital and residential roads around the town centre.",
     localPlaces: [
       "High Barnet Underground station",
       "Chipping Barnet town centre",
       "The Spires area",
       "Barnet Hospital area",
+      "New Barnet station and nearby residential roads",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Barnet sits further north than many Heathrow pickup areas, so route planning matters. Drivers may consider the A1, M25, M1, A406, A40 or M4 depending on your exact pickup, Heathrow terminal and live traffic.",
     planningTip:
-      "Barnet sits further north than some of our other London pickup areas, so allow extra planning margin for peak-time road conditions.",
+      "When booking from Barnet, share the exact pickup point, terminal, flight time, luggage, passengers and any extra stops so the collection time can be planned with a comfortable margin.",
     localFaqs: [
       {
         id: "high-barnet-pickup",
@@ -148,20 +192,34 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         answer:
           "Yes. Tell us your exact New Barnet address or meeting point and we’ll confirm the transfer details.",
       },
+      {
+        id: "barnet-hospital-area",
+        question: "Can you collect near Barnet Hospital?",
+        answer:
+          "Yes. We can collect from the Barnet Hospital area and nearby residential roads when the exact pickup point is confirmed.",
+      },
+      {
+        id: "barnet-early-terminal",
+        question: "Can you take me from Barnet to Heathrow for an early flight?",
+        answer:
+          "Yes. We operate 24/7 and can arrange early Barnet pickups to Heathrow Terminals 2, 3, 4 and 5.",
+      },
     ],
   },
   edgware: {
     pickupContext:
-      "Edgware transfers often involve Station Road, Edgware station, the Broadwalk area, Burnt Oak and surrounding residential streets.",
+      "Edgware transfers often involve Station Road, Edgware station, The Broadwalk Centre, Burnt Oak, Hale Lane and surrounding residential streets.",
     localPlaces: [
       "Edgware Underground station",
       "The Broadwalk Centre",
       "Station Road",
       "Burnt Oak and nearby residential roads",
+      "Hale Lane and Canons Park side addresses",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Edgware to Heathrow transfers can be planned via different North London and motorway routes depending on the terminal, time of day and traffic. Drivers may consider the A1, M1, M25, A406, A40 or M4 for Terminals 2, 3, 4 and 5.",
     planningTip:
-      "Station Road and shopping-centre areas can be busy, so include a precise pickup landmark and mobile number when booking.",
+      "For Edgware pickups, include the precise road, station side, building entrance or shopfront, plus your Heathrow terminal, flight time, passengers, luggage and mobile number.",
     localFaqs: [
       {
         id: "edgware-station-pickup",
@@ -175,20 +233,34 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         answer:
           "Yes. We can arrange Heathrow transfers from Burnt Oak and nearby roads as part of our Edgware coverage.",
       },
+      {
+        id: "edgware-broadwalk",
+        question: "Can you collect near The Broadwalk Centre?",
+        answer:
+          "Yes. We can arrange pickups near The Broadwalk Centre when you provide a clear meeting point or nearby road.",
+      },
+      {
+        id: "edgware-terminal-five",
+        question: "Do you cover Edgware to Heathrow Terminal 5?",
+        answer:
+          "Yes. We cover Terminal 5 and the other passenger terminals for Edgware to Heathrow journeys.",
+      },
     ],
   },
   "golders-green": {
     pickupContext:
-      "Golders Green bookings often include station-area collections, Finchley Road, Golders Green Road, North End Road and homes close to Hampstead Garden Suburb.",
+      "Golders Green bookings often include station-area collections, Finchley Road, Golders Green Road, North End Road, Temple Fortune and homes close to Hampstead Garden Suburb.",
     localPlaces: [
       "Golders Green Underground and bus station",
       "Golders Green Road",
       "Finchley Road",
       "Golders Hill Park area",
+      "Temple Fortune and North End Road",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Golders Green to Heathrow route planning depends on whether the pickup is near the station, Finchley Road or residential streets. Drivers may consider the A406, A41, A40, M1, M25 or M4 depending on the terminal and live traffic.",
     planningTip:
-      "For station or bus-station pickups, confirm the exact side or nearby road so the driver can avoid waiting in the wrong place.",
+      "When booking from Golders Green, tell us the exact pickup side, nearby road or building, plus your Heathrow terminal, flight time, passengers, luggage and whether you need a name-board pickup on return.",
     localFaqs: [
       {
         id: "golders-green-station",
@@ -201,6 +273,18 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         question: "Do you cover homes near Hampstead Garden Suburb?",
         answer:
           "Yes. We cover residential addresses around Golders Green and Hampstead Garden Suburb.",
+      },
+      {
+        id: "golders-green-temple-fortune",
+        question: "Do you cover Temple Fortune?",
+        answer:
+          "Yes. We cover Temple Fortune and nearby Golders Green residential addresses for Heathrow transfers.",
+      },
+      {
+        id: "golders-green-return-pickup",
+        question: "Can you bring me back from Heathrow to Golders Green?",
+        answer:
+          "Yes. We arrange Heathrow arrivals pickups back to Golders Green, with the meeting point confirmed when you book.",
       },
     ],
   },

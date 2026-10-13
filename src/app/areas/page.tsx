@@ -12,6 +12,8 @@ import { AREA_REGIONS, AREAS } from "@/lib/areas";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE } from "@/lib/site";
 
+const PRIORITY_AREAS = ["finchley", "hendon", "mill-hill", "edgware", "barnet", "golders-green"];
+
 const seo = {
   title: "Minicab to Heathrow from North & West London",
   description:
@@ -59,6 +61,37 @@ export default function Page() {
               departures and pickups from Heathrow arrivals back home. Choose your area below for
               local pickup notes, landmarks, route-planning context and area-specific questions.
             </p>
+          </div>
+
+          <div className="mb-10 rounded-xl border border-[#D5E8F2] bg-[#0A2740] p-6 text-white md:p-8">
+            <p className="text-xs font-bold tracking-[0.15em] text-[#4FB8E0] uppercase">
+              Priority Heathrow routes
+            </p>
+            <h2 className="mt-3 text-2xl leading-snug font-bold tracking-tight">
+              Popular North London pickup areas
+            </h2>
+            <p className="mt-3 max-w-[46rem] leading-relaxed text-white/85">
+              Start with these detailed local pages for common minicab journeys to Heathrow
+              Terminals 2, 3, 4 and 5, including local landmarks, booking tips and area-specific
+              questions.
+            </p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {PRIORITY_AREAS.map((slug) => {
+                const area = AREAS.find((item) => item.slug === slug);
+                if (!area) return null;
+                return (
+                  <li key={slug}>
+                    <Link
+                      href={`/areas/${slug}`}
+                      className="flex min-h-12 items-center justify-between gap-3 rounded-md border border-white/15 bg-white/8 px-4 py-3 font-semibold text-white hover:bg-white/14 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    >
+                      <span>{area.name} to Heathrow</span>
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
           {/* One compact panel per region, names listed in columns. */}
