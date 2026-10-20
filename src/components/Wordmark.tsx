@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
 
 type WordmarkProps = {
@@ -9,7 +8,8 @@ type WordmarkProps = {
 // Site logo, linking home. Assets are trimmed, transparent versions of the supplied logo.
 export default function Wordmark({ inverted = false }: WordmarkProps) {
   return (
-    <Link
+    // eslint-disable-next-line @next/next/no-html-link-for-pages -- logo clicks must perform a full page load.
+    <a
       href="/"
       className={`inline-flex shrink-0 rounded-sm py-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 ${
         inverted ? "focus-visible:outline-white" : "focus-visible:outline-[#0A2740]"
@@ -26,6 +26,6 @@ export default function Wordmark({ inverted = false }: WordmarkProps) {
         fetchPriority={inverted ? undefined : "low"}
         className="h-9 w-auto lg:h-10"
       />
-    </Link>
+    </a>
   );
 }

@@ -107,7 +107,7 @@ export default function Page() {
                 <List
                   items={[
                     "The driver carrying out your journey",
-                    "Our online booking system at bittacycars.com, which receives the details you enter when you book online",
+                    "Our online booking system at heathrowminicabbooking.com, which receives the details you enter when you book online",
                     "WhatsApp (Meta) or our email provider, when you contact us that way",
                     "The payment service used for online payments, under its own terms",
                     "The company that hosts this website, which keeps basic server logs",
