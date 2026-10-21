@@ -105,18 +105,18 @@ export function ComparisonTable({
                 isHighlight ? "border-[#1FA3D6]" : "border-[#D5E8F2]"
               }`}
             >
-              <h3
+              {/* The badge sits beside the heading, not inside it, so the heading text is just
+                  the vehicle name. */}
+              <div
                 className={`px-5 py-3 font-semibold ${
                   isHighlight ? "bg-[#1FA3D6] text-[#0A2740]" : "bg-[#0A2740] text-white"
                 }`}
               >
                 {isHighlight && highlightLabel && (
-                  <span className="block text-xs font-bold tracking-[0.15em] uppercase">
-                    {highlightLabel}
-                  </span>
+                  <p className="text-xs font-bold tracking-[0.15em] uppercase">{highlightLabel}</p>
                 )}
-                {column}
-              </h3>
+                <h3>{column}</h3>
+              </div>
               <dl className="divide-y divide-[#D5E8F2] px-5">
                 {rows.map((row) => (
                   <div key={row.label} className="flex justify-between gap-4 py-3">
@@ -325,11 +325,20 @@ export function PathCards({
             <h3 className="text-xl font-bold text-[#0A2740]">{item.title}</h3>
           ) : (
             <h3 className="flex flex-wrap items-center gap-3 text-xl font-bold text-[#0A2740]">
+              {/* The arrow is an SVG, not a "→" character, so the heading's text reads
+                  "Finchley to Heathrow" for search engines and screen readers. */}
               {item.from}
-              <span aria-hidden="true" className="text-[#1FA3D6]">
-                →
-              </span>
-              <span className="sr-only">to</span>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-5 w-5 fill-none stroke-[#1FA3D6]"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 12h15M13 6l6 6-6 6" />
+              </svg>
+              <span className="sr-only"> to </span>
               {item.to}
             </h3>
           )}

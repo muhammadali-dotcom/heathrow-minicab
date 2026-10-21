@@ -34,6 +34,8 @@ function Capacity({ vehicle }: { vehicle: Vehicle }) {
 const SECTION_NAME = "Our vehicles";
 
 export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
+  // Without the section heading the cards sit straight under the page's H1, so they become H2s.
+  const CardHeading = showHeader ? "h3" : "h2";
   return (
     <section
       {...(showHeader ? { "aria-labelledby": "vehicles-heading" } : { "aria-label": SECTION_NAME })}
@@ -87,7 +89,9 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-xl font-semibold text-[#0A2740]">{vehicle.name}</h3>
+                  <CardHeading className="text-xl font-semibold text-[#0A2740]">
+                    {vehicle.name}
+                  </CardHeading>
                   {/* Two lines reserved from lg so a wrapping model name doesn't push the rows down. */}
                   <p className="mt-1 text-sm font-medium text-[#4E6B84] lg:min-h-10">
                     {vehicle.model} or similar

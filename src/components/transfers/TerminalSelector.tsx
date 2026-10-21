@@ -226,9 +226,16 @@ export default function TerminalSelector() {
                   }`}
                 >
                   {terminal.name}
-                  <span aria-hidden="true" className="text-2xl leading-none">
-                    {isOpen ? "−" : "+"}
-                  </span>
+                  {/* SVG rather than "+"/"−" characters, so the heading text is just the name. */}
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5 shrink-0 fill-none stroke-current"
+                    strokeWidth={2.5}
+                    strokeLinecap="round"
+                  >
+                    <path d={isOpen ? "M5 12h14" : "M5 12h14M12 5v14"} />
+                  </svg>
                 </button>
               </h3>
               <div
