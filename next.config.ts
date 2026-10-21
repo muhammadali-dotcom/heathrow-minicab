@@ -41,26 +41,28 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         has: [{ type: "host", value: "heathrow-minicab.vercel.app" }],
         destination: "https://www.heathrowminicab.com/:path*",
-        permanent: true,
+        statusCode: 301,
       },
-      // Retired and non-www domains forward to the canonical .com host.
+      // Retired and non-www domains forward to the canonical .com host. These cross-domain
+      // redirects use 301, not the 308 that `permanent` gives: Search Console's Change of
+      // address tool only accepts 301s.
       {
         source: "/:path*",
         has: [{ type: "host", value: "heathrowminicab.uk" }],
         destination: "https://www.heathrowminicab.com/:path*",
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.heathrowminicab.uk" }],
         destination: "https://www.heathrowminicab.com/:path*",
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: "/:path*",
         has: [{ type: "host", value: "heathrowminicab.com" }],
         destination: "https://www.heathrowminicab.com/:path*",
-        permanent: true,
+        statusCode: 301,
       },
       ...["2", "3", "4", "5"].map((n) => ({
         source: `/airport-transfers/terminal-${n}`,
