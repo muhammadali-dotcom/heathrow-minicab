@@ -766,7 +766,7 @@ export function ClosingCta({
         <>
           <Image
             src="/images/cta-terminal5.jpg"
-            alt=""
+            alt="Glass-fronted Heathrow airport terminal entrance"
             fill
             sizes="100vw"
             className="object-cover object-center"

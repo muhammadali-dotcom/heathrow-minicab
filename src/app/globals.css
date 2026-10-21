@@ -18,6 +18,44 @@
       transform: translateX(-50%);
     }
   }
+
+  /* The areas map: a dashed route that runs towards Heathrow. */
+  --animate-route: route-dash 0.8s linear infinite;
+  @keyframes route-dash {
+    to {
+      stroke-dashoffset: -10;
+    }
+  }
+}
+
+/* Scroll reveal: .reveal fades and lifts an element as it scrolls into view, and each child of
+   .reveal-stagger does the same, finishing a little later than the one before. CSS only (no JS),
+   so where scroll-driven animations aren't supported, or motion is reduced, the content is
+   simply there. Not for tall blocks: they'd stay half-faded while you read them. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal,
+    .reveal-stagger > * {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+    .reveal-stagger > :nth-child(4n + 2) {
+      animation-range: entry 0% entry 50%;
+    }
+    .reveal-stagger > :nth-child(4n + 3) {
+      animation-range: entry 0% entry 65%;
+    }
+    .reveal-stagger > :nth-child(4n + 4) {
+      animation-range: entry 0% entry 80%;
+    }
+  }
 }
 
 /* The header is sticky (32px top bar + 52px row, 64px row from lg), so in-page anchors

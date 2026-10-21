@@ -32,11 +32,11 @@ const regionLabel = (area: Area) =>
 
 function areaSeo(area: Area) {
   const region = regionLabel(area);
-  const long = `Minicab from ${area.name} to Heathrow | ${SITE_NAME}`;
+  const long = `Taxi from ${area.name} to Heathrow | ${SITE_NAME}`;
   return {
     // Long area names drop the brand suffix to stay within about 60 characters.
-    title: long.length <= 60 ? long : `Minicab from ${area.name} to Heathrow`,
-    description: `Heathrow airport transfers from ${area.name}, ${region}, 24/7. Meet and greet in arrivals, flight monitoring and a fixed price once confirmed.`,
+    title: long.length <= 60 ? long : `Taxi from ${area.name} to Heathrow`,
+    description: `Heathrow airport taxi and minicab transfers from ${area.name}, ${region}, 24/7. Meet and greet in arrivals, flight monitoring and a fixed price once confirmed.`,
     path: `/areas/${area.slug}`,
   };
 }
@@ -85,7 +85,7 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
 
       <TransfersHero
         crumbs={[{ href: "/areas", label: "Areas We Cover" }, { label: area.name }]}
-        title={`Minicab from ${area.name}`}
+        title={`Taxi & minicab from ${area.name}`}
         titleAccent="to Heathrow, 24/7."
         intro={`Door-to-terminal journeys from ${area.name} to Heathrow, and pickups from arrivals back home, planned around your flight.`}
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Online" }}

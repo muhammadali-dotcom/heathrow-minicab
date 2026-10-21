@@ -41,7 +41,7 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
     >
       <div className={SECTION_CONTAINER}>
         {showHeader && (
-          <div className="max-w-2xl">
+          <div className="reveal max-w-2xl">
             <span
               aria-hidden="true"
               className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
@@ -65,7 +65,7 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
         )}
 
         <ul
-          className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${showHeader ? "mt-12 md:mt-16" : intro ? "mt-10" : ""}`}
+          className={`reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${showHeader ? "mt-12 md:mt-16" : intro ? "mt-10" : ""}`}
         >
           {VEHICLES.map((vehicle) => (
             <li key={vehicle.id}>

@@ -23,9 +23,9 @@ export const OG_IMAGE = {
 
 // The homepage's title and description, also the sitewide defaults in the root layout.
 export const HOME_SEO = {
-  title: "Heathrow Minicab | Heathrow Airport Transfers 24/7",
+  title: "Heathrow Airport Taxi & Transfers 24/7 | Heathrow Minicab",
   description:
-    "Heathrow minicab and airport transfers from North and West London. Fixed prices once confirmed, flight monitoring and name-board meet in arrivals.",
+    "Heathrow airport taxi, minicab and transfers from North and West London. Fixed prices once confirmed, flight monitoring and name-board meet in arrivals.",
   path: "/",
 };
 

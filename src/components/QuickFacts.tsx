@@ -60,7 +60,7 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
         <p className="mt-1 text-sm font-semibold text-[#0A2740]">Based in {BUSINESS_BASE_LABEL}</p>
 
         <div data-speakable>
-          <div className="mt-10 grid gap-4 lg:grid-cols-2">
+          <div className="reveal-stagger mt-10 grid gap-4 lg:grid-cols-2">
             <div className="flex items-center justify-between gap-6 rounded-xl bg-[#0A2740] p-6 text-white md:p-8">
               <div>
                 <span aria-hidden="true" className="text-[#4FB8E0]">
@@ -104,7 +104,7 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
             </div>
           </div>
 
-          <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="reveal-stagger mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((fact) => (
               <li
                 key={fact.id}

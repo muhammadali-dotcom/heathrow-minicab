@@ -9,7 +9,7 @@ export default function CtaBand() {
     <section aria-labelledby="cta-band-heading" className="relative overflow-hidden bg-[#0A2740]">
       <Image
         src="/images/cta-terminal5.jpg"
-        alt=""
+        alt="Glass-fronted Heathrow airport terminal entrance"
         fill
         sizes="100vw"
         className="object-cover object-center"

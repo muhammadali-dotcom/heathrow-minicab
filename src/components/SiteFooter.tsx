@@ -4,6 +4,7 @@ import HideOnPaths from "@/components/HideOnPaths";
 import MobileCallBar from "@/components/MobileCallBar";
 import PlaneIcon from "@/components/PlaneIcon";
 import Wordmark from "@/components/Wordmark";
+import { AREAS, AREA_REGIONS } from "@/lib/areas";
 import {
   ALT_PHONE,
   BUSINESS_BASE_LABEL,
@@ -33,6 +34,47 @@ const terminals = ["2", "3", "4", "5"];
 
 const whiteLink =
   "rounded-sm hover:text-white hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+const columnTitle = "text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase";
+
+// Every area page linked from every page, by plain area name. Names wrap inline under each
+// region so the column stays about as tall as the others.
+function AreasColumn() {
+  return (
+    <div>
+      <p id="footer-areas" className={columnTitle}>
+        Areas We Cover
+      </p>
+      <div aria-labelledby="footer-areas" role="group" className="mt-3 space-y-3">
+        {AREA_REGIONS.map((region) => (
+          <div key={region.id}>
+            <p id={`footer-areas-${region.id}`} className="text-xs text-white/60">
+              {region.label}
+            </p>
+            <ul aria-labelledby={`footer-areas-${region.id}`} className="flex flex-wrap gap-x-3">
+              {AREAS.filter((area) => area.region === region.id).map((area) => (
+                <li key={area.slug}>
+                  <Link
+                    href={`/areas/${area.slug}`}
+                    className={`inline-flex py-1.5 text-sm leading-snug text-white/85 ${whiteLink}`}
+                  >
+                    {area.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <Link
+          href="/areas"
+          className={`inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-white ${whiteLink}`}
+        >
+          All areas <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 function TerminalRoute() {
   return (
@@ -72,7 +114,7 @@ export default function SiteFooter() {
       </HideOnPaths>
 
       <div className={`${SECTION_CONTAINER} pt-14 md:pt-16`}>
-        <div className="grid gap-10 lg:grid-cols-[1.3fr_3fr] lg:gap-12">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_3.4fr] lg:gap-12">
           <div className="max-w-xs">
             <Wordmark inverted />
             <p className="mt-4 leading-relaxed text-white/80">
@@ -108,14 +150,14 @@ export default function SiteFooter() {
             </p>
           </div>
 
-          <nav aria-label="Footer" className="grid gap-x-6 gap-y-8 sm:grid-cols-3">
+          <nav
+            aria-label="Footer"
+            className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-[1fr_1.1fr_0.8fr_1.3fr]"
+          >
             {/* Column titles are labels, not headings, so they stay out of each page's outline. */}
             {linkColumns.map((column, i) => (
               <div key={column.title}>
-                <p
-                  id={`footer-links-${i}`}
-                  className="text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase"
-                >
+                <p id={`footer-links-${i}`} className={columnTitle}>
                   {column.title}
                 </p>
                 <ul aria-labelledby={`footer-links-${i}`} className="mt-3">
@@ -132,6 +174,7 @@ export default function SiteFooter() {
                 </ul>
               </div>
             ))}
+            <AreasColumn />
           </nav>
         </div>
 

@@ -15,6 +15,8 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  // Only small badges use it, none in the first screen, so it shouldn't compete with the hero.
+  preload: false,
 });
 
 // Defaults are the homepage's; every other page sets its own title, description and canonical.

@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Inline the (small, Tailwind) stylesheet in the HTML so the first paint doesn't wait on a
+  // separate render-blocking CSS request; most visitors arrive with nothing cached.
+  experimental: {
+    inlineCss: true,
+  },
   // AVIF for browsers that support it (about 20% smaller than WebP), WebP otherwise; optimised
   // images are cached for 7 days instead of the 4-hour default.
   images: {

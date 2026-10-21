@@ -37,7 +37,7 @@ export default function TravelSituations() {
       className="bg-white py-16 md:py-24"
     >
       <div className={SECTION_CONTAINER}>
-        <div className="max-w-2xl">
+        <div className="reveal max-w-2xl">
           <span
             aria-hidden="true"
             className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
@@ -53,7 +53,7 @@ export default function TravelSituations() {
           </h2>
         </div>
 
-        <ul className="mt-8 grid gap-6 md:mt-12 md:grid-cols-3">
+        <ul className="reveal-stagger mt-8 grid gap-6 md:mt-12 md:grid-cols-3">
           {cards.map((card) => (
             <li key={card.image}>
               <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#D5E8F2] bg-white">

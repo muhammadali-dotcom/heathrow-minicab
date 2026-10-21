@@ -46,7 +46,7 @@ export default function HowToBook() {
   return (
     <section aria-labelledby="how-to-book-heading" className="bg-[#E6F6FC] py-16 md:py-24">
       <div className={SECTION_CONTAINER}>
-        <div className="max-w-2xl">
+        <div className="reveal max-w-2xl">
           <span
             aria-hidden="true"
             className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
