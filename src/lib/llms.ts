@@ -1,6 +1,7 @@
 import { AREA_REGIONS, AREAS } from "@/lib/areas";
 import { KEY_FACTS } from "@/lib/facts";
 import { FAQ_GROUPS } from "@/lib/faqs";
+import { GUIDES } from "@/lib/guides";
 import { absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 import {
@@ -70,6 +71,8 @@ ${areas}
 - [Areas we cover](${absoluteUrl("/areas")}): North and West London pickup areas, each with its own page.
 - [Our vehicles](${absoluteUrl("/our-vehicles")}): which car to book by passengers and suitcases, a capacity comparison and a luggage guide.
 - [FAQs](${absoluteUrl("/faqs")}): every common question, grouped by topic.
+- [Guides](${absoluteUrl("/guides")}): Heathrow travel guides.
+${GUIDES.map((g) => `  - [${g.title}](${absoluteUrl(`/guides/${g.slug}`)}): ${g.description}`).join("\n")}
 - [About](${absoluteUrl("/about")})
 - [Contact](${absoluteUrl("/contact")})
 - [Privacy policy](${absoluteUrl("/privacy")})

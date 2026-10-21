@@ -46,7 +46,7 @@ const TERMINAL_DETAILS: Record<Terminal["number"], Omit<Terminal, "number" | "na
     meetingPoint:
       "Heathrow’s public meeting point for Terminal 3 is in the seating area on the ground floor of Arrivals. Your confirmed booking may specify a driver name-board meeting or another agreed point.",
     pickupParking:
-      "For collections, Heathrow directs drivers to Terminal Parking rather than waiting on the terminal forecourt. Terminal 3 Terminal Parking is connected to arrivals by a covered walkway.",
+      "For collections, Heathrow directs drivers to Terminal Parking rather than waiting on the terminal forecourt. Heathrow says its Terminal Parking car parks are about a 2-minute walk from the terminal doors.",
     departureTip:
       "For drop-offs, confirm Terminal 3 against your airline or flight confirmation before you travel.",
     helpTip:
@@ -98,7 +98,7 @@ const TERMINAL_DETAILS: Record<Terminal["number"], Omit<Terminal, "number" | "na
     meetingPoint:
       "Heathrow lists two Terminal 5 arrivals meeting points: the north point opposite Travelex and the south point near Costa Coffee. Your confirmed driver meeting instruction may specify which one to use.",
     pickupParking:
-      "Terminal 5 Terminal Parking, also signposted as Short Stay in places, is next to the terminal and linked by covered walkways to arrivals and departures.",
+      "Collections use Terminal 5 Terminal Parking (Car Park 5), formerly called Short Stay and still signposted that way in places, about a 2-minute walk from the terminal doors.",
     departureTip:
       "Terminal 5 is large, so check your airline and terminal before collection and allow time to reach the right departures area.",
     helpTip:
@@ -119,6 +119,11 @@ const TERMINAL_DETAILS: Record<Terminal["number"], Omit<Terminal, "number" | "na
     ],
   },
 };
+
+// When the facts above were last checked against heathrow.com (meeting points, Terminal Parking,
+// the Terminal 4 Park & Ride move and the drop-off charge). Shown on the terminal guides page;
+// only bump it after re-checking.
+export const TERMINALS_CHECKED = "2026-10-21";
 
 export const TERMINALS: Terminal[] = (["2", "3", "4", "5"] as const).map((number) => ({
   number,

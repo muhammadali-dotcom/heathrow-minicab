@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
 import { TERMINAL_FAQS } from "@/lib/faqs";
 import { WebPageJsonLd } from "@/components/JsonLd";
-import { pageMetadata } from "@/lib/seo";
+import { formatDate, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   HelpPanel,
@@ -13,7 +13,7 @@ import {
   textLink,
 } from "@/components/transfers/TransferBlocks";
 import TerminalSelector from "@/components/transfers/TerminalSelector";
-import { TERMINAL_SPECIFIC_FAQS } from "@/lib/terminals";
+import { TERMINALS_CHECKED, TERMINAL_SPECIFIC_FAQS } from "@/lib/terminals";
 
 const seo = {
   title: "Heathrow Terminals 2, 3, 4 & 5 Guide for Transfers",
@@ -29,7 +29,7 @@ export default function Page() {
 
   return (
     <>
-      <WebPageJsonLd {...seo} />
+      <WebPageJsonLd {...seo} dateModified={TERMINALS_CHECKED} />
       <TransfersHero
         crumbs={[
           { href: "/airport-transfers", label: "Airport Transfers" },
@@ -55,6 +55,14 @@ export default function Page() {
         intro="Select a terminal to see arrival and departure guidance."
       >
         <TerminalSelector />
+        <p className="mt-6 text-sm text-white/70">
+          Last checked against heathrow.com on{" "}
+          <time dateTime={TERMINALS_CHECKED}>{formatDate(TERMINALS_CHECKED)}</time>. Airport
+          arrangements can change, so your booking confirmation is the final instruction.
+        </p>
+        <Link href="/guides/which-heathrow-terminal" className={`${textLink} mt-2`}>
+          Which terminal is my airline? <span aria-hidden="true">→</span>
+        </Link>
       </Section>
 
       <Section tone="pale" id="after-you-land" title="After you land">

@@ -96,6 +96,7 @@ export const COMPANY_LINKS: NavLink[] = [
   { label: "Our Vehicles", href: "/our-vehicles" },
   { label: "Areas We Cover", href: "/areas" },
   { label: "FAQs", href: "/faqs" },
+  { label: "Guides", href: "/guides" },
   { label: "Contact", href: "/contact" },
   { label: "About Us", href: "/about" },
 ];

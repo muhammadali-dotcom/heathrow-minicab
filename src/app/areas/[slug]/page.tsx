@@ -4,15 +4,7 @@ import { notFound } from "next/navigation";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import PageFaqs from "@/components/PageFaqs";
 import { PathCards } from "@/components/services/ServiceBlocks";
-import {
-  Checklist,
-  ClosingCta,
-  FeatureGrid,
-  JourneyFacts,
-  Section,
-  TransfersHero,
-  VehicleCards,
-} from "@/components/transfers/TransferBlocks";
+import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { AREA_PROFILES, DEFAULT_AREA_PROFILE } from "@/lib/area-profiles";
 import { AREA_REGIONS, AREAS, type Area } from "@/lib/areas";
 import { areaFaqs } from "@/lib/faqs";
@@ -48,13 +40,14 @@ export async function generateMetadata({ params }: PageProps<"/areas/[slug]">): 
   return area ? pageMetadata(areaSeo(area)) : {};
 }
 
-// A line of region-specific context, so North and West London pages read differently.
-const REGION_NOTE: Record<Area["region"], (name: string) => string> = {
-  north: (name) =>
-    `From ${name} and across North London, we plan your collection time around your flight and terminal, so you can travel to Heathrow without the stress of trains, parking or connections.`,
-  west: (name) =>
-    `${name} is in West London, on Heathrow’s side of the city, which makes it ideal for door-to-terminal transfers and quick trips home after you land.`,
-};
+// Guides linked from each area's route card, in place of the shared sections that used to
+// repeat on every area page.
+const PLANNING_LINKS = [
+  { href: "/airport-transfers/terminal-guides", label: "Terminal guides" },
+  { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" },
+  { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" },
+  { href: "/our-vehicles", label: "Vehicles" },
+];
 
 const focusNavy =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740]";
@@ -67,7 +60,7 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
   const region = regionLabel(area);
   const nearby = AREAS.filter((a) => a.region === area.region && a.slug !== area.slug);
   const profile = AREA_PROFILES[area.slug] ?? DEFAULT_AREA_PROFILE;
-  const faqs = [...profile.localFaqs, ...areaFaqs(area.name, region)];
+  const faqs = [...profile.localFaqs, ...areaFaqs(area.name)];
 
   return (
     <>
@@ -158,6 +151,18 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
             <div className="rounded-xl border border-[#D5E8F2] bg-white p-6">
               <h2 className="text-xl font-bold text-[#0A2740]">Route planning</h2>
               <p className="mt-3 leading-relaxed text-[#0A2740]/80">{profile.routeContext}</p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {PLANNING_LINKS.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={`inline-flex min-h-11 items-center rounded-full border border-[#D5E8F2] bg-white px-4 text-sm font-semibold text-[#0A2740] hover:border-[#0A2740] ${focusNavy}`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="rounded-xl border border-[#D5E8F2] bg-white p-6">
               <h2 className="text-xl font-bold text-[#0A2740]">Booking tip</h2>
@@ -167,101 +172,13 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
         </div>
       </Section>
 
-      <Section
-        tone="white"
-        id="booking-details"
-        eyebrow={`Booking from ${area.name}`}
-        title="What to tell us before we confirm"
-        intro={`These details help us plan your ${area.name} Heathrow transfer clearly, choose the right vehicle and confirm the right terminal arrangement.`}
-      >
-        <Checklist
-          items={[
-            `${area.name} pickup address, postcode and nearest landmark`,
-            "Heathrow terminal: 2, 3, 4 or 5",
-            "Flight date, flight time and flight number if available",
-            "Passengers, large suitcases and small bags",
-            "Child seats, extra stops or accessibility notes",
-            "Mobile number for pickup updates",
-          ]}
-        />
-      </Section>
-
-      <Section
-        tone="pale"
-        id="journey-factors"
-        eyebrow={`${area.name} journey planning`}
-        title={`What affects your journey from ${area.name} to Heathrow?`}
-        intro={`Your ${area.name} pickup is planned around your exact address, Heathrow terminal, flight details, passengers, luggage and live road conditions.`}
-      >
-        <JourneyFacts variant="area" />
-        <div className="mt-6 flex flex-wrap gap-3">
-          {[
-            { href: "/airport-transfers/terminal-guides", label: "Terminal guides" },
-            { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" },
-            { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" },
-            { href: "/our-vehicles", label: "Vehicles" },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`inline-flex min-h-11 items-center rounded-full border border-[#D5E8F2] bg-white px-4 text-sm font-semibold text-[#0A2740] hover:border-[#0A2740] ${focusNavy}`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        tone="white"
-        id="why-book"
-        title={`Why travellers in ${area.name} book with us`}
-        intro={REGION_NOTE[area.region](area.name)}
-      >
-        <FeatureGrid
-          columns={4}
-          compact
-          items={[
-            {
-              icon: "allday",
-              title: "Open 24/7",
-              text: "Early departures and late arrivals, every day of the year.",
-            },
-            {
-              icon: "board",
-              title: "Meet and greet",
-              text: "A name board inside arrivals, or an agreed pickup point.",
-            },
-            {
-              icon: "clock",
-              title: "Flight monitoring",
-              text: "Pickups adjusted for delays, with 15 minutes’ free waiting.",
-            },
-            {
-              icon: "seat",
-              title: "Child seats",
-              text: "Available on request at no extra cost.",
-            },
-          ]}
-        />
-      </Section>
-
-      <Section
-        tone="pale"
-        id="vehicles"
-        eyebrow="Our vehicles"
-        title="Room for you and your luggage"
-      >
-        <VehicleCards />
-      </Section>
-
       <PageFaqs
         items={faqs}
-        tone="white"
+        tone="pale"
         title={`${area.name} to Heathrow: common questions`}
       />
 
-      <Section tone="pale" id="nearby" title={`Other ${region} areas we cover`}>
+      <Section tone="white" id="nearby" title={`Other ${region} areas we cover`}>
         <ul className="mt-6 flex flex-wrap gap-2">
           {nearby.map((a) => (
             <li key={a.slug}>

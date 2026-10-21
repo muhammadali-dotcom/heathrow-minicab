@@ -228,12 +228,14 @@ export function WebPageJsonLd({
   description,
   type = "WebPage",
   mainEntity,
+  dateModified = CONTENT_UPDATED,
 }: {
   path: string;
   title: string;
   description: string;
   type?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
   mainEntity?: object; // what the page is mainly about, e.g. the /services hub's list of services
+  dateModified?: string; // pages with their own "last checked" date
 }) {
   return (
     <JsonLd
@@ -247,7 +249,7 @@ export function WebPageJsonLd({
         inLanguage: "en-GB",
         isPartOf: { "@id": WEBSITE_ID },
         about: { "@id": BUSINESS_ID },
-        dateModified: CONTENT_UPDATED,
+        dateModified,
         speakable: {
           "@type": "SpeakableSpecification",
           cssSelector: ["h1", "[data-speakable]"],

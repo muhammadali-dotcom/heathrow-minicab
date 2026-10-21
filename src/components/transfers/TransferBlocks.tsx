@@ -261,7 +261,7 @@ export function JourneyFacts({
   links = true,
   omit = [],
 }: {
-  variant?: "transfer" | "pickup" | "dropoff" | "area" | "terminal";
+  variant?: "transfer" | "pickup" | "dropoff" | "terminal";
   links?: boolean;
   // Cards to leave out where the page already covers them in another section.
   omit?: JourneyFactId[];
@@ -281,11 +281,6 @@ export function JourneyFacts({
       heading: "Drop-off facts before you travel",
       intro:
         "A Heathrow drop-off is planned around your address, flight time, terminal and luggage. Your collection time is agreed when you book.",
-    },
-    area: {
-      heading: "What affects your Heathrow journey?",
-      intro:
-        "Your Heathrow journey depends on your pickup address, terminal, date, time, passengers, luggage, traffic and any extra stops.",
     },
     terminal: {
       heading: "Terminal facts before you travel",

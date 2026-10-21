@@ -377,24 +377,10 @@ export const BUSINESS_FAQS: Faq[] = [
   },
 ];
 
-// Templated questions for each area page.
-export function areaFaqs(area: string, region: string): Faq[] {
+// Templated questions for each area page. Kept to the two most-searched, so each page's own
+// local questions make up most of its FAQ.
+export function areaFaqs(area: string): Faq[] {
   return [
-    {
-      id: "area-covered",
-      question: `Do you cover ${area} for Heathrow transfers?`,
-      answer: `Yes. Heathrow Minicab collects from homes, hotels and offices in ${area}, ${region}, and takes you to Heathrow Terminals 2, 3, 4 or 5. We also bring you home to ${area} from Heathrow arrivals.`,
-    },
-    {
-      id: "area-early-late",
-      question: `Can you pick me up in ${area} for an early or late flight?`,
-      answer: `Yes. We run 24/7, so we can collect you in ${area} for early-morning and late-night flights, at a time planned around your departure.`,
-    },
-    {
-      id: "area-arrivals",
-      question: `Can you meet me at Heathrow and take me home to ${area}?`,
-      answer: `Yes. Your driver meets you inside arrivals with a name board or at an agreed pickup point. We monitor your flight, and your pickup includes 15 minutes of free waiting from the agreed time.`,
-    },
     {
       id: "area-price",
       question: `How do I get a price from ${area} to Heathrow?`,

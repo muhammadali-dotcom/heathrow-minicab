@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { AREAS } from "@/lib/areas";
+import { GUIDES } from "@/lib/guides";
 import { absoluteUrl } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 
@@ -15,6 +16,8 @@ const PATHS = [
   ...AREAS.map((area) => `/areas/${area.slug}`),
   "/services",
   ...SERVICES.map((service) => `/services/${service.slug}`),
+  "/guides",
+  ...GUIDES.map((guide) => `/guides/${guide.slug}`),
   "/our-vehicles",
   "/about",
   "/faqs",

@@ -164,7 +164,10 @@ export default function Page() {
             </>
           }
           aside={
-            <InfoAside title="Airport charges">
+            <InfoAside
+              title="Airport charges"
+              link={{ href: "/guides/heathrow-drop-off-charge", label: "Drop-off charge explained" }}
+            >
               Your quote includes the journey fare and applicable Heathrow drop-off charge, shown
               before booking.
             </InfoAside>

@@ -12,6 +12,10 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.heathr
 // "Last updated" date. Bump it after meaningful content changes.
 export const CONTENT_UPDATED = "2026-10-13";
 
+// A YYYY-MM-DD date as shown on pages, e.g. "21 October 2026".
+export const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
 export const absoluteUrl = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
 
 export const OG_IMAGE = {
