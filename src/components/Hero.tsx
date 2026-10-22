@@ -14,7 +14,7 @@ const DESKTOP_PHOTO = { src: "/images/heathrow-hero-wide.webp", width: 1942, hei
 const MOBILE_PHOTO = { src: "/images/heathrow-hero.webp", width: 1672, height: 941 };
 
 // Confirmed in KEY_FACTS (src/lib/facts.ts): price, flight monitoring, meet and greet, hours.
-const TRUST_POINTS = ["Fixed fares", "Flight monitoring", "Meet & greet", "24/7 service"];
+const TRUST_POINTS = ["Fixed once confirmed", "Flight monitoring", "Meet & greet", "24/7 service"];
 
 function TickBadge() {
   return (

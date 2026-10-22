@@ -97,8 +97,8 @@ export default function Page() {
               Look for your name in arrivals
             </h2>
             <p className="mt-4 leading-relaxed text-white/85">
-              Your driver meets you inside the arrivals hall with a name board,
-              or at a pickup location agreed with your booking.
+              Your driver meets you inside the arrivals hall with a name board, or at a pickup
+              location agreed with your booking.
             </p>
             <p className="mt-4 leading-relaxed text-white/85 italic">
               Keep your phone switched on when you land so we can reach you.
@@ -148,9 +148,8 @@ export default function Page() {
                 label: "Find your terminal",
               }}
             >
-              We monitor your flight and adjust your pickup arrangements if it’s
-              delayed. If it’s cancelled, diverted or changed, contact us so we
-              can confirm your new arrangements.
+              We monitor your flight and adjust your pickup arrangements if it’s delayed. If it’s
+              cancelled, diverted or changed, contact us so we can confirm your new arrangements.
             </InfoAside>
           }
         />
@@ -165,12 +164,11 @@ export default function Page() {
               id="waiting-heading"
               className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
             >
-              A little time to land. <br className="hidden sm:block" />A clear
-              plan for pickup.
+              A little time to land. <br className="hidden sm:block" />A clear plan for pickup.
             </h2>
             <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
-              Plan your pickup around your landing time, with 15 minutes’ free
-              waiting from your agreed pickup time.
+              Plan your pickup around your landing time, with 15 minutes’ free waiting from your
+              agreed pickup time.
             </p>
 
             <h3 className="mt-8 text-lg font-semibold text-[#0A2740]">
@@ -203,9 +201,7 @@ export default function Page() {
                       <FeatureIcon name={step.icon} />
                     </span>
                     <div className="pt-1">
-                      <h4 className="font-semibold text-[#0A2740]">
-                        {step.title}
-                      </h4>
+                      <h4 className="font-semibold text-[#0A2740]">{step.title}</h4>
                       <p className="mt-0.5 text-sm leading-relaxed text-[#0A2740]/80">
                         {step.text}
                       </p>
@@ -216,10 +212,7 @@ export default function Page() {
             </ol>
           </div>
 
-          <div
-            data-tone="navy"
-            className="rounded-xl bg-[#0A2740] p-5 text-white md:p-6"
-          >
+          <div data-tone="navy" className="rounded-xl bg-[#0A2740] p-5 text-white md:p-6">
             <div className="flex items-center gap-3">
               <span aria-hidden="true" className="text-[#4FB8E0]">
                 <FeatureIcon name="clock" />
@@ -227,16 +220,12 @@ export default function Page() {
               <Eyebrow>Free waiting included</Eyebrow>
             </div>
             <p className="mt-3 flex flex-wrap items-baseline gap-x-2">
-              <span className="text-4xl leading-none font-bold tracking-tight">
-                15
-              </span>
+              <span className="text-4xl leading-none font-bold tracking-tight">15</span>
               <span className="text-xl leading-none font-bold tracking-tight text-[#4FB8E0]">
                 minutes
               </span>
             </p>
-            <p className="mt-1 text-sm text-white/85">
-              From your agreed pickup time.
-            </p>
+            <p className="mt-1 text-sm text-white/85">From your agreed pickup time.</p>
 
             <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
               {waitingCharges.map((item) => (
@@ -249,9 +238,7 @@ export default function Page() {
                   </span>
                   <div>
                     <h3 className="font-semibold text-white">{item.title}</h3>
-                    <p className="mt-0.5 text-sm leading-relaxed text-white/80">
-                      {item.text}
-                    </p>
+                    <p className="mt-0.5 text-sm leading-relaxed text-white/80">{item.text}</p>
                   </div>
                 </li>
               ))}
@@ -286,16 +273,9 @@ export default function Page() {
               text: "Terminal 5 is busy, so follow the agreed meeting point and call us if you cannot see your driver.",
             },
           ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-xl border border-[#D5E8F2] bg-white p-5"
-            >
-              <h3 className="text-lg font-semibold text-[#0A2740]">
-                {item.title}
-              </h3>
-              <p className="mt-2 leading-relaxed text-[#0A2740]/80">
-                {item.text}
-              </p>
+            <div key={item.title} className="rounded-xl border border-[#D5E8F2] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#0A2740]">{item.title}</h3>
+              <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
             </div>
           ))}
         </div>

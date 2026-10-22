@@ -25,10 +25,18 @@ const regionLabel = (area: Area) =>
 function areaSeo(area: Area) {
   const region = regionLabel(area);
   const long = `Taxi from ${area.name} to Heathrow | ${SITE_NAME}`;
+  const perks = "flight monitoring and a fixed price once confirmed.";
+  // Long area names use shorter wording to stay within about 160 characters.
+  const description =
+    [
+      `Heathrow airport taxi and minicab transfers from ${area.name}, ${region}, 24/7. Meet and greet in arrivals, ${perks}`,
+      `Heathrow airport taxi and minicab transfers from ${area.name}, ${region}, 24/7, with meet and greet, ${perks}`,
+    ].find((text) => text.length <= 160) ??
+    `Heathrow airport taxi and minicab transfers from ${area.name}, 24/7, with meet and greet, ${perks}`;
   return {
     // Long area names drop the brand suffix to stay within about 60 characters.
     title: long.length <= 60 ? long : `Taxi from ${area.name} to Heathrow`,
-    description: `Heathrow airport taxi and minicab transfers from ${area.name}, ${region}, 24/7. Meet and greet in arrivals, flight monitoring and a fixed price once confirmed.`,
+    description,
     path: `/areas/${area.slug}`,
   };
 }

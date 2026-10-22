@@ -48,10 +48,10 @@ export const FAQS: Faq[] = [
 // Pricing and what's included: /airport-transfers.
 export const PRICING_FAQS: Faq[] = [
   {
-    id: "why-no-fixed-prices-shown",
-    question: "Why don’t you show fixed prices on the website?",
+    id: "price-online",
+    question: "Can I see a price online?",
     answer:
-      "We don’t show fixed prices because Heathrow transfer fares vary by route, date, time, vehicle, stops, waiting, parking and airport charges. Once your quote is confirmed, the price is fixed.",
+      "Yes. Book Online gives you an instant estimate for your route and vehicle. Fares vary by route, date, time, vehicle, stops, waiting, parking and airport charges. Once your booking is confirmed, the price is fixed.",
   },
   {
     id: "how-price-works",
