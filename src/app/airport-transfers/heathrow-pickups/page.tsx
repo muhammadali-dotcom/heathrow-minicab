@@ -185,7 +185,7 @@ export default function Page() {
                     {!last && (
                       <span
                         aria-hidden="true"
-                        className="absolute top-[52px] -bottom-[28px] left-[calc(1rem+15px)] border-l-2 border-dashed border-[#1FA3D6]/40"
+                        className="absolute top-[3.25rem] -bottom-[1.75rem] left-[1.9375rem] border-l-2 border-dashed border-[#1FA3D6]/40"
                       />
                     )}
                     <span
