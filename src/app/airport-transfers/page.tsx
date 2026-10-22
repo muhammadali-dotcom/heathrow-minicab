@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import PageFaqs from "@/components/PageFaqs";
 import { PRICING_FAQS } from "@/lib/faqs";
-import QuickFacts from "@/components/QuickFacts";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -180,8 +179,6 @@ export default function Page() {
         }}
       />
 
-      <QuickFacts />
-
       <Section
         tone="navy"
         id="journey"
@@ -236,13 +233,12 @@ export default function Page() {
         eyebrow="Before you book"
         title="What to expect on the day"
       >
-        {/* Terminals and the fixed price are already covered by At a glance and Pricing. */}
-        <JourneyFacts omit={["terminals", "price"]} />
+        {/* The fixed price is already covered by Pricing. */}
+        <JourneyFacts omit={["price"]} />
       </Section>
 
       <PageFaqs
         items={PRICING_FAQS}
-        tone="white"
         summary="Heathrow Minicab provides 24/7 pre-booked minicab transfers to and from Heathrow Terminals 2, 3, 4 and 5 for North and West London, with a fixed price once confirmed."
       />
 

@@ -578,27 +578,6 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
 }
 
 // Numbered steps in a row from md (stacked on phones).
-export function StepRow({ steps }: { steps: { title: string; text: string }[] }) {
-  return (
-    <ol className="mt-6 grid gap-6 md:grid-cols-3">
-      {steps.map((step, i) => (
-        <li key={step.title} className="flex gap-4 md:flex-col md:gap-3">
-          <span
-            aria-hidden="true"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-xs font-bold text-[#0A2740]"
-          >
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <div>
-            <h3 className={`text-lg font-semibold ${heading}`}>{step.title}</h3>
-            <p className={`mt-1 leading-relaxed ${body}`}>{step.text}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 const WHATSAPP_HELP_URL = `https://wa.me/442083434444?text=${encodeURIComponent(
   "Hi, I'm at Heathrow and can't find my driver. My terminal is: ",
 )}`;

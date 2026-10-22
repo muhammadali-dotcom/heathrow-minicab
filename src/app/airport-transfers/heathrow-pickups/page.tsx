@@ -8,11 +8,11 @@ import {
   Checklist,
   Columns,
   Eyebrow,
+  FeatureIcon,
   HelpPanel,
   InfoAside,
   JourneyFacts,
   Section,
-  StepRow,
   SubHeading,
   Timeline,
   TransfersHero,
@@ -27,6 +27,37 @@ const seo = {
 };
 
 export const metadata: Metadata = pageMetadata(seo);
+
+const waitingSteps = [
+  {
+    icon: "plane",
+    title: "Your flight lands",
+    text: "We use your flight’s landing time to plan your pickup.",
+  },
+  {
+    icon: "luggage",
+    title: "Time to collect your bags",
+    text: "Agree a pickup time that allows for passport control and baggage collection.",
+  },
+  {
+    icon: "clock",
+    title: "Your agreed pickup time",
+    text: "Your 15 minutes of free waiting starts here.",
+  },
+] as const;
+
+const waitingCharges = [
+  {
+    icon: "clock",
+    title: "After 15 minutes",
+    text: "Charged at the rate confirmed before you book.",
+  },
+  {
+    icon: "tag",
+    title: "Parking charges",
+    text: "Any applicable parking charge is confirmed with your quote.",
+  },
+] as const;
 
 export default function Page() {
   return (
@@ -66,8 +97,8 @@ export default function Page() {
               Look for your name in arrivals
             </h2>
             <p className="mt-4 leading-relaxed text-white/85">
-              Your driver meets you inside the arrivals hall with a name board, or at a pickup
-              location agreed with your booking.
+              Your driver meets you inside the arrivals hall with a name board,
+              or at a pickup location agreed with your booking.
             </p>
             <p className="mt-4 leading-relaxed text-white/85 italic">
               Keep your phone switched on when you land so we can reach you.
@@ -112,45 +143,121 @@ export default function Page() {
           aside={
             <InfoAside
               title="We monitor your flight"
-              link={{ href: "/airport-transfers/terminal-guides", label: "Find your terminal" }}
+              link={{
+                href: "/airport-transfers/terminal-guides",
+                label: "Find your terminal",
+              }}
             >
-              We monitor your flight and adjust your pickup arrangements if it’s delayed. If it’s
-              cancelled, diverted or changed, contact us so we can confirm your new arrangements.
+              We monitor your flight and adjust your pickup arrangements if it’s
+              delayed. If it’s cancelled, diverted or changed, contact us so we
+              can confirm your new arrangements.
             </InfoAside>
           }
         />
         <HelpPanel />
       </Section>
 
-      <Section tone="white" id="waiting" title="Pickup time, waiting and charges">
-        <StepRow
-          steps={[
-            {
-              title: "Your flight lands",
-              text: "We use your flight’s landing time to plan your pickup.",
-            },
-            {
-              title: "Your agreed pickup time",
-              text: "Agree a pickup time that allows for passport control and baggage collection.",
-            },
-            {
-              title: "15 minutes’ free waiting",
-              text: "Starts at your agreed pickup time.",
-            },
-          ]}
-        />
-        <dl className="mt-8 divide-y divide-[#D5E8F2] rounded-xl border border-[#D5E8F2] bg-[#E6F6FC] px-6">
-          <div className="grid gap-1 py-4 sm:grid-cols-[14rem_1fr] sm:gap-6">
-            <dt className="font-semibold text-[#0A2740]">Waiting after 15 minutes</dt>
-            <dd className="text-[#0A2740]/80">Charged at the rate confirmed before you book.</dd>
+      <Section tone="white" id="waiting">
+        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-10">
+          <div>
+            <Eyebrow>Your Heathrow pickup</Eyebrow>
+            <h2
+              id="waiting-heading"
+              className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
+            >
+              A little time to land. <br className="hidden sm:block" />A clear
+              plan for pickup.
+            </h2>
+            <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
+              Plan your pickup around your landing time, with 15 minutes’ free
+              waiting from your agreed pickup time.
+            </p>
+
+            <h3 className="mt-8 text-lg font-semibold text-[#0A2740]">
+              From landing to your pickup
+            </h3>
+            <ol className="mt-4 space-y-1">
+              {waitingSteps.map((step, i) => {
+                const last = i === waitingSteps.length - 1;
+                return (
+                  <li
+                    key={step.title}
+                    className={`relative grid grid-cols-[auto_auto_1fr] items-start gap-4 rounded-xl px-4 py-3 sm:gap-5 ${last ? "bg-[#E6F6FC]" : ""}`}
+                  >
+                    {!last && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute top-[52px] -bottom-[28px] left-[calc(1rem+15px)] border-l-2 border-dashed border-[#1FA3D6]/40"
+                      />
+                    )}
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#1FA3D6] bg-white text-xs font-bold text-[#0A2740]"
+                    >
+                      {i + 1}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className={`flex h-12 w-12 items-center justify-center rounded-full text-[#0A2740] ${last ? "bg-white" : "bg-[#E6F6FC]"}`}
+                    >
+                      <FeatureIcon name={step.icon} />
+                    </span>
+                    <div className="pt-1">
+                      <h4 className="font-semibold text-[#0A2740]">
+                        {step.title}
+                      </h4>
+                      <p className="mt-0.5 text-sm leading-relaxed text-[#0A2740]/80">
+                        {step.text}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
           </div>
-          <div className="grid gap-1 py-4 sm:grid-cols-[14rem_1fr] sm:gap-6">
-            <dt className="font-semibold text-[#0A2740]">Parking</dt>
-            <dd className="text-[#0A2740]/80">
-              Any applicable parking charge is confirmed with your quote.
-            </dd>
+
+          <div
+            data-tone="navy"
+            className="rounded-xl bg-[#0A2740] p-5 text-white md:p-6"
+          >
+            <div className="flex items-center gap-3">
+              <span aria-hidden="true" className="text-[#4FB8E0]">
+                <FeatureIcon name="clock" />
+              </span>
+              <Eyebrow>Free waiting included</Eyebrow>
+            </div>
+            <p className="mt-3 flex flex-wrap items-baseline gap-x-2">
+              <span className="text-4xl leading-none font-bold tracking-tight">
+                15
+              </span>
+              <span className="text-xl leading-none font-bold tracking-tight text-[#4FB8E0]">
+                minutes
+              </span>
+            </p>
+            <p className="mt-1 text-sm text-white/85">
+              From your agreed pickup time.
+            </p>
+
+            <ul className="mt-5 space-y-4 border-t border-white/15 pt-5">
+              {waitingCharges.map((item) => (
+                <li key={item.title} className="flex items-start gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#12385A] text-[#4FB8E0] [&_svg]:h-5 [&_svg]:w-5"
+                  >
+                    <FeatureIcon name={item.icon} />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-white">{item.title}</h3>
+                    <p className="mt-0.5 text-sm leading-relaxed text-white/80">
+                      {item.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </dl>
+        </div>
       </Section>
 
       <Section
@@ -179,9 +286,16 @@ export default function Page() {
               text: "Terminal 5 is busy, so follow the agreed meeting point and call us if you cannot see your driver.",
             },
           ].map((item) => (
-            <div key={item.title} className="rounded-xl border border-[#D5E8F2] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#0A2740]">{item.title}</h3>
-              <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
+            <div
+              key={item.title}
+              className="rounded-xl border border-[#D5E8F2] bg-white p-5"
+            >
+              <h3 className="text-lg font-semibold text-[#0A2740]">
+                {item.title}
+              </h3>
+              <p className="mt-2 leading-relaxed text-[#0A2740]/80">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
