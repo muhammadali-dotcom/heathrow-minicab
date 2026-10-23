@@ -2,6 +2,8 @@ import Link from "next/link";
 import AreasMap from "@/components/AreasMap";
 import { AREAS } from "@/lib/areas";
 import { SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 // Homepage "Areas we cover" strip: every area as a chip, linking through to /areas, with the
 // schematic map beside the chips from lg (below them on smaller screens).
@@ -10,7 +12,7 @@ export default function AreasStrip() {
     <section aria-labelledby="areas-heading" className="bg-white py-16 md:py-24">
       <div className={`${SECTION_CONTAINER} grid items-center gap-10 lg:grid-cols-2 lg:gap-12`}>
         <div>
-          <div className="reveal max-w-2xl">
+          <div className="max-w-2xl">
             <span
               aria-hidden="true"
               className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
@@ -18,12 +20,11 @@ export default function AreasStrip() {
             <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
               AREAS WE COVER
             </p>
-            <h2
+            <MaskHeading
               id="areas-heading"
               className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
-            >
-              Heathrow transfers across North and West London
-            </h2>
+              parts={[{ text: "Heathrow transfers across North and West London" }]}
+            />
           </div>
 
           <ul className="mt-10 flex max-w-4xl flex-wrap gap-3">
@@ -49,9 +50,9 @@ export default function AreasStrip() {
           </p>
         </div>
 
-        <div className="reveal">
+        <StaggerIn>
           <AreasMap />
-        </div>
+        </StaggerIn>
       </div>
     </section>
   );

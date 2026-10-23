@@ -10,6 +10,8 @@ import { AREA_REGIONS, AREAS, type Area } from "@/lib/areas";
 import { areaFaqs } from "@/lib/faqs";
 import { pageMetadata } from "@/lib/seo";
 import { BOOK_ONLINE_HREF, SITE_NAME } from "@/lib/site";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 // One landing page per confirmed pickup area. Copy is templated from confirmed facts only (no
 // journey times or prices); add genuinely local detail per area when it's available.
@@ -137,9 +139,12 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
         title={`Useful pickup details for ${area.name}`}
         intro={profile.pickupContext}
       >
-        <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <StaggerIn className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-xl border border-[#D5E8F2] bg-[#E6F6FC] p-6">
-            <h2 className="text-xl font-bold text-[#0A2740]">Local places to mention</h2>
+            <MaskHeading
+              className="text-xl font-bold text-[#0A2740]"
+              parts={[{ text: "Local places to mention" }]}
+            />
             <p className="mt-2 text-sm leading-relaxed text-[#0A2740]/75">
               Use these as landmarks when they are near your pickup address.
             </p>
@@ -157,7 +162,10 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
             <div className="rounded-xl border border-[#D5E8F2] bg-white p-6">
-              <h2 className="text-xl font-bold text-[#0A2740]">Route planning</h2>
+              <MaskHeading
+                className="text-xl font-bold text-[#0A2740]"
+                parts={[{ text: "Route planning" }]}
+              />
               <p className="mt-3 leading-relaxed text-[#0A2740]/80">{profile.routeContext}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {PLANNING_LINKS.map((item) => (
@@ -173,11 +181,14 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
               </ul>
             </div>
             <div className="rounded-xl border border-[#D5E8F2] bg-white p-6">
-              <h2 className="text-xl font-bold text-[#0A2740]">Booking tip</h2>
+              <MaskHeading
+                className="text-xl font-bold text-[#0A2740]"
+                parts={[{ text: "Booking tip" }]}
+              />
               <p className="mt-3 leading-relaxed text-[#0A2740]/80">{profile.planningTip}</p>
             </div>
           </div>
-        </div>
+        </StaggerIn>
       </Section>
 
       <PageFaqs

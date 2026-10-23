@@ -18,6 +18,7 @@ import {
   textLink,
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
+import StaggerIn from "@/components/StaggerIn";
 
 const PRIORITY_AREA_LINKS = [
   { href: "/areas/finchley", label: "Finchley to Heathrow" },
@@ -97,7 +98,7 @@ export default function Page() {
         title="Agree a suitable collection time"
         intro="Your flight time is only one part of the plan. Discuss these factors when arranging your journey:"
       >
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
+        <StaggerIn className="mt-6 grid gap-6 md:grid-cols-2">
           <div>
             <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
               When to arrive for your flight
@@ -116,7 +117,7 @@ export default function Page() {
               luggage.
             </p>
           </div>
-        </div>
+        </StaggerIn>
       </Section>
 
       <Section
@@ -126,7 +127,7 @@ export default function Page() {
         title="Early-morning and late-night Heathrow drop-offs"
         intro="We run 24/7, so your collection can be planned around early departures, late flights and overnight travel from North and West London."
       >
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        <StaggerIn className="mt-6 grid gap-6 md:grid-cols-3">
           {[
             {
               title: "Early flights",
@@ -146,14 +147,14 @@ export default function Page() {
               <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
             </div>
           ))}
-        </div>
+        </StaggerIn>
       </Section>
 
       <Section tone="white">
         <Columns
           main={
             <>
-              <SubHeading>Check your terminal before collection</SubHeading>
+              <SubHeading text="Check your terminal before collection" />
               <p className="mt-3 leading-relaxed text-[#0A2740]/80 in-data-[tone=navy]:text-white/85">
                 Confirm the terminal with your airline or flight confirmation. Let us know if it
                 changes after you book.

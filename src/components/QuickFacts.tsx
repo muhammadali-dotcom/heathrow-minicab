@@ -2,7 +2,9 @@ import PlaneIcon from "@/components/PlaneIcon";
 import { FeatureIcon } from "@/components/transfers/TransferBlocks";
 import { KEY_FACTS, KEY_FACTS_NOTE } from "@/lib/facts";
 import { BUSINESS_BASE_LABEL } from "@/lib/site";
-import { SECTION_CONTAINER } from "@/lib/layout";
+import { CARD_HOVER, SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 const TERMINALS = ["2", "3", "4", "5"];
 
@@ -48,20 +50,21 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
         <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
           Your journey, simplified
         </p>
-        <h2
+        <MaskHeading
           id={`${id}-heading`}
           className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
-        >
-          Heathrow Minicab at a glance
-        </h2>
+          parts={[{ text: "Heathrow Minicab at a glance" }]}
+        />
         <p className="mt-3 text-lg leading-relaxed text-[#0A2740]/80">
           The details that make your airport journey easier.
         </p>
         <p className="mt-1 text-sm font-semibold text-[#0A2740]">Based in {BUSINESS_BASE_LABEL}</p>
 
         <div data-speakable>
-          <div className="reveal-stagger mt-10 grid gap-4 lg:grid-cols-2">
-            <div className="flex items-center justify-between gap-6 rounded-xl bg-[#0A2740] p-6 text-white md:p-8">
+          <StaggerIn className="mt-10 grid gap-4 lg:grid-cols-2">
+            <div
+              className={`flex items-center justify-between gap-6 rounded-xl bg-[#0A2740] p-6 text-white md:p-8 ${CARD_HOVER}`}
+            >
               <div>
                 <span aria-hidden="true" className="text-[#4FB8E0]">
                   <FeatureIcon name="clock" />
@@ -77,7 +80,9 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
               <ClockFace />
             </div>
 
-            <div className="flex flex-col justify-between gap-6 rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8">
+            <div
+              className={`flex flex-col justify-between gap-6 rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8 ${CARD_HOVER}`}
+            >
               <h3 className="flex items-center gap-4">
                 <span aria-hidden="true" className="flex flex-col items-start text-[#0A2740]">
                   <PlaneIcon className="h-8 w-8" />
@@ -102,13 +107,13 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
                 <p className="mt-4 leading-relaxed text-[#0A2740]/80">{terminals.text}</p>
               </div>
             </div>
-          </div>
+          </StaggerIn>
 
-          <ul className="reveal-stagger mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerIn as="ul" className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((fact) => (
               <li
                 key={fact.id}
-                className="flex gap-4 rounded-xl border border-[#D5E8F2] bg-white p-5"
+                className={`flex gap-4 rounded-xl border border-[#D5E8F2] bg-white p-5 ${CARD_HOVER}`}
               >
                 <span
                   aria-hidden="true"
@@ -122,7 +127,7 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
                 </div>
               </li>
             ))}
-          </ul>
+          </StaggerIn>
         </div>
 
         <p className="mt-6 text-sm text-[#4E6B84]">{KEY_FACTS_NOTE}</p>

@@ -8,6 +8,8 @@ import type { Faq } from "@/lib/faqs";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
+import StaggerIn from "@/components/StaggerIn";
+import { CARD_HOVER } from "@/lib/layout";
 
 const service = findService("airport-to-airport-transfers");
 const path = `/services/${service.slug}`;
@@ -37,11 +39,11 @@ const AIRPORTS = [
 
 function AirportConnections() {
   return (
-    <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <StaggerIn as="ul" className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {AIRPORTS.map((airport) => (
         <li
           key={airport.code}
-          className="flex h-full flex-col rounded-xl border border-white/10 bg-[#12385A] p-5 text-white"
+          className={`flex h-full flex-col rounded-xl border border-white/10 bg-[#12385A] p-5 text-white ${CARD_HOVER}`}
         >
           <div className="flex items-center justify-between gap-4">
             <div>
@@ -65,7 +67,7 @@ function AirportConnections() {
           <p className="mt-3 text-sm leading-relaxed text-white/75">{airport.note}</p>
         </li>
       ))}
-    </ul>
+    </StaggerIn>
   );
 }
 

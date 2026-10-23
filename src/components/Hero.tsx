@@ -1,5 +1,6 @@
 import { getImageProps } from "next/image";
 import BookingCta from "@/components/BookingCta";
+import { HeroRise, HeroWords } from "@/components/HeroWords";
 import PlaneIcon from "@/components/PlaneIcon";
 import { HERO_COPY } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
@@ -70,48 +71,58 @@ export default function Hero() {
       <div className={`relative ${SECTION_CONTAINER} py-8 sm:py-10 xl:pt-14 xl:pb-12`}>
         <div className="max-w-2xl xl:max-w-[48rem]">
           {/* Pill badge; decorative, the H1 says the same. */}
-          <p
-            aria-hidden="true"
-            className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/5 px-4 py-2 text-[11px] font-bold tracking-[0.2em] whitespace-nowrap text-white/90 uppercase sm:text-xs"
-          >
-            <PlaneIcon className="h-4 w-4 rotate-90 text-[#4FB8E0]" />
-            {/* "airport" drops on phones so the pill stays on one line. */}
-            <span>
-              Heathrow <span className="hidden sm:inline">airport </span>transfers · 24/7
-            </span>
-          </p>
+          <HeroRise from="left" delay={0}>
+            <p
+              aria-hidden="true"
+              className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/5 px-4 py-2 text-[11px] font-bold tracking-[0.2em] whitespace-nowrap text-white/90 uppercase sm:text-xs"
+            >
+              <PlaneIcon className="h-4 w-4 rotate-90 text-[#4FB8E0]" />
+              {/* "airport" drops on phones so the pill stays on one line. */}
+              <span>
+                Heathrow <span className="hidden sm:inline">airport </span>transfers · 24/7
+              </span>
+            </p>
+          </HeroRise>
 
           <h1
             id="hero-heading"
             className="text-[2rem] leading-[1.1] font-bold tracking-tight text-balance text-white sm:text-[2.5rem] xl:text-[3rem] xl:text-wrap xl:[text-shadow:0_1px_2px_rgb(10_39_64/0.4)]"
           >
-            {/* Three lines from xl, the last in light blue; natural wrapping below. The nowrap keeps
-                the comma on the end of its line rather than starting the next. */}
-            Heathrow airport transfers,{" "}
-            <span className="xl:block">
-              from your doorstep to <span className="whitespace-nowrap">departures,</span>
-            </span>{" "}
-            <span className="text-[#4FB8E0] xl:block xl:[text-shadow:0_0_24px_rgb(79_184_224/0.35)]">
-              and arrivals to home.
-            </span>
+            {/* Three lines from xl, the last in light blue; natural wrapping below. Each word slides
+                in from the left on load and never splits from its comma. */}
+            <HeroWords
+              parts={[
+                { text: "Heathrow airport transfers," },
+                { text: "from your doorstep to departures,", className: "xl:block" },
+                {
+                  text: "and arrivals to home.",
+                  className:
+                    "text-[#4FB8E0] xl:block xl:[text-shadow:0_0_24px_rgb(79_184_224/0.35)]",
+                },
+              ]}
+            />
           </h1>
 
-          <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-white/90 sm:text-lg xl:[text-shadow:0_1px_2px_rgb(10_39_64/0.5)]">
-            {HERO_COPY}
-          </p>
+          <HeroRise delay={0.9}>
+            <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-white/90 sm:text-lg xl:[text-shadow:0_1px_2px_rgb(10_39_64/0.5)]">
+              {HERO_COPY}
+            </p>
+          </HeroRise>
 
-          <div className="mt-6">
+          <HeroRise delay={1.05} className="mt-6">
             <BookingCta tone="dark" />
-          </div>
+          </HeroRise>
 
-          <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:gap-x-6">
-            {TRUST_POINTS.map((point) => (
-              <li key={point} className="flex items-center gap-2 text-sm font-medium text-white">
-                <TickBadge />
-                {point}
-              </li>
-            ))}
-          </ul>
+          <HeroRise delay={1.2}>
+            <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:gap-x-6">
+              {TRUST_POINTS.map((point) => (
+                <li key={point} className="flex items-center gap-2 text-sm font-medium text-white">
+                  <TickBadge />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </HeroRise>
         </div>
       </div>
     </section>

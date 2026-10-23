@@ -21,6 +21,8 @@ import {
   WHATSAPP_URL,
 } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 const seo = {
   title: "Contact Heathrow Minicab | Call 020 8343 4444",
@@ -67,12 +69,11 @@ export default function Page() {
               <p className="text-xs font-bold tracking-[0.28em] text-[#0A2740] uppercase">
                 Get in touch
               </p>
-              <h2
+              <MaskHeading
                 id="ways-to-reach-us-heading"
                 className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
-              >
-                Ways to reach us
-              </h2>
+                parts={[{ text: "Ways to reach us" }]}
+              />
               <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
                 Book a transfer or speak to our team. We’re here 24/7.
               </p>
@@ -83,7 +84,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <StaggerIn className="mt-6 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="relative overflow-hidden rounded-xl bg-[#0A2740] p-5 text-white shadow-[0_16px_36px_rgba(10,39,64,0.14)]">
               <span
                 aria-hidden="true"
@@ -213,7 +214,7 @@ export default function Page() {
                 </p>
               </div>
             </div>
-          </div>
+          </StaggerIn>
         </div>
       </section>
 

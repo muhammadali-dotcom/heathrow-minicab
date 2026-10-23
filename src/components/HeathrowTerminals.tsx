@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SECTION_CONTAINER } from "@/lib/layout";
+import { CARD_HOVER, SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 type Terminal = {
   number: "2" | "3" | "4" | "5";
@@ -63,30 +65,31 @@ export default function HeathrowTerminals() {
           <p className="text-sm font-semibold tracking-[0.15em] text-[#4FB8E0] uppercase">
             HEATHROW TERMINALS
           </p>
-          <h2
+          <MaskHeading
             id="terminals-heading"
             className="mt-3 text-3xl leading-tight font-bold text-balance text-white md:text-4xl"
-          >
-            Every Heathrow terminal, covered.
-          </h2>
+            parts={[{ text: "Every Heathrow terminal, covered." }]}
+          />
           <p className="mt-4 max-w-[35rem] text-lg leading-relaxed text-white/85">
             Departing or arriving at Terminal 2, 3, 4 or 5? Tell us your terminal when you book
             and we’ll plan your drop-off or pickup around it.
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
+        <StaggerIn as="ul" className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
           {terminals.map((terminal) => (
             <li key={terminal.number}>
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#12385A] hover:border-[#4FB8E0]">
+              <article
+                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#12385A] hover:border-[#4FB8E0] ${CARD_HOVER}`}
+              >
                 {terminal.image && (
-                  <div className="relative aspect-[16/9] border-b border-white/10">
+                  <div className="relative aspect-[16/9] overflow-hidden border-b border-white/10">
                     <Image
                       src={terminal.image.src}
                       alt={terminal.image.alt}
                       fill
                       sizes="(min-width: 1024px) 240px, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                       style={{ objectPosition: terminal.image.focus ?? "center" }}
                     />
                     <Badge
@@ -113,7 +116,7 @@ export default function HeathrowTerminals() {
               </article>
             </li>
           ))}
-        </ul>
+        </StaggerIn>
 
         <p className="mt-10 text-sm text-white/70">
           Not sure which terminal? Check with your airline before you travel, as terminals can

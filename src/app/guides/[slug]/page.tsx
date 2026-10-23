@@ -7,6 +7,8 @@ import { DetailCards } from "@/components/services/ServiceBlocks";
 import { BulletList, Section } from "@/components/transfers/TransferBlocks";
 import { GUIDES, findGuide, type Guide, type GuideSection } from "@/lib/guides";
 import { formatDate, pageMetadata } from "@/lib/seo";
+import StaggerIn from "@/components/StaggerIn";
+import { CARD_HOVER } from "@/lib/layout";
 
 export const dynamicParams = false;
 
@@ -30,16 +32,19 @@ const sourceLink =
 
 function TerminalCards({ terminals }: { terminals: NonNullable<GuideSection["terminals"]> }) {
   return (
-    <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <StaggerIn as="ul" className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {terminals.map((item) => (
-        <li key={item.terminal} className="rounded-xl border border-[#D5E8F2] bg-white p-5">
+        <li
+          key={item.terminal}
+          className={`rounded-xl border border-[#D5E8F2] bg-white p-5 ${CARD_HOVER}`}
+        >
           <h3 className="text-lg font-semibold text-[#0A2740]">{item.terminal}</h3>
           <p className="mt-2 text-sm leading-relaxed text-[#0A2740]/80">
             {item.airlines.join(", ")}
           </p>
         </li>
       ))}
-    </ul>
+    </StaggerIn>
   );
 }
 

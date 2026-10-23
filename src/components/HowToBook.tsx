@@ -4,6 +4,7 @@ import FlapTile from "@/components/FlapTile";
 import JourneyRoute from "@/components/JourneyRoute";
 import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
 
 type Step = {
   heading: string;
@@ -46,7 +47,7 @@ export default function HowToBook() {
   return (
     <section aria-labelledby="how-to-book-heading" className="bg-[#E6F6FC] py-16 md:py-24">
       <div className={SECTION_CONTAINER}>
-        <div className="reveal max-w-2xl">
+        <div className="max-w-2xl">
           <span
             aria-hidden="true"
             className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
@@ -54,12 +55,11 @@ export default function HowToBook() {
           <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
             HOW TO BOOK
           </p>
-          <h2
+          <MaskHeading
             id="how-to-book-heading"
             className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
-          >
-            Book your Heathrow transfer in three simple steps.
-          </h2>
+            parts={[{ text: "Book your Heathrow transfer in three simple steps." }]}
+          />
         </div>
 
         <div className="mt-10 md:mt-14">

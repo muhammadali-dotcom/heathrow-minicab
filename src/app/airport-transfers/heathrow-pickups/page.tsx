@@ -18,6 +18,8 @@ import {
   TransfersHero,
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 const seo = {
   title: "Heathrow Airport Pickups | Meet & Greet Minicab",
@@ -87,15 +89,14 @@ export default function Page() {
       />
 
       <Section tone="navy" id="meet-and-greet">
-        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+        <StaggerIn className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <div className="md:order-2">
             <Eyebrow>Meet and greet</Eyebrow>
-            <h2
+            <MaskHeading
               id="meet-and-greet-heading"
               className="mt-3 text-2xl leading-snug font-bold tracking-tight text-white md:text-3xl"
-            >
-              Look for your name in arrivals
-            </h2>
+              parts={[{ text: "Look for your name in arrivals" }]}
+            />
             <p className="mt-4 leading-relaxed text-white/85">
               Your driver meets you inside the arrivals hall with a name board, or at a pickup
               location agreed with your booking.
@@ -114,14 +115,14 @@ export default function Page() {
               className="mx-auto h-auto w-full max-w-[16rem] rounded-xl"
             />
           </div>
-        </div>
+        </StaggerIn>
       </Section>
 
       <Section tone="pale">
         <Columns
           main={
             <>
-              <SubHeading>After your flight lands</SubHeading>
+              <SubHeading text="After your flight lands" />
               <Timeline
                 steps={[
                   {
@@ -157,15 +158,17 @@ export default function Page() {
       </Section>
 
       <Section tone="white" id="waiting">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-10">
+        <StaggerIn className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-10">
           <div>
             <Eyebrow>Your Heathrow pickup</Eyebrow>
-            <h2
+            <MaskHeading
               id="waiting-heading"
               className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
-            >
-              A little time to land. <br className="hidden sm:block" />A clear plan for pickup.
-            </h2>
+              parts={[
+                { text: "A little time to land." },
+                { text: "A clear plan for pickup.", className: "sm:block" },
+              ]}
+            />
             <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
               Plan your pickup around your landing time, with 15 minutes’ free waiting from your
               agreed pickup time.
@@ -244,7 +247,7 @@ export default function Page() {
               ))}
             </ul>
           </div>
-        </div>
+        </StaggerIn>
       </Section>
 
       <Section
@@ -254,7 +257,7 @@ export default function Page() {
         title="Terminals 2, 3, 4 and 5 are covered"
         intro="Heathrow terminal layouts differ, so your confirmed booking instructions always come first. Use these notes to prepare before you land."
       >
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <StaggerIn className="mt-6 grid gap-4 md:grid-cols-2">
           {[
             {
               title: "Terminal 2 arrivals",
@@ -278,7 +281,7 @@ export default function Page() {
               <p className="mt-2 leading-relaxed text-[#0A2740]/80">{item.text}</p>
             </div>
           ))}
-        </div>
+        </StaggerIn>
       </Section>
 
       <Section

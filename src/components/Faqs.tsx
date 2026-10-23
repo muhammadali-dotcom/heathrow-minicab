@@ -6,6 +6,7 @@ import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { FAQS, FAQ_GROUPS } from "@/lib/faqs";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
+import MaskHeading from "@/components/MaskHeading";
 
 type FaqsProps = {
   showHeader?: boolean; // false on its own page, where the PageBanner carries the H1
@@ -33,12 +34,11 @@ export default function Faqs({ showHeader = true, withSchema = false, showAll = 
               className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
             />
             <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">FAQS</p>
-            <h2
+            <MaskHeading
               id="faqs-heading"
               className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
-            >
-              Questions before you book
-            </h2>
+              parts={[{ text: "Questions before you book" }]}
+            />
           </div>
         )}
 

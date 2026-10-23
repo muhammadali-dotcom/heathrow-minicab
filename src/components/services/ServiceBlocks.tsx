@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { whatsappButtonLight, whatsappIconClass } from "@/components/BookingCta";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { PRIMARY_PHONE } from "@/lib/site";
+import StaggerIn from "@/components/StaggerIn";
+import { CARD_HOVER } from "@/lib/layout";
 
 // Section designs used only on the Services pages, so they read differently from the
 // Airport Transfers guides. Same palette; no gradients.
@@ -136,9 +138,12 @@ export function ComparisonTable({
 // Region headings with destination chips.
 export function RegionChips({ regions }: { regions: { name: string; places: string[] }[] }) {
   return (
-    <div className="mt-8 grid gap-6 md:grid-cols-2">
+    <StaggerIn className="mt-8 grid gap-6 md:grid-cols-2">
       {regions.map((region) => (
-        <div key={region.name} className="rounded-xl border border-[#D5E8F2] bg-white p-6">
+        <div
+          key={region.name}
+          className={`rounded-xl border border-[#D5E8F2] bg-white p-6 ${CARD_HOVER}`}
+        >
           <h3 className="text-lg font-semibold text-[#0A2740]">{region.name}</h3>
           <ul className="mt-4 flex flex-wrap gap-2">
             {region.places.map((place) => (
@@ -152,7 +157,7 @@ export function RegionChips({ regions }: { regions: { name: string; places: stri
           </ul>
         </div>
       ))}
-    </div>
+    </StaggerIn>
   );
 }
 
@@ -212,7 +217,8 @@ export function SplitChecklist({ groups }: { groups: { title: string; items: str
 // Numbered tiles in a row.
 export function NumberedStrip({ items }: { items: string[] }) {
   return (
-    <ol
+    <StaggerIn
+      as="ol"
       className={`mt-6 grid gap-4 ${items.length === 3 ? "md:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}
     >
       {items.map((item, i) => (
@@ -226,7 +232,7 @@ export function NumberedStrip({ items }: { items: string[] }) {
           <span className="mt-2 block leading-snug font-semibold text-[#0A2740]">{item}</span>
         </li>
       ))}
-    </ol>
+    </StaggerIn>
   );
 }
 
@@ -283,11 +289,11 @@ export function DetailCards({
   const span = (i: number) =>
     items.length === 5 ? (i < 3 ? "lg:col-span-2" : "lg:col-span-3") : "";
   return (
-    <ul className={`mt-6 grid gap-4 sm:grid-cols-2 ${cols}`}>
+    <StaggerIn as="ul" className={`mt-6 grid gap-4 sm:grid-cols-2 ${cols}`}>
       {items.map((item, i) => (
         <li
           key={item.label}
-          className={`flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5 ${span(i)}`}
+          className={`flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5 ${span(i)} ${CARD_HOVER}`}
         >
           <p className="font-semibold text-[#0A2740]">{item.label}</p>
           <p className="mt-1 flex-1 text-sm leading-relaxed text-[#4E6B84]">{item.hint}</p>
@@ -298,7 +304,7 @@ export function DetailCards({
           )}
         </li>
       ))}
-    </ul>
+    </StaggerIn>
   );
 }
 
@@ -315,11 +321,11 @@ export function PathCards({
   }[];
 }) {
   return (
-    <ul className="mt-8 grid gap-6 md:grid-cols-2">
+    <StaggerIn as="ul" className="mt-8 grid gap-6 md:grid-cols-2">
       {items.map((item) => (
         <li
           key={item.title ?? `${item.from}-${item.to}`}
-          className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8"
+          className={`flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8 ${CARD_HOVER}`}
         >
           {item.title ? (
             <h3 className="text-xl font-bold text-[#0A2740]">{item.title}</h3>
@@ -350,7 +356,7 @@ export function PathCards({
           )}
         </li>
       ))}
-    </ul>
+    </StaggerIn>
   );
 }
 
@@ -361,7 +367,7 @@ export function RuleColumns({
   columns: { title: string; text: string; link?: ReactNode }[];
 }) {
   return (
-    <div className="mt-8 grid gap-8 md:grid-cols-3">
+    <StaggerIn className="mt-8 grid gap-8 md:grid-cols-3">
       {columns.map((column) => (
         <div key={column.title} className="border-t-4 border-[#1FA3D6] pt-5">
           <h3 className="text-lg font-semibold text-[#0A2740]">{column.title}</h3>
@@ -369,7 +375,7 @@ export function RuleColumns({
           {column.link}
         </div>
       ))}
-    </div>
+    </StaggerIn>
   );
 }
 

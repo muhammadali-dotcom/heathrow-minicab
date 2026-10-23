@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ctaButtonClass } from "@/components/BookingCta";
 import { VEHICLES, type Vehicle } from "@/lib/vehicles";
-import { SECTION_CONTAINER } from "@/lib/layout";
+import { CARD_HOVER, SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 type VehiclesProps = {
   showHeader?: boolean; // false on its own page, where the PageBanner carries the H1
@@ -43,20 +45,16 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
     >
       <div className={SECTION_CONTAINER}>
         {showHeader && (
-          <div className="reveal max-w-2xl">
-            <span
-              aria-hidden="true"
-              className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
-            />
+          <div className="max-w-2xl">
+            <span aria-hidden="true" className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]" />
             <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
               OUR VEHICLES
             </p>
-            <h2
+            <MaskHeading
               id="vehicles-heading"
               className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
-            >
-              Choose a car that fits your journey.
-            </h2>
+              parts={[{ text: "Choose a car that fits your journey." }]}
+            />
           </div>
         )}
 
@@ -66,12 +64,15 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
           </p>
         )}
 
-        <ul
-          className={`reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${showHeader ? "mt-12 md:mt-16" : intro ? "mt-10" : ""}`}
+        <StaggerIn
+          as="ul"
+          className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ${showHeader ? "mt-12 md:mt-16" : intro ? "mt-10" : ""}`}
         >
           {VEHICLES.map((vehicle) => (
             <li key={vehicle.id}>
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#D5E8F2] bg-white">
+              <article
+                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[#D5E8F2] bg-white ${CARD_HOVER}`}
+              >
                 <div className="relative aspect-[3/2] bg-[#E6F6FC]">
                   {/* Dashed "road" the wheels sit on, echoing the How to Book route. */}
                   <span
@@ -84,7 +85,7 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
                       alt={vehicle.image.alt}
                       fill
                       sizes="(min-width: 1024px) 240px, (min-width: 640px) 50vw, 100vw"
-                      className="object-contain object-bottom"
+                      className="object-contain object-bottom transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transform-none"
                     />
                   </div>
                 </div>
@@ -104,7 +105,7 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
               </article>
             </li>
           ))}
-        </ul>
+        </StaggerIn>
 
         <div className="mt-10 max-w-[62ch]">
           <p className="text-[#0A2740]/80">

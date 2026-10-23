@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb";
+import { HeroRise, HeroWords } from "@/components/HeroWords";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 // Photos are cropped from the supplied terminal images (their yellow labels removed).
@@ -74,36 +75,39 @@ export default function PageBanner({
       <div aria-hidden="true" className="absolute inset-0 bg-[#0A2740]/70" />
 
       <div className={`relative ${SECTION_CONTAINER} py-14 md:py-20`}>
-        <Breadcrumb
-          tone="dark"
-          items={[...(parents ?? []), { label: crumb ?? title }]}
-        />
+        <HeroRise from="left" delay={0}>
+          <Breadcrumb tone="dark" items={[...(parents ?? []), { label: crumb ?? title }]} />
+        </HeroRise>
 
         <h1
           id="page-heading"
           className="mt-3 max-w-[22ch] text-3xl leading-tight font-bold text-balance text-white md:text-5xl"
         >
-          {title}
+          <HeroWords parts={[{ text: title }]} />
         </h1>
         {intro && (
-          <p className="mt-4 max-w-[35rem] text-lg leading-relaxed text-white/85">{intro}</p>
+          <HeroRise delay={0.6}>
+            <p className="mt-4 max-w-[35rem] text-lg leading-relaxed text-white/85">{intro}</p>
+          </HeroRise>
         )}
 
         {links && links.length > 0 && (
-          <nav aria-label="On this page" className="mt-7">
-            <ul className="flex flex-wrap gap-3">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className={`inline-flex min-h-11 items-center rounded-full border border-white/40 bg-white/10 px-4 text-sm font-semibold text-white hover:bg-white/20 ${focusWhite}`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <HeroRise delay={0.75}>
+            <nav aria-label="On this page" className="mt-7">
+              <ul className="flex flex-wrap gap-3">
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className={`inline-flex min-h-11 items-center rounded-full border border-white/40 bg-white/10 px-4 text-sm font-semibold text-white hover:bg-white/20 ${focusWhite}`}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </HeroRise>
         )}
       </div>
     </section>

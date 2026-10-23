@@ -11,6 +11,8 @@ import { DetailCards } from "@/components/services/ServiceBlocks";
 import { AREA_REGIONS, AREAS } from "@/lib/areas";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE } from "@/lib/site";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 const PRIORITY_AREAS = ["finchley", "hendon", "mill-hill", "edgware", "barnet", "golders-green"];
 
@@ -53,9 +55,10 @@ export default function Page() {
       <section aria-label="Areas we cover" className="bg-white py-14 md:py-20">
         <div className={SECTION_CONTAINER}>
           <div className="mb-10 max-w-[46rem]">
-            <h2 className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]">
-              North and West London coverage
-            </h2>
+            <MaskHeading
+              className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
+              parts={[{ text: "North and West London coverage" }]}
+            />
             <p className="mt-3 leading-relaxed text-[#0A2740]/80">
               We cover confirmed pickup areas across North and West London for journeys to Heathrow
               departures and pickups from Heathrow arrivals back home. Choose your area below for
@@ -67,15 +70,16 @@ export default function Page() {
             <p className="text-xs font-bold tracking-[0.15em] text-[#4FB8E0] uppercase">
               Priority Heathrow routes
             </p>
-            <h2 className="mt-3 text-2xl leading-snug font-bold tracking-tight">
-              Popular North London pickup areas
-            </h2>
+            <MaskHeading
+              className="mt-3 text-2xl leading-snug font-bold tracking-tight"
+              parts={[{ text: "Popular North London pickup areas" }]}
+            />
             <p className="mt-3 max-w-[46rem] leading-relaxed text-white/85">
               Start with these detailed local pages for common minicab journeys to Heathrow
               Terminals 2, 3, 4 and 5, including local landmarks, booking tips and area-specific
               questions.
             </p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <StaggerIn as="ul" className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {PRIORITY_AREAS.map((slug) => {
                 const area = AREAS.find((item) => item.slug === slug);
                 if (!area) return null;
@@ -91,21 +95,20 @@ export default function Page() {
                   </li>
                 );
               })}
-            </ul>
+            </StaggerIn>
           </div>
 
           {/* One compact panel per region, names listed in columns. */}
-          <div className="grid gap-6 md:grid-cols-2">
+          <StaggerIn className="grid gap-6 md:grid-cols-2">
             {AREA_REGIONS.map((region) => {
               const areas = AREAS.filter((area) => area.region === region.id);
               return (
                 <div key={region.id} className="rounded-xl bg-[#E6F6FC] p-6 md:p-8">
-                  <h2
+                  <MaskHeading
                     id={`${region.id}-heading`}
                     className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
-                  >
-                    {region.label}
-                  </h2>
+                    parts={[{ text: region.label }]}
+                  />
                   <ul aria-labelledby={`${region.id}-heading`} className="mt-4 columns-2 gap-6">
                     {areas.map((area) => (
                       <li key={area.slug} className="break-inside-avoid">
@@ -124,11 +127,14 @@ export default function Page() {
                 </div>
               );
             })}
-          </div>
+          </StaggerIn>
 
           <div className="mt-12 flex flex-col gap-5 rounded-xl bg-[#E6F6FC] p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
             <div>
-              <h2 className="text-xl font-bold text-[#0A2740]">Don’t see your area?</h2>
+              <MaskHeading
+                className="text-xl font-bold text-[#0A2740]"
+                parts={[{ text: "Don’t see your area?" }]}
+              />
               <p className="mt-1 text-[#0A2740]/80">
                 Call us to check, or see{" "}
                 <Link

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import BookingCta from "@/components/BookingCta";
-import { SECTION_CONTAINER } from "@/lib/layout";
+import { CARD_HOVER, SECTION_CONTAINER } from "@/lib/layout";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 
 type TravelSituationCard = {
   image: string;
@@ -37,7 +39,7 @@ export default function TravelSituations() {
       className="bg-white py-16 md:py-24"
     >
       <div className={SECTION_CONTAINER}>
-        <div className="reveal max-w-2xl">
+        <div className="max-w-2xl">
           <span
             aria-hidden="true"
             className="mb-4 block h-1 w-10 rounded-full bg-[#1FA3D6]"
@@ -45,25 +47,29 @@ export default function TravelSituations() {
           <p className="text-sm font-semibold tracking-[0.15em] text-[#0A2740] uppercase">
             YOUR HEATHROW JOURNEY
           </p>
-          <h2
+          <MaskHeading
             id="travel-situations-heading"
             className="mt-3 text-3xl leading-tight font-bold text-balance text-[#0A2740] md:text-4xl"
-          >
-            Different travel plans. <span className="lg:block">The same need to get there.</span>
-          </h2>
+            parts={[
+              { text: "Different travel plans." },
+              { text: "The same need to get there.", className: "lg:block" },
+            ]}
+          />
         </div>
 
-        <ul className="reveal-stagger mt-8 grid gap-6 md:mt-12 md:grid-cols-3">
+        <StaggerIn as="ul" className="mt-8 grid gap-6 md:mt-12 md:grid-cols-3">
           {cards.map((card) => (
             <li key={card.image}>
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#D5E8F2] bg-white">
+              <article
+                className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-[#D5E8F2] bg-white ${CARD_HOVER}`}
+              >
                 <Image
                   src={card.image}
                   alt={card.alt}
                   width={1536}
                   height={1024}
                   sizes="(min-width: 1024px) 310px, (min-width: 768px) 33vw, 100vw"
-                  className="aspect-[3/2] w-full object-cover"
+                  className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                 />
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="text-xl font-semibold text-[#0A2740]">
@@ -76,7 +82,7 @@ export default function TravelSituations() {
               </article>
             </li>
           ))}
-        </ul>
+        </StaggerIn>
 
         <div className="mt-10 md:mt-12">
           <BookingCta />

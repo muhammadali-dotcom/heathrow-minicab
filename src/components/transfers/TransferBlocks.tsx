@@ -8,11 +8,14 @@ import {
   whatsappIconClass,
 } from "@/components/BookingCta";
 import Breadcrumb from "@/components/Breadcrumb";
+import { HeroRise, HeroWords } from "@/components/HeroWords";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
 import CalendarIcon from "@/components/CalendarIcon";
 import PhoneIcon from "@/components/PhoneIcon";
 import PlaneIcon from "@/components/PlaneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { SECTION_CONTAINER } from "@/lib/layout";
+import { CARD_HOVER, SECTION_CONTAINER } from "@/lib/layout";
 import { ALT_PHONE, BOOK_ONLINE_HREF, PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
 import { VEHICLES, type Vehicle } from "@/lib/vehicles";
 
@@ -80,24 +83,35 @@ export function TransfersHero({
   const primaryClass = `${ctaButtonClass} min-h-12 px-6 text-base ${focusNavy}`;
   return (
     <section aria-labelledby="page-heading" className={SECTION_CONTAINER}>
-      <div className="pt-6">
+      <HeroRise from="left" delay={0} className="pt-6">
         <Breadcrumb tone="light" items={crumbs} />
-      </div>
+      </HeroRise>
       <div className="grid items-center gap-8 pt-4 pb-10 md:grid-cols-[1.2fr_1fr] md:items-start md:gap-12 md:pb-12">
         <div>
           <h1
             id="page-heading"
             className="text-[1.875rem] leading-[1.15] font-bold tracking-tight text-balance text-[#0A2740] md:text-[1.75rem] lg:text-[2rem]"
           >
-            {/* From lg each part is one line: navy title, then the blue accent. The accent's leading
-                space keeps the words apart where the parts wrap inline (phones, tablets). */}
-            <span className="lg:block lg:whitespace-nowrap">{title}</span>
-            {titleAccent && (
-              <span className="text-[#1786BB] lg:block lg:whitespace-nowrap"> {titleAccent}</span>
-            )}
+            {/* From lg each part is one line: navy title, then the blue accent; they wrap inline on
+                phones and tablets. Each word slides in from the left on load. */}
+            <HeroWords
+              parts={[
+                { text: title, className: "lg:block lg:whitespace-nowrap" },
+                ...(titleAccent
+                  ? [
+                      {
+                        text: titleAccent,
+                        className: "text-[#1786BB] lg:block lg:whitespace-nowrap",
+                      },
+                    ]
+                  : []),
+              ]}
+            />
           </h1>
-          <p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-[#0A2740]/80">{intro}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <HeroRise delay={0.6}>
+            <p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-[#0A2740]/80">{intro}</p>
+          </HeroRise>
+          <HeroRise delay={0.75} className="mt-6 flex flex-wrap gap-3">
             {isInternal ? (
               <Link href={primary.href} className={primaryClass}>
                 {primary.label}
@@ -117,19 +131,21 @@ export function TransfersHero({
                 <PhoneIcon className="h-5 w-5" />
               </a>
             )}
-          </div>
+          </HeroRise>
         </div>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
-          preload
-          loading="eager"
-          fetchPriority="high"
-          className="h-auto w-full rounded-xl bg-[#E6F6FC]"
-        />
+        <HeroRise delay={0.4}>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
+            preload
+            loading="eager"
+            fetchPriority="high"
+            className="h-auto w-full rounded-xl bg-[#E6F6FC]"
+          />
+        </HeroRise>
       </div>
     </section>
   );
@@ -165,12 +181,11 @@ export function Section({
           </div>
         )}
         {title && (
-          <h2
+          <MaskHeading
             id={headingId}
             className={`text-2xl leading-snug font-bold tracking-tight ${heading}`}
-          >
-            {title}
-          </h2>
+            parts={[{ text: title }]}
+          />
         )}
         {intro && <p className={`mt-3 max-w-[40rem] leading-relaxed ${body}`}>{intro}</p>}
         {children}
@@ -189,11 +204,13 @@ export function Columns({ main, aside }: { main: ReactNode; aside: ReactNode }) 
   );
 }
 
-export function SubHeading({ id, children }: { id?: string; children: ReactNode }) {
+export function SubHeading({ id, text }: { id?: string; text: string }) {
   return (
-    <h2 id={id} className={`text-2xl leading-snug font-bold tracking-tight ${heading}`}>
-      {children}
-    </h2>
+    <MaskHeading
+      id={id}
+      className={`text-2xl leading-snug font-bold tracking-tight ${heading}`}
+      parts={[{ text }]}
+    />
   );
 }
 
@@ -207,15 +224,17 @@ export function InfoAside({
   link?: { href: string; label: string };
 }) {
   return (
-    <aside className="border-l-[3px] border-[#1FA3D6] bg-[#E6F6FC] px-6 py-5 in-data-[tone=navy]:border-[#4FB8E0] in-data-[tone=navy]:bg-white/5 in-data-[tone=pale]:bg-white">
-      <h3 className={`text-lg font-semibold ${heading}`}>{title}</h3>
-      <div className={`mt-2 leading-relaxed ${body}`}>{children}</div>
-      {link && (
-        <Link href={link.href} className={`${textLink} mt-2`}>
-          {link.label} <span aria-hidden="true">→</span>
-        </Link>
-      )}
-    </aside>
+    <StaggerIn>
+      <aside className="border-l-[3px] border-[#1FA3D6] bg-[#E6F6FC] px-6 py-5 in-data-[tone=navy]:border-[#4FB8E0] in-data-[tone=navy]:bg-white/5 in-data-[tone=pale]:bg-white">
+        <h3 className={`text-lg font-semibold ${heading}`}>{title}</h3>
+        <div className={`mt-2 leading-relaxed ${body}`}>{children}</div>
+        {link && (
+          <Link href={link.href} className={`${textLink} mt-2`}>
+            {link.label} <span aria-hidden="true">→</span>
+          </Link>
+        )}
+      </aside>
+    </StaggerIn>
   );
 }
 
@@ -243,7 +262,9 @@ export function RouteCard({
   linkLabel: string;
 }) {
   return (
-    <div className="flex h-full flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A]">
+    <div
+      className={`flex h-full flex-col rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A] ${CARD_HOVER}`}
+    >
       <Eyebrow>{eyebrow}</Eyebrow>
       <h3 className={`mt-2 text-lg font-semibold ${heading}`}>{title}</h3>
       <p className={`mt-2 flex-1 leading-relaxed ${body}`}>{text}</p>
@@ -295,14 +316,18 @@ export function JourneyFacts({
       icon: "plane" as const,
       title: "Terminals covered",
       text: "We cover Heathrow Terminals 2, 3, 4 and 5 for arrivals and departures.",
-      link: links ? { href: "/airport-transfers/terminal-guides", label: "Terminal guides" } : undefined,
+      link: links
+        ? { href: "/airport-transfers/terminal-guides", label: "Terminal guides" }
+        : undefined,
     },
     {
       id: "meeting" as JourneyFactId,
       icon: "board" as const,
       title: "Confirmed meeting details",
       text: "Your meeting point, pickup point or collection time is confirmed with your booking.",
-      link: links ? { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" } : undefined,
+      link: links
+        ? { href: "/airport-transfers/heathrow-pickups", label: "Pickup guide" }
+        : undefined,
     },
     {
       id: "price" as JourneyFactId,
@@ -315,18 +340,69 @@ export function JourneyFacts({
       icon: "clock" as const,
       title: "Journey time varies",
       text: "Journey time varies with traffic, terminal, time of day, roadworks and airport processing time.",
-      link: links ? { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" } : undefined,
+      link: links
+        ? { href: "/airport-transfers/heathrow-drop-offs", label: "Drop-off guide" }
+        : undefined,
     },
   ];
   const items = allItems.filter((item) => !omit.includes(item.id));
 
+  const cols =
+    items.length === 4
+      ? "md:grid-cols-4"
+      : items.length === 3
+        ? "md:grid-cols-3"
+        : "md:grid-cols-2";
+  // The road runs between the first and last stop centres on desktop.
+  const inset = `${50 / items.length}%`;
+
+  // The facts as stops along a dashed route: a row from md, stacked on phones.
   return (
-    <div className="mt-6">
+    <div className="mt-4">
       <p data-speakable className={`max-w-[46rem] leading-relaxed ${body}`}>
-        <span className={`block text-lg font-semibold ${heading}`}>{copy.heading}</span>
-        <span className="mt-1 block">{copy.intro}</span>
+        <span className={`font-semibold ${heading}`}>{copy.heading}.</span> {copy.intro}
       </p>
-      <FeatureGrid compact columns={items.length > 2 ? 4 : 2} items={items} />
+      <StaggerIn as="ol" className={`relative mt-10 grid gap-10 md:gap-6 ${cols}`}>
+        <span
+          aria-hidden="true"
+          style={{ left: inset, right: inset }}
+          className="absolute top-8 hidden border-t-2 border-dashed border-[#1FA3D6]/50 md:block"
+        />
+        {items.map((item, i) => (
+          <li
+            key={item.id}
+            className="group relative flex gap-5 md:flex-col md:items-center md:text-center"
+          >
+            {/* Phones: a short stretch of road down to the next stop. */}
+            {i < items.length - 1 && (
+              <span
+                aria-hidden="true"
+                className="absolute top-16 -bottom-10 left-8 border-l-2 border-dashed border-[#1FA3D6]/50 md:hidden"
+              />
+            )}
+            <span
+              aria-hidden="true"
+              className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-[#1FA3D6] bg-[#E6F6FC] text-[#0A2740] transition-transform in-data-[tone=pale]:bg-white duration-300 group-hover:scale-105 motion-reduce:transform-none [&_svg]:h-7 [&_svg]:w-7"
+            >
+              <FeatureIcon name={item.icon} />
+              <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#0A2740] text-xs font-bold text-white">
+                {i + 1}
+              </span>
+            </span>
+            <div className="pt-1 md:mt-4 md:pt-0">
+              <h3 className={`text-lg font-semibold ${heading}`}>{item.title}</h3>
+              <p className={`mt-1 leading-relaxed ${body} md:mx-auto md:max-w-[17rem]`}>
+                {item.text}
+              </p>
+              {item.link && (
+                <Link href={item.link.href} className={`${textLink} mt-2`}>
+                  {item.link.label} <span aria-hidden="true">→</span>
+                </Link>
+              )}
+            </div>
+          </li>
+        ))}
+      </StaggerIn>
     </div>
   );
 }
@@ -456,13 +532,14 @@ export function FeatureGrid({
   }[];
 }) {
   return (
-    <ul
+    <StaggerIn
+      as="ul"
       className={`${compact ? "mt-6 gap-4" : "mt-8 gap-6"} grid sm:grid-cols-2 ${columns === 4 ? "lg:grid-cols-4" : columns === 3 ? "lg:grid-cols-3" : ""}`}
     >
       {items.map((item) => (
         <li
           key={item.title}
-          className={`${compact ? "p-5" : "p-6"} flex h-full flex-col rounded-xl border border-[#D5E8F2] bg-white in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A]`}
+          className={`${compact ? "p-5" : "p-6"} flex h-full flex-col rounded-xl border border-[#D5E8F2] bg-white in-data-[tone=navy]:border-white/10 in-data-[tone=navy]:bg-[#12385A] ${CARD_HOVER}`}
         >
           <span
             aria-hidden="true"
@@ -483,7 +560,7 @@ export function FeatureGrid({
           )}
         </li>
       ))}
-    </ul>
+    </StaggerIn>
   );
 }
 
@@ -511,7 +588,7 @@ function TickBadge() {
 export function Checklist({ items }: { items: string[] }) {
   return (
     <div className="mt-6 rounded-xl border border-[#D5E8F2] bg-white p-6 in-data-[tone=white]:bg-[#E6F6FC]">
-      <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+      <StaggerIn as="ul" className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-3 leading-relaxed text-[#0A2740]">
             <span className="mt-0.5">
@@ -520,7 +597,7 @@ export function Checklist({ items }: { items: string[] }) {
             {item}
           </li>
         ))}
-      </ul>
+      </StaggerIn>
     </div>
   );
 }
@@ -529,7 +606,8 @@ export function Checklist({ items }: { items: string[] }) {
 export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
   const vehicles = ids ? VEHICLES.filter((v) => ids.includes(v.id)) : VEHICLES;
   return (
-    <ul
+    <StaggerIn
+      as="ul"
       className={`mt-8 grid gap-6 sm:grid-cols-2 ${vehicles.length > 2 ? "lg:grid-cols-4" : "lg:max-w-[38rem]"}`}
     >
       {vehicles.map((vehicle) => {
@@ -544,7 +622,7 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
         return (
           <li
             key={vehicle.id}
-            className="flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5"
+            className={`flex flex-col rounded-xl border border-[#D5E8F2] bg-white p-5 ${CARD_HOVER}`}
           >
             <div className="relative h-24">
               <Image
@@ -573,7 +651,7 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
           </li>
         );
       })}
-    </ul>
+    </StaggerIn>
   );
 }
 
@@ -600,42 +678,51 @@ export function HelpPanel({
 }) {
   const Heading = headingLevel;
   return (
-    <div data-tone="navy" className={`rounded-xl bg-[#0A2740] p-6 md:p-8 ${className}`}>
-      <Heading className="text-xl font-bold text-white md:text-2xl">
-        Can’t find your driver?
-      </Heading>
-      <p className="mt-2 max-w-[40rem] leading-relaxed text-white/85">{text}</p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <a
-          href={`tel:${PRIMARY_PHONE.tel}`}
-          aria-label={
-            primaryLabel.includes(PRIMARY_PHONE.display)
-              ? undefined
-              : `${primaryLabel}: ${PRIMARY_PHONE.display}`
-          }
-          className={callOutline}
-        >
-          {primaryLabel}
-          <PhoneIcon className="h-5 w-5" />
-        </a>
-        {showAltPhone && (
-          <a href={`tel:${ALT_PHONE.tel}`} className={callOutline}>
-            Call {ALT_PHONE.display}
+    <StaggerIn className={className}>
+      <div data-tone="navy" className="rounded-xl bg-[#0A2740] p-6 md:p-8">
+        {Heading === "h2" ? (
+          <MaskHeading
+            className="text-xl font-bold text-white md:text-2xl"
+            parts={[{ text: "Can’t find your driver?" }]}
+          />
+        ) : (
+          <Heading className="text-xl font-bold text-white md:text-2xl">
+            Can’t find your driver?
+          </Heading>
+        )}
+        <p className="mt-2 max-w-[40rem] leading-relaxed text-white/85">{text}</p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href={`tel:${PRIMARY_PHONE.tel}`}
+            aria-label={
+              primaryLabel.includes(PRIMARY_PHONE.display)
+                ? undefined
+                : `${primaryLabel}: ${PRIMARY_PHONE.display}`
+            }
+            className={callOutline}
+          >
+            {primaryLabel}
             <PhoneIcon className="h-5 w-5" />
           </a>
-        )}
-        <a
-          href={WHATSAPP_HELP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={whatsappOutline}
-        >
-          <WhatsAppIcon className={`h-5 w-5 ${whatsappIconClass}`} />
-          {whatsappLabel}
-          <span className="sr-only">(opens in a new tab)</span>
-        </a>
+          {showAltPhone && (
+            <a href={`tel:${ALT_PHONE.tel}`} className={callOutline}>
+              Call {ALT_PHONE.display}
+              <PhoneIcon className="h-5 w-5" />
+            </a>
+          )}
+          <a
+            href={WHATSAPP_HELP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={whatsappOutline}
+          >
+            <WhatsAppIcon className={`h-5 w-5 ${whatsappIconClass}`} />
+            {whatsappLabel}
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </div>
       </div>
-    </div>
+    </StaggerIn>
   );
 }
 
@@ -646,7 +733,7 @@ export function RouteSteps({
   steps: { icon: FeatureIconName; title: string; text: string }[];
 }) {
   return (
-    <ol className="relative mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
+    <StaggerIn as="ol" className="relative mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
       <span
         aria-hidden="true"
         className="absolute top-7 bottom-7 left-7 border-l-2 border-dashed border-[#4FB8E0]/40 in-data-[tone=pale]:border-[#1FA3D6]/40 md:hidden"
@@ -675,7 +762,7 @@ export function RouteSteps({
           </div>
         </li>
       ))}
-    </ol>
+    </StaggerIn>
   );
 }
 
@@ -748,7 +835,7 @@ export function ClosingCta({
           <div aria-hidden="true" className="absolute inset-0 bg-[#0A2740]/70" />
         </>
       )}
-      <div
+      <StaggerIn
         // Three buttons (with WhatsApp) need the full row, so they stay stacked until lg.
         className={`${SECTION_CONTAINER} relative flex flex-col gap-5 ${
           whatsapp
@@ -757,9 +844,11 @@ export function ClosingCta({
         }`}
       >
         <div>
-          <h2 id="closing-heading" className={`text-xl font-bold md:text-[1.375rem] ${heading}`}>
-            {title}
-          </h2>
+          <MaskHeading
+            id="closing-heading"
+            className={`text-xl font-bold md:text-[1.375rem] ${heading}`}
+            parts={[{ text: title }]}
+          />
           <p className={`mt-1 ${body}`}>{text}</p>
         </div>
         <div className="flex shrink-0 flex-wrap gap-3">
@@ -795,7 +884,7 @@ export function ClosingCta({
             </a>
           )}
         </div>
-      </div>
+      </StaggerIn>
     </section>
   );
 }

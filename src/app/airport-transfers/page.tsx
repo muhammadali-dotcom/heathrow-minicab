@@ -13,6 +13,9 @@ import {
   VehicleCards,
 } from "@/components/transfers/TransferBlocks";
 import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
+import MaskHeading from "@/components/MaskHeading";
+import StaggerIn from "@/components/StaggerIn";
+import { CARD_HOVER } from "@/lib/layout";
 
 const seo = {
   title: "Heathrow Airport Transfers & Taxis | Pickups & Drop-offs",
@@ -104,15 +107,16 @@ function PricingSection() {
         <p className="text-xs font-bold tracking-[0.15em] text-[#0A2740] uppercase">
           Clear pricing
         </p>
-        <h2 className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]">
-          Know your fare before you go.
-        </h2>
+        <MaskHeading
+          className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
+          parts={[{ text: "Know your fare before you go." }]}
+        />
         <p className="mt-3 max-w-[40rem] leading-relaxed text-[#0A2740]/80">
           Your journey fare is fixed when confirmed. Traffic won’t change it.
         </p>
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.2fr] lg:items-stretch">
+      <StaggerIn className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.2fr] lg:items-stretch">
         <div className="flex flex-col justify-center rounded-xl bg-[#0A2740] p-6 text-white md:p-8">
           <PricingIcon name="receipt" className="h-12 w-12 text-white" />
           <h3 className="mt-4 text-2xl leading-snug font-bold tracking-tight">
@@ -140,7 +144,10 @@ function PricingSection() {
 
         <ul className="grid gap-5 sm:grid-cols-2">
           {pricingPoints.map((point) => (
-            <li key={point.title} className="rounded-xl border border-[#D5E8F2] bg-white p-6">
+            <li
+              key={point.title}
+              className={`rounded-xl border border-[#D5E8F2] bg-white p-6 ${CARD_HOVER}`}
+            >
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740]">
                 <PricingIcon name={point.icon} className="h-7 w-7" />
               </span>
@@ -149,7 +156,7 @@ function PricingSection() {
             </li>
           ))}
         </ul>
-      </div>
+      </StaggerIn>
 
     </Section>
   );
@@ -185,7 +192,7 @@ export default function Page() {
         eyebrow="Start with your journey"
         title="Which way are you travelling?"
       >
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
+        <StaggerIn className="mt-6 grid gap-6 md:grid-cols-2">
           <RouteCard
             eyebrow="Arrivals → your destination"
             title="Being picked up at Heathrow"
@@ -200,7 +207,7 @@ export default function Page() {
             href="/airport-transfers/heathrow-drop-offs"
             linkLabel="Read the drop-off guide"
           />
-        </div>
+        </StaggerIn>
         <div className="mt-8">
           <h3 className="text-lg font-semibold text-[#0A2740] in-data-[tone=navy]:text-white">
             Have these details ready

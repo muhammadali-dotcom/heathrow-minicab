@@ -16,6 +16,7 @@ import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 import type { Vehicle } from "@/lib/vehicles";
+import MaskHeading from "@/components/MaskHeading";
 
 const service = findService("family-group-transfers");
 const path = `/services/${service.slug}`;
@@ -80,12 +81,11 @@ export default function Page() {
         {/* Centred header; Section's aria-labelledby points at this H2 by id. */}
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Bring everyone. Bring the bags.</Eyebrow>
-          <h2
+          <MaskHeading
             id="vehicles-heading"
             className="mt-3 text-2xl leading-snug font-bold tracking-tight text-[#0A2740] md:text-3xl"
-          >
-            Which vehicle fits your group?
-          </h2>
+            parts={[{ text: "Which vehicle fits your group?" }]}
+          />
           <p className="mt-2 text-lg text-[#0A2740]/75">
             Find the right fit for your family before you travel.
           </p>
