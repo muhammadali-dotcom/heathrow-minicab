@@ -419,10 +419,24 @@ export type FeatureIconName =
   | "bag"
   | "chat"
   | "people"
-  | "tag";
+  | "tag"
+  | "building"
+  | "return";
 
 // Simple 24x24 line icons for the feature cards; the plane reuses the site's PlaneIcon.
 const featurePaths: Record<Exclude<FeatureIconName, "plane">, ReactNode> = {
+  building: (
+    <>
+      <rect x="5" y="3" width="14" height="18" rx="1.5" />
+      <path d="M9 7h1.5M13.5 7H15M9 10.5h1.5M13.5 10.5H15M9 14h1.5M13.5 14H15M10.5 21v-3.5h3V21" />
+    </>
+  ),
+  return: (
+    <>
+      <path d="M4 8h14l-3.5-3.5" />
+      <path d="M20 16H6l3.5 3.5" />
+    </>
+  ),
   tag: (
     <>
       <path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7a1.5 1.5 0 0 1 1.06.44l7.3 7.3a1.5 1.5 0 0 1 0 2.12l-7.7 7.7a1.5 1.5 0 0 1-2.12 0l-7.3-7.3A1.5 1.5 0 0 1 3 12.2Z" />

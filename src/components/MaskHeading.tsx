@@ -1,17 +1,27 @@
 "use client";
 
+import { useRef } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { TextPart } from "@/components/HeroWords";
+import { useReveal, type RevealFrom } from "@/lib/useReveal";
 
-const heading: Variants = { shown: { transition: { staggerChildren: 0.07 } } };
+const heading: Variants = {
+  hidden: { transition: { staggerChildren: 0 } },
+  shown: { transition: { staggerChildren: 0.07 } },
+};
 const word: Variants = {
-  hidden: { y: "110%" },
+  // Reset instantly while off screen, on the side it will come back from.
+  hidden: (from: RevealFrom) => ({
+    y: from === "above" ? "-110%" : "110%",
+    transition: { duration: 0 },
+  }),
   shown: { y: "0%", transition: { duration: 0.7, ease: [0.2, 0.7, 0.2, 1] } },
 };
 
-// Section heading whose words rise, one after another, out of a hidden slot under the text the
-// first time it's mostly on screen. The words stay real text; the bottom padding keeps g/y/p from
-// being clipped. With reduced motion it's plain text.
+// Section heading whose words move, one after another, out of a hidden slot into place each time
+// it comes back into view: up from below when scrolling down, down from above when scrolling up.
+// The words stay real text; the bottom padding keeps g/y/p from being clipped. With reduced motion
+// it's plain text.
 export default function MaskHeading({
   id,
   className,
@@ -21,7 +31,9 @@ export default function MaskHeading({
   className?: string;
   parts: TextPart[];
 }) {
+  const ref = useRef<HTMLHeadingElement>(null);
   const reduceMotion = useReducedMotion();
+  const { state, from } = useReveal(ref, { enter: 0.6 });
 
   const content = parts.map((part, p) => (
     <span key={part.text} className={part.className}>
@@ -33,7 +45,7 @@ export default function MaskHeading({
             text
           ) : (
             <span className="-mb-[0.12em] inline-block overflow-hidden pb-[0.12em] align-bottom">
-              <motion.span className="inline-block" variants={word}>
+              <motion.span className="inline-block" variants={word} custom={from}>
                 {text}
               </motion.span>
             </span>
@@ -53,12 +65,13 @@ export default function MaskHeading({
 
   return (
     <motion.h2
+      ref={ref}
       id={id}
       className={className}
       variants={heading}
-      initial="hidden"
-      whileInView="shown"
-      viewport={{ once: true, amount: 0.6 }}
+      initial={false}
+      animate={state === "hidden" ? "hidden" : "shown"}
+      custom={from}
     >
       {content}
     </motion.h2>

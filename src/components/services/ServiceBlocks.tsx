@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { whatsappButtonLight, whatsappIconClass } from "@/components/BookingCta";
+import { ctaButtonClass, whatsappButtonLight, whatsappIconClass } from "@/components/BookingCta";
+import CalendarIcon from "@/components/CalendarIcon";
+import { FeatureIcon, type FeatureIconName } from "@/components/transfers/TransferBlocks";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { PRIMARY_PHONE } from "@/lib/site";
+import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
 import StaggerIn from "@/components/StaggerIn";
 import { CARD_HOVER } from "@/lib/layout";
 
@@ -49,21 +51,21 @@ export function ComparisonTable({
   return (
     <>
       <div className="mt-8 hidden overflow-x-auto rounded-xl border border-[#D5E8F2] bg-white md:block">
-        <table className="min-w-[44rem] w-full border-collapse text-left">
+        <table className="w-full min-w-[44rem] table-fixed border-collapse text-left">
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr className="bg-[#0A2740] text-white">
-              <td className="w-[11rem] px-5 py-4" />
+              <td className="w-[11rem] px-5 py-5" />
               {columns.map((column, i) => (
                 <th
                   key={column}
                   scope="col"
-                  className={`px-5 py-4 align-bottom text-base font-semibold ${
-                    i === highlight ? "bg-[#1FA3D6] text-[#0A2740]" : ""
+                  className={`px-5 py-5 align-bottom text-base font-semibold ${
+                    i === highlight ? "bg-[#14699A] text-white" : ""
                   }`}
                 >
                   {i === highlight && highlightLabel && (
-                    <span className="mb-1 block text-xs font-bold tracking-[0.15em] uppercase">
+                    <span className="mb-1 block text-xs font-bold tracking-[0.15em] text-[#CDEEFB] uppercase">
                       {highlightLabel}
                     </span>
                   )}
@@ -77,15 +79,17 @@ export function ComparisonTable({
               <tr key={row.label} className={r % 2 ? "bg-[#F5FBFE]" : "bg-white"}>
                 <th
                   scope="row"
-                  className="border-t border-[#D5E8F2] px-5 py-4 align-top text-sm font-semibold whitespace-nowrap text-[#0A2740]"
+                  className="border-t border-[#D5E8F2] px-5 py-4 align-middle text-base font-semibold whitespace-nowrap text-[#0A2740]"
                 >
                   {row.label}
                 </th>
                 {row.values.map((value, i) => (
                   <td
                     key={i}
-                    className={`border-t border-[#D5E8F2] px-5 py-4 align-top leading-relaxed text-[#0A2740]/85 ${
-                      i === highlight ? "bg-[#E6F6FC] font-medium text-[#0A2740]" : ""
+                    className={`border-t border-[#D5E8F2] px-5 py-4 align-middle leading-relaxed text-[#0A2740]/85 ${
+                      i === highlight
+                        ? `border-x-2 border-x-[#14699A] bg-white font-semibold text-[#0A2740] ${r === rows.length - 1 ? "border-b-2 border-b-[#14699A]" : ""}`
+                        : ""
                     }`}
                   >
                     {value}
@@ -104,18 +108,20 @@ export function ComparisonTable({
             <li
               key={column}
               className={`overflow-hidden rounded-xl border bg-white ${
-                isHighlight ? "border-[#1FA3D6]" : "border-[#D5E8F2]"
+                isHighlight ? "border-2 border-[#14699A]" : "border-[#D5E8F2]"
               }`}
             >
               {/* The badge sits beside the heading, not inside it, so the heading text is just
                   the vehicle name. */}
               <div
                 className={`px-5 py-3 font-semibold ${
-                  isHighlight ? "bg-[#1FA3D6] text-[#0A2740]" : "bg-[#0A2740] text-white"
+                  isHighlight ? "bg-[#14699A] text-white" : "bg-[#0A2740] text-white"
                 }`}
               >
                 {isHighlight && highlightLabel && (
-                  <p className="text-xs font-bold tracking-[0.15em] uppercase">{highlightLabel}</p>
+                  <p className="text-xs font-bold tracking-[0.15em] text-[#CDEEFB] uppercase">
+                    {highlightLabel}
+                  </p>
                 )}
                 <h3>{column}</h3>
               </div>
@@ -361,21 +367,73 @@ export function PathCards({
 }
 
 // Plain text columns under a blue top rule.
-export function RuleColumns({
-  columns,
+type MeetingPoint = { icon: FeatureIconName; title: string; text: string };
+
+// Where the driver meets you at each end, as two places joined by a road with a car on it, then a
+// navy strip for booking the return journey. Stacked (with the road running down) on phones.
+export function MeetingPoints({
+  points,
+  back,
 }: {
-  columns: { title: string; text: string; link?: ReactNode }[];
+  points: [MeetingPoint, MeetingPoint];
+  back: { title: string; text: string };
 }) {
+  const card = (point: MeetingPoint) => (
+    <div
+      key={point.title}
+      className={`h-full rounded-xl border border-[#D5E8F2] bg-white p-6 md:p-8 ${CARD_HOVER}`}
+    >
+      <span
+        aria-hidden="true"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740]"
+      >
+        <FeatureIcon name={point.icon} />
+      </span>
+      <h3 className="mt-5 text-xl font-semibold text-[#0A2740]">{point.title}</h3>
+      <p className="mt-2 leading-relaxed text-[#0A2740]/80">{point.text}</p>
+    </div>
+  );
+
   return (
-    <StaggerIn className="mt-8 grid gap-8 md:grid-cols-3">
-      {columns.map((column) => (
-        <div key={column.title} className="border-t-4 border-[#1FA3D6] pt-5">
-          <h3 className="text-lg font-semibold text-[#0A2740]">{column.title}</h3>
-          <p className="mt-2 leading-relaxed text-[#0A2740]/80">{column.text}</p>
-          {column.link}
+    <div className="mt-8">
+      <StaggerIn className="grid md:grid-cols-[1fr_auto_1fr]">
+        {card(points[0])}
+        <div
+          aria-hidden="true"
+          className="relative flex h-14 items-center justify-center md:h-auto md:w-28 md:self-center"
+        >
+          <span className="absolute inset-y-0 border-l-2 border-dashed border-[#1FA3D6]/60 md:inset-x-0 md:inset-y-auto md:border-t-2 md:border-l-0" />
+          <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-[#0A2740] text-white [&_svg]:h-5 [&_svg]:w-5">
+            <FeatureIcon name="car" />
+          </span>
         </div>
-      ))}
-    </StaggerIn>
+        {card(points[1])}
+      </StaggerIn>
+
+      <StaggerIn className="mt-6">
+        <div
+          data-tone="navy"
+          className="flex flex-col gap-4 rounded-xl bg-[#0A2740] p-5 sm:flex-row sm:items-center sm:justify-between md:p-6"
+        >
+          <div className="flex items-start gap-4">
+            <span aria-hidden="true" className="mt-0.5 shrink-0 text-[#4FB8E0]">
+              <FeatureIcon name="return" />
+            </span>
+            <div>
+              <h3 className="font-semibold text-white">{back.title}</h3>
+              <p className="mt-1 leading-relaxed text-white/80">{back.text}</p>
+            </div>
+          </div>
+          <a
+            href={BOOK_ONLINE_HREF}
+            className={`${ctaButtonClass} min-h-12 shrink-0 self-start px-6 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:self-auto`}
+          >
+            Book Online
+            <CalendarIcon className="h-5 w-5" />
+          </a>
+        </div>
+      </StaggerIn>
+    </div>
   );
 }
 

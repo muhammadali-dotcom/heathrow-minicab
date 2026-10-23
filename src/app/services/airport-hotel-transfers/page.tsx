@@ -3,7 +3,7 @@ import PageFaqs from "@/components/PageFaqs";
 import ServiceAreas from "@/components/services/ServiceAreas";
 import { HOTEL_FAQS } from "@/lib/faqs";
 import { ServiceJsonLd, WebPageJsonLd } from "@/components/JsonLd";
-import { DetailCards, PathCards, RuleColumns } from "@/components/services/ServiceBlocks";
+import { DetailCards, MeetingPoints, PathCards } from "@/components/services/ServiceBlocks";
 import {
   Checklist,
   ClosingCta,
@@ -88,21 +88,23 @@ export default function Page() {
       </Section>
 
       <Section tone="white" id="meeting" title="Know where to meet your driver">
-        <RuleColumns
-          columns={[
+        <MeetingPoints
+          points={[
             {
+              icon: "plane",
               title: "At Heathrow",
               text: "Follow the meeting instructions confirmed with your booking: inside arrivals with a name board, or at the agreed pickup point.",
             },
             {
+              icon: "building",
               title: "At your hotel",
               text: "Give us the full hotel address and agree the entrance or collection point.",
             },
-            {
-              title: "Coming back?",
-              text: "Arrange your return to Heathrow at the same time. Just give us both dates and times.",
-            },
           ]}
+          back={{
+            title: "Coming back?",
+            text: "Arrange your return to Heathrow at the same time. Just give us both dates and times.",
+          }}
         />
       </Section>
 

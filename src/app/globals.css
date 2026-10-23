@@ -58,12 +58,19 @@
   }
 }
 
-/* StaggerIn (home cards): children wait hidden below the fold, then rise in one after another,
-   starting just after the section heading's words. */
+/* StaggerIn: children wait hidden while off screen, then come in one after another, starting
+   just after the section heading's words: rising from below when scrolling down, dropping from
+   above when scrolling up (data-from="above"). */
 @keyframes stagger-rise {
   from {
     opacity: 0;
     transform: translateY(40px);
+  }
+}
+@keyframes stagger-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
   }
 }
 [data-stagger="hidden"] > * {
@@ -71,6 +78,9 @@
 }
 [data-stagger="shown"] > * {
   animation: stagger-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+[data-stagger="shown"][data-from="above"] > * {
+  animation-name: stagger-drop;
 }
 [data-stagger="shown"] > :nth-child(1) {
   animation-delay: 0.3s;
