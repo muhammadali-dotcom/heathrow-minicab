@@ -111,10 +111,11 @@
    land below it. */
 html {
   scroll-padding-top: 6rem;
-  /* 16px up to 1536px wide, growing to 18px at 1920px and above, so wide 1x screens
-     (e.g. 1080p laptops at 100% scaling) don't render the site small. % and rem keep the
-     visitor's browser text-size setting. */
-  font-size: clamp(100%, 0.5rem + 0.5208vw, 112.5%);
+  /* 16px up to 1440px wide, then the whole (rem-based) layout scales in proportion with the
+     screen, so a big monitor or a laptop zoomed out looks like a 1440px laptop, just larger:
+     no wide empty margins. Capped at 1.4x (about 2016px wide). Zooming in still enlarges
+     everything, and % keeps the visitor's browser text-size setting. */
+  font-size: clamp(100%, 100vw / 90, 140%);
 }
 @media (min-width: 64rem) {
   html {

@@ -8,7 +8,7 @@ import { SECTION_CONTAINER } from "@/lib/layout";
 const alt =
   "Black Mercedes saloon parked outside a Heathrow terminal as a plane takes off overhead";
 
-// Desktop (xl+): the wide 2.4:1 composition, shown whole: the hero takes the image's own
+// Desktop (lg+): the wide 2.4:1 composition, shown whole: the hero takes the image's own
 // proportions, so the plane, sign and full car are never cropped.
 const DESKTOP_PHOTO = { src: "/images/heathrow-hero-wide.webp", width: 1942, height: 809 };
 // Phones and tablets: the tighter 16:9 photo above the text, so the car stays large.
@@ -49,27 +49,34 @@ export default function Hero() {
   });
 
   return (
-    <section aria-labelledby="hero-heading" className="relative bg-[#0A2740] xl:aspect-[1942/809]">
-      {/* Below xl: the whole 16:9 photo at its own aspect ratio, above the text.
-          From xl: the whole wide photo behind the text. Taller content grows the hero rather
-          than being clipped. */}
-      <div className="relative aspect-[1672/941] xl:absolute xl:inset-0 xl:aspect-auto">
+    <section
+      aria-labelledby="hero-heading"
+      className="relative bg-[#0A2740] lg:flex lg:min-h-[min(41.66vw,calc(100svh-6rem))] lg:items-center"
+    >
+      {/* Below lg: the whole 16:9 photo at its own aspect ratio, above the text.
+          From lg: the wide photo behind the text, with the text centred vertically. The hero is
+          the photo's height (41.66vw) but never taller than the screen below the header, so
+          there's no empty band under the text; taller content grows it rather than being
+          clipped. */}
+      <div className="relative aspect-[1672/941] lg:absolute lg:inset-0 lg:aspect-auto">
         <picture>
-          <source media="(min-width: 80rem)" srcSet={desktopSrcSet} sizes="100vw" />
+          <source media="(min-width: 64rem)" srcSet={desktopSrcSet} sizes="100vw" />
           <img {...mobileProps} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
         </picture>
         {/* Desktop only: navy behind the text on the left, fading out so the car and plane on the
             right stay vivid. */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 hidden bg-linear-to-r from-[#0A2740]/95 via-[#0A2740]/70 via-45% to-[#0A2740]/0 xl:block"
+          className="absolute inset-0 hidden bg-linear-to-r from-[#0A2740]/95 via-[#0A2740]/70 via-45% to-[#0A2740]/0 lg:block"
         />
       </div>
 
-      {/* Same container as the header, so the text lines up with the logo. From xl the text sits
+      {/* Same container as the header, so the text lines up with the logo. From lg the text sits
           on the gradient, with a soft glow on the blue line. */}
-      <div className={`relative ${SECTION_CONTAINER} py-8 sm:py-10 xl:pt-14 xl:pb-12`}>
-        <div className="max-w-2xl xl:max-w-[48rem]">
+      <div
+        className={`relative ${SECTION_CONTAINER} py-8 sm:py-10 lg:pt-12 lg:pb-10 xl:pt-14 xl:pb-12`}
+      >
+        <div className="max-w-2xl lg:max-w-[36rem] xl:max-w-[48rem]">
           {/* Pill badge; decorative, the H1 says the same. */}
           <HeroRise from="left" delay={0}>
             <p
@@ -86,7 +93,7 @@ export default function Hero() {
 
           <h1
             id="hero-heading"
-            className="text-[2rem] leading-[1.1] font-bold tracking-tight text-balance text-white sm:text-[2.5rem] xl:text-[3rem] xl:text-wrap xl:[text-shadow:0_1px_2px_rgb(10_39_64/0.4)]"
+            className="text-[clamp(1.75rem,1.2rem+1.8vw,3rem)] leading-[1.1] font-bold tracking-tight text-balance text-white lg:[text-shadow:0_1px_2px_rgb(10_39_64/0.4)] xl:text-wrap"
           >
             {/* Three lines from xl, the last in light blue; natural wrapping below. Each word slides
                 in from the left on load and never splits from its comma. */}
@@ -97,14 +104,14 @@ export default function Hero() {
                 {
                   text: "and arrivals to home.",
                   className:
-                    "text-[#4FB8E0] xl:block xl:[text-shadow:0_0_24px_rgb(79_184_224/0.35)]",
+                    "text-[#4FB8E0] lg:[text-shadow:0_0_24px_rgb(79_184_224/0.35)] xl:block",
                 },
               ]}
             />
           </h1>
 
           <HeroRise delay={0.9}>
-            <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-white/90 sm:text-lg xl:[text-shadow:0_1px_2px_rgb(10_39_64/0.5)]">
+            <p className="mt-4 max-w-[38rem] text-base leading-relaxed text-white/90 sm:text-lg lg:[text-shadow:0_1px_2px_rgb(10_39_64/0.5)]">
               {HERO_COPY}
             </p>
           </HeroRise>
