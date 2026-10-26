@@ -25,7 +25,7 @@ export const whatsappButtonLight = `${ctaShape} border border-[#0A2740] bg-white
 export const whatsappIconClass = "text-[#25D366]";
 
 // The booking CTA used across the site: "Book Online" (to the hosted web booker) and
-// "Call 020 8343 4444".
+// "Call 020 8569 4040".
 export default function BookingCta({
   tone = "light",
   align = "start",

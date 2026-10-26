@@ -9,9 +9,9 @@ URLs to `SAME_AS` in `src/lib/site.ts`.
 |---|---|
 | Business name | Heathrow Minicab |
 | Website | https://www.heathrowminicab.com |
-| Main phone | 020 8343 4444 |
-| Backup phone | 020 8569 4040 |
-| Base | Mill Hill, North London (NW7) |
+| Main phone | 020 8569 4040 |
+| Backup phone | 020 8343 4444 |
+| Base | Hounslow, West London (TW3) |
 | Business type | Service-area private hire / minicab business |
 | Hours | 24 hours, 7 days |
 | Main services | Heathrow airport transfers, Heathrow pickups, Heathrow drop-offs, meet and greet, airport-to-airport transfers, family and group transfers, executive airport transfers |
@@ -41,7 +41,7 @@ redeploy so the LocalBusiness schema reinforces the same entity.
 
 ## Profile content
 
-- Description: "Heathrow Minicab is a 24/7 private hire service based in Mill Hill, North London (NW7), providing airport transfers between North and West London and Heathrow Terminals 2, 3, 4 and 5."
+- Description: "Heathrow Minicab is a 24/7 private hire service based in Hounslow, West London (TW3), providing airport transfers between North and West London and Heathrow Terminals 2, 3, 4 and 5."
 - Categories to use where available: Taxi service, Airport shuttle service, Car service, Private hire service.
 - Photos to upload: real vehicles, driver/name-board pickup, vehicle interiors, luggage space, Heathrow-safe exterior shots.
 - Services to list: Heathrow airport transfer, Heathrow airport pickup, meet and greet, Heathrow drop-off, airport-to-airport transfer, family airport transfer, executive airport transfer.

@@ -25,9 +25,9 @@ import MaskHeading from "@/components/MaskHeading";
 import StaggerIn from "@/components/StaggerIn";
 
 const seo = {
-  title: "Contact Heathrow Minicab | Call 020 8343 4444",
+  title: "Contact Heathrow Minicab | Call 020 8569 4040",
   description:
-    "Call 020 8343 4444 or 020 8569 4040, or message us on WhatsApp, to book or ask about a Heathrow airport transfer. Available 24/7.",
+    "Call 020 8569 4040 or 020 8343 4444, or message us on WhatsApp, to book or ask about a Heathrow airport transfer. Available 24/7.",
   path: "/contact",
 };
 
@@ -47,7 +47,7 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Contact" }]}
         title="Contact Heathrow Minicab"
-        intro="Book online or call us to plan your Heathrow transfer. We’re based in Mill Hill, North London, and open 24/7."
+        intro="Book online or call us to plan your Heathrow transfer. We’re based in Hounslow, West London, and open 24/7."
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Online" }}
         secondaryLabel="Call Us"
         image={{

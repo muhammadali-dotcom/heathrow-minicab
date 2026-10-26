@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import PhoneIcon from "@/components/PhoneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { PRIMARY_PHONE } from "@/lib/site";
+import { PRIMARY_PHONE, WHATSAPP_NUMBER } from "@/lib/site";
 import { TERMINALS, type Terminal } from "@/lib/terminals";
 
 // One data source, two layouts: tabs from md, an accordion below. CSS hides the inactive
@@ -78,7 +78,7 @@ function TerminalPanel({
               Call {PRIMARY_PHONE.display}
             </a>
             <a
-              href={`https://wa.me/442083434444?text=${encodeURIComponent(
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
                 `Hi, I have a question about Heathrow ${terminal.name}.`,
               )}`}
               target="_blank"

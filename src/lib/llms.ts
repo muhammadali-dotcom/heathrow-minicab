@@ -13,6 +13,7 @@ import {
   PRIMARY_PHONE,
   SITE_NAME,
   TFL_LICENCE,
+  WHATSAPP_DISPLAY,
 } from "@/lib/site";
 import { VEHICLES } from "@/lib/vehicles";
 
@@ -52,7 +53,7 @@ ${KEY_FACTS.map((f) => `- ${f.label}: ${f.value}.`).join("\n")}
 ## How to book
 - Online: ${BOOK_ONLINE_HREF}
 - Phone: ${PRIMARY_PHONE.display} (${PRIMARY_PHONE.tel}); alternative line ${ALT_PHONE.display} (${ALT_PHONE.tel})
-- WhatsApp: ${PRIMARY_PHONE.display}
+- WhatsApp: ${WHATSAPP_DISPLAY}
 - Email (general enquiries): ${BUSINESS_EMAIL}
 - For urgent pickup help or booking changes, please call.
 

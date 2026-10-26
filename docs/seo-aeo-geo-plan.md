@@ -64,7 +64,7 @@ For "heathrow minicab" and "{area} to heathrow taxi", Google mostly shows the **
    - **Category:** "Taxi service" as the main one, plus "Airport shuttle service" and "Car service" if they apply.
    - **Set it up as a service-area business:** hide the street address and list the service areas from /areas (Finchley, Hendon, Barnet, Mill Hill, Edgware and the rest) plus Heathrow.
    - **Hours:** open 24 hours, 7 days.
-   - **Phone:** 020 8343 4444 as the main number, with 020 8569 4040 as an additional number.
+   - **Phone:** 020 8569 4040 as the main number, with 020 8343 4444 as an additional number.
    - **Website:** https://www.heathrowminicab.com.
    - **Photos:** the cars (your real fleet), drivers with name boards, and the terminal kerbside. Add new photos monthly.
    - **Services:** list "Heathrow airport transfer", "Heathrow airport pickup (meet and greet)", "Heathrow drop-off", "Airport-to-airport transfers" and "Child seats".
@@ -186,8 +186,8 @@ Rankings for new sites usually take **3 to 6 months**. Local map-pack results ca
 - [x] /llms.txt expanded and /llms-full.txt added (every question and answer).
 
 **Business identity (2026-10-07)**
-- [x] One entity sentence (`BUSINESS_SUMMARY`) and the base "Mill Hill, North London (NW7)" (`BUSINESS_BASE`) in `src/lib/site.ts`, used word for word in the schema (description + area-only address), footer, About, Contact, Key facts and llms.txt.
-- [ ] Google Business Profile as a service-area business: address hidden, base Mill Hill, service areas = the 16 areas, website https://www.heathrowminicab.com, hours 24/7, same phone numbers. This is the single biggest GEO/local lever.
+- [x] One entity sentence (`BUSINESS_SUMMARY`) and the base "Hounslow, West London (TW3)" (`BUSINESS_BASE`) in `src/lib/site.ts`, used word for word in the schema (description + area-only address), footer, About, Contact, Key facts and llms.txt.
+- [ ] Google Business Profile as a service-area business: address hidden, base Hounslow, service areas = the 16 areas, website https://www.heathrowminicab.com, hours 24/7, same phone numbers. This is the single biggest GEO/local lever.
 - [ ] Bing Places and Apple Business Connect with identical details.
 - [ ] Yell, FreeIndex and Thomson Local listings with identical details.
 - [ ] Ask customers for a Google review after each trip.

@@ -12,7 +12,7 @@ import {
 import { ClosingCta, Section, TransfersHero } from "@/components/transfers/TransferBlocks";
 import { pageMetadata } from "@/lib/seo";
 import { findService } from "@/lib/services";
-import { BOOK_ONLINE_HREF } from "@/lib/site";
+import { BOOK_ONLINE_HREF, WHATSAPP_NUMBER } from "@/lib/site";
 
 const service = findService("long-distance-airport-transfers");
 const path = `/services/${service.slug}`;
@@ -63,7 +63,7 @@ export default function Page() {
         <p className="mt-6 text-white/85">
           Another destination?{" "}
           <a
-            href={`https://wa.me/442083434444?text=${encodeURIComponent(
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
               "Hi, do you offer a Heathrow transfer to/from [destination]?",
             )}`}
             target="_blank"

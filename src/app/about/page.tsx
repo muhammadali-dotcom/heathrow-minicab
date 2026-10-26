@@ -15,7 +15,7 @@ import MaskHeading from "@/components/MaskHeading";
 const seo = {
   title: "About Heathrow Minicab | Heathrow Airport Transfers",
   description:
-    "Heathrow Minicab is a 24/7 private hire service based in Mill Hill, North London, for Heathrow airport transfers to and from Terminals 2, 3, 4 and 5.",
+    "Heathrow Minicab is a 24/7 private hire service based in Hounslow, West London, for Heathrow airport transfers to and from Terminals 2, 3, 4 and 5.",
   path: "/about",
 };
 

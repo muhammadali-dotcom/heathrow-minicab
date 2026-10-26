@@ -4,7 +4,7 @@ import { ctaButtonClass, whatsappButtonLight, whatsappIconClass } from "@/compon
 import CalendarIcon from "@/components/CalendarIcon";
 import { FeatureIcon, type FeatureIconName } from "@/components/transfers/TransferBlocks";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { BOOK_ONLINE_HREF, PRIMARY_PHONE } from "@/lib/site";
+import { BOOK_ONLINE_HREF, PRIMARY_PHONE, WHATSAPP_NUMBER } from "@/lib/site";
 import StaggerIn from "@/components/StaggerIn";
 import { CARD_HOVER } from "@/lib/layout";
 
@@ -245,7 +245,7 @@ export function NumberedStrip({ items }: { items: string[] }) {
 // A WhatsApp-style message listing the details to send, with a button that pre-fills it.
 export function MessagePreview({ intro, lines }: { intro: string; lines: string[] }) {
   const text = `${intro}\n${lines.map((line) => `${line}: `).join("\n")}`;
-  const href = `https://wa.me/${PRIMARY_PHONE.tel.replace("+", "")}?text=${encodeURIComponent(text)}`;
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   return (
     <div className="mx-auto mt-6 w-full max-w-[36rem] rounded-xl border border-[#D5E8F2] bg-white p-5 md:p-6">
       <p className="flex items-center gap-2 text-sm font-semibold text-[#4E6B84]">

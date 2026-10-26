@@ -28,20 +28,19 @@ export const BOOKING_URL =
 export const BOOK_ONLINE_HREF = BOOKING_URL;
 
 export const PHONE_NUMBERS: PhoneNumber[] = [
-  { label: "Bookings", display: "020 8343 4444", tel: "+442083434444" },
-  { label: "Alternative bookings line", display: "020 8569 4040", tel: "+442085694040" },
+  { label: "Bookings", display: "020 8569 4040", tel: "+442085694040" },
+  { label: "Alternative bookings line", display: "020 8343 4444", tel: "+442083434444" },
 ];
 
 // Used by every Call to Book CTA; the alternative line is shown alongside where space allows.
 export const PRIMARY_PHONE: PhoneNumber = PHONE_NUMBERS[0];
 export const ALT_PHONE: PhoneNumber = PHONE_NUMBERS[1];
 
-// WhatsApp Business is on the main bookings line; chats open with a ready-to-send message.
-// Bittacy Cars' published address (bittacycars.com/contact), used until the brand has its own.
-export const BUSINESS_EMAIL = "bittacycs@hotmail.com";
+// A2B Radio Cars' published email (a2b-radiocars.com/contact), used until the brand has its own.
+export const BUSINESS_EMAIL = "a2bradiocarss@gmail.com";
 
 // Where the business is based. Area only (no street address): it's a service-area business.
-export const BUSINESS_BASE = { locality: "Mill Hill", area: "North London", postcode: "NW7" };
+export const BUSINESS_BASE = { locality: "Hounslow", area: "West London", postcode: "TW3" };
 export const BUSINESS_BASE_LABEL = `${BUSINESS_BASE.locality}, ${BUSINESS_BASE.area} (${BUSINESS_BASE.postcode})`;
 
 // One sentence that defines the business. Repeated word for word in the schema, About page and
@@ -56,7 +55,12 @@ export const SAME_AS: string[] = [];
 // TfL private hire operator licence. Shown in the footer and schema once set.
 export const TFL_LICENCE: { number: string; operator: string } | null = null;
 
-export const WHATSAPP_URL = `https://wa.me/442083434444?text=${encodeURIComponent(
+// A2B Radio Cars' WhatsApp (a mobile, separate from the call lines). Digits only, as wa.me expects.
+// Chats open with a ready-to-send message.
+export const WHATSAPP_NUMBER = "447436075664";
+export const WHATSAPP_DISPLAY = "07436 075664";
+
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   "Hi, I'd like to book a Heathrow transfer.",
 )}`;
 

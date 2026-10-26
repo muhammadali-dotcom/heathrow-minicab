@@ -16,7 +16,13 @@ import PhoneIcon from "@/components/PhoneIcon";
 import PlaneIcon from "@/components/PlaneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { CARD_HOVER, SECTION_CONTAINER } from "@/lib/layout";
-import { ALT_PHONE, BOOK_ONLINE_HREF, PRIMARY_PHONE, WHATSAPP_URL } from "@/lib/site";
+import {
+  ALT_PHONE,
+  BOOK_ONLINE_HREF,
+  PRIMARY_PHONE,
+  WHATSAPP_NUMBER,
+  WHATSAPP_URL,
+} from "@/lib/site";
 import { VEHICLES, type Vehicle } from "@/lib/vehicles";
 
 // Building blocks for the Airport Transfers pages, following the supplied design reference
@@ -670,7 +676,7 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
 }
 
 // Numbered steps in a row from md (stacked on phones).
-const WHATSAPP_HELP_URL = `https://wa.me/442083434444?text=${encodeURIComponent(
+const WHATSAPP_HELP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   "Hi, I'm at Heathrow and can't find my driver. My terminal is: ",
 )}`;
 
@@ -885,7 +891,7 @@ export function ClosingCta({
             <a
               href={
                 typeof whatsapp === "string"
-                  ? `https://wa.me/${PRIMARY_PHONE.tel.replace("+", "")}?text=${encodeURIComponent(whatsapp)}`
+                  ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsapp)}`
                   : WHATSAPP_URL
               }
               target="_blank"
