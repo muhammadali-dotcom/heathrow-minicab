@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import IntroSplash from "@/components/IntroSplash";
 import { SiteJsonLd } from "@/components/JsonLd";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -27,8 +28,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en-GB"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // The intro screen's inline script sets data-intro before React hydrates.
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col">
+        <IntroSplash />
         <SiteJsonLd />
         <SiteHeader />
         <main className="flex-1 overflow-x-clip">{children}</main>

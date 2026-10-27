@@ -107,6 +107,77 @@
   animation-delay: 1.0s;
 }
 
+/* Intro screen (IntroSplash): the route draws while the car drives it, the plane lifts off, then
+   the screen fades and stops taking up the page (visibility: hidden). 1.35s in all: the route
+   fills over 1s, then a 0.35s fade. Once per visit; skipped entirely when already seen this
+   session or when motion is reduced. Transform and opacity only, so it stays on the compositor.
+   Nothing moves until IntroSplash's script sets data-intro="play" (once the scene has actually
+   been painted), so the drive always starts at point A on screen. Until then it's a still scene,
+   and if the script never runs, the fallback fade (same keyframes, separate name so it can't
+   share a start time with the real one) clears it after 3s. */
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@keyframes intro-out-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@keyframes intro-road {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes intro-car {
+  to {
+    transform: translateX(9.75rem);
+  }
+}
+@keyframes intro-plane {
+  to {
+    transform: translate(10px, -12px) rotate(70deg);
+  }
+}
+.intro-splash {
+  animation: intro-out-fallback 0.35s ease 3s forwards;
+}
+.intro-road {
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.intro-plane {
+  transform: rotate(90deg);
+}
+[data-intro="play"] .intro-splash {
+  animation: intro-out 0.35s ease 1s forwards;
+}
+[data-intro="play"] .intro-road {
+  animation: intro-road 1s cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+[data-intro="play"] .intro-car {
+  animation: intro-car 1s cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+[data-intro="play"] .intro-plane {
+  animation: intro-plane 0.25s ease-out 0.85s forwards;
+}
+[data-intro="seen"] .intro-splash {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-splash {
+    display: none;
+  }
+}
+
 /* The header is sticky (32px top bar + 52px row, 64px row from lg), so in-page anchors
    land below it. */
 html {
