@@ -18,7 +18,9 @@ export function FaqJsonLd({ items }: { items: Faq[] }) {
   );
 }
 
-// Accordion of questions; ids double as in-page anchors (e.g. /faqs#waiting-charges).
+// Accordion of questions; ids double as in-page anchors (e.g. /faqs#waiting-charges). Each
+// question is an h3 (the accordion always sits under a section h2), so search and answer engines
+// read it as a question heading; it inherits the summary's size and weight, so it looks the same.
 export function FaqAccordion({ items, compact = false }: { items: Faq[]; compact?: boolean }) {
   return (
     <div className="space-y-3">
@@ -31,7 +33,7 @@ export function FaqAccordion({ items, compact = false }: { items: Faq[]; compact
           <summary
             className={`flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-5 font-semibold text-[#0A2740] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A2740] md:px-6 [&::-webkit-details-marker]:hidden ${compact ? "py-4 text-base" : "py-5 text-lg"}`}
           >
-            <span>{faq.question}</span>
+            <h3>{faq.question}</h3>
             <span
               aria-hidden="true"
               className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6F6FC] text-[#0A2740]"

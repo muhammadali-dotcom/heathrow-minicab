@@ -1,241 +1,94 @@
-# SEO, AEO and GEO plan: www.heathrowminicab.com
+# Heathrow Minicab: SEO, AEO and GEO execution plan
 
-This plan gets Heathrow Minicab found in three places:
+Updated: 28 October 2026. Planning window: 28 October–25 January 2027.
 
-- **SEO**: Google and Bing search results.
-- **AEO** (answer engine optimisation): Google's AI Overviews, featured snippets and "People also ask" boxes.
-- **GEO** (generative engine optimisation): AI assistants such as ChatGPT, Perplexity, Gemini and Claude, when someone asks them for a Heathrow minicab.
+## Objective and evidence
 
-Part 1 says what's realistic. Part 2 lists what's already built into the site. Parts 3 to 9 are the work to do over the coming months, most important first. Part 10 is a 90-day checklist.
+Make the business discoverable for relevant Heathrow transfers, help travellers get reliable answers, and measure enquiries and completed bookings. Rankings, indexing and AI citations are outcomes to monitor, not promises.
 
----
+This plan replaces the older launch plan. The local code was inspected; production deployment parity has not been established. Both live hosts could not be fetched from the audit environment, and a site-restricted search returned no results. Neither observation establishes an outage or proves Google has not indexed the site. Search Console, live performance, business profiles and AI citations were not measured.
 
-## 1. What we can realistically rank for
+Already present in source: unique metadata and canonicals; sitemap; wildcard crawler allowance; LocalBusiness, Service and breadcrumb JSON-LD; area landing pages with local profiles; FAQs; three guides; About, Terms and Privacy pages; llms.txt and llms-full.txt; canonical-host redirects and preview-host noindex configuration. Do not rebuild these as missing features.
 
-**Not realistic:** "heathrow" and "heathrow airport" on their own.
-- Heathrow's official site, Wikipedia, Google Maps, flight trackers and news sites own these searches.
-- People typing them want flight times, maps or news, not a minicab.
-- No taxi firm ranks for them, so don't spend money chasing them.
+Verified gaps in source: TFL_LICENCE is null; SAME_AS is empty; contact email references A2B Radio Cars; operator identity needs clarification; booking uses a separate domain; no analytics implementation was found in the source search; Privacy explicitly says no analytics or tracking cookies are used. Existing platform-side analytics remain unverified.
 
-**Realistic and valuable:** these are searches from people ready to book.
+## Week 1: 28 October–3 November — establish access, identity and baseline
 
-| Priority | Search terms | Page that should rank |
-|---|---|---|
-| 1 | heathrow minicab, heathrow minicabs, minicab heathrow | Home |
-| 1 | heathrow airport transfer(s), airport transfer heathrow, heathrow transfers | /airport-transfers |
-| 1 | minicab to heathrow, taxi to heathrow, cab to heathrow airport | /airport-transfers/heathrow-drop-offs |
-| 1 | heathrow pickup, heathrow meet and greet taxi, taxi from heathrow | /airport-transfers/heathrow-pickups |
-| 2 | {area} to heathrow taxi / minicab, e.g. "finchley to heathrow taxi", "hendon minicab heathrow" | /areas now, then individual area pages later |
-| 2 | heathrow terminal 5 taxi, taxi heathrow terminal 2 | /airport-transfers/terminal-guides |
-| 3 | heathrow taxi with child seat, heathrow MPV taxi, executive car heathrow | /services pages, /our-vehicles |
+| ID | Action | Owner | Complete when |
+|---|---|---|---|
+| A1 | Check DNS, TLS and response status for both hosts from an independent network. Verify non-www redirects directly to https://www.heathrowminicab.com with the requested path intact. | Developer / hosting owner | Evidence records redirect chain and final 200 responses for homepage, robots.txt and sitemap.xml. |
+| A2 | Verify a domain property in Google Search Console. Submit the canonical sitemap. Inspect homepage, pickup/drop-off pages and three priority area pages using live URL inspection. | Account owner + developer | Inspection evidence distinguishes fetchability, indexing eligibility, selected canonical and actual indexed status; any blockers have assigned fixes. Indexing itself is not guaranteed. |
+| A3 | Verify Bing Webmaster Tools, submit sitemap and check important URLs. | Account owner | Property access and sitemap processing confirmed; issues recorded. |
+| A4 | Confirm licensed operator name, licence number and relationship to Heathrow Minicab and A2B Radio Cars. Confirm public contact details and booking operator. | Business owner | Approved fact sheet supplies exact wording and verified details; no credentials are invented. |
+| A5 | Publish confirmed operator details consistently on About, Contact, footer, terms and relevant schema. Add a branded email if available. | Developer, after A4 | Visible statements agree with booking confirmation and verified business records. |
+| A6 | Record baseline impressions, clicks, indexed priority URLs, enquiries and completed bookings where available. Test mobile homepage, pickup page and one area page in PageSpeed Insights. | SEO / developer | Dated baseline records source, device, URL and measurement limitations. Missing field data is labelled unavailable. |
 
-The biggest gains come from **local search**: the map pack, which is the three businesses Google shows on a map. See Part 3.
+Access required: domain registrar/DNS, hosting, Search Console, Bing Webmaster Tools and booking-provider administration. Use delegated account access; never place credentials in this document.
 
----
+## Week 2: 4–10 November — local profiles and measurement
 
-## 2. Technical SEO: already built
+| ID | Action | Owner | Complete when |
+|---|---|---|---|
+| B1 | Locate existing Google Business Profile, Bing Places and Apple Maps listings. Confirm eligibility and actual business identity before claiming or creating anything. Avoid duplicate profiles. | Business owner / SEO | Existing URLs, verification status and correct name/phones recorded in citations-local-links.md. Service-area address visibility reflects the real operation. |
+| B2 | Improve verified profiles with accurate services, hours, booking links and original photographs. Add only profiles representing the same business to SAME_AS. | Business owner + developer | Public details agree with website; schema points to verified entity profiles. |
+| B3 | Ask booking provider which completed-booking event, integration or webhook it supports, and whether both domains can share measurement. | Business owner + developer | Written implementation route and available permissions documented. |
+| B4 | Implement measurement appropriate to the selected tools; review privacy wording and applicable consent requirements before enabling tracking. Test phone, WhatsApp and booking outbound clicks separately from completed bookings. | Developer + business owner | Test events appear once, referral attribution survives where supported, personal booking details are excluded, and a real completion event is verified. If unsupported, outbound clicks remain labelled enquiries, never bookings. |
+| B5 | Prepare an honest review request and a workflow for completed trips. | Business owner | Review link works and request process is ready. Actual messages require explicit sending authorization. No incentives or selective requests based on satisfaction. |
 
-| What | Where | Why it matters |
-|---|---|---|
-| robots.txt | https://www.heathrowminicab.com/robots.txt | Tells every search engine and AI crawler that it may read the site, and where the sitemap is. GPTBot, Perplexity, Claude, Google-Extended and Applebot are named explicitly. |
-| sitemap.xml | https://www.heathrowminicab.com/sitemap.xml | Lists the 14 pages that should be indexed. Unfinished pages (About, Terms, Privacy) and /book are left out. |
-| Canonical links | Every page | Tells Google the one official address of each page, so duplicate copies don't dilute rankings. |
-| Titles and descriptions | Every page | Each page now has a keyword-focused title (e.g. "Heathrow Airport Pickups \| Meet & Greet Minicab") and a description under 160 characters. These are what appear in Google results. |
-| Share previews | Every page | Open Graph and Twitter tags, so links shared on WhatsApp, Facebook and similar show a proper title and image. |
-| Structured data (schema) | Every page | Machine-readable facts: **LocalBusiness** (name, phones, 24/7 hours, the 16 areas and Heathrow served), **WebSite**, **Service** on the three airport pages, **BreadcrumbList** on inner pages, and **FAQPage** on the homepage and /faqs. |
-| llms.txt | https://www.heathrowminicab.com/llms.txt | A plain-text fact sheet written for AI assistants: services, prices policy, areas, phones and key pages. |
-| noindex on placeholders | /about, /terms, /privacy | Keeps "Coming soon" pages out of Google until they have real content. **Remove the `robots` line in each page when you fill it in, and add the page to `src/app/sitemap.ts`.** |
+Review request draft: “Thanks for travelling with Heathrow Minicab. If you have a moment, please share your experience here: [verified review link]. Your feedback helps us improve.”
 
-**Do straight after launch:**
-1. **Google Search Console** (search.google.com/search-console): add the domain `heathrowminicab.com`, verify it through your DNS, submit `https://www.heathrowminicab.com/sitemap.xml`, then use "URL inspection" and then "Request indexing" for the homepage and the airport pages.
-2. **Bing Webmaster Tools** (bing.com/webmasters): import the site from Search Console. Bing also feeds ChatGPT search and Copilot.
-3. **Google's Rich Results Test** (search.google.com/test/rich-results): test the homepage and /faqs to confirm the schema is read.
-4. **PageSpeed Insights:** check mobile scores on the homepage and the airport pages, and aim for green Core Web Vitals.
-5. **Domain:** `heathrowminicab.com` and `heathrow-minicab.vercel.app` redirect to `https://www.heathrowminicab.com`, so there's only one version of the site. If you'd rather use www, set `NEXT_PUBLIC_SITE_URL` to the www address instead.
+## Weeks 3–4: 11–24 November — improve answers and booking confidence
 
----
+1. Choose three priority area pages using actual bookings and Search Console demand. If no data exists, have dispatch nominate the busiest areas. Improve those before expanding coverage.
+2. Confirm waiting rate, cancellation/refund conditions, airport parking and drop-off charge treatment. Replace vague answers with accurate terms consistently across FAQs, service pages, terms and booking confirmation. Explain when the 15-minute waiting allowance begins.
+3. Publish verified example fares only if the business can maintain them. Each example specifies route, vehicle, assumptions, inclusions, exclusions and review date. Otherwise make the quote path clear and easy to complete.
+4. Add firsthand pickup details and original images to priority pages. Use validated journey-time ranges only where defensible; do not promise exact arrival times.
+5. Improve terminal information within the existing terminal directory. Create separate terminal pages only when each has useful distinct information; assess existing redirects before changing URLs.
+6. Add a named, real reviewer to guides where appropriate, with factual review dates and official source links. Recheck changeable airport information before updating dates.
+7. Measure the first-visit splash on mobile and test a shortened or removed overlay. Confirm the fare/booking action is visible promptly. Do not claim a Core Web Vitals failure without measurement.
 
-## 3. Local SEO: the biggest lever
+Completion: three priority pages have distinct useful information, verified answers agree across channels, booking actions work on mobile, and schema matches visible facts. Validate structured data and check raw HTML for important text. Run normal project lint/build checks for code changes, following the installed Next.js documentation first.
 
-For "heathrow minicab" and "{area} to heathrow taxi", Google mostly shows the **map pack**. You get into it through a Google Business Profile, not through the website alone.
+## Days 29–60: 25 November–26 December — earn local trust
 
-1. **Create a Google Business Profile** (business.google.com):
-   - **Business name:** exactly "Heathrow Minicab". Don't add keywords or the profile can be suspended.
-   - **Category:** "Taxi service" as the main one, plus "Airport shuttle service" and "Car service" if they apply.
-   - **Set it up as a service-area business:** hide the street address and list the service areas from /areas (Finchley, Hendon, Barnet, Mill Hill, Edgware and the rest) plus Heathrow.
-   - **Hours:** open 24 hours, 7 days.
-   - **Phone:** 020 8569 4040 as the main number, with 020 8343 4444 as an additional number.
-   - **Website:** https://www.heathrowminicab.com.
-   - **Photos:** the cars (your real fleet), drivers with name boards, and the terminal kerbside. Add new photos monthly.
-   - **Services:** list "Heathrow airport transfer", "Heathrow airport pickup (meet and greet)", "Heathrow drop-off", "Airport-to-airport transfers" and "Child seats".
-   - **Posts:** one a week, with simple updates such as "Early flight from T5? Book your 4am pickup".
-2. **Keep your details identical everywhere** (known as NAP: name, address, phone). Use the same name, phone format and website on every listing. AI assistants and Google cross-check them.
-3. **Directory listings (citations).** Create or claim these:
-   - Bing Places;
-   - Apple Business Connect, for Apple Maps and Siri;
-   - Yell;
-   - Thomson Local;
-   - FreeIndex;
-   - Cylex;
-   - Scoot;
-   - Hotfrog;
-   - 192.com;
-   - Trustpilot, also useful for reviews.
+- Build a short list of relevant hotels, venues and businesses with an actual relationship to the operator. Prepare individual suggestions for their guest travel or visitor information pages. Send outreach only when explicitly authorized.
+- Use citations-local-links.md to record real listings and partner URLs. Check existing entries before creating new ones. Prefer relevant, maintained listings over bulk submissions.
+- Add customer feedback only with accurate attribution and appropriate permission. Do not fabricate ratings or mark up self-serving reviews to pursue stars.
+- Create one useful original resource based on recurring passenger questions or dispatch evidence. Good candidates include luggage/vehicle selection, booking a child seat, or planning a specific airport connection. Check existing content before adding overlapping pages.
+- Revisit Search Console coverage and the three priority area pages. Expand only where demand and distinct information justify another page.
 
----
+## Days 61–90: 27 December–25 January — refine using results
 
-## 4. Reviews
+- Compare the previous 28 days with the preceding period, noting seasonality and low sample sizes. Report organic impressions, clicks, CTR, priority-page indexing, enquiries and completed bookings separately.
+- Improve titles and page introductions where impressions indicate relevant demand but clicks are weak. Check query intent before rewriting.
+- Identify useful pages with indexing problems and investigate canonical selection, duplication, internal links and server access. Do not repeatedly request indexing without fixing the cause.
+- Repeat mobile performance tests after substantive changes. Use field data when available and keep lab results separate.
+- Review the same AI-search prompts monthly, recording date, platform, search/browsing mode, wording and cited URLs. Results vary and manual checks are not a market-wide visibility score.
 
-Reviews are the strongest single factor in the map pack, and AI assistants quote them.
+## AEO and GEO working rules
 
-- **Ask every customer.** Send a WhatsApp message after each completed trip:
-  > "Thanks for travelling with Heathrow Minicab today. If you have a moment, a quick Google review really helps us: [your review link]. Safe travels!"
+Write the answer first, then explain details. State verified service facts in visible text. Support airport facts with official sources. Keep identity, policies and contact details consistent across profiles, pages and the booker.
 
-  Get the link from your Google Business Profile ("Ask for reviews").
-- **Aim for** 10 reviews in the first month, then a steady 5 to 10 a month.
-- **Reply to every review** within a couple of days, good or bad, and mention the service naturally (e.g. "Glad your Terminal 5 pickup went smoothly").
-- **Only show real reviews on the website**, and only once you have them. Never write or buy reviews; it's illegal under UK consumer law.
+Google says AI features require the same SEO foundations, indexed pages and snippet eligibility; no special AI text file or schema is required. Maintain existing llms files as optional summaries, without treating them as ranking mechanisms. FAQ markup and speakable markup are not guarantees of featured answers, voice visibility or AI citations.
 
----
+Robots source allows all crawlers, but production CDN/firewall access must be tested separately. Distinguish search crawlers from model-training crawlers when reviewing any future policy changes.
 
-## 5. Content that ranks and earns trust
+Manual prompt set: “Heathrow transfer from [priority area]”; “Heathrow minicab with child seat”; “How do Heathrow Minicab pickups work?”; “Heathrow Minicab waiting and cancellation policy”. Record whether the brand is mentioned, which URL is cited, and whether the answer is accurate.
 
-Do these in order:
+## Owner handover: information needed next
 
-1. **Licensing and trust.** Add your TfL private hire operator licence number to the footer and the About page. It's a strong trust signal for people, Google and AI assistants alike.
-2. **About page.** Who runs the company, how long you've operated, the areas you're based in, and your driver standards. Then remove the noindex.
-3. **Terms and Privacy pages.** These need real content. Privacy is a legal requirement if you take bookings.
-4. **Area pages** (/areas/finchley, /areas/hendon and so on), starting with your busiest 3 to 5 areas. Each page needs **genuinely local** detail, or Google treats it as duplicate content:
-   - the usual route to Heathrow from that area (e.g. "via the North Circular and M4");
-   - which terminals customers from there use most;
-   - common pickup points (estates, stations, hotels);
-   - a typical journey-time range at different times of day, only if you're confident in it;
-   - 2 or 3 area-specific FAQs.
+- Confirm the licensed operator name/number and trading-brand relationship.
+- Supply existing public business-profile URLs and identify who manages them.
+- Nominate the three busiest pickup areas and provide approved policy/rate details.
+- Confirm which search/analytics accounts already exist and who controls the external booker.
+- Provide original fleet/team photographs approved for publication.
 
-   The site is ready for these: `src/lib/areas.ts` already has a slug for every area.
-5. **Helpful guides.** One a month, with a short page answering a real question:
-   - "How early should I leave Finchley for a Heathrow Terminal 5 flight?"
-   - "Heathrow meet and greet: what happens when you land"
-   - "Taxi or Heathrow Express from North London?" Be honest; it builds trust.
-   - "Travelling to Heathrow with children: car seats explained"
+These are dependencies for specific tasks, not reasons to stop independent access checks or documentation work. Publication and external account mutations should be recorded separately from local preparation.
 
----
+## References
 
-## 6. AEO: answer engines (AI Overviews, featured snippets)
+- Google AI features: https://developers.google.com/search/docs/appearance/ai-features
+- Google business details: https://developers.google.com/search/docs/appearance/establish-business-details
+- Local listing and partner tracker: citations-local-links.md
 
-Answer engines lift short, direct answers from pages. To be the one quoted:
-
-- **Start with the answer.** The first sentence under a heading should answer the question in under 40 words. For example: "Your driver meets you inside Heathrow arrivals holding a name board, or at a pickup point agreed when you book."
-- **Use question headings** that match real searches: "How much waiting time is included?" or "Where will my driver meet me at Heathrow?"
-- **Keep FAQs current.** They're on the homepage and /faqs with FAQPage schema. Add a question whenever customers ask the same thing twice.
-- **Use lists and tables** for steps and comparisons. Snippets love them.
-- **Include one clear "definition" sentence** on the homepage that AI can quote: "Heathrow Minicab is a 24/7 minicab service for Heathrow airport transfers from North and West London."
-
----
-
-## 7. GEO: AI assistants (ChatGPT, Perplexity, Gemini, Claude)
-
-AI assistants recommend businesses they can **read**, **verify** and **see mentioned elsewhere**.
-
-1. **Readable (done).** AI crawlers are allowed in robots.txt, llms.txt gives them a clean summary, and the schema describes the business.
-2. **Consistent.** The same facts (24/7, areas, phones, fixed price once confirmed, name-board meeting) must match across the site, Google Business Profile, directories and llms.txt. **When a fact changes, update `src/app/llms.txt/route.ts` too.**
-3. **Mentioned elsewhere.** This is what moves AI recommendations most:
-   - reviews on Google and Trustpilot;
-   - listings in "best Heathrow taxi" round-ups and local directories;
-   - helpful answers on Reddit (r/london, r/heathrow), Quora and local Facebook groups. Answer the question first, mention the company only where it's relevant, and never spam;
-   - local news or community sites, through sponsorship or a story such as "local firm runs 4am airport runs for NHS staff".
-4. **Check monthly.** Ask ChatGPT, Perplexity and Gemini questions such as "best minicab from Finchley to Heathrow" or "Heathrow meet and greet taxi North London", and note whether you're mentioned.
-
----
-
-## 8. Links from other websites
-
-Links from relevant local sites raise rankings.
-
-- **Partners:** local hotels, B&Bs, travel agents, wedding venues, schools (for school-trip airport runs) and corporate offices in your areas. Offer them a simple partner arrangement and ask for a link from their "getting here" or "travel" page.
-- **Community:** sponsor a local sports club or event. Club websites usually link to sponsors.
-- **Directories:** the citations in Part 3 also count.
-- **Avoid:** buying links, link farms and "SEO packages" promising hundreds of links. Google penalises them.
-
----
-
-## 9. Measuring progress
-
-| What | Where | How often |
-|---|---|---|
-| Search terms, positions and clicks | Google Search Console → Performance | Weekly at first, then monthly |
-| Pages indexed, errors | Search Console → Pages / Sitemaps | Monthly |
-| Calls, direction requests and profile views | Google Business Profile → Performance | Monthly |
-| Number and average of reviews | Google Business Profile | Monthly |
-| Mentions in AI answers | Ask ChatGPT, Perplexity and Gemini the target questions | Monthly |
-| Bookings by source | Ask every caller "How did you find us?" | Ongoing |
-
-Rankings for new sites usually take **3 to 6 months**. Local map-pack results can come sooner once your Google Business Profile and reviews are in place.
-
----
-
-## 10. 90-day checklist
-
-**Done in code (2026-10-07)**
-- [x] The production vercel.app address redirects to www.heathrowminicab.com; preview vercel.app hosts send `X-Robots-Tag: noindex` (`next.config.ts`).
-- [x] Business schema: email, slogan, knowsAbout, offer catalogue, Book Online action; `sameAs` and licence fill in from `src/lib/site.ts` once set.
-- [x] WebPage schema with dateModified and speakable on every page; Service schema with 24/7 hours and booking channels.
-- [x] Key facts block on the homepage and /airport-transfers; footer shows phones, email and hours on every page.
-- [x] Page-specific FAQs (with FAQPage schema) on every transfer, service, vehicles and areas page; /faqs groups every question.
-- [x] 16 area pages (`/areas/[slug]`), linked from /areas and listed in the sitemap and llms.txt.
-- [x] /llms.txt expanded and /llms-full.txt added (every question and answer).
-
-**Business identity (2026-10-07)**
-- [x] One entity sentence (`BUSINESS_SUMMARY`) and the base "Hounslow, West London (TW3)" (`BUSINESS_BASE`) in `src/lib/site.ts`, used word for word in the schema (description + area-only address), footer, About, Contact, Key facts and llms.txt.
-- [ ] Google Business Profile as a service-area business: address hidden, base Hounslow, service areas = the 16 areas, website https://www.heathrowminicab.com, hours 24/7, same phone numbers. This is the single biggest GEO/local lever.
-- [ ] Bing Places and Apple Business Connect with identical details.
-- [ ] Yell, FreeIndex and Thomson Local listings with identical details.
-- [ ] Ask customers for a Google review after each trip.
-- [ ] Add every profile URL to `SAME_AS` in `src/lib/site.ts` (it feeds the sameAs schema).
-
-**Before deploying these changes**
-- [x] Connected the domain in Vercel: www.heathrowminicab.com is the main address; heathrowminicab.com redirects to it.
-- [ ] In Vercel → Environment Variables, make sure `NEXT_PUBLIC_SITE_URL` is unset or set to `https://www.heathrowminicab.com`.
-- [ ] After deploying, run the audit and Google's Rich Results Test on https://www.heathrowminicab.com (homepage, /faqs and one area page).
-
-**Weeks 1–2**
-- [x] Deploy the site on https://www.heathrowminicab.com, with heathrowminicab.com redirecting to it.
-- [ ] Set up Search Console and submit the sitemap; set up Bing Webmaster Tools.
-- [ ] Run the Rich Results Test on the homepage and /faqs.
-- [ ] Create and verify your Google Business Profile (Part 3).
-- [ ] Add your TfL operator licence number to the site.
-
-**Weeks 3–4**
-- [ ] Start the review-request WhatsApp after every trip.
-- [ ] Create the Bing Places, Apple Business Connect, Yell, Thomson Local and FreeIndex listings.
-- [ ] Write the About, Terms and Privacy pages, then remove their noindex.
-
-**Month 2**
-- [x] Add real local detail to the top 6 area pages (landmarks, route-planning context, terminal wording, booking details and local FAQs).
-- [ ] Publish the first guide article.
-- [ ] Add 5 more directory listings.
-- [ ] Contact 5 local hotels or venues about partnership links.
-- [ ] Use `docs/citations-local-links.md` to track profile URLs and local outreach.
-
-**Month 3**
-- [ ] Publish 2 more area pages and a second guide.
-- [ ] Review Search Console: which terms are close to page 1? Strengthen those pages.
-- [ ] Run the first monthly AI-answer check (Part 7).
-- [ ] Target: 25+ Google reviews.
-
----
-
-## Where things live in the code
-
-- Site address: `src/lib/seo.ts` (`SITE_URL`). Override it with the `NEXT_PUBLIC_SITE_URL` environment variable.
-- robots.txt: `src/app/robots.ts`.
-- Sitemap: `src/app/sitemap.ts`. Add new pages here.
-- AI fact sheets: `src/lib/llms.ts` builds `/llms.txt` and `/llms-full.txt`.
-- Confirmed key facts: `src/lib/facts.ts` (Key facts block, llms.txt, knowsAbout).
-- Profiles and licence: `SAME_AS` and `TFL_LICENCE` in `src/lib/site.ts`. Add your Google Business Profile and directory URLs to `SAME_AS` as they go live.
-- Citations and outreach: `docs/citations-local-links.md` has the NAP profile, listing order and local link targets.
-- Content date: `CONTENT_UPDATED` in `src/lib/seo.ts` (page dateModified and sitemap). Bump it after meaningful content changes.
-- Schema: `src/components/JsonLd.tsx` (business, website, web page, service and breadcrumbs) and `src/components/FaqList.tsx` (FAQ).
-- FAQs: `src/lib/faqs.ts`, grouped by topic; `PageFaqs` shows a page's own group.
-- Page titles and descriptions: the `metadata` at the top of each `src/app/**/page.tsx`, using `pageMetadata()`.
-- Areas: `src/lib/areas.ts`; each area gets a page at `src/app/areas/[slug]/page.tsx`.
+No fixed ranking, review-count or booking-growth target is claimed before a baseline exists. Set commercial targets with the owner after the first measurement cycle.

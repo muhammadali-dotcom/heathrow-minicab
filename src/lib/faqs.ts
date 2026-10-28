@@ -43,6 +43,12 @@ export const FAQS: Faq[] = [
     answer:
       "Please call us as soon as possible if you need to change or cancel your booking. We’ll confirm your options and any applicable charges before proceeding.",
   },
+  {
+    id: "minicab-vs-black-cab",
+    question: "What’s the difference between a minicab and a black cab?",
+    answer:
+      "A minicab is a licensed private hire car that you book in advance, with the price agreed before you travel. A black cab can be hailed in the street and charges by the meter. Minicabs can’t be hailed, so every journey is pre-booked.",
+  },
 ];
 
 // Pricing and what's included: /airport-transfers.

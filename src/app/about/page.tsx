@@ -30,9 +30,10 @@ export default function Page() {
       <WebPageJsonLd {...seo} type="AboutPage" />
       <TransfersHero
         crumbs={[{ label: "About Us" }]}
-        title="Travel calmer."
-        titleAccent="We'll take care of the rest."
-        intro="Get to know the care behind your airport journey."
+        // Keyword-led H1 for search and answer engines; the "travel calmer" line moves to the intro.
+        title="About Heathrow Minicab."
+        titleAccent="24/7 Heathrow airport transfers."
+        intro="Travel calmer: we'll take care of the rest. Get to know the care behind your airport journey."
         primary={{ href: "/contact", label: "Get in touch" }}
         showCall={false}
         image={{

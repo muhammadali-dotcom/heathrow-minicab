@@ -4,7 +4,7 @@ import PageBanner from "@/components/PageBanner";
 import { DetailCards } from "@/components/services/ServiceBlocks";
 import { Section } from "@/components/transfers/TransferBlocks";
 import { GUIDES } from "@/lib/guides";
-import { pageMetadata } from "@/lib/seo";
+import { formatDate, pageMetadata } from "@/lib/seo";
 
 const seo = {
   title: "Heathrow Travel Guides | Heathrow Minicab",
@@ -31,7 +31,7 @@ export default function Page() {
         <DetailCards
           items={GUIDES.map((guide) => ({
             label: guide.title,
-            hint: guide.description,
+            hint: `${guide.description} Last checked ${formatDate(guide.lastChecked)}.`,
             link: { href: `/guides/${guide.slug}`, label: "Read the guide" },
           }))}
         />
