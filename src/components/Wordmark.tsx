@@ -20,11 +20,12 @@ export default function Wordmark({ inverted = false }: WordmarkProps) {
         alt={SITE_NAME}
         width={800}
         height={224}
-        sizes="(min-width: 1024px) 143px, 129px"
+        sizes={inverted ? "(min-width: 1024px) 143px, 129px" : "(min-width: 1024px) 172px, 143px"}
         loading={inverted ? "lazy" : "eager"}
         // Low priority so the header logo isn't preloaded ahead of the hero (the LCP image).
         fetchPriority={inverted ? undefined : "low"}
-        className="h-9 w-auto lg:h-10"
+        // The header logo is a step larger than the footer one so it stands out.
+        className={inverted ? "h-9 w-auto lg:h-10" : "h-10 w-auto lg:h-12"}
       />
     </a>
   );

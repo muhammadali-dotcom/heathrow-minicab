@@ -24,38 +24,41 @@ export default function IntroSplash() {
         aria-hidden="true"
         className="intro-splash pointer-events-none fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white px-4"
       >
-        <Image
-          src="/images/logo.png"
-          alt=""
-          width={800}
-          height={224}
-          sizes="180px"
-          loading="eager"
-          className="h-12 w-auto"
-        />
-        <p className="mt-6 text-xs font-semibold tracking-[0.3em] text-[#0A2740]">
-          YOUR DOOR TO HEATHROW
-        </p>
-        <div className="relative mt-6 flex h-6 w-56 items-center">
-          <span className="absolute left-0 h-2.5 w-2.5 rounded-full bg-[#0A2740]" />
-          <svg className="intro-road absolute left-3 h-[2px] w-[11.25rem] overflow-visible">
-            <line
-              x1="0"
-              y1="1"
-              x2="100%"
-              y2="1"
-              stroke="#1FA3D6"
-              strokeWidth="2"
-              strokeDasharray="6 6"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span className="intro-car absolute left-4">
-            <CarIcon />
-          </span>
-          <span className="intro-plane absolute right-0 text-[#1FA3D6]">
-            <PlaneIcon className="h-6 w-6" />
-          </span>
+        {/* Scaled as one group so the car's travel distance in globals.css still matches the road. */}
+        <div className="flex scale-125 flex-col items-center md:scale-150">
+          <Image
+            src="/images/logo.png"
+            alt=""
+            width={800}
+            height={224}
+            sizes="270px"
+            loading="eager"
+            className="h-12 w-auto"
+          />
+          <p className="mt-6 text-xs font-semibold tracking-[0.3em] text-[#0A2740]">
+            YOUR DOOR TO HEATHROW
+          </p>
+          <div className="relative mt-6 flex h-6 w-56 items-center">
+            <span className="absolute left-0 h-2.5 w-2.5 rounded-full bg-[#0A2740]" />
+            <svg className="intro-road absolute left-3 h-[2px] w-[11.25rem] overflow-visible">
+              <line
+                x1="0"
+                y1="1"
+                x2="100%"
+                y2="1"
+                stroke="#1FA3D6"
+                strokeWidth="2"
+                strokeDasharray="6 6"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="intro-car absolute left-4">
+              <CarIcon />
+            </span>
+            <span className="intro-plane absolute right-0 text-[#1FA3D6]">
+              <PlaneIcon className="h-6 w-6" />
+            </span>
+          </div>
         </div>
       </div>
       <script dangerouslySetInnerHTML={{ __html: PLAY_SCRIPT }} />

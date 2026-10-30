@@ -187,6 +187,7 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} {SITE_NAME}
             {TFL_LICENCE &&
               ` · Operated by ${TFL_LICENCE.operator}, TfL private hire operator licence ${TFL_LICENCE.number}`}
+            {" · Powered by MyCabify"}
           </p>
           <ul className="flex flex-wrap items-center gap-x-6">
             {LEGAL_LINKS.map((link) => (
