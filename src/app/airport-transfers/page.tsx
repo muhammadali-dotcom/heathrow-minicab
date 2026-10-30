@@ -127,7 +127,7 @@ function PricingSection() {
           </p>
           <a
             href={BOOK_ONLINE_HREF}
-            className="mt-5 inline-flex min-h-12 w-full max-w-56 items-center justify-center gap-3 rounded-md bg-[#1FA3D6] px-6 text-base font-semibold text-[#0A2740] hover:bg-[#1C98C9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="mt-5 inline-flex min-h-12 w-full max-w-56 items-center justify-center gap-3 rounded-md bg-[#1FA3D6] px-6 text-base font-semibold text-white hover:bg-[#1C98C9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Get a Quote <span aria-hidden="true">→</span>
           </a>

@@ -18,7 +18,7 @@ type BookingCtaProps = {
 // - WhatsApp: 1px secondary outline with the green WhatsApp icon
 const ctaShape =
   "inline-flex items-center justify-center gap-3 rounded-md font-semibold whitespace-nowrap";
-export const ctaButtonClass = `${ctaShape} bg-[#1FA3D6] text-[#0A2740] hover:bg-[#4FB8E0]`;
+export const ctaButtonClass = `${ctaShape} bg-[#1FA3D6] text-white hover:bg-[#4FB8E0]`;
 export const callButtonLight = `${ctaShape} border-2 border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
 export const callButtonDark = `${ctaShape} border-2 border-white text-white hover:bg-white/10`;
 export const whatsappButtonLight = `${ctaShape} border border-[#0A2740] bg-white text-[#0A2740] hover:bg-[#E6F6FC]`;
