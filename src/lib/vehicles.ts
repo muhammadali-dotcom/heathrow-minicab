@@ -1,8 +1,8 @@
 export type Vehicle = {
   id: "saloon" | "estate" | "mpv" | "executive";
   name: string;
-  // Example model shown as "<model> or similar"; the exact car isn't guaranteed.
-  model: string;
+  // Generic car type shown under the name. No make or model, since the exact car isn't guaranteed.
+  type: string;
   // Shown as short "x N" rows on every card. Passengers null = confirmed when booking
   // (shown as "On request").
   passengers: number | null;
@@ -19,57 +19,57 @@ export const VEHICLES: Vehicle[] = [
   {
     id: "saloon",
     name: "Saloon",
-    model: "Skoda Octavia",
+    type: "Comfortable 4-door saloon",
     bestFor: "Solo travellers, couples and small families",
     description:
-      "A Skoda Octavia or similar for up to 4 passengers with 2 large suitcases and 2 small bags. Our everyday car for solo travellers, couples and small families with standard luggage.",
+      "A comfortable saloon for up to 4 passengers with 2 large suitcases and 2 small bags. Our everyday car for solo travellers, couples and small families with standard luggage.",
     passengers: 4,
     luggage: { large: 2, small: 2 },
     image: {
       src: "/images/vehicles/saloon.webp",
-      alt: "Charcoal Skoda Octavia saloon with a Heathrow Minicab number plate",
+      alt: "Charcoal saloon car with a Heathrow Minicab number plate",
     },
   },
   {
     id: "estate",
     name: "Estate",
-    model: "Skoda Superb Estate",
+    type: "Spacious estate car",
     bestFor: "Extra luggage and longer trips",
     description:
-      "A Skoda Superb Estate or similar with the same 4 seats as a saloon and room for a third large suitcase. Choose it for heavier packing or a longer trip.",
+      "A spacious estate car with the same 4 seats as a saloon and room for a third large suitcase. Choose it for heavier packing or a longer trip.",
     passengers: 4,
     luggage: { large: 3, small: 2 },
     image: {
       src: "/images/vehicles/estate.webp",
-      alt: "Charcoal Skoda Superb Estate with a Heathrow Minicab number plate",
+      alt: "Charcoal estate car with a Heathrow Minicab number plate",
     },
   },
   {
     id: "mpv",
     name: "MPV",
-    model: "Ford Galaxy",
+    type: "Large 6-seater people carrier",
     bestFor: "Families and groups of up to 6",
     description:
-      "A Ford Galaxy or similar for up to 6 passengers with 4 large suitcases and 2 small bags. Our largest vehicle, for families, groups, or 4 travellers with more luggage than an estate takes.",
+      "A large people carrier for up to 6 passengers with 4 large suitcases and 2 small bags. Our largest vehicle, for families, groups, or 4 travellers with more luggage than an estate takes.",
     passengers: 6,
     luggage: { large: 4, small: 2 },
     image: {
       src: "/images/vehicles/mpv.webp",
-      alt: "Charcoal Ford Galaxy MPV with a Heathrow Minicab number plate",
+      alt: "Charcoal MPV people carrier with a Heathrow Minicab number plate",
     },
   },
   {
     id: "executive",
     name: "Executive",
-    model: "Mercedes E-Class",
+    type: "Premium executive saloon",
     bestFor: "Business travel and special occasions",
     description:
-      "A Mercedes E-Class or similar for up to 4 passengers with 2 large suitcases and 2 small bags. A more premium car with a quieter cabin, for business travel, clients and special occasions.",
+      "A premium executive saloon for up to 4 passengers with 2 large suitcases and 2 small bags. It has a quieter cabin for business travel, clients and special occasions.",
     passengers: 4,
     luggage: { large: 2, small: 2 },
     image: {
       src: "/images/vehicles/executive.webp",
-      alt: "Charcoal Mercedes E-Class saloon with a Heathrow Minicab number plate",
+      alt: "Charcoal executive saloon with a Heathrow Minicab number plate",
     },
   },
 ];
@@ -78,7 +78,7 @@ export const VEHICLES: Vehicle[] = [
 // "Best for" wording for a page's audience.
 export function vehicleComparisonRows(goodFor?: Record<Vehicle["id"], string>) {
   return [
-    { label: "Example car", values: VEHICLES.map((v) => `${v.model} or similar`) },
+    { label: "Car type", values: VEHICLES.map((v) => v.type) },
     {
       label: "Passengers",
       values: VEHICLES.map((v) => (v.passengers === null ? "On request" : v.passengers)),

@@ -23,7 +23,7 @@ import { VEHICLES } from "@/lib/vehicles";
 
 const vehicles = VEHICLES.map(
   (v) =>
-    `- ${v.name}: ${v.model} or similar, ${v.passengers === null ? "passengers on request" : `${v.passengers} passengers`}, ${v.luggage.large} large and ${v.luggage.small} small bags. Best for ${v.bestFor.toLowerCase()}.`,
+    `- ${v.name}: ${v.type}, ${v.passengers === null ? "passengers on request" : `${v.passengers} passengers`}, ${v.luggage.large} large and ${v.luggage.small} small bags. Best for ${v.bestFor.toLowerCase()}.`,
 ).join("\n");
 
 const areas = AREA_REGIONS.map(

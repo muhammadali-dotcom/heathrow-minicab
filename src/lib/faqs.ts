@@ -203,19 +203,19 @@ export const VEHICLE_FAQS: Faq[] = [
     id: "vehicle-six-passengers",
     question: "Which vehicle fits 6 passengers?",
     answer:
-      "Our MPV (a Ford Galaxy or similar) seats up to 6 passengers, with room for 4 large suitcases and 2 small bags.",
+      "Our MPV people carrier seats up to 6 passengers, with room for 4 large suitcases and 2 small bags.",
   },
   {
     id: "vehicle-most-luggage",
     question: "Which car has the most luggage space for 4 people?",
     answer:
-      "The estate (a Skoda Superb Estate or similar) takes 4 passengers with 3 large suitcases and 2 small bags. A saloon takes 4 passengers with 2 large suitcases and 2 small bags.",
+      "The estate car takes 4 passengers with 3 large suitcases and 2 small bags. A saloon takes 4 passengers with 2 large suitcases and 2 small bags.",
   },
   {
     id: "vehicle-executive",
     question: "Do you offer executive cars?",
     answer:
-      "Yes. Our executive option is a Mercedes E-Class or similar, for up to 4 passengers with 2 large suitcases and 2 small bags.",
+      "Yes. Our executive option is a premium saloon for up to 4 passengers with 2 large suitcases and 2 small bags.",
   },
   {
     id: "vehicle-exact-model",
@@ -374,7 +374,7 @@ export const BUSINESS_FAQS: Faq[] = [
     id: "business-standard-vs-executive",
     question: "What’s the difference between standard and executive?",
     answer:
-      "Executive is a more premium car (a Mercedes E-Class or similar) with a quieter cabin for clients, VIP guests or work between meetings. Pickup and return arrangements are the same as a standard booking.",
+      "Executive is a more premium saloon with a quieter cabin for clients, VIP guests or work between meetings. Pickup and return arrangements are the same as a standard booking.",
   },
   {
     id: "business-returns",

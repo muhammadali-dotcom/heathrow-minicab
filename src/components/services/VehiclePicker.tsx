@@ -108,7 +108,7 @@ export default function VehiclePicker({
             <h3 className="text-2xl leading-tight font-bold text-white sm:text-3xl">
               {HEADLINES[selected.id]}
             </h3>
-            <p className="mt-1 text-white/80">{selected.model} or similar.</p>
+            <p className="mt-1 text-white/80">{selected.type}.</p>
 
             <div className="relative mt-4 aspect-[16/9]">
               {/* Decorative route from a start point to a pin, behind the car. */}

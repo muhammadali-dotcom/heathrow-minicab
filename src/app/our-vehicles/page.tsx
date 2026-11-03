@@ -81,7 +81,7 @@ export default function Page() {
             },
             {
               label: "Business or a special occasion",
-              hint: "Executive. A Mercedes E-Class or similar for up to 4 passengers.",
+              hint: "Executive. A premium saloon for up to 4 passengers.",
             },
           ]}
         />
@@ -106,7 +106,7 @@ export default function Page() {
           columns={2}
           items={VEHICLES.map((v) => ({
             icon: v.id === "mpv" ? "people" : "car",
-            title: `${v.name}: ${v.model} or similar`,
+            title: `${v.name}: ${v.type}`,
             text: v.description,
             link: RELATED[v.id],
           }))}

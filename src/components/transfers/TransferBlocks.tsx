@@ -654,7 +654,7 @@ export function VehicleCards({ ids }: { ids?: Vehicle["id"][] } = {}) {
               />
             </div>
             <h3 className="mt-4 text-lg font-semibold text-[#0A2740]">{vehicle.name}</h3>
-            <p className="text-sm text-[#4E6B84]">{vehicle.model} or similar</p>
+            <p className="text-sm text-[#4E6B84]">{vehicle.type}</p>
             <p className="mt-2 pb-3 text-sm text-[#0A2740] lg:min-h-16">
               <span className="font-semibold">Best for:</span> {vehicle.bestFor}
             </p>

@@ -6,7 +6,7 @@ import { HERO_COPY } from "@/lib/site";
 import { SECTION_CONTAINER } from "@/lib/layout";
 
 const alt =
-  "Black Mercedes saloon parked outside a Heathrow terminal as a plane takes off overhead";
+  "Black executive saloon parked outside a Heathrow terminal as a plane takes off overhead";
 
 // Desktop (lg+): the wide 2.4:1 composition, shown whole: the hero takes the image's own
 // proportions, so the plane, sign and full car are never cropped.

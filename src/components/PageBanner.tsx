@@ -22,7 +22,7 @@ export const BANNER_IMAGES = {
   t5: { src: "/images/cta-terminal5.jpg", alt: "Glass-fronted Heathrow airport terminal entrance" },
   hero: {
     src: "/images/heathrow-hero-wide.webp",
-    alt: "Black Mercedes saloon parked outside a Heathrow terminal as a plane takes off overhead",
+    alt: "Black executive saloon parked outside a Heathrow terminal as a plane takes off overhead",
   },
   arrival: {
     src: "/images/airport-arrival.webp",

@@ -82,7 +82,7 @@ export default function Page() {
           highlight={1}
           highlightLabel="For clients"
           rows={[
-            { label: "Example car", values: cars.map((v) => `${v.model} or similar`) },
+            { label: "Car type", values: cars.map((v) => v.type) },
             {
               label: "Passengers",
               values: cars.map((v) => (v.passengers === null ? "On request" : v.passengers)),
@@ -148,7 +148,7 @@ export default function Page() {
       <PageFaqs
         items={BUSINESS_FAQS}
         tone="pale"
-        summary="Business Heathrow transfers take you or your guests between Heathrow and offices, hotels and meeting venues, in a standard car or an executive Mercedes E-Class or similar."
+        summary="Business Heathrow transfers take you or your guests between Heathrow and offices, hotels and meeting venues, in a standard car or an executive saloon."
       />
 
       <ClosingCta

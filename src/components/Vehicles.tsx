@@ -93,9 +93,9 @@ export default function Vehicles({ showHeader = true, intro }: VehiclesProps) {
                   <CardHeading className="text-xl font-semibold text-[#0A2740]">
                     {vehicle.name}
                   </CardHeading>
-                  {/* Two lines reserved from lg so a wrapping model name doesn't push the rows down. */}
+                  {/* Two lines reserved from lg so a wrapping car type doesn't push the rows down. */}
                   <p className="mt-1 text-sm font-medium text-[#4E6B84] lg:min-h-10">
-                    {vehicle.model} or similar
+                    {vehicle.type}
                   </p>
                   <p className="mt-2 text-sm text-[#0A2740] lg:min-h-10">
                     <span className="font-semibold">Best for:</span> {vehicle.bestFor}
