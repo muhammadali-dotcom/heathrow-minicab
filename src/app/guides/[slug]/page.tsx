@@ -78,7 +78,12 @@ export default async function Page({ params }: PageProps<"/guides/[slug]">) {
       </Section>
 
       {guide.sections.map((section, i) => (
-        <Section key={section.title} tone={tone(i)} id={`section-${i + 1}`} title={section.title}>
+        <Section
+          key={section.title}
+          tone={tone(i)}
+          id={section.id ?? `section-${i + 1}`}
+          title={section.title}
+        >
           {section.paragraphs?.map((text) => (
             <p key={text} className="mt-3 max-w-[44rem] leading-relaxed text-[#0A2740]/80">
               {text}

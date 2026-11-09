@@ -1,6 +1,9 @@
 import type { Area } from "@/lib/areas";
 
 type AreaProfile = {
+  // Postcode districts the area covers, and the stations in or nearest to it.
+  postcodes: string[];
+  stations: string[];
   pickupContext: string;
   localPlaces: string[];
   routeContext: string;
@@ -8,14 +11,14 @@ type AreaProfile = {
   localFaqs: { id: string; question: string; answer: string }[];
 };
 
-const northRoute =
-  "For many North London journeys, drivers may consider roads such as the A1, A406 North Circular, M1, M25 or A40 depending on the terminal, time of day and live traffic.";
-
-const westRoute =
-  "For many West London journeys, drivers may consider roads such as the A4, A312, M4, Great West Road or local Heathrow access roads depending on the terminal, time of day and live traffic.";
-
 export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
   finchley: {
+    postcodes: ["N3", "N12"],
+    stations: [
+      "Finchley Central (Northern line)",
+      "West Finchley (Northern line)",
+      "Woodside Park (Northern line)",
+    ],
     pickupContext:
       "Finchley bookings often include home pickups around Finchley Central, North Finchley, Church End and residential roads towards East End Road, plus collections near local stations, schools and shopping parades.",
     localPlaces: [
@@ -57,6 +60,10 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   "east-finchley": {
+    postcodes: ["N2"],
+    stations: [
+      "East Finchley (Northern line)",
+    ],
     pickupContext:
       "East Finchley pickups often involve homes around the High Road, station-area collections and residential roads near the A1000.",
     localPlaces: [
@@ -65,7 +72,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Phoenix Cinema area",
       "Great North Road and nearby residential roads",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "East Finchley sits on the A1000 Great North Road, so many Heathrow journeys head to the A406 North Circular and then the A40, or the M1 and M25, depending on your terminal and live traffic.",
     planningTip:
       "For station or High Road pickups, include the nearest shopfront, side road or entrance so your driver can avoid confusion on busier stretches.",
     localFaqs: [
@@ -84,6 +92,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   hendon: {
+    postcodes: ["NW4"],
+    stations: [
+      "Hendon Central (Northern line)",
+      "Hendon (Thameslink)",
+    ],
     pickupContext:
       "Hendon bookings commonly include collections around Hendon Central, Brent Cross, The Burroughs, West Hendon and residential roads around Watford Way.",
     localPlaces: [
@@ -125,6 +138,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   "mill-hill": {
+    postcodes: ["NW7"],
+    stations: [
+      "Mill Hill Broadway (Thameslink)",
+      "Mill Hill East (Northern line)",
+    ],
     pickupContext:
       "Mill Hill transfers often start around Mill Hill Broadway, Station Road, Mill Hill East, Bittacy Hill and residential roads across NW7.",
     localPlaces: [
@@ -166,6 +184,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   barnet: {
+    postcodes: ["EN4", "EN5"],
+    stations: [
+      "High Barnet (Northern line)",
+      "New Barnet (Great Northern)",
+    ],
     pickupContext:
       "Barnet pickups often include High Barnet, Chipping Barnet, New Barnet, The Spires area, Barnet Hospital and residential roads around the town centre.",
     localPlaces: [
@@ -207,6 +230,10 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   edgware: {
+    postcodes: ["HA8"],
+    stations: [
+      "Edgware (Northern line)",
+    ],
     pickupContext:
       "Edgware transfers often involve Station Road, Edgware station, The Broadwalk Centre, Burnt Oak, Hale Lane and surrounding residential streets.",
     localPlaces: [
@@ -248,6 +275,10 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   "golders-green": {
+    postcodes: ["NW11"],
+    stations: [
+      "Golders Green (Northern line)",
+    ],
     pickupContext:
       "Golders Green bookings often include station-area collections, Finchley Road, Golders Green Road, North End Road, Temple Fortune and homes close to Hampstead Garden Suburb.",
     localPlaces: [
@@ -289,6 +320,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   "hampstead-garden-suburb": {
+    postcodes: ["NW11", "N2"],
+    stations: [
+      "Golders Green (Northern line)",
+      "East Finchley (Northern line)",
+    ],
     pickupContext:
       "Hampstead Garden Suburb pickups are usually residential, often around quiet streets, local shopping parades and homes close to Golders Green or Finchley.",
     localPlaces: [
@@ -297,7 +333,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Golders Green Crematorium area",
       "Local shopping parades and residential closes",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "From Hampstead Garden Suburb, drivers usually head for the A1 or the A406 North Circular, then the A40 or the M1 and M25 towards Heathrow, depending on your terminal and the time of day.",
     planningTip:
       "Because many Suburb pickups are on residential roads, provide the house number, postcode and any access notes when booking.",
     localFaqs: [
@@ -316,6 +353,10 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   whetstone: {
+    postcodes: ["N20"],
+    stations: [
+      "Totteridge & Whetstone (Northern line)",
+    ],
     pickupContext:
       "Whetstone transfers often include Totteridge & Whetstone station, Whetstone High Road, Oakleigh Park and nearby residential roads.",
     localPlaces: [
@@ -324,7 +365,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Oakleigh Park station area",
       "Totteridge Lane and nearby residential streets",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Whetstone is on the A1000 at the northern edge of our area, so drivers may use the A406 North Circular and A40, or head out to the M25, depending on your terminal and traffic.",
     planningTip:
       "If your pickup is near the High Road or station, use a clear landmark or side road in the booking notes.",
     localFaqs: [
@@ -343,6 +385,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   "muswell-hill": {
+    postcodes: ["N10"],
+    stations: [
+      "Highgate (Northern line)",
+      "Alexandra Palace (Great Northern)",
+    ],
     pickupContext:
       "Muswell Hill bookings often start around Muswell Hill Broadway, Fortis Green, Alexandra Park and residential streets close to Highgate or East Finchley.",
     localPlaces: [
@@ -351,7 +398,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Fortis Green",
       "Highgate Wood side of Muswell Hill",
     ],
-    routeContext: northRoute,
+    routeContext:
+      "Muswell Hill journeys usually start on local roads down to the A406 North Circular, then continue on the A40 or the M1 and M25 towards Heathrow, depending on your terminal and live traffic.",
     planningTip:
       "Muswell Hill has several busy local approaches, so share luggage details and your exact entrance if you are being collected from a flat or venue.",
     localFaqs: [
@@ -370,6 +418,13 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   hounslow: {
+    postcodes: ["TW3", "TW4", "TW5"],
+    stations: [
+      "Hounslow Central (Piccadilly line)",
+      "Hounslow East (Piccadilly line)",
+      "Hounslow West (Piccadilly line)",
+      "Hounslow (South Western Railway)",
+    ],
     pickupContext:
       "Hounslow bookings often include the High Street, Hounslow Central, Hounslow East, Hounslow West and residential roads close to Heathrow.",
     localPlaces: [
@@ -378,7 +433,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Treaty Centre and High Street area",
       "Bell Square and Hounslow House area",
     ],
-    routeContext: westRoute,
+    routeContext:
+      "Hounslow is Heathrow’s neighbour: journeys are short runs along roads such as the A30 Great South West Road or the A4 Bath Road, with the exact approach depending on your terminal.",
     planningTip:
       "Hounslow is close to Heathrow, but local traffic and terminal access still matter, so confirm your terminal and flight time when booking.",
     localFaqs: [
@@ -397,6 +453,10 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   southall: {
+    postcodes: ["UB1", "UB2"],
+    stations: [
+      "Southall (Elizabeth line)",
+    ],
     pickupContext:
       "Southall transfers often include Southall station, The Broadway, South Road, Uxbridge Road and nearby residential streets.",
     localPlaces: [
@@ -405,7 +465,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "South Road",
       "Uxbridge Road",
     ],
-    routeContext: westRoute,
+    routeContext:
+      "From Southall, drivers usually take the A312 (The Parkway) or local roads towards the A4 and Heathrow’s perimeter roads, choosing the approach for your terminal.",
     planningTip:
       "Southall town-centre roads can be busy, so a precise address, entrance or shopfront helps your driver identify the pickup point.",
     localFaqs: [
@@ -424,6 +485,10 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   hayes: {
+    postcodes: ["UB3", "UB4"],
+    stations: [
+      "Hayes & Harlington (Elizabeth line)",
+    ],
     pickupContext:
       "Hayes bookings often include Hayes & Harlington station, Station Road, Hayes town centre, Stockley Park and homes around the Grand Union Canal side of town.",
     localPlaces: [
@@ -432,7 +497,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Hayes town centre",
       "Stockley Park and The Old Vinyl Factory area",
     ],
-    routeContext: westRoute,
+    routeContext:
+      "Hayes is close to Heathrow: drivers usually use the A312 or North Hyde Road towards the A4, M4 and Heathrow’s perimeter roads, depending on your terminal.",
     planningTip:
       "For station or Stockley Park pickups, include the building name, entrance or reception point so collection is straightforward.",
     localFaqs: [
@@ -451,6 +517,12 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   ealing: {
+    postcodes: ["W5", "W13"],
+    stations: [
+      "Ealing Broadway (Elizabeth, Central and District lines)",
+      "West Ealing (Elizabeth line)",
+      "Ealing Common (District and Piccadilly lines)",
+    ],
     pickupContext:
       "Ealing transfers often start around Ealing Broadway, Haven Green, Ealing Common, Walpole Park and residential roads across W5.",
     localPlaces: [
@@ -459,7 +531,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Ealing Broadway shopping area",
       "Walpole Park and Ealing Green",
     ],
-    routeContext: westRoute,
+    routeContext:
+      "From Ealing, drivers may take the A4020 Uxbridge Road and A312, or the A406 to the M4, towards Heathrow, depending on your terminal and the time of day.",
     planningTip:
       "For Ealing Broadway pickups, tell us whether you are near the station, shopping centre, Haven Green or a nearby residential street.",
     localFaqs: [
@@ -478,6 +551,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   twickenham: {
+    postcodes: ["TW1", "TW2"],
+    stations: [
+      "Twickenham (South Western Railway)",
+      "Strawberry Hill (South Western Railway)",
+    ],
     pickupContext:
       "Twickenham bookings often include Twickenham station, London Road, Church Street, riverside addresses and event-day collections near the stadium area.",
     localPlaces: [
@@ -486,7 +564,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Church Street and Twickenham Riverside",
       "The Exchange opposite the station",
     ],
-    routeContext: westRoute,
+    routeContext:
+      "Twickenham journeys usually use the A316 and roads through Hounslow, such as the A30 or A314, towards Heathrow, depending on your terminal and live traffic.",
     planningTip:
       "On major event days, confirm any road closures or meeting-point restrictions early, especially for pickups near the stadium.",
     localFaqs: [
@@ -505,6 +584,11 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
     ],
   },
   isleworth: {
+    postcodes: ["TW7"],
+    stations: [
+      "Isleworth (South Western Railway)",
+      "Osterley (Piccadilly line)",
+    ],
     pickupContext:
       "Isleworth transfers often include Isleworth station, London Road, Osterley-side addresses and residential streets between Hounslow and Richmond.",
     localPlaces: [
@@ -513,7 +597,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
       "Osterley Sports & Athletic Centre area",
       "Nearby Hounslow and Richmond boundary roads",
     ],
-    routeContext: westRoute,
+    routeContext:
+      "From Isleworth, drivers may use the A315 London Road or the A4 Great West Road towards Heathrow, with the approach depending on your terminal.",
     planningTip:
       "If your pickup is near a school, sports centre or station, add a precise landmark so your driver knows where to meet you.",
     localFaqs: [
@@ -534,6 +619,8 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
 };
 
 export const DEFAULT_AREA_PROFILE: AreaProfile = {
+  postcodes: [],
+  stations: [],
   pickupContext:
     "We collect from homes, hotels, offices and agreed meeting points in this area, with your pickup details confirmed before travel.",
   localPlaces: ["Local homes", "Hotels", "Offices", "Agreed meeting points"],

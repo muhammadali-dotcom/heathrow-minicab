@@ -24,20 +24,26 @@ export function generateStaticParams() {
 const regionLabel = (area: Area) =>
   AREA_REGIONS.find((region) => region.id === area.region)?.label ?? "London";
 
+const profileFor = (area: Area) => AREA_PROFILES[area.slug] ?? DEFAULT_AREA_PROFILE;
+
+// Titles and descriptions use the words people search with for each area: "airport transfers",
+// "minicabs" and "taxis", plus its postcodes.
 function areaSeo(area: Area) {
   const region = regionLabel(area);
-  const long = `Taxi from ${area.name} to Heathrow | ${SITE_NAME}`;
+  const postcodes = profileFor(area).postcodes.join(", ");
+  const where = postcodes ? `${area.name} (${postcodes})` : area.name;
+  const long = `${area.name} Airport Transfers & Minicabs to Heathrow`;
   const perks = "flight monitoring and a fixed price once confirmed.";
   // Long area names use shorter wording to stay within about 160 characters.
   const description =
     [
-      `Heathrow airport taxi and minicab transfers from ${area.name}, ${region}, 24/7. Meet and greet in arrivals, ${perks}`,
-      `Heathrow airport taxi and minicab transfers from ${area.name}, ${region}, 24/7, with meet and greet, ${perks}`,
+      `Airport transfers, minicabs and taxis from ${where}, ${region}, to Heathrow 24/7. Meet and greet in arrivals, ${perks}`,
+      `Airport transfers, minicabs and taxis from ${where} to Heathrow 24/7, with meet and greet, ${perks}`,
     ].find((text) => text.length <= 160) ??
-    `Heathrow airport taxi and minicab transfers from ${area.name}, 24/7, with meet and greet, ${perks}`;
+    `Airport transfers, minicabs and taxis from ${where} to Heathrow 24/7, with meet and greet.`;
   return {
-    // Long area names drop the brand suffix to stay within about 60 characters.
-    title: long.length <= 60 ? long : `Taxi from ${area.name} to Heathrow`,
+    // Long area names use the shorter title to stay within about 60 characters.
+    title: long.length <= 60 ? long : `${area.name} Minicabs to Heathrow`,
     description,
     path: `/areas/${area.slug}`,
   };
@@ -69,7 +75,8 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
   const seo = areaSeo(area);
   const region = regionLabel(area);
   const nearby = AREAS.filter((a) => a.region === area.region && a.slug !== area.slug);
-  const profile = AREA_PROFILES[area.slug] ?? DEFAULT_AREA_PROFILE;
+  const profile = profileFor(area);
+  const postcodes = profile.postcodes.join(", ");
   const faqs = [...profile.localFaqs, ...areaFaqs(area.name)];
 
   return (
@@ -82,6 +89,11 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
         path={seo.path}
         areaServed={[
           { "@type": "Place", name: `${area.name}, London` },
+          ...profile.postcodes.map((postalCode) => ({
+            "@type": "Place",
+            name: `${postalCode}, ${area.name}`,
+            address: { "@type": "PostalAddress", postalCode, addressCountry: "GB" },
+          })),
           { "@type": "Airport", name: "London Heathrow Airport", iataCode: "LHR" },
         ]}
       />
@@ -107,9 +119,9 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
         title={`Heathrow transfers from ${area.name}`}
       >
         <p data-speakable className="mt-3 max-w-[44rem] leading-relaxed text-white/85">
-          {SITE_NAME} provides 24/7 minicab transfers between {area.name}, {region}, and Heathrow
-          Terminals 2, 3, 4 and 5. Book online, by phone or on WhatsApp, and your price is fixed
-          once confirmed.
+          {SITE_NAME} provides 24/7 airport transfers and minicabs between {area.name}
+          {postcodes && ` (${postcodes})`}, {region}, and Heathrow Terminals 2, 3, 4 and 5. Book
+          online, by phone or on WhatsApp, and your price is fixed once confirmed.
         </p>
         <PathCards
           items={[
@@ -159,6 +171,23 @@ export default async function Page({ params }: PageProps<"/areas/[slug]">) {
                 </li>
               ))}
             </ul>
+            {/* The area's postcodes and stations, for visitors checking we cover their address. */}
+            {(postcodes || profile.stations.length > 0) && (
+              <dl className="mt-6 space-y-4 border-t border-[#0A2740]/10 pt-5 text-[#0A2740]">
+                {postcodes && (
+                  <div>
+                    <dt className="text-sm font-semibold">Postcodes we cover in {area.name}</dt>
+                    <dd className="mt-1">{postcodes}</dd>
+                  </div>
+                )}
+                {profile.stations.length > 0 && (
+                  <div>
+                    <dt className="text-sm font-semibold">Stations in or near {area.name}</dt>
+                    <dd className="mt-1">{profile.stations.join(" · ")}</dd>
+                  </div>
+                )}
+              </dl>
+            )}
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
             <div className="rounded-xl border border-[#D5E8F2] bg-white p-6">

@@ -7,6 +7,8 @@ import type { Faq } from "@/lib/faqs";
 
 export type GuideSection = {
   title: string;
+  // Stable anchor for linking to this section from other pages (e.g. "terminal-3").
+  id?: string;
   paragraphs?: string[];
   bullets?: string[];
   // Airlines grouped by terminal, rendered as one card per terminal.
@@ -155,14 +157,14 @@ export const GUIDES: Guide[] = [
   {
     slug: "heathrow-drop-off-charge",
     title: "Heathrow drop-off charge explained",
-    seoTitle: "Heathrow Drop-Off Charge: £7 Fee, How to Pay & Taxis",
+    seoTitle: "Heathrow Drop-Off Charge: £7 at T2, T3, T4 & T5, How to Pay",
     description:
-      "Heathrow’s Terminal Drop-Off Charge is £7 per visit at Terminals 2, 3, 4 and 5. How to pay, the penalty, Blue Badge discount and how it works with a minicab.",
+      "Heathrow’s drop-off charge is £7 per visit at Terminals 2, 3, 4 and 5. Where each terminal’s drop-off is, how to pay online or by phone, the deadline and taxis.",
     crumb: "Drop-off charge",
     image: "t4",
-    lastChecked: "2026-10-21",
+    lastChecked: "2026-11-09",
     answer:
-      "Heathrow charges £7 every time a vehicle enters the drop-off area outside Terminals 2, 3, 4 or 5, 24 hours a day. Taxis and private hire cars pay it too. Dropping off at a Heathrow Park & Ride car park is free.",
+      "Heathrow charges £7 every time a vehicle enters the drop-off area outside Terminals 2, 3, 4 or 5, 24 hours a day. It’s the same £7 at every terminal, paid the same way: online, by phone or with AutoPay, by midnight the next day. Taxis and private hire cars pay it too. Dropping off at a Heathrow Park & Ride car park is free.",
     sections: [
       {
         title: "How the charge works",
@@ -176,16 +178,56 @@ export const GUIDES: Guide[] = [
       {
         title: "How to pay, and what happens if you don’t",
         bullets: [
-          "Pay online, by Heathrow’s automated phone line, or automatically with AutoPay.",
+          "Pay online, by Heathrow’s automated phone line (0330 008 5600), or automatically with AutoPay.",
           "Card payments only; cash and cheques aren’t accepted.",
           "If you pay after your visit, payment must be made by midnight the next day.",
           "Missing the deadline leads to an £80 Parking Charge, reduced to £40 if paid within 14 days.",
         ],
       },
       {
+        id: "terminal-2",
+        title: "Terminal 2 drop-off: where to go and how to pay",
+        bullets: [
+          "The Terminal 2 drop-off area is off Constellation Way: follow the up ramp to reach it.",
+          "Each visit costs £7, paid online or by phone afterwards, by midnight the next day.",
+          "Free alternative: the Terminal 2 Park & Ride car park, free for the first 29 minutes.",
+          "Pickups aren’t allowed on the forecourt; use Terminal 2 Terminal Parking (formerly Short Stay) or the Park & Ride.",
+        ],
+      },
+      {
+        id: "terminal-3",
+        title: "Terminal 3 drop-off: where to go and how to pay",
+        bullets: [
+          "To reach the Terminal 3 drop-off zone, follow Cosmopolitan Way on to Camborne Road and join one of the four drop-off lanes.",
+          "Each visit costs £7, paid online or by phone afterwards, by midnight the next day.",
+          "Free alternative: the Terminal 3 Park & Ride car park, free for the first 29 minutes, with a bus to the terminal.",
+          "Pickups aren’t allowed on the forecourt; the nearest pickup point is Terminal 3 Terminal Parking (formerly Short Stay).",
+        ],
+      },
+      {
+        id: "terminal-4",
+        title: "Terminal 4 drop-off: where to go and how to pay",
+        bullets: [
+          "Follow Stratford Road to the Terminal 4 drop-off area; at the top of the ramp there are three lanes.",
+          "Each visit costs £7. It can’t be paid at the drop-off zone: pay online or by phone, by midnight the next day.",
+          "The Terminal 4 multi-storey car park closed from 23 June 2026 for redevelopment. Passenger parking moved to Zone A of the Terminal 4 Park & Ride, which is free for up to 2 hours.",
+          "Pickups use the Terminal 4 Priority Pick-Up area (paid, from £7 for up to 10 minutes) or Park & Ride Zone A, not the drop-off forecourt.",
+        ],
+      },
+      {
+        id: "terminal-5",
+        title: "Terminal 5 drop-off: where to go and how to pay",
+        bullets: [
+          "The Terminal 5 drop-off zone is reached along Wayfarer Road; at the top of the ramp it splits into two drop-off lanes.",
+          "Each visit costs £7, paid online or by phone afterwards, by midnight the next day.",
+          "Free alternative: the Terminal 5 Park & Ride car park, free for the first 29 minutes, with a bus to the terminal.",
+          "Pickups aren’t allowed on the forecourt; the nearest pickup point is Terminal 5 Terminal Parking (Car Park 5), about a 2-minute walk from the terminal.",
+        ],
+      },
+      {
         title: "Blue Badge discount",
         paragraphs: [
-          "Holders of a valid UK or EEA Blue Badge can apply for a 100% discount, even if they don’t drive or own a car. If you’re arriving by taxi or private hire, the discount is applied using that vehicle’s registration number, so mention it when you book.",
+          "Holders of a valid UK or EEA Blue Badge can apply for a 100% discount, even if they don’t drive or own a car. Apply in advance. If you’re arriving by taxi or private hire, the discount is applied using that vehicle’s registration number, so mention it when you book.",
         ],
       },
       {
@@ -214,6 +256,18 @@ export const GUIDES: Guide[] = [
         question: "When do I have to pay the drop-off charge?",
         answer:
           "If you pay after your visit, by midnight the next day. Otherwise Heathrow issues an £80 Parking Charge, reduced to £40 if paid within 14 days.",
+      },
+      {
+        id: "guide-charge-pay-terminal",
+        question: "How do I pay the Terminal 2, 3 or 5 drop-off charge?",
+        answer:
+          "The same way at every terminal: online, by Heathrow’s automated phone line or with AutoPay, by card, by midnight the day after your visit. You can’t pay at the drop-off zone or at a ticket machine.",
+      },
+      {
+        id: "guide-charge-t2-where",
+        question: "Where is the Terminal 2 drop-off?",
+        answer:
+          "Off Constellation Way: follow the up ramp to the Terminal 2 drop-off area. Each visit costs £7.",
       },
       {
         id: "guide-charge-free",
@@ -249,8 +303,20 @@ export const GUIDES: Guide[] = [
         label: "Heathrow: Passenger pick-up",
       },
       {
+        href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/terminal-2",
+        label: "Heathrow: Terminal 2 parking",
+      },
+      {
+        href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/terminal-3",
+        label: "Heathrow: Terminal 3 parking",
+      },
+      {
         href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/terminal-4",
         label: "Heathrow: Terminal 4 parking",
+      },
+      {
+        href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/terminal-5",
+        label: "Heathrow: Terminal 5 parking",
       },
     ],
   },

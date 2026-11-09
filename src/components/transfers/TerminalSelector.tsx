@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import PhoneIcon from "@/components/PhoneIcon";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
@@ -48,6 +49,12 @@ function TerminalPanel({
         <div className="rounded-lg border border-white/15 bg-white/5 p-4">
           <h4 className="text-base font-semibold text-white">Flying from here?</h4>
           <p className="mt-1 text-sm leading-relaxed text-white/80">{terminal.departureTip}</p>
+          <Link
+            href={`/guides/heathrow-drop-off-charge#terminal-${terminal.number}`}
+            className={`${linkClass} text-sm`}
+          >
+            {terminal.name} drop-off charge <span aria-hidden="true">→</span>
+          </Link>
         </div>
         <div className="rounded-lg border border-white/15 bg-white/5 p-4">
           <h4 className="text-base font-semibold text-white">Need help at the terminal?</h4>
