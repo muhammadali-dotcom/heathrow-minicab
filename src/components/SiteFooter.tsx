@@ -187,7 +187,14 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} {SITE_NAME}
             {TFL_LICENCE &&
               ` · Operated by ${TFL_LICENCE.operator}, TfL private hire operator licence ${TFL_LICENCE.number}`}
-            {" · Powered by MyCabify"}
+            {" · Powered by "}
+            {/* Underlined all the time, so it reads as a link inside the sentence. */}
+            <a
+              href="https://www.mycabify.com"
+              className={`rounded-sm font-semibold text-white underline decoration-white/40 underline-offset-4 ${whiteLink}`}
+            >
+              MyCabify
+            </a>
           </p>
           <ul className="flex flex-wrap items-center gap-x-6">
             {LEGAL_LINKS.map((link) => (

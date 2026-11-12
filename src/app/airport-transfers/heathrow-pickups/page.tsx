@@ -16,7 +16,9 @@ import {
   SubHeading,
   Timeline,
   TransfersHero,
+  textLink,
 } from "@/components/transfers/TransferBlocks";
+import Link from "next/link";
 import { BOOK_ONLINE_HREF } from "@/lib/site";
 import MaskHeading from "@/components/MaskHeading";
 import StaggerIn from "@/components/StaggerIn";
@@ -282,6 +284,9 @@ export default function Page() {
             </div>
           ))}
         </StaggerIn>
+        <Link href="/guides/picking-up-from-heathrow" className={`${textLink} mt-6`}>
+          Collecting someone yourself? Where to park and wait <span aria-hidden="true">→</span>
+        </Link>
       </Section>
 
       <Section

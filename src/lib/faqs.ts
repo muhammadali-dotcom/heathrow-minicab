@@ -415,3 +415,14 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
   { id: "long-distance", title: "Long-distance transfers", items: LONG_DISTANCE_FAQS },
   { id: "business", title: "Business travel", items: BUSINESS_FAQS },
 ];
+
+// Existing questions by id, in the order given, so a hub page can reuse them without restating
+// any facts. Throws on a missing id so a renamed question can't silently drop out of a page.
+export function pickFaqs(ids: string[]): Faq[] {
+  const all = FAQ_GROUPS.flatMap((group) => group.items);
+  return ids.map((id) => {
+    const faq = all.find((item) => item.id === id);
+    if (!faq) throw new Error(`Unknown FAQ id: ${id}`);
+    return faq;
+  });
+}

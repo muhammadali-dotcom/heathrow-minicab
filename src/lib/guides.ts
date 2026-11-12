@@ -292,6 +292,11 @@ export const GUIDES: Guide[] = [
         label: "Terminal guides",
         hint: "Meeting points and parking for each terminal.",
       },
+      {
+        href: "/guides/picking-up-from-heathrow",
+        label: "Picking someone up",
+        hint: "Where to park and wait, since pickups aren’t allowed on the forecourt.",
+      },
     ],
     sources: [
       {
@@ -483,6 +488,344 @@ export const GUIDES: Guide[] = [
       {
         href: "https://www.heathrow.com/at-the-airport/terminal-guides/which-terminal",
         label: "Heathrow: Which terminal?",
+      },
+    ],
+  },
+  {
+    slug: "picking-up-from-heathrow",
+    title: "Picking someone up from Heathrow: where to park and wait",
+    seoTitle: "Heathrow Pick-Up: Where to Park and Wait for Arrivals",
+    description:
+      "You can’t pick up on Heathrow’s terminal forecourts. Where to park and wait at Terminals 2, 3, 4 and 5, what it costs, the free Park & Ride and meeting points.",
+    crumb: "Picking someone up",
+    image: "arrival",
+    lastChecked: "2026-11-12",
+    answer:
+      "Heathrow doesn’t allow picking up or waiting on the terminal forecourts. Park in the terminal’s Terminal Parking car park (formerly Short Stay) and meet your passenger in arrivals, or use a Park & Ride car park, which is free for the first 29 minutes. At Terminal 4, use the Priority Pick-Up area outside arrivals or Zone A of the Park & Ride, free for up to 2 hours.",
+    sections: [
+      {
+        title: "No pickups on the forecourt",
+        bullets: [
+          "The forecourts directly outside the terminals are for drop-offs only. Heathrow says picking up passengers there is prohibited, and unattended cars are removed by the police.",
+          "Every visit to a forecourt drop-off area is charged £7, so circling round to wait costs £7 each time.",
+          "Instead, park in a car park and meet your passenger inside the terminal.",
+        ],
+      },
+      {
+        id: "terminal-parking",
+        title: "Terminal Parking at Terminals 2, 3 and 5",
+        paragraphs: [
+          "The nearest place to wait is the terminal’s own Terminal Parking car park, formerly called Short Stay, a short walk from arrivals. Pay at the pay-on-foot machines before you leave; pickup parking isn’t booked online.",
+        ],
+        bullets: [
+          "Up to 29 minutes: £8.50",
+          "30 to 44 minutes: £12.50",
+          "45 to 59 minutes: £16.00",
+          "Each hour or part hour after that: £8.50",
+        ],
+      },
+      {
+        id: "park-and-ride",
+        title: "The free option: Park & Ride",
+        bullets: [
+          "Heathrow’s Park & Ride car parks are free for the first 29 minutes, then £10.00 up to 1 hour 59 minutes.",
+          "Blue Badge holders get 2 hours free.",
+          "Shuttle buses run every 15 minutes from the terminal doors, so allow time for your passenger to make the trip.",
+        ],
+      },
+      {
+        id: "terminal-4",
+        title: "Terminal 4: Priority Pick-Up or Zone A",
+        bullets: [
+          "Terminal 4’s multi-storey car park closed on 23 June 2026, so there’s no Terminal Parking there.",
+          "Priority Pick-Up is outside the Terminal 4 arrivals hall: follow Salisbury Road and stay in the two right-hand lanes at the Terminal 4 roundabout. Up to 10 minutes costs £7.00, 11 to 29 minutes £14.00 and 30 to 60 minutes £25.00. Pay online, by phone or with AutoPay by midnight the next day.",
+          "Blue Badge discounts don’t apply to Priority Pick-Up.",
+          "Free option: Zone A of the Terminal 4 Park & Ride, free for up to 2 hours, with free shuttle buses to the terminal every five minutes.",
+        ],
+      },
+      {
+        id: "meeting-points",
+        title: "Where to meet your passenger",
+        bullets: [
+          "Terminal 2: opposite the international arrivals exit.",
+          "Terminal 3: in the seating area on the ground floor of Arrivals.",
+          "Terminal 4: next to WHSmith on the ground floor of Arrivals.",
+          "Terminal 5: the north meeting point opposite Travelex, or the south meeting point near Costa Coffee.",
+        ],
+      },
+      {
+        title: "Or let a driver do the waiting",
+        paragraphs: [
+          "If you’d rather not drive to Heathrow, book a pickup instead. We monitor the flight, your driver meets the passenger inside arrivals with a name board or at an agreed pickup point, and the pickup includes 15 minutes of free waiting from the agreed time. Any parking or pickup charge is shown in your quote before you book.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        id: "guide-pickup-forecourt",
+        question: "Can I pick someone up outside the terminal at Heathrow?",
+        answer:
+          "No. Heathrow doesn’t allow pickups or waiting on the terminal forecourts. Use the terminal’s Terminal Parking car park, a Park & Ride car park, or at Terminal 4 the Priority Pick-Up area.",
+      },
+      {
+        id: "guide-pickup-free",
+        question: "Is there a free way to pick someone up from Heathrow?",
+        answer:
+          "Yes. Park & Ride car parks are free for the first 29 minutes, and at Terminal 4, Zone A of the Park & Ride is free for up to 2 hours. Your passenger takes the shuttle bus from the terminal.",
+      },
+      {
+        id: "guide-pickup-cost",
+        question: "How much does it cost to wait in Terminal Parking?",
+        answer:
+          "Heathrow lists £8.50 for up to 29 minutes, £12.50 for 30 to 44 minutes and £16.00 for 45 to 59 minutes at Terminals 2, 3 and 5, paid at the pay-on-foot machines. Prices can change.",
+      },
+      {
+        id: "guide-pickup-t4",
+        question: "Where do I pick someone up at Terminal 4?",
+        answer:
+          "At the Priority Pick-Up area outside the arrivals hall (from £7.00 for up to 10 minutes), or for free in Zone A of the Terminal 4 Park & Ride for up to 2 hours.",
+      },
+    ],
+    related: [
+      {
+        href: "/airport-transfers/heathrow-pickups",
+        label: "Heathrow pickups",
+        hint: "Book a driver to meet your passenger in arrivals.",
+      },
+      {
+        href: "/guides/heathrow-terminal-4-changes",
+        label: "Terminal 4 changes",
+        hint: "Parking, pick-up and drop-off since the car park closed.",
+      },
+      {
+        href: "/airport-transfers/terminal-guides",
+        label: "Terminal guides",
+        hint: "Meeting points and parking for each terminal.",
+      },
+    ],
+    sources: [
+      {
+        href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/passenger-pick-up",
+        label: "Heathrow: Passenger pick-up",
+      },
+      {
+        href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/terminal-4-priority-pick-up",
+        label: "Heathrow: Terminal 4 Priority Pick-Up",
+      },
+      {
+        href: "https://www.heathrow.com/arrivals/meeting-points",
+        label: "Heathrow: Meeting points",
+      },
+    ],
+  },
+  {
+    slug: "heathrow-terminal-4-changes",
+    title: "Heathrow Terminal 4 changes: parking, pick-up and drop-off",
+    seoTitle: "Heathrow Terminal 4 Changes: Parking, Pick-Up & Drop-Off",
+    description:
+      "Heathrow Terminal 4’s car park closed on 23 June 2026. Where to park now, the Priority Pick-Up area, free Zone A parking and how drop-off works.",
+    crumb: "Terminal 4 changes",
+    image: "t4",
+    lastChecked: "2026-11-12",
+    answer:
+      "Heathrow Terminal 4’s multi-storey car park closed on 23 June 2026 for redevelopment. Passenger parking has moved to Zone A of the Terminal 4 Park & Ride, free for up to 2 hours, with free shuttle buses every five minutes. Quick pickups can use the Priority Pick-Up area outside arrivals, and drop-offs carry on as before, with the £7 charge.",
+    sections: [
+      {
+        title: "What has changed",
+        bullets: [
+          "The Terminal 4 multi-storey car park, used for Terminal Parking and Meet & Greet Parking, closed on 23 June 2026.",
+          "Heathrow says it’s part of a redevelopment to improve the terminal’s facilities, including a new car park, an improved drop-off area and modernised facilities.",
+          "Meet & Greet Parking isn’t available at Terminal 4.",
+        ],
+      },
+      {
+        id: "zone-a",
+        title: "Parking now: Park & Ride Zone A",
+        bullets: [
+          "All passenger parking for Terminal 4 has moved to Zone A of the Terminal 4 Park & Ride.",
+          "Up to 2 hours’ parking is free in Zone A only. After that, Park & Ride drive-up prices apply; check Heathrow’s site for current rates.",
+          "Free shuttle buses run every five minutes between Zone A and Terminal 4, taking as little as six minutes. All buses are fully accessible, and there’s an assisted services hub in Zone A.",
+          "Zones B to D are for pre-booked parking, with shuttle buses every 15 minutes.",
+        ],
+      },
+      {
+        id: "priority-pick-up",
+        title: "Priority Pick-Up outside arrivals",
+        bullets: [
+          "The Priority Pick-Up area is outside the Terminal 4 arrivals hall. Follow Salisbury Road and stay in the two right-hand lanes at the Terminal 4 roundabout.",
+          "Charges per visit: up to 10 minutes £7.00, 11 to 29 minutes £14.00, 30 to 60 minutes £25.00, then £25.00 for each extra hour, up to £200.00 a day.",
+          "There are no barriers. Pay by card online, by phone or with AutoPay by midnight the next day; non-payment brings an £80 Parking Charge, reduced to £40 if paid within 14 days.",
+          "Blue Badge discounts don’t apply to Priority Pick-Up.",
+        ],
+      },
+      {
+        id: "drop-off",
+        title: "Dropping off at Terminal 4",
+        bullets: [
+          "Drop-offs continue as normal in the left-hand lane; the right-hand lane is Priority Pick-Up, for arrivals collections only.",
+          "The usual £7 Terminal Drop-Off Charge applies to each visit.",
+          "Pickups aren’t allowed in the drop-off area.",
+        ],
+      },
+      {
+        title: "Travelling with a minicab",
+        paragraphs: [
+          "Nothing changes for you when you book a transfer: your driver handles the parking and pickup arrangements. For Terminal 4 arrivals, Heathrow’s public meeting point is next to WHSmith on the ground floor of Arrivals, and your booking confirmation gives your exact meeting instruction. Any parking or pickup charge is shown in your quote before you book.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        id: "guide-t4-car-park",
+        question: "Is the Terminal 4 car park closed?",
+        answer:
+          "Yes. Heathrow’s Terminal 4 multi-storey car park closed on 23 June 2026 for redevelopment. Passenger parking has moved to Zone A of the Terminal 4 Park & Ride.",
+      },
+      {
+        id: "guide-t4-where-park",
+        question: "Where do I park at Terminal 4 now?",
+        answer:
+          "In Zone A of the Terminal 4 Park & Ride, which is free for up to 2 hours, with free shuttle buses to the terminal every five minutes.",
+      },
+      {
+        id: "guide-t4-priority-cost",
+        question: "How much is Terminal 4 Priority Pick-Up?",
+        answer:
+          "£7.00 for up to 10 minutes, £14.00 for 11 to 29 minutes and £25.00 for 30 to 60 minutes, paid online, by phone or with AutoPay by midnight the next day.",
+      },
+      {
+        id: "guide-t4-drop-off",
+        question: "Can I still drop off at Terminal 4?",
+        answer:
+          "Yes. Drop-offs continue as normal in the left-hand lane, with the £7 Terminal Drop-Off Charge for each visit.",
+      },
+    ],
+    related: [
+      {
+        href: "/guides/picking-up-from-heathrow",
+        label: "Picking someone up",
+        hint: "Where to park and wait at every terminal.",
+      },
+      {
+        href: "/guides/heathrow-drop-off-charge",
+        label: "Drop-off charge",
+        hint: "The £7 charge and how to pay it.",
+      },
+      {
+        href: "/airport-transfers/terminal-guides",
+        label: "Terminal guides",
+        hint: "Meeting points and parking for each terminal.",
+      },
+    ],
+    sources: [
+      {
+        href: "https://www.heathrow.com/at-the-airport/changes-to-terminal-4",
+        label: "Heathrow: Changes to Terminal 4",
+      },
+      {
+        href: "https://www.heathrow.com/transport-and-directions/heathrow-parking/terminal-4-priority-pick-up",
+        label: "Heathrow: Terminal 4 Priority Pick-Up",
+      },
+      {
+        href: "https://www.heathrow.com/arrivals/meeting-points",
+        label: "Heathrow: Meeting points",
+      },
+    ],
+  },
+  {
+    slug: "heathrow-to-gatwick",
+    title: "Heathrow to Gatwick: how to travel between the airports",
+    seoTitle: "Heathrow to Gatwick: Coach, Train or Car Between Airports",
+    description:
+      "How to get from Heathrow to Gatwick: direct coaches, trains changing in central London, or a pre-booked car. What Heathrow advises about allowing time.",
+    crumb: "Heathrow to Gatwick",
+    image: "hero",
+    lastChecked: "2026-11-12",
+    answer:
+      "There are no direct trains between Heathrow and Gatwick, which are 42 miles apart by road. Your options are a direct coach (National Express, FlixBus or The Airline), a train changing in central London at Victoria or Farringdon, or a pre-booked car from terminal to terminal. Heathrow advises allowing plenty of time for the connection.",
+    sections: [
+      {
+        title: "By coach",
+        bullets: [
+          "Heathrow lists three coach operators running direct between the airports throughout the day: National Express, FlixBus and The Airline (Oxford Bus Company).",
+          "Heathrow gives coach journey times of about 70 to 75 minutes; traffic can make it longer.",
+          "National Express picks up at Heathrow Central Bus Station (for Terminals 2 and 3), Terminal 4 and Terminal 5, and calls at both Gatwick North and Gatwick South.",
+        ],
+      },
+      {
+        title: "By train",
+        bullets: [
+          "There’s no direct train: you change in central London, at Victoria or Farringdon.",
+          "Via Farringdon: the Elizabeth line runs direct from Heathrow to Farringdon, then Thameslink to Gatwick.",
+          "Via Victoria: Heathrow Express or the Elizabeth line to Paddington, the Circle line to Victoria, then the Gatwick Express or Southern to Gatwick.",
+          "With heavy luggage, allow for changing lines and stations in central London.",
+        ],
+      },
+      {
+        title: "By pre-booked car",
+        paragraphs: [
+          "A pre-booked car takes you from one terminal to the other with no changes. Your driver meets you inside arrivals at Heathrow, helps with your luggage and drops you at your Gatwick terminal, and the price is fixed when you book. Journey time depends on traffic, especially on the M25.",
+        ],
+      },
+      {
+        title: "Allowing time for the connection",
+        bullets: [
+          "Heathrow recommends allowing plenty of time, including for passport control, reclaiming bags, check-in, security and waiting times.",
+          "Allow for possible traffic or service delays, too.",
+          "Journey times, fares and frequencies change, so check with the operator before you travel.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        id: "guide-lhr-lgw-train",
+        question: "Is there a direct train from Heathrow to Gatwick?",
+        answer:
+          "No. Heathrow says there are no direct trains; you change in central London, at Victoria or Farringdon.",
+      },
+      {
+        id: "guide-lhr-lgw-distance",
+        question: "How far is Heathrow from Gatwick?",
+        answer: "About 42 miles (68 km) by road, according to Heathrow.",
+      },
+      {
+        id: "guide-lhr-lgw-coach",
+        question: "Is there a coach from Heathrow to Gatwick?",
+        answer:
+          "Yes. National Express, FlixBus and The Airline run direct coaches between the airports throughout the day.",
+      },
+      {
+        id: "guide-lhr-lgw-car",
+        question: "Can you take me from Heathrow to Gatwick?",
+        answer:
+          "Yes. We run airport-to-airport transfers between Heathrow and Gatwick, with your driver meeting you in Heathrow arrivals and the price fixed when you book.",
+      },
+    ],
+    related: [
+      {
+        href: "/services/airport-to-airport-transfers",
+        label: "Airport-to-airport transfers",
+        hint: "Heathrow to Gatwick, Stansted, Luton or London City by car.",
+      },
+      {
+        href: "/guides/which-heathrow-terminal",
+        label: "Which terminal?",
+        hint: "Find your Heathrow terminal by airline.",
+      },
+      {
+        href: "/guides/how-early-to-leave-for-heathrow",
+        label: "How early to leave",
+        hint: "Heathrow’s recommended arrival times.",
+      },
+    ],
+    sources: [
+      {
+        href: "https://www.heathrow.com/transport-and-directions/travel-between-airports",
+        label: "Heathrow: Travel between airports",
+      },
+      {
+        href: "https://www.nationalexpress.com/en/airports/gatwick/heathrow-to-gatwick",
+        label: "National Express: Heathrow to Gatwick",
       },
     ],
   },

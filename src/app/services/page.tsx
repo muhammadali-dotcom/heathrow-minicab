@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { SERVICES_LIST, WebPageJsonLd } from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
-import { DetailCards } from "@/components/services/ServiceBlocks";
+import PageFaqs from "@/components/PageFaqs";
+import { DetailCards, NumberedStrip } from "@/components/services/ServiceBlocks";
 import ServiceAreas from "@/components/services/ServiceAreas";
 import { Section } from "@/components/transfers/TransferBlocks";
+import { pickFaqs } from "@/lib/faqs";
 import { pageMetadata } from "@/lib/seo";
 import { SERVICES } from "@/lib/services";
 
@@ -70,6 +72,34 @@ export default function Page() {
           ]}
         />
       </Section>
+
+      <Section
+        tone="white"
+        id="how-it-works"
+        title="How every transfer works"
+        intro="Whichever service you choose, the booking works the same way, so you know what to expect from the first message to the moment you reach your door or terminal."
+      >
+        <NumberedStrip
+          items={[
+            "Book online, by phone or on WhatsApp with your journey details",
+            "We confirm your vehicle, pickup time and price, which is then fixed",
+            "For arrivals, we monitor your flight and adjust for delays",
+            "Your driver meets you in arrivals or at your door, and takes you all the way",
+          ]}
+        />
+      </Section>
+
+      <PageFaqs
+        items={pickFaqs([
+          "how-price-works",
+          "whats-included",
+          "return-journeys",
+          "flight-delays",
+          "minicab-vs-black-cab",
+        ])}
+        tone="pale"
+        title="Questions about our services"
+      />
 
       {/* The footer's sitewide booking band closes this page, as on /areas. */}
       <ServiceAreas tone="white" />

@@ -87,6 +87,8 @@ export function SiteJsonLd() {
               availableLanguage: "en",
             })),
             email: BUSINESS_EMAIL,
+            // Owner's choice (2026-11-12): mid-range, typical for pre-booked airport transfers.
+            priceRange: "££",
             areaServed: AREA_SERVED,
             slogan: "Heathrow airport transfers, from your doorstep to departures.",
             knowsAbout: KNOWS_ABOUT,

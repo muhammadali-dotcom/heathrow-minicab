@@ -55,6 +55,14 @@ function TerminalPanel({
           >
             {terminal.name} drop-off charge <span aria-hidden="true">→</span>
           </Link>
+          {terminal.number === "4" && (
+            <Link
+              href="/guides/heathrow-terminal-4-changes"
+              className={`${linkClass} text-sm`}
+            >
+              Terminal 4 changes in 2026 <span aria-hidden="true">→</span>
+            </Link>
+          )}
         </div>
         <div className="rounded-lg border border-white/15 bg-white/5 p-4">
           <h4 className="text-base font-semibold text-white">Need help at the terminal?</h4>

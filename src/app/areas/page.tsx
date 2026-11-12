@@ -8,13 +8,30 @@ import { callButtonLight } from "@/components/BookingCta";
 import PageBanner from "@/components/PageBanner";
 import PhoneIcon from "@/components/PhoneIcon";
 import { DetailCards } from "@/components/services/ServiceBlocks";
-import { AREA_REGIONS, AREAS } from "@/lib/areas";
+import { AREA_PROFILES } from "@/lib/area-profiles";
+import { AREA_REGIONS, AREAS, type AreaRegion } from "@/lib/areas";
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { PRIMARY_PHONE } from "@/lib/site";
 import MaskHeading from "@/components/MaskHeading";
 import StaggerIn from "@/components/StaggerIn";
 
 const PRIORITY_AREAS = ["finchley", "hendon", "mill-hill", "edgware", "barnet", "golders-green"];
+
+// A line of context per region, in line with each area page's own route notes.
+const REGION_NOTES: Record<AreaRegion, string> = {
+  north:
+    "From Barnet and Whetstone in the north to Golders Green and Muswell Hill, North London journeys usually reach Heathrow via the A406 North Circular and the A40, or the M1 and M25, depending on your terminal and the time of day.",
+  west: "Hounslow, Hayes and Southall are Heathrow’s neighbours, with Ealing, Isleworth and Twickenham a little further in, so West London journeys are usually shorter runs on roads such as the A4, A30, A312 and M4.",
+};
+
+// Every postcode district the region's area pages list, in page order without repeats.
+const regionPostcodes = (region: AreaRegion) => [
+  ...new Set(
+    AREAS.filter((area) => area.region === region).flatMap(
+      (area) => AREA_PROFILES[area.slug]?.postcodes ?? [],
+    ),
+  ),
+];
 
 const seo = {
   title: "Minicab to Heathrow from North & West London",
@@ -109,6 +126,11 @@ export default function Page() {
                     className="text-2xl leading-snug font-bold tracking-tight text-[#0A2740]"
                     parts={[{ text: region.label }]}
                   />
+                  <p className="mt-3 leading-relaxed text-[#0A2740]/80">{REGION_NOTES[region.id]}</p>
+                  <p className="mt-3 text-sm text-[#0A2740]">
+                    <span className="font-semibold">Postcodes covered: </span>
+                    {regionPostcodes(region.id).join(", ")}
+                  </p>
                   <ul aria-labelledby={`${region.id}-heading`} className="mt-4 columns-2 gap-6">
                     {areas.map((area) => (
                       <li key={area.slug} className="break-inside-avoid">

@@ -10,7 +10,9 @@ import {
   Section,
   TransfersHero,
 } from "@/components/transfers/TransferBlocks";
-import { SplitChecklist } from "@/components/services/ServiceBlocks";
+import PageFaqs from "@/components/PageFaqs";
+import { NumberedStrip, SplitChecklist } from "@/components/services/ServiceBlocks";
+import { pickFaqs } from "@/lib/faqs";
 import { WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import {
@@ -247,6 +249,21 @@ export default function Page() {
         />
       </Section>
 
+      <Section
+        tone="pale"
+        id="after-contact"
+        title="What happens after you get in touch"
+        intro="Whether you book online, call or send a WhatsApp message, the steps are the same."
+      >
+        <NumberedStrip
+          items={[
+            "We check your journey, passengers, luggage and flight details",
+            "We confirm the vehicle, pickup time and price, which is then fixed",
+            "Your confirmation explains exactly where you’ll meet your driver",
+          ]}
+        />
+      </Section>
+
       <Section tone="white" id="heathrow-help" title="Need help at Heathrow?">
         <div className="rounded-xl border border-[#D5E8F2] bg-[#E6F6FC] p-6 md:p-8">
           <p className="max-w-[48rem] leading-relaxed text-[#0A2740]/80">
@@ -264,6 +281,18 @@ export default function Page() {
           </a>
         </div>
       </Section>
+
+      <PageFaqs
+        items={pickFaqs([
+          "cancellations",
+          "payments",
+          "waiting-charges",
+          "meeting-driver",
+          "pickup-cant-find-driver",
+        ])}
+        tone="pale"
+        title="Questions before you contact us"
+      />
 
       {/* Slim white strip before the navy footer. */}
       <section aria-label="Opening hours" className="bg-white py-8">
