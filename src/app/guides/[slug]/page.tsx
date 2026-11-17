@@ -48,6 +48,22 @@ function TerminalCards({ terminals }: { terminals: NonNullable<GuideSection["ter
   );
 }
 
+function AirlineIndex({ items }: { items: NonNullable<GuideSection["airlineIndex"]> }) {
+  return (
+    <ul className="mt-6 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <li
+          key={item.airline}
+          className="flex items-baseline justify-between gap-4 border-b border-[#D5E8F2] py-2.5 text-sm"
+        >
+          <span className="font-medium text-[#0A2740]">{item.airline}</span>
+          <span className="shrink-0 text-right text-[#4E6B84]">{item.terminal}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default async function Page({ params }: PageProps<"/guides/[slug]">) {
   const guide = findGuide((await params).slug);
   if (!guide) notFound();
@@ -91,6 +107,7 @@ export default async function Page({ params }: PageProps<"/guides/[slug]">) {
           ))}
           {section.bullets && <BulletList items={section.bullets} />}
           {section.terminals && <TerminalCards terminals={section.terminals} />}
+          {section.airlineIndex && <AirlineIndex items={section.airlineIndex} />}
         </Section>
       ))}
 

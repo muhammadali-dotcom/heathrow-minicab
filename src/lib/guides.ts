@@ -13,6 +13,8 @@ export type GuideSection = {
   bullets?: string[];
   // Airlines grouped by terminal, rendered as one card per terminal.
   terminals?: { terminal: string; airlines: string[]; note?: string }[];
+  // An A to Z list of airlines and their terminal, rendered as a compact multi-column list.
+  airlineIndex?: { airline: string; terminal: string }[];
 };
 
 export type Guide = {
@@ -33,13 +35,13 @@ export type Guide = {
 // British Airways routes that Heathrow's terminal finder lists at Terminal 3 (all others: T5).
 const BA_TERMINAL_3 = [
   "Atlanta",
+  "Austin",
   "Bahrain",
+  "Baltimore",
   "Bermuda",
   "Bucharest",
   "Budapest",
-  "Cologne",
   "Dallas Fort Worth",
-  "Denver",
   "Figari",
   "Gibraltar",
   "Gothenburg",
@@ -47,9 +49,12 @@ const BA_TERMINAL_3 = [
   "Hannover",
   "Krakow",
   "Luxembourg",
+  "Lyon",
   "Marseille",
+  "Naples",
   "Olbia",
   "Oslo",
+  "Palma",
   "Perugia",
   "Phoenix",
   "Prague",
@@ -60,9 +65,101 @@ const BA_TERMINAL_3 = [
   "Sofia",
   "Stuttgart",
   "Tirana",
+  "Tivat",
   "Toulouse",
   "Valencia",
+  "Vancouver",
   "Vienna",
+];
+
+// Every airline in Heathrow's terminal finder and the terminal it uses (checked 17 Nov 2026).
+const T2 = "Terminal 2";
+const T3 = "Terminal 3";
+const T4 = "Terminal 4";
+const AIRLINE_TERMINALS: { airline: string; terminal: string }[] = [
+  { airline: "Aegean Airlines", terminal: T2 },
+  { airline: "Aer Lingus", terminal: T2 },
+  { airline: "Aeromexico", terminal: T3 },
+  { airline: "Air Algerie", terminal: T4 },
+  { airline: "Air Astana", terminal: T4 },
+  { airline: "Air Canada", terminal: T2 },
+  { airline: "Air China", terminal: T2 },
+  { airline: "Air France", terminal: T4 },
+  { airline: "Air India", terminal: T2 },
+  { airline: "Air Peace", terminal: T3 },
+  { airline: "Air Serbia", terminal: T4 },
+  { airline: "Alaska Airlines", terminal: T3 },
+  { airline: "American Airlines", terminal: T3 },
+  { airline: "ANA", terminal: T2 },
+  { airline: "Asiana Airlines", terminal: T2 },
+  { airline: "Austrian", terminal: T2 },
+  { airline: "Avianca", terminal: T2 },
+  { airline: "Azerbaijan Airlines", terminal: T4 },
+  { airline: "Beijing Capital Airlines", terminal: T3 },
+  { airline: "Biman Bangladesh Airlines", terminal: T4 },
+  { airline: "British Airways", terminal: "Terminal 5 (some routes T3)" },
+  { airline: "Brussels Airlines", terminal: T2 },
+  { airline: "Bulgaria Air", terminal: T4 },
+  { airline: "Cathay Pacific", terminal: T3 },
+  { airline: "China Airlines", terminal: T3 },
+  { airline: "China Eastern", terminal: T4 },
+  { airline: "China Southern", terminal: T4 },
+  { airline: "Croatia Airlines", terminal: T2 },
+  { airline: "Delta Air Lines", terminal: T3 },
+  { airline: "Egyptair", terminal: T2 },
+  { airline: "El Al", terminal: T4 },
+  { airline: "Emirates", terminal: T3 },
+  { airline: "Ethiopian Airlines", terminal: T2 },
+  { airline: "Etihad Airways", terminal: T4 },
+  { airline: "Eurowings", terminal: T2 },
+  { airline: "EVA Air", terminal: T2 },
+  { airline: "Finnair", terminal: T3 },
+  { airline: "Gulf Air", terminal: T4 },
+  { airline: "Hainan Airlines", terminal: T3 },
+  { airline: "Iberia", terminal: "Terminal 5" },
+  { airline: "Icelandair", terminal: T2 },
+  { airline: "ITA Airways", terminal: T2 },
+  { airline: "Japan Airlines", terminal: T3 },
+  { airline: "JetBlue", terminal: T2 },
+  { airline: "Kenya Airways", terminal: T4 },
+  { airline: "KLM Royal Dutch Airlines", terminal: T4 },
+  { airline: "KM Malta Airlines", terminal: T4 },
+  { airline: "Korean Air", terminal: T4 },
+  { airline: "Kuwait Airways", terminal: T4 },
+  { airline: "LATAM Airlines", terminal: T3 },
+  { airline: "Loganair", terminal: T2 },
+  { airline: "LOT Polish Airlines", terminal: T2 },
+  { airline: "Lufthansa", terminal: T2 },
+  { airline: "Lufthansa City Airlines", terminal: T2 },
+  { airline: "Malaysia Airlines", terminal: T4 },
+  { airline: "MEA (Middle East Airlines)", terminal: T2 },
+  { airline: "Oman Air", terminal: T4 },
+  { airline: "Pakistan International Airlines", terminal: T4 },
+  { airline: "Qantas", terminal: T3 },
+  { airline: "Qatar Airways", terminal: T4 },
+  { airline: "Riyadh Air", terminal: T4 },
+  { airline: "Royal Air Maroc", terminal: T4 },
+  { airline: "Royal Brunei Airlines", terminal: T4 },
+  { airline: "Royal Jordanian", terminal: T3 },
+  { airline: "RwandAir", terminal: T4 },
+  { airline: "SAS Scandinavian Airlines", terminal: T2 },
+  { airline: "Saudia", terminal: T4 },
+  { airline: "Shenzhen Airlines", terminal: T2 },
+  { airline: "Singapore Airlines", terminal: T2 },
+  { airline: "SriLankan Airlines", terminal: T3 },
+  { airline: "Swiss", terminal: T2 },
+  { airline: "TAP Portugal", terminal: T2 },
+  { airline: "Thai Airways", terminal: T2 },
+  { airline: "Tianjin Airlines", terminal: T3 },
+  { airline: "Tunisair", terminal: T4 },
+  { airline: "Turkish Airlines", terminal: T2 },
+  { airline: "United Airlines", terminal: T2 },
+  { airline: "Uzbekistan Airways", terminal: T4 },
+  { airline: "Vietnam Airlines", terminal: T4 },
+  { airline: "Virgin Atlantic", terminal: T3 },
+  { airline: "Vueling", terminal: T4 },
+  { airline: "WestJet", terminal: T4 },
+  { airline: "Xiamen Airlines", terminal: T2 },
 ];
 
 export const GUIDES: Guide[] = [
@@ -333,7 +430,7 @@ export const GUIDES: Guide[] = [
       "Which Heathrow terminal your airline uses: British Airways at T5 (some routes T3), Virgin Atlantic at T3, Qatar at T4, Lufthansa and United at T2, and more.",
     crumb: "Which terminal?",
     image: "t3",
-    lastChecked: "2026-10-21",
+    lastChecked: "2026-11-17",
     answer:
       "British Airways flies mostly from Terminal 5, with some routes from Terminal 3. Virgin Atlantic, American, Delta and Emirates use Terminal 3. Star Alliance airlines such as Lufthansa, United and Air Canada use Terminal 2, and Qatar Airways, Etihad, Air France and KLM use Terminal 4.",
     sections: [
@@ -389,7 +486,6 @@ export const GUIDES: Guide[] = [
               "LATAM Airlines",
               "Alaska Airlines",
               "Aeromexico",
-              "IndiGo",
               "Royal Jordanian",
               "SriLankan Airlines",
               "China Airlines",
@@ -436,6 +532,14 @@ export const GUIDES: Guide[] = [
         ],
       },
       {
+        id: "airlines-a-to-z",
+        title: "Every airline at Heathrow, A to Z",
+        paragraphs: [
+          "Every airline in Heathrow’s terminal finder, with the terminal it uses. Terminals 2 and 3 are in Heathrow’s central terminal area; Terminal 4 is on the south side of the airport and Terminal 5 on the west.",
+        ],
+        airlineIndex: AIRLINE_TERMINALS,
+      },
+      {
         title: "Before you travel",
         bullets: [
           "Check the terminal on your booking confirmation or the airline’s app, and again on the day.",
@@ -465,6 +569,21 @@ export const GUIDES: Guide[] = [
         id: "guide-terminal-qatar",
         question: "Which terminal is Qatar Airways at Heathrow?",
         answer: "Terminal 4.",
+      },
+      {
+        id: "guide-terminal-ethiopian",
+        question: "Which terminal is Ethiopian Airlines at Heathrow?",
+        answer: "Terminal 2.",
+      },
+      {
+        id: "guide-terminal-air-india",
+        question: "Which terminal is Air India at Heathrow?",
+        answer: "Terminal 2.",
+      },
+      {
+        id: "guide-terminal-turkish",
+        question: "Which terminal is Turkish Airlines at Heathrow?",
+        answer: "Terminal 2.",
       },
     ],
     related: [
@@ -753,12 +872,17 @@ export const GUIDES: Guide[] = [
         ],
       },
       {
-        title: "By train",
+        id: "by-train",
+        title: "Heathrow to Gatwick by train",
+        paragraphs: [
+          "There’s no direct train between the airports: you change in central London, at Farringdon or Victoria. These are the legs and times Heathrow lists; add time for each change, especially with luggage.",
+        ],
         bullets: [
-          "There’s no direct train: you change in central London, at Victoria or Farringdon.",
-          "Via Farringdon: the Elizabeth line runs direct from Heathrow to Farringdon, then Thameslink to Gatwick.",
-          "Via Victoria: Heathrow Express or the Elizabeth line to Paddington, the Circle line to Victoria, then the Gatwick Express or Southern to Gatwick.",
-          "With heavy luggage, allow for changing lines and stations in central London.",
+          "Via Farringdon (one change): the Elizabeth line runs direct from Heathrow to Farringdon (Heathrow lists 35 minutes), then Thameslink to Gatwick, every 30 minutes, taking about 40 minutes.",
+          "Via Farringdon, faster first leg: Heathrow Express to Paddington, then the Elizabeth line to Farringdon (Heathrow lists 30 minutes in total), then Thameslink to Gatwick.",
+          "Via Victoria: Heathrow Express to Paddington and the Circle line to Victoria (Heathrow lists 45 minutes), or the Elizabeth line and Circle line (60 minutes).",
+          "From Victoria: the Gatwick Express runs non-stop every 30 minutes, taking about 31 minutes, or Southern trains run every 15 minutes, taking 32 to 50 minutes.",
+          "Check times and fares with the train operators before you travel; Heathrow notes they can change.",
         ],
       },
       {
@@ -782,6 +906,12 @@ export const GUIDES: Guide[] = [
         question: "Is there a direct train from Heathrow to Gatwick?",
         answer:
           "No. Heathrow says there are no direct trains; you change in central London, at Victoria or Farringdon.",
+      },
+      {
+        id: "guide-lhr-lgw-train-route",
+        question: "What’s the simplest train route from Heathrow to Gatwick?",
+        answer:
+          "With one change: take the Elizabeth line from Heathrow to Farringdon, then Thameslink to Gatwick. Heathrow lists about 35 minutes for the first leg and about 40 minutes for Thameslink, plus time to change.",
       },
       {
         id: "guide-lhr-lgw-distance",

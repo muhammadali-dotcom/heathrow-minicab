@@ -548,6 +548,24 @@ export const AREA_PROFILES: Record<Area["slug"], AreaProfile> = {
         answer:
           "Yes. We cover Ealing Common and nearby W5 addresses for Heathrow transfers.",
       },
+      {
+        id: "ealing-terminal-3",
+        question: "Can you take me from Ealing to Heathrow Terminal 3?",
+        answer:
+          "Yes. Terminals 2 and 3 share Heathrow’s central terminal area. We take you from your Ealing address to the Terminal 3 departures drop-off, and Heathrow’s £7 drop-off charge is added to your quote so you see the full price before you book.",
+      },
+      {
+        id: "ealing-terminals",
+        question: "Which Heathrow terminals do you cover from Ealing?",
+        answer:
+          "All four: Terminals 2 and 3 in the central terminal area, Terminal 4 on the south side of the airport and Terminal 5 on the west side. We also collect from arrivals at every terminal, with flight monitoring, and bring you home to Ealing.",
+      },
+      {
+        id: "ealing-vs-train",
+        question: "Why take a minicab from Ealing instead of the train?",
+        answer:
+          "Ealing Broadway has Elizabeth line trains to Heathrow, which suit light travellers. A pre-booked minicab picks you up at your door with your luggage, takes you to your exact terminal and runs 24/7, including early flights and late arrivals.",
+      },
     ],
   },
   twickenham: {
