@@ -19,6 +19,7 @@ import {
   ALT_PHONE,
   BOOK_ONLINE_HREF,
   BUSINESS_EMAIL,
+  OPERATOR_NOTE,
   PRIMARY_PHONE,
   WHATSAPP_URL,
 } from "@/lib/site";
@@ -49,7 +50,7 @@ export default function Page() {
       <TransfersHero
         crumbs={[{ label: "Contact" }]}
         title="Contact Heathrow Minicab"
-        intro="Book online or call us to plan your Heathrow transfer. We’re based in Hounslow, West London, and open 24/7."
+        intro={`Book online or call us to plan your Heathrow transfer. We’re based in Hounslow, West London, and open 24/7. ${OPERATOR_NOTE}`}
         primary={{ href: BOOK_ONLINE_HREF, label: "Book Online" }}
         secondaryLabel="Call Us"
         image={{

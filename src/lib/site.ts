@@ -53,7 +53,21 @@ export const BUSINESS_SUMMARY = `${SITE_NAME} is a 24/7 private hire service bas
 export const SAME_AS: string[] = [];
 
 // TfL private hire operator licence. Shown in the footer and schema once set.
-export const TFL_LICENCE: { number: string; operator: string } | null = null;
+export const TFL_LICENCE: { number: string; operator: string } | null = {
+  number: "6973",
+  operator: "A2B Radio Cars",
+};
+
+// The licensed operator that runs Heathrow Minicab's bookings, stated openly so customers and
+// search engines can connect the brand to the operator (and its reviews). Added to the schema
+// as parentOrganization.
+export const OPERATOR = {
+  name: "A2B Radio Cars",
+  sameAs: ["https://www.trustpilot.com/review/www.a2bradiocars.com"],
+};
+
+// One plain sentence naming the operator, for the About and Contact pages.
+export const OPERATOR_NOTE = `${SITE_NAME} is operated by ${OPERATOR.name}, a TfL-licensed private hire operator (licence ${TFL_LICENCE?.number}).`;
 
 // A2B Radio Cars' WhatsApp (a mobile, separate from the call lines). Digits only, as wa.me expects.
 // Chats open with a ready-to-send message.

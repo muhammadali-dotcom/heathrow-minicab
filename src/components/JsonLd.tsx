@@ -8,6 +8,7 @@ import {
   BUSINESS_BASE,
   BUSINESS_EMAIL,
   BUSINESS_SUMMARY,
+  OPERATOR,
   PHONE_NUMBERS,
   PRIMARY_PHONE,
   SAME_AS,
@@ -111,6 +112,11 @@ export function SiteJsonLd() {
               target: { "@type": "EntryPoint", urlTemplate: BOOK_ONLINE_HREF },
             },
             ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
+            parentOrganization: {
+              "@type": "Organization",
+              name: OPERATOR.name,
+              sameAs: OPERATOR.sameAs,
+            },
             ...(TFL_LICENCE
               ? {
                   identifier: {

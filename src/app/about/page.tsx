@@ -7,7 +7,7 @@ import { FeatureGrid, Section, TransfersHero } from "@/components/transfers/Tran
 import { SECTION_CONTAINER } from "@/lib/layout";
 import { WebPageJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
-import { PRIMARY_PHONE, BUSINESS_SUMMARY } from "@/lib/site";
+import { PRIMARY_PHONE, BUSINESS_SUMMARY, OPERATOR_NOTE } from "@/lib/site";
 import MaskHeading from "@/components/MaskHeading";
 
 // Facts here are limited to confirmed service details: no founding date, location, history,
@@ -51,6 +51,7 @@ export default function Page() {
           arrange hotel transfers, airport-to-airport connections, long-distance journeys, business
           travel and family trips, in saloon, estate, MPV and executive cars.
         </p>
+        <p className="mt-4 max-w-[44rem] leading-relaxed text-white/85">{OPERATOR_NOTE}</p>
       </Section>
 
       <Section tone="pale" id="what-matters" title="Care in the little things.">
