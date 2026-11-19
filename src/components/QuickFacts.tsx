@@ -73,6 +73,8 @@ export default function QuickFacts({ id = "key-facts" }: { id?: string }) {
                   <span className="block text-5xl leading-none font-bold tracking-tight md:text-6xl">
                     24/7
                   </span>
+                  {/* Hidden separator, so the heading reads "24/7: Here whenever you fly". */}
+                  <span className="sr-only">: </span>
                   <span className="mt-3 block text-xl font-bold">{hours.title}</span>
                 </h3>
                 <p className="mt-2 leading-relaxed text-white/85">{hours.text}</p>

@@ -43,6 +43,10 @@ export const BUSINESS_EMAIL = "a2bradiocarss@gmail.com";
 export const BUSINESS_BASE = { locality: "Hounslow", area: "West London", postcode: "TW3" };
 export const BUSINESS_BASE_LABEL = `${BUSINESS_BASE.locality}, ${BUSINESS_BASE.area} (${BUSINESS_BASE.postcode})`;
 
+// Map point for the schema: the centre of postcode TW3 1QA (postcodes.io), the operator base on
+// the TfL licence. Postcode-level only, so no street address is published.
+export const BUSINESS_GEO = { latitude: 51.47242, longitude: -0.35644 };
+
 // One sentence that defines the business. Repeated word for word in the schema, About page and
 // llms.txt so search and AI engines recognise the same entity everywhere.
 export const BUSINESS_SUMMARY = `${SITE_NAME} is a 24/7 private hire service based in ${BUSINESS_BASE_LABEL}, providing airport transfers between North and West London and Heathrow Terminals 2, 3, 4 and 5.`;
@@ -61,9 +65,12 @@ export const TFL_LICENCE: { number: string; operator: string } | null = {
 // The licensed operator that runs Heathrow Minicab's bookings, stated openly so customers and
 // search engines can connect the brand to the operator (and its reviews). Added to the schema
 // as parentOrganization.
+// Use the hyphenated a2b-radiocars.com (A2B's own site, confirmed by the owner). The unhyphenated
+// a2bradiocars.com Trustpilot listing is a different profile, so don't link it.
 export const OPERATOR = {
   name: "A2B Radio Cars",
-  sameAs: ["https://www.trustpilot.com/review/www.a2bradiocars.com"],
+  url: "https://www.a2b-radiocars.com",
+  sameAs: ["https://www.a2b-radiocars.com", "https://www.trustpilot.com/review/a2b-radiocars.com"],
 };
 
 // One plain sentence naming the operator, for the About and Contact pages.
@@ -79,9 +86,9 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 )}`;
 
 const HERO_COPY_PHONE =
-  "Whether you’re catching a flight or heading home, arrange your journey in advance. Call us to get a quote and help plan your transfer.";
+  "Whether you’re catching a flight or heading home, book your Heathrow airport taxi in advance. Call us to get a quote and help plan your transfer.";
 const HERO_COPY_ONLINE =
-  "Whether you’re catching a flight or heading home, arrange your journey in advance. Get a quote online or call us to help plan your transfer.";
+  "Whether you’re catching a flight or heading home, book your Heathrow airport taxi in advance. Get a quote online or call us to help plan your transfer.";
 
 // Switches automatically once NEXT_PUBLIC_BOOKING_URL is set.
 export const HERO_COPY = BOOKING_URL ? HERO_COPY_ONLINE : HERO_COPY_PHONE;

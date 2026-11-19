@@ -7,6 +7,7 @@ import {
   BOOK_ONLINE_HREF,
   BUSINESS_BASE,
   BUSINESS_EMAIL,
+  BUSINESS_GEO,
   BUSINESS_SUMMARY,
   OPERATOR,
   PHONE_NUMBERS,
@@ -80,6 +81,7 @@ export function SiteJsonLd() {
               postalCode: BUSINESS_BASE.postcode,
               addressCountry: "GB",
             },
+            geo: { "@type": "GeoCoordinates", ...BUSINESS_GEO },
             contactPoint: PHONE_NUMBERS.map((phone) => ({
               "@type": "ContactPoint",
               telephone: phone.tel,
@@ -115,6 +117,7 @@ export function SiteJsonLd() {
             parentOrganization: {
               "@type": "Organization",
               name: OPERATOR.name,
+              url: OPERATOR.url,
               sameAs: OPERATOR.sameAs,
             },
             ...(TFL_LICENCE

@@ -18,8 +18,10 @@ export const formatDate = (date: string) =>
 
 export const absoluteUrl = (path: string) => `${SITE_URL}${path === "/" ? "" : path}`;
 
+// Share image for every page's og:image and twitter:image: a JPG copy of app/opengraph-image.png,
+// so every app shows the same preview (some don't preview WebP).
 export const OG_IMAGE = {
-  url: "/images/heathrow-hero.webp",
+  url: "/images/share.jpg",
   width: 1672,
   height: 941,
   alt: "Heathrow Minicab airport transfer vehicle at Heathrow",
