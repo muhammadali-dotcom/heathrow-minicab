@@ -22,7 +22,7 @@ export const SITE_NAME = "Heathrow Minicab";
 
 // The hosted web booker. NEXT_PUBLIC_BOOKING_URL overrides it (e.g. for testing).
 export const BOOKING_URL =
-  process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://heathrowminicabbooking.com/booking";
+  process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://heathrowminicabbooking.com/booking?site=heathrow";
 
 // Where every "Book Online" / "Get a Quote" button goes (same tab).
 export const BOOK_ONLINE_HREF = BOOKING_URL;

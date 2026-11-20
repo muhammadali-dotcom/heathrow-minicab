@@ -72,7 +72,7 @@ const nextConfig: NextConfig = {
       // Online booking happens on the hosted web booker.
       {
         source: "/book",
-        destination: "https://heathrowminicabbooking.com/booking",
+        destination: "https://heathrowminicabbooking.com/booking?site=heathrow",
         permanent: false,
       },
       // Renamed service page.
